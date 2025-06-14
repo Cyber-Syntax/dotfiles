@@ -6,6 +6,18 @@
 
 ## How to use it?
 
+### Use script to deploy
+>
+> Written a basic script to automate deploying for gnu stow
+> This would dry-run stow first to show what would change
+> than it would ask confirmation to deploy the configs
+
+```bash
+sh deploy.sh
+```
+
+### Older manual version with .stowrc
+
 ```bash
 # below represent stow --dotfiles --target="$HOME" --ignore=.stowrc
 stow .
