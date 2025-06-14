@@ -5,7 +5,7 @@ nordic-tmux
 
 # history shell
 .zsh_history
-*zsh_history
+.zcompdump*
 
 # syncthing
 .stfolder/

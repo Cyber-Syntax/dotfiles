@@ -1,0 +1,68 @@
+#https://alacritty.org/config-alacritty.html#s62
+[general]
+live_config_reload = true
+working_directory = "None"
+
+# Themes --
+import = [
+  "~/.config/alacritty/mocha.toml",
+  "~/.config/alacritty/keybinds.toml"
+]
+
+[scrolling]
+history = 10000
+
+[window]
+title = "Alacritty"
+decorations = "none"
+blur = false
+opacity = 1
+padding.x = 10
+padding.y = 10
+
+[window.dimensions]
+columns = 160
+lines = 80
+
+[cursor]
+style.shape= "Beam"
+style.blinking = "On"
+vi_mode_style.shape = "Block"
+vi_mode_style.blinking = "On"
+
+# style:
+#   shape: Beam
+# vi_mode_style:
+#   shape: Block
+
+[colors]
+transparent_background_colors = false
+draw_bold_text_with_bright_colors = true
+
+[env]
+TERM = "xterm-256color"
+
+# [font]
+# # glyph_offset = { x = 5, y = 5 }
+# # normal.family = "Hack Nerd Font Mono"
+# # normal.family = "Source Code Pro"
+# normal.family = "JetBrains Mono"
+# normal.style = "Regular"
+# size = 19.0
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
+size = 19.0
+# fallback = ["JetBrains Mono Nerd Font", "Symbols Nerd Font"]
+
+# [font.bold]
+# family = "JetBrains Mono"
+# style = "Bold"
+#
+# [font.italic]
+# family = "JetBrains Mono"
+# # family = "Source Code Pro Medium"
+# # family = "Hack Nerd Font Mono"
+# style = "Italic"

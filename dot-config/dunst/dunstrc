@@ -1,0 +1,77 @@
+[global]
+  monitor = 0
+
+  notification_limit = 0
+
+  progress_bar = true
+  progress_bar_height = 10
+
+  # Set the frame width of the progress bar
+  progress_bar_frame_width = 1
+
+  # Set the minimum width for the progress bar
+  progress_bar_min_width = 150
+
+  # Set the maximum width for the progress bar
+  progress_bar_max_width = 300
+
+  frame_color = "#89b4fab0"
+  separator_color= frame
+  scale = 1.2
+  icon_corner_radius = 5
+  font = "Opensans 12"
+  icon_theme = "Papirus-Dark"
+  origin = top-right
+  offset = 0
+  frame_width = 4
+  corners = all
+  corner_radius = 10
+
+      # Ignore newlines '\n' in notifications.
+    ignore_newline = no
+
+    # Stack together notifications with the same content
+    stack_duplicates = true
+
+    # Hide the count of stacked notifications with the same content
+    hide_duplicate_count = false
+
+    # Display indicators for URLs (U) and actions (A).
+    show_indicators = yes
+
+# dbus
+  ignore_dbusclose = false
+# mouse
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[fullscreen_show_critical]
+    msg_urgency = normal
+    fullscreen = show
+
+[urgency_low]
+  background = "#1e1e2eb0"
+  foreground = "#cdd6f4"
+
+[urgency_normal]
+  background = "#1e1e2eb0"
+  foreground = "#cdd6f4"
+  timeout = 10
+  override_pause_level = 30
+
+[urgency_critical]
+  background = "#1e1e2eb0"
+  foreground = "#cdd6f4"
+  frame_color = "#fab387b0"
+  timeout = 0
+  override_pause_level = 60
+  # Icon for notifications with critical urgency, uncomment to enable
+  #default_icon = /path/to/icon
+
+#[superproductivity]
+#    appname = superproductivity
+#    summary = *superproductivity*
+#    urgency = critical
+#    script = ~/.config/qtile/scripts/notification-focus.sh
+

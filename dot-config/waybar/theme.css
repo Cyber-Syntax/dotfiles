@@ -1,0 +1,40 @@
+/* Custom Palette -not nord anymore - Theme for Waybar */
+
+/* Main Colors */
+@define-color main-fg         #ECEFF4; /* Nord6 */
+@define-color main-bg         #212124; /* Nord0 */
+@define-color main-br         #ECEFF4; /* Nord6 */
+
+/* Active & Hover */
+@define-color active-bg       #f0c574; /* Nord10 */
+@define-color active-fg       #ECEFF4; /* Nord6 */
+
+@define-color hover-bg        #434C5E; /* Nord2 */
+@define-color hover-fg        rgba(236,239,244,0.75); /* Nord6 with transparency */
+
+/* Basic Colors */
+@define-color white           #FFFFFF;
+@define-color black           #000000;
+
+/* Module Colors */
+@define-color module-fg       #E5E9F0; /* Nord5 */
+@define-color workspaces      #3B4252; /* Nord1 */
+
+@define-color memory          #38372f; /* Nord2 */
+@define-color cpuinfo         #38372f; /* Nord3 */
+@define-color cpu             #38372f; /* Nord9 */
+@define-color distro-fg       #2E3440; /* Nord0 */
+@define-color distro-bg       #38372f; /* Nord7 */
+@define-color time            #38372f; /* Nord9 */
+@define-color date            #38372f; /* Nord3 */
+@define-color tray            #38372f; /* Nord1 */
+
+@define-color pulseaudio      #38372f; /* Nord1 */
+@define-color backlight       #38372f; /* Nord2 */
+@define-color battery         #ECEFF4; /* Nord10 */
+@define-color power           #8FBCBB; /* Nord7 */
+
+/* State Colors */
+@define-color warning         #EBCB8B; /* Nord13 */
+@define-color critical        #BF616A; /* Nord11 */
+@define-color charging        #ECEFF4; /* Nord6 */

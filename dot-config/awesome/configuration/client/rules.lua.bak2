@@ -1,0 +1,43 @@
+local awful = require("awful")
+
+-- Clear existing rules (optional but recommended)
+awful.rules.rules = {}
+
+-- Default rule for all clients (MUST BE FIRST)
+awful.rules.rules[1] = {
+	rule = {},
+	properties = {
+		focus = awful.client.focus.filter,
+		raise = true,
+		placement = awful.placement.no_offscreen,
+		floating = false,
+	},
+}
+
+-- KeePassXC: Floating + Centered
+awful.rules.rules[2] = {
+	rule = { class = "keepassxc" }, -- Verify class with `xprop`
+	properties = {
+		floating = true,
+		width = 640,
+		height = 480,
+		placement = awful.placement.centered,
+	},
+}
+
+-- SuperProductivity: Assign to Tag 5
+awful.rules.rules[3] = {
+	rule = { class = "superproductivity" },
+	properties = {
+		tag = "5", -- Must match your tag name
+		switchtotag = true, -- Property name in v4.3
+	},
+}
+
+-- Browsers: Assign to Tag 1
+awful.rules.rules[4] = {
+	rule_any = { class = { "firefox", "chromium", "brave" } },
+	properties = {
+		tag = "1", -- Tag name, not index
+	},
+}
