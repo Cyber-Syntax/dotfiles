@@ -1,8 +1,5 @@
 ## GNU Stow ignore file for dotfiles
 
-# nordic-tmux, my fork
-nordic-tmux
-
 # history shell
 .zsh_history
 .zcompdump*

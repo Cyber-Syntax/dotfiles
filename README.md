@@ -1,16 +1,16 @@
 
 # My personal dotfiles
 >
-> This is my personal dotfiles maintainent with GNU Stow.
-> I switch from bare repository.
+> I've moved to using GNU Stow for my personal dotfiles maintenance instead of a bare repository.
 
 ## How to use it?
 
 ### Use script to deploy
 >
-> Written a basic script to automate deploying for gnu stow
-> This would dry-run stow first to show what would change
-> than it would ask confirmation to deploy the configs
+> Written a basic script to automate deploying for GNU Stow.
+>
+> This would dry run Stow first to show what would change,
+> then it would ask for confirmation to deploy the configurations.
 
 ```bash
 sh deploy.sh
@@ -24,7 +24,3 @@ stow .
 # This would send the qtile, nvim to ~/.config/qtile etc.
 # Also it send the dot files like dot-bashrc etc to $HOME/.bashrc
 ```
-
-## Ignore Files
-
-Currently I use .gitignore for the not important files.
