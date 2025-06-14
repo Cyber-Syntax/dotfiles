@@ -16,9 +16,18 @@
     "neovim",
     "vim",
     "pavucontrol",
-    "chromium"
+    "chromium",
+    "gimp",
   ],
   "dev": [
+    "gitleaks",
+    "stow",
+    "clamav",
+    "freshclam",
+    "libsecret",
+    "libsecret-devel",
+    "gnome-screenshot",
+    "openssh-askpass",
     "papirus-icon-theme",
     "git-credential-libsecret",
     "gh",
@@ -32,14 +41,17 @@
     "bat",
     "eza",
     "fd-find",
+    "tealdeer",
     "zsh-autosuggestions",
     "zsh-syntax-highlighting",
     "zsh",
     "luarocks",
     "cargo",
+    "uv",
     "yarnpkg",
     "bash-language-server",
     "python3-devel",
+    "python3-tkinter",
     "dbus-devel",
     "shfmt",
     "ShellCheck"
@@ -60,6 +72,8 @@
     "cpupower"
   ],
   "qtile": [
+    "pactl",
+    "khal",
     "Xephyr",
     "lxpolkit",
     "xset",
@@ -75,6 +89,12 @@
     "flameshot",
     "playerctl",
     "xev"
+  ],
+  "games": [
+    "wine",
+    "wine-mono",
+    "winetricks",
+    "lutris",
   ],
   "flatpak": [
     "org.signal.Signal",

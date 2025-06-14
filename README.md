@@ -3,13 +3,51 @@
 >
 > I've moved to using GNU Stow for my personal dotfiles maintenance instead of a bare repository.
 
-# How to setup your dotfiles with GNU stow?
+# How to setup GNU Stow for your dotfiles?
 >
 > [!CAUTION]
 > Backup your files!
->
+> 
 > Always `cd ~/dotfiles` dir before any stow command
 >
+
+## Automatic setup with shell script
+> [!NOTE]
+> setup option:
+> 
+> This would move your dotfiles to `~/dotfiles`
+> It would show preview of changes before applying them
+>
+>  - For .config files:  `~/.config/nvim` to `~/dotfiles/dot-config/nvim`
+>  - For dot files: `~/.vim` to `~/dotfiles/dot-vim`
+>  - For dot files: `~/.zshrc` to `~/dotfiles/dot-zshrc`
+
+
+> [!NOTE]
+> deploy option:
+> 
+> This would deploy your dotfiles to your home directory
+> It would show preview of changes before applying them
+>
+>   - This using stow to deploy your files.
+>   - Command used for preview: `stow -n -v --dotfiles --target="$HOME" .`
+>   - Command used for deploy: `stow -v --dotfiles --target="$HOME" .`
+
+```bash
+# Make the setup script executable
+chmod +x setup.sh
+
+# Run the setup script
+./setup.sh --setup
+
+# This would deploy your dotfiles to your home directory
+./setup.sh --deploy
+
+# This would initialize git repository in your dotfiles directory
+./setup.sh --init-git
+```
+
+## Manual Setup
 
 1. Create folder ~/dotfiles
 2. initialize git repo
@@ -50,8 +88,7 @@ cd ~/dotfiles &
 stow --dotfiles --target="$HOME" .
 ```
 
-7. make alias, zsh alias or bash. Also, stowrc alias too.
-make a file ~/dotfiles/.stowrc
+7. Alias for stow `~/dotfiles/.stowrc`:
 
 ```bash
 --dotfiles
@@ -61,35 +98,7 @@ make a file ~/dotfiles/.stowrc
 
 8. stow files to symlink
 
-> [!WARNING]
-> stay on the ~/dotfiles dir or it will cause issue
->
-
 ```bash
 cd ~/dotfiles &
 stow .
-```
-
-## How to use it?
-
-### Use script to deploy
->
-> [!NOTE]
->
-> Copy the files you want to use stow to make symlink than start the script.
->
-> This would dry run Stow first to show what would change,
-> then it would ask for confirmation to deploy the configurations.
-
-```bash
-sh deploy.sh
-```
-
-### Older manual version with .stowrc
-
-```bash
-# below represent stow --dotfiles --target="$HOME" --ignore=.stowrc
-stow .
-# This would send the qtile, nvim to ~/.config/qtile etc.
-# Also it send the dot files like dot-bashrc etc to $HOME/.bashrc
 ```
