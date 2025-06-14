@@ -1,3 +1,4 @@
 --dotfiles
 --target="$HOME"
 --ignore=.stowrc
+--ignore=deploy.sh
