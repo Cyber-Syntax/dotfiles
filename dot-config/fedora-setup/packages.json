@@ -17,9 +17,12 @@
     "vim",
     "pavucontrol",
     "chromium",
-    "gimp",
+    "gimp"
   ],
   "dev": [
+    "gparted",
+    "kernel-tools",
+    "kdiskmark",
     "gitleaks",
     "stow",
     "clamav",
