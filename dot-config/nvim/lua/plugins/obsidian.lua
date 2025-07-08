@@ -271,8 +271,9 @@ return {
 
     -- Optional, configure additional syntax highlighting / extmarks.
     -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
+    --NOTE: we uses render-markdown.nvim for better view, and this isn't working with it
     ui = {
-      enable = true, -- set to false to disable all additional syntax features
+      enable = false, -- set to false to disable all additional syntax features
       update_debounce = 200, -- update delay after a text change (in milliseconds)
       max_file_length = 5000, -- disable UI features for files with more than this many lines
       -- Define how various check-boxes are displayed

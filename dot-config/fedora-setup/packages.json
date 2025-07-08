@@ -98,6 +98,8 @@
     "wine-mono",
     "winetricks",
     "lutris",
+    "steam",
+    "heroic-games-launcher-bin"
   ],
   "flatpak": [
     "org.signal.Signal",

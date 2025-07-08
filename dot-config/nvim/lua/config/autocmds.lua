@@ -13,14 +13,15 @@
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
 vim.o.updatetime = 250
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+--vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
-vim.diagnostic.config({
-  virtual_text = true,
-  virtual_lines = { current_line = true },
-  underline = true,
-  update_in_insert = false,
-})
+--NOTE: add virtual text for diagnostics
+-- vim.diagnostic.config({
+--   virtual_text = true,
+--   virtual_lines = { current_line = true },
+--   underline = true,
+--   update_in_insert = false,
+-- })
 
 -- Remove whitespace on save
 autocmd("BufWritePre", {

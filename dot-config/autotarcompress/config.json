@@ -4,28 +4,30 @@
   "keep_backup": 1,
   "keep_enc_backup": 1,
   "dirs_to_backup": [
+    "~/.librewolf/sqwu9kep.default-release",
+    "~/.zen/qknutvmw.Default Profile/",
+    "~/.config/BraveSoftware/Brave-Browser/Default",
     "~/Photos",
     "~/Pictures",
     "~/Documents",
-    "~/.config/qtile",
     "~/.config/syncthing",
-    "~/.config/zsh",
-    "~/.config/autotarcompress",
     "~/.config/myunicorn",
     "~/.config/FreeTube",
-    "~/.librewolf/sqwu9kep.default-release",
-    "~/.config/BraveSoftware/Brave-Browser/Default",
-    "~/dotfiles",
-    "~/bare"
+    "~/dotfiles"
   ],
   "ignore_list": [
     "~/Documents/appimages",
+    "~/Documents/global-repos",
     "~/Documents/backup-for-cloud",
     "~/Documents/.stversions",
     "node_modules",
     ".venv",
     "__pycache__",
-    ".ruff_cache"
+    ".ruff_cache",
+    "~/Documents/my-repos/rust-unicorn/target",
+    "lock",
+    "chrome",
+    ".bin"
   ],
   "last_backup": null
 }

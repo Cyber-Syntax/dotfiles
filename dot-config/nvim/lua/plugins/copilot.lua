@@ -16,7 +16,7 @@ return {
       },
     },
     panel = { enabled = false, auto_refresh = true },
-    copilot_model = "claude-3.7-sonnet", -- Current LSP default is gpt-35-turbo, supports gpt-4o-copilot
+    copilot_model = "gpt-4o-copilot", -- Current LSP default is gpt-35-turbo, supports gpt-4o-copilot, claude-3.5-sonnet, claude-3-opus, claude-3-haiku
     filetypes = {
       yaml = false,
       markdown = false,

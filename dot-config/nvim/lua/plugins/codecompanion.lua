@@ -19,7 +19,7 @@ return {
                   type = "enum",
                   desc = "ID of the model to use. See the model endpoint compatibility table for details on which models work with the Chat API.",
                   ---@type string|fun(): string
-                  default = "claude-3.7-sonnet",
+                  default = "claude-4-sonnet",
                   choices = {
                     "claude-3.5-sonnet",
                     "claude-3.7-sonnet",

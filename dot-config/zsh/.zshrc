@@ -8,6 +8,8 @@ fi
 # # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+
+
 #### TMUX
 # Enable tmux all the time when zsh starts
 # if [ "$TMUX" = "" ]; then tmux; fi
@@ -364,3 +366,6 @@ eval "$(uv generate-shell-completion zsh)"
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+
+# Added by my‑unicorn installer
+export PATH="$HOME/.local/bin:$PATH"
