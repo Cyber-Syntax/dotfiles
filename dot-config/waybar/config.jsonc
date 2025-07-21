@@ -5,13 +5,107 @@
   "reload_style_on_change": true,
   "gtk-layer-shell": true,
   "height": 37,
+  // === Positions ===
+  "modules-left": [
+    "hyprland/workspaces", // workspaces
+    "sway/workspaces",
+    // "sway/window",
+    // "wlr/taskbar",
+    "custom/paddw"
+  ],
+  "modules-center": [
+    "custom/paddc",
+    "custom/storage",
+    "custom/paddw",
+    "custom/cpu-temp",
+    "custom/paddw",
+    "custom/paddw",
+    "clock#date",
+    "custom/paddw",
+    "network",
+    "custom/paddw"
+  ],
+  "modules-right": [
+    "custom/updates", // updates
+    // "custom/media", // media info
+    "mpris",
+    "custom/paddw",
+    "privacy",
+    "custom/paddw",
+    "tray",
+    "custom/paddw",
+    "pulseaudio", // output device
+    "custom/paddw",
+    // "bluetooth",
+    "custom/backlight", // brightness
+    "custom/paddw",
+    "battery", // battery
+    "custom/paddw",
+    "idle_inhibitor",
+    "custom/paddw",
+    "custom/power" // power button
+  ],
+  // === CUSTOM MODULES ===
+  "custom/backlight": {
+    "exec": "~/.config/waybar/scripts/brightness-control.sh",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "on-scroll-up": "~/.config/waybar/scripts/brightness-control.sh -o i",
+    "on-scroll-down": "~/.config/waybar/scripts/brightness-control.sh -o d",
+    "interval": 1,
+    "min-length": 6,
+    "max-length": 6
+  },
+  "custom/updates": {
+    "exec": "bash $HOME/Documents/repository/linux-system-utils/package-management/fedora-flatpak-status.sh",
+    "on-click-right": "kitty -e $HOME/Documents/repository/linux-system-utils/package-management/update-dnf-flatpak.sh",
+    // "on-click-middle": "swaymsg exec '$term -e sudo dnf update'",
+    "return-type": "text", // or "json" if your script returns JSON
+    "interval": 900,
+    "format": "{}",
+    "tooltip": false
+  },
+  "custom/ws": {
+    "format": "  ",
+    "tooltip": false,
+    "min-length": 3,
+    "max-length": 3
+  },
+  "custom/cpu-temp": {
+    "exec": "sensors | grep 'Package id 0:' | awk '{print $4}'",
+    "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>🌡 {text}",
+    "interval": 5,
+    "on-click": "kitty -e 'watch -n1 sensors'"
+  },
+  "custom/power": {
+    "format": " ",
+    "tooltip": true,
+    "tooltip-format": "Power Menu",
+    "on-click": "~/.config/rofi/powermenu/type-6/powermenu.sh"
+  },
+  // === Padding ===
+  "custom/paddw": {
+    "format": " ",
+    "tooltip": false
+  },
+  "custom/paddc": {
+    "format": " ",
+    "tooltip": false
+  },
+  // === Modules ===
   "wlr/taskbar": {
-    "format": "{icon}",
-    "icon-size": 14,
-    "icon-theme": "Numix-Circle",
+    "format": "{icon} {title:.6}",
+    "icon-size": 21,
+    "icon-theme": "Papirus-Light",
     "tooltip-format": "{title}",
     "on-click": "activate",
-    "activate-first": true,
+    "on-middle-click": "close",
+    "current-only": true,
+    "on-click-right": "minimize",
+    "spacing": 5,
+    "all-outputs": false,
+    "active-first": true,
     "app_ids-mapping": {
       "firefoxdeveloperedition": "firefox-developer-edition"
     },
@@ -20,11 +114,42 @@
       "Foot Server": "Terminal"
     }
   },
-  "custom/ws": {
-    "format": "  ",
-    "tooltip": false,
-    "min-length": 3,
-    "max-length": 3
+  "mpris": {
+    "format": "{player_icon} {artist} {title}",
+    "format-paused": "{status_icon} {artist} <i>{title}</i>",
+    "title-len": 9,
+    "player-icons": {
+      "default": "▶",
+      "mpv": "🎵",
+      "spotify": " "
+    },
+    "status-icons": {
+      "paused": "⏸"
+    },
+    "ignored-players": [
+      "firefox",
+      "zen",
+      "FreeTube"
+    ]
+  },
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{name}: {icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "urgent": "",
+      "focused": "",
+      "default": "",
+      "high-priority-named": [
+        "1",
+        "2"
+      ]
+    }
   },
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -33,10 +158,10 @@
     "format-icons": {
       "1": " ",
       "2": " ",
-      "3": " ",
+      "3": "",
       "4": " ",
-      "5": " ",
-      "6": " ",
+      "5": "",
+      "6": " ",
       "7": " ",
       "8": " ",
       "9": " "
@@ -49,84 +174,9 @@
       "5": []
     }
   },
-  "hyprland/window": {
-    "format": "{}",
-    "min-length": 5,
-    // === Window Titles ===
-    "rewrite": {
-      // == Desktop ==
-      "": "<span foreground='#89b4fa'> </span> Hyprland",
-      // == Terminal ==
-      "~": "  Terminal",
-      "zsh": "  Terminal",
-      "kitty": "  Terminal",
-      "sejjy@archlinux:(.*)": "  Terminal",
-      "(.*)sejjy@archlinux:~": "  Terminal",
-      // == Browser ==
-      "(.*)Mozilla Firefox": "<span foreground='#f38ba8'>󰈹 </span> Firefox",
-      "(.*) — Mozilla Firefox": "<span foreground='#f38ba8'>󰈹 </span> $1",
-      "(.*)Zen Browser": "<span foreground='#cdd6f4'>󰈹 </span> Zen Browser",
-      "(.*) — Zen Browser": "<span foreground='#cdd6f4'>󰈹 </span> $1",
-      // == Development ==
-      "(.*) - Visual Studio Code": "<span foreground='#89b4fa'>󰨞 </span> $1",
-      "(.*)Visual Studio Code": "<span foreground='#89b4fa'>󰨞 </span> Visual Studio Code",
-      "nvim": "<span foreground='#a6e3a1'> </span> Neovim",
-      "nvim (.*)": "<span foreground='#a6e3a1'> </span> $1",
-      "vim": "<span foreground='#a6e3a1'> </span> Vim",
-      "vim (.*)": "<span foreground='#a6e3a1'> </span> $1",
-      "Godot": "<span foreground='#89b4fa'> </span> Godot Engine",
-      "Godot Engine - (.*)": "<span foreground='#89b4fa'> </span> $1",
-      "(.*) - Godot Engine": "<span foreground='#89b4fa'> </span> $1",
-      // == Media ==
-      "(.*)Spotify": "<span foreground='#a6e3a1'> </span> Spotify",
-      "(.*)Spotify Premium": "<span foreground='#a6e3a1'> </span> Spotify Premium",
-      "OBS(.*)": "<span foreground='#a6adc8'>󰐌 </span> OBS Studio",
-      "VLC media player": "<span foreground='#fab387'>󰕼 </span> VLC Media Player",
-      "(.*) - VLC media player": "<span foreground='#fab387'>󰕼 </span> $1",
-      "(.*) - mpv": "<span foreground='#cba6f7'> </span> $1",
-      "GNU Image Manipulation Program": "<span foreground='#a6adc8'> </span> GNU Image Manipulation Program",
-      "qView": "  qView",
-      "(.*).jpg": "  $1.jpg",
-      "(.*).png": "  $1.png",
-      "(.*).svg": "  $1.svg",
-      // == Social ==
-      "vesktop": "<span foreground='#89b4fa'> </span> Discord",
-      "• Discord(.*)": "Discord$1",
-      "(.*)Discord(.*)": "<span foreground='#89b4fa'> </span> $1Discord$2",
-      // == Documents ==
-      "ONLYOFFICE Desktop Editors": "<span foreground='#f38ba8'> </span> OnlyOffice Desktop",
-      "(.*).docx": "<span foreground='#89b4fa'> </span> $1.docx",
-      "(.*).xlsx": "<span foreground='#a6e3a1'> </span> $1.xlsx",
-      "(.*).pptx": "<span foreground='#fab387'> </span> $1.pptx",
-      "(.*).pdf": "<span foreground='#f38ba8'> </span> $1.pdf",
-      "/": "  File Manager",
-      // == System ==
-      "Timeshift-gtk": "<span foreground='#a6e3a1'> </span> Timeshift",
-      "Authenticate": "  Authenticate"
-    }
-  },
-  "custom/cpu-zen-temp": {
-    "exec": "sensors | grep 'Tdie:' | awk '{print $2}' ",
-    "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>🌡 {}",
-    "interval": 5,
-    "on-click": "kitty -e 'watch -n1 sensors'"
-  },
-  "custom/cpu-temp": {
-    "exec": "sensors | grep 'Package id 0:' | awk '{print $4}'",
-    "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>🌡 {}",
-    "interval": 5,
-    "on-click": "kitty -e 'watch -n1 sensors'"
-  },
-  "temperature": {
-    "thermal-zone": 2,
-    "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input", // cpu Tcdie from zenpower
-    "critical-threshold": 80,
-    "format-critical": "{temperatureC}°C ",
-    "format": "{temperatureC}°C "
-  },
   "memory": {
     "states": {
-      "warning": 70,
+      "warning": 75,
       "critical": 90
     },
     "format": "󰘚 {percentage}%",
@@ -173,7 +223,7 @@
     ]
   },
   "idle_inhibitor": {
-    "format": " : {icon}",
+    "format": "{icon}",
     "format-icons": {
       "activated": " ", // prevent locking screen
       "deactivated": " " // able to lock screen
@@ -181,17 +231,10 @@
     "tooltip": true,
     "tooltip-format-activated": "Presentation Mode",
     "tooltip-format-deactivated": "Idle Mode",
-    "start-activated": true // Toggled on
-  },
-  "clock#time": {
-    "format": "{:%H:%M}",
-    "tooltip": true,
-    "tooltip-format": "Standard Time: {:%I:%M %p}",
-    "min-length": 6,
-    "max-length": 10
+    "start-activated": true
   },
   "clock#date": {
-    "format": "󰨳 {:%A,%d-%m-%Y}",
+    "format": "󰨳 {:%H:%M - %d-%m-%Y}",
     "tooltip-format": "<tt>{calendar}</tt>",
     "calendar": {
       "mode": "month",
@@ -199,7 +242,7 @@
       "on-click-right": "mode",
       "format": {
         "months": "<span color='#b4befe'><b>{}</b></span>",
-        "weekdays": "<span color='#a6adc8' font='11'>{}</span>",
+        "weekdays": "<span color='#a6adc8' font='7'>{}</span>",
         "today": "<span color='#f38ba8'><b>{}</b></span>"
       }
     },
@@ -208,7 +251,7 @@
       "on-click-right": "mode"
     },
     "min-length": 8,
-    "max-length": 30
+    "max-length": 25
   },
   "network": {
     "format": "{icon}",
@@ -221,22 +264,6 @@
     // "on-click": "gnome-control-center wifi",
     "tooltip": false
   },
-  "bluetooth": {
-    "format": "󰂰",
-    "format-disabled": "󰂲",
-    "format-connected": "󰂱",
-    "format-connected-battery": "󰂱",
-    "tooltip-format": "{num_connections} connected",
-    "tooltip-format-disabled": "Bluetooth Disabled",
-    "tooltip-format-connected": "{num_connections} connected\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}: {device_battery_percentage}%",
-    "on-click": "~/.config/waybar/scripts/bluetooth-menu.sh",
-    "on-click-right": "kitty --title '󰂯  Bluetooth TUI' bash -c bluetui",
-    "interval": 1,
-    "min-length": 1,
-    "max-length": 1
-  },
   "custom/media": {
     "format": " {}",
     "max-length": 40,
@@ -244,59 +271,23 @@
     "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh 2> /dev/null", // Script in resources folder
     "exec-if": "pgrep spotify"
   },
-  "mpris": {
-    "format": "{player_icon} {dynamic}",
-    "format-paused": "{status_icon} <i>{dynamic}</i>",
-    "dynamic-order": ["artist", "album", "position"],
-    "dynamic-importance-order": ["artist", "album", "position"],
-    "on-scroll-up": "playerctl next",
-    "on-scroll-down": "playerctl previous",
-
-    "player-icons": {
-      "default": " ",
-      "mpv": "🎵"
-    },
-    "status-icons": {
-      "paused": "⏸"
-    },
-    "ignored-players": ["firefox"]
-  },
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "󰝟 {volume}%",
     "format-icons": {
-      "default": ["󰕿", "󰖀", "󰕾"],
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ],
       "headphone": "󰋋",
       "headset": "󰋋"
     },
     "tooltip": true,
     "tooltip-format": "Device: {desc}",
-    "on-click": "pavucontrol",
-    "on-click-right": "~/.config/waybar/scripts/sink-popup.sh",
-    //"on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
-    //"on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
-    "min-length": 6,
-    "max-length": 6
-  },
-  /*
-  "backlight": {
-    "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "tooltip": false,
-    "on-scroll-up": "brightnessctl set 2%+",
-    "on-scroll-down": "brightnessctl set 2%-",
-    "min-length": 6,
-    "max-length": 6
-  },
-  */
-  "custom/backlight": {
-    "exec": "~/.config/waybar/scripts/brightness-control.sh",
-    "return-type": "json",
-    "format": "{}",
-    "tooltip": true,
-    "on-scroll-up": "~/.config/waybar/scripts/brightness-control.sh -o i",
-    "on-scroll-down": "~/.config/waybar/scripts/brightness-control.sh -o d",
-    "interval": 1,
+    "on-click": "~/.config/waybar/scripts/volume-control.sh -o m",
+    "on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
+    "on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
     "min-length": 6,
     "max-length": 6
   },
@@ -305,8 +296,17 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon} {capacity}%",
-    "format-icons": ["󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂"],
+    "format": "{icon} {capacity}% {power}W, {time}",
+    "format-time": "{H}h {M}m",
+    "format-icons": [
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂"
+    ],
     "format-warning": "󰁻 {capacity}%",
     "format-critical": "󱃍 {capacity}%",
     "format-charging": "󱘖 {capacity}%",
@@ -314,98 +314,6 @@
     "tooltip-format-charging": "Charging: {time}",
     "interval": 1,
     "min-length": 6,
-    "max-length": 6
-  },
-  "custom/power": {
-    "format": " ",
-    "tooltip": true,
-    "tooltip-format": "Power Menu",
-    "on-click": "~/.config/waybar/scripts/powermenu/powermenu.sh"
-  },
-  // === Padding ===
-  "custom/paddw": {
-    "format": " ",
-    "tooltip": false
-  },
-  "custom/paddc": {
-    "format": " ",
-    "tooltip": false
-  },
-  // == Left Arrows ==
-  "custom/left1": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left2": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left3": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left4": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left5": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left6": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left7": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/left8": {
-    "format": "",
-    "tooltip": false
-  },
-  // == Right Arrows ==
-  "custom/right1": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/right2": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/right3": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/right4": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/right5": {
-    "format": "",
-    "tooltip": false
-  },
-  // == Left Inverse ==
-  "custom/leftin1": {
-    "format": "",
-    "tooltip": false
-  },
-  "custom/leftin2": {
-    "format": "",
-    "tooltip": false
-  },
-  // == Right Inverse ==
-  "custom/rightin1": {
-    "format": "",
-    "tooltip": false
+    "max-length": 29
   }
 }
-// Groups
-//"group/hardware": {
-//  "orientation": "vertical",
-//  "modules": [
-//    "cpu",
-//    "memory",
-//    "battery"
-//  ]
-//},
