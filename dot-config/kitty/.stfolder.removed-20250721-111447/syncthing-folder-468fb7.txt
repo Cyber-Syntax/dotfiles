@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: yqawb-akrmm
+created: 2024-10-03T10:00:45+03:00
