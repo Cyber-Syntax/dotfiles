@@ -1,0 +1,36 @@
+[
+    {
+        "output": "HDMI-A-1",
+        "height": 22,
+        "include": [
+            "~/.config/waybar/default-modules.json"
+        ],
+        "layer": "top",
+        "modules-left": [],
+        "modules-center": ["clock"],
+        "modules-right": ["pulseaudio"]
+    },
+    {
+        "output": "DP-4",
+        "include": [
+            "~/.config/waybar/default-modules.json"
+        ],
+        "layer": "top",
+        "spacing": 4,
+        "modules-left": ["hyprland/workspaces", "custom/icon1", "custom/icon2", "custom/icon3"],
+        "modules-center": ["hyprland/window", "clock", "tray", "custom/dnf-update-status"],
+        "modules-right": ["idle_inhibitor", "disk#d2", "disk", "cpu", "memory","pulseaudio"]
+    },
+    {
+        "output": "eDP-1",
+        "include": [
+            "~/.config/waybar/default-modules.json"
+        ],
+        "layer": "top",
+        "position": "top",
+        "spacing": 4,
+        "modules-left": ["hyprland/workspaces", "custom/icon1", "custom/icon2", "custom/icon3"],
+        "modules-center": ["hyprland/window", "clock", "tray"],
+        "modules-right": ["custom/sink-status","tempature","idle_inhibitor", "disk#d2", "disk", "cpu", "memory","battery", pulseaudio"]
+    }
+]

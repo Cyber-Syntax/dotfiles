@@ -1,0 +1,500 @@
+/* Global Reset and Base Styles */
+* {
+	font-family: "DroidSansM Nerd Font";
+	font-weight: bold;
+	font-size: 15px;
+	min-height: 0;
+	padding: 0;
+	border: none;
+	margin: 0;
+	transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+@import "theme.css";
+
+/* === Main Background === */
+window#waybar {
+	background: @main-bg;
+	border-radius: 6px;
+	margin: 4px;
+}
+
+/* === Drop Shadow === */
+window#waybar > box {
+	background-color: transparent;
+	box-shadow: 0 0 2px 1px rgba(0, 0, 0, 1);
+	margin: 2px;
+}
+
+/* === Tooltip === */
+tooltip {
+	background: @main-bg;
+	border: 1.5px solid @main-br;
+	border-radius: 8px;
+	padding: 4px 6px;
+}
+tooltip label {
+	color: @main-fg;
+	font-weight: normal;
+	margin: -1.5px 3px;
+}
+
+/* === Workspace Buttons === */
+
+#workspaces button {
+	font-weight: bold;
+	/* Reduced horizontal padding to avoid extra space inside icons */
+	padding: 0.5px 1px;
+	margin: 0px 1px;
+	min-width: 30px;
+	/* Set an opaque base background (Nord polar-night-1) */
+	background: #2e3440;
+	color: @module-fg;
+	border: 0.5px solid #2e3440;
+	border-radius: 8px;
+	transition: background-color 0.2s ease, color 0.2s ease,
+		border-color 0.2s ease;
+}
+
+#workspaces button.occupied span {
+	color: #bf616a; /* for instance, using Nord Aurora Red */
+}
+/* Focused workspace */
+#workspaces button.active {
+	color: @active-fg;
+	background: @active-bg;
+	border-color: @active-bg;
+	box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.6);
+}
+
+/* Occupied (has windows) but not active */
+#workspaces button.occupied:not(.active) {
+	background: #5e81ac; /* Nord blue for occupied workspaces */
+	color: @module-fg;
+	border-color: #5e81ac;
+}
+
+/* Hover state */
+#workspaces button:hover {
+	background: @hover-bg;
+	border-color: @hover-bg;
+	color: @hover-fg;
+}
+
+/* === General Module Styling === */
+#custom-updates,
+#custom-ws,
+#workspaces,
+#window,
+#custom-cpuinfo,
+#memory,
+/* #cpu, */
+#custom-cpu,
+#idle_inhibitor,
+#clock,
+#custom-wifi,
+#bluetooth,
+#custom-update,
+#custom-media,
+#pulseaudio,
+/* #backlight, */
+#custom-backlight,
+#battery,
+#custom-power {
+	opacity: 1;
+	color: @module-fg;
+	padding: 0 4px;
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+	margin: 2px 0;
+	border-radius: 6px; /* Bubble effect */
+}
+
+/* Custom Label Sizes for Left and Right Groups */
+#custom-left1,
+#custom-left2,
+#custom-left3,
+#custom-left4,
+#custom-left5,
+#custom-left6,
+#custom-left7,
+#custom-left8 {
+	font-size: 14.68px;
+	margin-bottom: 0;
+	text-shadow: -2px 0 2px rgba(0, 0, 0, 0.5);
+}
+#custom-right1,
+#custom-right2,
+#custom-right3,
+#custom-right4,
+#custom-right5 {
+	font-size: 14.68px;
+	margin-bottom: 0;
+	padding-right: 3px;
+	text-shadow: 2px 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* === Module-Specific Styling === */
+
+/* -- Window Icon Module -- */
+#custom-ws {
+	background: @main-bg;
+}
+
+/* -- Workspaces Group -- */
+#custom-left1 {
+	color: @workspaces;
+	background: @main-bg;
+	padding-left: 2px;
+}
+#workspaces {
+	background: @workspaces;
+	border-radius: 6px;
+	margin: 4px;
+}
+#custom-right1 {
+	color: @workspaces;
+	background: @main-bg;
+	text-shadow: 3px 0 2px rgba(0, 0, 0, 0.4);
+}
+#taskbar {
+	background: transparent;
+	margin: 2px 0;
+	padding: 0;
+	border-radius: 6px;
+}
+
+#taskbar button {
+	padding: 0.5px 3px;
+	margin: 0px 1px;
+	border-radius: 8px;
+	background: @memory;
+	color: @module-fg;
+	border: 0.5px solid @memory;
+	min-width: 20px;
+	transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease,
+		border-color 0.2s ease;
+}
+
+/* Active window in taskbar - matched to workspace active styling */
+#taskbar button.active {
+	color: @active-fg;
+	background: @active-bg;
+	border-color: @active-bg;
+	box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.6);
+}
+
+/* For minimized windows */
+#taskbar button.minimized {
+	background: @tray;
+	color: @module-fg;
+	border-color: @tray;
+	opacity: 0.85;
+}
+
+/* For maximized windows */
+#taskbar button.maximized {
+	background: @cpu;
+	color: @module-fg;
+	border-color: @cpu;
+}
+
+/* For fullscreen windows */
+#taskbar button.fullscreen {
+	background: @distro-bg;
+	color: @distro-fg;
+	border-color: @distro-bg;
+}
+
+/* Hover effect for taskbar buttons - matched to workspace hover */
+#taskbar button:hover {
+	background: @hover-bg;
+	border-color: @hover-bg;
+	color: @hover-fg;
+}
+
+/* -- Updates Module -- */
+#custom-updates {
+	background: @memory; /* Using same background as memory module */
+	color: @module-fg;
+	border-radius: 6px;
+	padding: 0 4px;
+	margin: 2px;
+}
+#custom-updates:hover {
+	color: @hover-fg;
+}
+
+/* -- Temperature Module (cpu-temp) -- */
+#custom-cpu-temp {
+	background: @memory; /* Nord orange */
+	color: @module-fg;
+	border-radius: 6px;
+	padding: 0 4px;
+}
+
+/* -- Storage Module -- */
+#custom-storage {
+	background: @memory; /* Nord purple */
+	color: @module-fg;
+	border-radius: 6px;
+	padding: 0 4px;
+}
+
+/* -- Custom Wifi Module -- */
+#network {
+	background: @memory; /* Nord blue */
+	color: @module-fg;
+	border-radius: 6px;
+	padding: 0 4px;
+	margin: 2px;
+}
+#network:hover {
+	color: @hover-fg;
+}
+
+/* -- Bluetooth Module -- */
+#bluetooth {
+	background: @cpu; /* Nord cyan */
+	color: @module-fg;
+	border-radius: 6px;
+	padding: 0 4px;
+	margin: 2px;
+}
+#bluetooth:hover {
+	color: @hover-fg;
+}
+
+/* -- Tray Module -- */
+#tray {
+	background: #3b4252; /* Dark gray */
+	color: @module-fg;
+	border-radius: 6px;
+	padding: 0 4px;
+	margin: 2px;
+}
+
+/* -- Updates Module -- */
+#custom-updates {
+	background: @memory; /* Using same background as memory module */
+	color: @module-fg;
+	border-radius: 6px;
+	padding: 0 4px;
+	margin: 2px;
+}
+#custom-updates:hover {
+	color: @hover-fg;
+}
+
+/* -- Temperature and CPU Info (existing) -- */
+#custom-paddc {
+	padding-right: 22px;
+}
+#custom-left2 {
+	color: @cpuinfo;
+	background: @main-bg;
+	padding-left: 3px;
+}
+#custom-cpuinfo {
+	background: @cpuinfo;
+	padding: 0 2px;
+}
+
+/* -- Memory Module -- */
+#custom-left3 {
+	color: @memory;
+	background: @main-bg;
+	padding-left: 3px;
+}
+#memory {
+	background: @memory;
+	padding: 0 2px;
+}
+#memory.warning {
+	color: @warning;
+}
+#memory.critical {
+	color: @critical;
+}
+
+/* -- CPU Module -- */
+#custom-left4 {
+	color: @cpu;
+	background: @main-bg;
+	padding-left: 3px;
+}
+#custom-cpu {
+	background: @cpu;
+}
+#custom-leftin1 {
+	color: @cpu;
+	font-size: 15.5px;
+	margin-bottom: -1px;
+}
+
+/* -- Distro Icon -- */
+#custom-left5 {
+	color: @distro-bg;
+	background: @main-bg;
+	font-size: 15.68px;
+	text-shadow: -2px 0 2px rgba(0, 0, 0, 0.6);
+	margin-bottom: -2px;
+	padding-left: 3px;
+}
+#custom-distro {
+	color: @distro-fg;
+	background: @distro-bg;
+	font-size: 14.6px;
+	margin: 0 -1px -2px 0;
+	padding-left: 3px;
+	text-shadow: 0 0 1.5px rgba(0, 0, 0, 1);
+}
+#custom-right2 {
+	color: @distro-bg;
+	background: @main-bg;
+	font-size: 15.68px;
+	margin-bottom: -2px;
+}
+
+/* -- Time Module -- */
+#custom-rightin1 {
+	color: @time;
+	font-size: 15.5px;
+	margin-bottom: -1px;
+}
+#idle_inhibitor {
+	background: @date;
+	margin-right: -2px;
+	padding-left: 7px;
+}
+#idle_inhibitor:hover {
+	color: @distro-bg;
+	text-shadow: none;
+	box-shadow: none;
+}
+#clock.time {
+	background: @memory;
+	padding: 0 3px 0 0;
+	border-radius: 6px;
+}
+#custom-right3 {
+	color: @time;
+	background: @date;
+	border-radius: 6px;
+	padding: 0 3px;
+}
+
+/* -- Date Module for Clock -- */
+#clock.date {
+	background: @date;
+	border-radius: 6px;
+	padding: 0 3px;
+}
+#clock.date:hover {
+	color: @hover-fg;
+	text-shadow: none;
+	box-shadow: none;
+}
+#custom-right4 {
+	color: @date;
+	background: @tray;
+	border-radius: 6px;
+	padding: 0 3px;
+}
+
+/* -- Tray Module (if not already defined) -- */
+#tray {
+	background: #3b4252;
+	color: @module-fg;
+	border-radius: 6px;
+	padding: 0 4px;
+	margin: 2px;
+}
+
+/* -- Output Device / Pulseaudio -- */
+#custom-left6 {
+	color: @pulseaudio;
+	background: @main-bg;
+	padding-left: 3px;
+	border-radius: 6px;
+}
+#pulseaudio {
+	background: @pulseaudio;
+	border-radius: 6px;
+	padding: 0 4px;
+}
+#pulseaudio:hover {
+	color: @hover-fg;
+	text-shadow: none;
+	box-shadow: none;
+}
+
+/* -- Brightness Module -- */
+#custom-left7 {
+	color: @backlight;
+	background: @main-bg;
+	padding-left: 2px;
+	border-radius: 6px;
+}
+#custom-backlight {
+	background: @backlight;
+	border-radius: 6px;
+	padding: 0 4px;
+}
+
+/* -- Battery Module -- */
+#custom-left8 {
+	color: @battery;
+	background: @main-bg;
+	padding-left: 2px;
+	border-radius: 6px;
+}
+#battery {
+	color: @module-fg;
+	background: @battery;
+	border-radius: 6px;
+	padding: 0 4px;
+}
+#battery.warning {
+	color: @warning;
+}
+#battery.critical {
+	color: @critical;
+}
+#battery.charging {
+	color: @charging;
+}
+
+/* -- Power Button Module -- */
+#custom-leftin2 {
+	color: @battery;
+	background: @main-bg;
+	font-size: 15.5px;
+	margin-bottom: -1px;
+	border-radius: 6px;
+}
+#custom-power {
+	color: @main-bg;
+	background: @power;
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+	box-shadow: 1px 0 2px 1px rgba(0, 0, 0, 0.6);
+	border-radius: 10px;
+	margin: 2px 4px 2px 0;
+	padding: 0 6px 0 9px;
+}
+#custom-power:hover {
+	color: @hover-fg;
+	background: @hover-bg;
+	text-shadow: none;
+	box-shadow: none;
+}
+/* -- Updates Module -- */
+#custom-updates {
+	background: @memory; /* Using same background as memory module */
+	color: @module-fg;
+	border-radius: 6px;
+	padding: 0 4px;
+	margin: 2px;
+}
+#custom-updates:hover {
+	color: @hover-fg;
+}

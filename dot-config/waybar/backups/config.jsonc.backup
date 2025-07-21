@@ -1,0 +1,299 @@
+{
+  "layer": "top",
+  "position": "top",
+  "mode": "dock",
+  "reload_style_on_change": true,
+  "gtk-layer-shell": true,
+  "height": 37,
+  // === Positions ===
+  "modules-left": [
+    "hyprland/workspaces", // workspaces
+    "wlr/taskbar",
+    "custom/paddw"
+  ],
+  "modules-center": [
+    "custom/paddc",
+    "custom/storage",
+    "custom/paddw",
+    "custom/cpu-temp",
+    "custom/paddw",
+    "clock#time",
+    "custom/paddw",
+    "clock#date",
+    "custom/paddw",
+    "network",
+    "custom/paddw"
+  ],
+  "modules-right": [
+    "custom/updates", // updates
+    "custom/media", // media info
+    "custom/paddw",
+    "privacy",
+    "custom/paddw",
+    "tray",
+    "custom/paddw",
+    "pulseaudio", // output device
+    "custom/paddw",
+    // "bluetooth",
+    "custom/backlight", // brightness
+    "custom/paddw",
+    "battery", // battery
+    "custom/paddw",
+    "idle_inhibitor",
+    "custom/paddw",
+    "custom/power" // power button
+  ],
+  // === Modules ===
+  "wlr/taskbar": {
+    "format": "{icon} {title:.6}",
+    "icon-size": 21,
+    "icon-theme": "Papirus-Light",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-middle-click": "close",
+    "current-only": true,
+    "on-click-right": "minimize",
+    "spacing": 5,
+    "all-outputs": false,
+    "active-first": true,
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition"
+    },
+    "rewrite": {
+      "Firefox Web Browser": "Firefox",
+      "Foot Server": "Terminal"
+    }
+  },
+  "custom/updates": {
+    "exec": "bash ~/.config/waybar/scripts/waybar-dnf-status.sh", // <--- path to script
+    // "on-click-right": "bash $HOME/.config/waybar/scripts/checkupdates.sh", // refresh on right click
+    // "on-click-middle": "swaymsg exec '$term -e sudo dnf update'", // update on middle click
+    "interval": 900, // refresh every 15 minutes
+    "return-type": "json",
+    "format": "{icon}",
+    "format-alt": "{icon} {}",
+    "format-icons": {
+      "has-updates": "", // icon when updates needed
+      "updated": "✅" // icon when all packages updated
+    }
+  },
+  // "custom/updates": {
+  //   "exec": "bash $HOME/Documents/repository/linux-system-utils/package-management/fedora-flatpak-status.sh --json",
+  //   "on-click-right": "bash $HOME/Documents/repository/linux-system-utils/package-management/update-dnf-flatpak.sh",
+  //   // "on-click-middle": "swaymsg exec '$term -e sudo dnf update'",
+  //   "return-type": "json", // or "json" if your script returns JSON
+  //   "interval": 900,
+  //   "format": "{}",
+  //   "tooltip": false
+  // },
+  "custom/ws": {
+    "format": "  ",
+    "tooltip": false,
+    "min-length": 3,
+    "max-length": 3
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "format-icons": {
+      "1": " ",
+      "2": " ",
+      "3": "",
+      "4": " ",
+      "5": "",
+      "6": " ",
+      "7": " ",
+      "8": " ",
+      "9": " "
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    }
+  },
+  "custom/cpu-temp": {
+    "exec": "sensors | grep 'Package id 0:' | awk '{print $4}'",
+    "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>🌡 {text}",
+    "interval": 5,
+    "on-click": "kitty -e 'watch -n1 sensors'"
+  },
+  "memory": {
+    "states": {
+      "warning": 75,
+      "critical": 90
+    },
+    "format": "󰘚 {percentage}%",
+    "format-critical": "󰀦 {percentage}%",
+    "tooltip": true,
+    "tooltip-format": "Memory Used: {used:0.1f} GB / {total:0.1f} GB",
+    "interval": 5,
+    "min-length": 7,
+    "max-length": 7
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 0,
+    "show-passive-items": "true"
+  },
+  "custom/storage": {
+    "format": " {}",
+    "format-alt": " {percentage}%",
+    "format-alt-click": "click-right",
+    "return-type": "json",
+    "interval": 60,
+    "exec": "~/.config/waybar/scripts/storage.sh"
+  },
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "transition-duration": 250,
+    "modules": [
+      {
+        "type": "screenshare",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-out",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      },
+      {
+        "type": "audio-in",
+        "tooltip": true,
+        "tooltip-icon-size": 24
+      }
+    ]
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": " ", // prevent locking screen
+      "deactivated": " " // able to lock screen
+    },
+    "tooltip": true,
+    "tooltip-format-activated": "Presentation Mode",
+    "tooltip-format-deactivated": "Idle Mode",
+    "start-activated": false
+  },
+  "clock#time": {
+    "format": "{:%H:%M}",
+    "tooltip": true,
+    "tooltip-format": "Standard Time: {:%I:%M %p}",
+    "min-length": 6,
+    "max-length": 6
+  },
+  "clock#date": {
+    "format": "󰨳 {:%d-%m}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 6,
+      "on-click-right": "mode",
+      "format": {
+        "months": "<span color='#b4befe'><b>{}</b></span>",
+        "weekdays": "<span color='#a6adc8' font='7'>{}</span>",
+        "today": "<span color='#f38ba8'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click": "mode",
+      "on-click-right": "mode"
+    },
+    "min-length": 8,
+    "max-length": 8
+  },
+  "network": {
+    "format": "{icon}",
+    "format-alt": "{ipaddr}/{cidr} {icon}",
+    "format-alt-click": "click-right",
+    "format-wifi": "<span font='Font Awesome 5 Free 10'></span> ({signalStrength}%)",
+    "format-ethernet": " ",
+    "format-disconnected": "⚠ Disconnected",
+    //"on-click": "kitty -e ~/sway/scripts/network-manager",
+    // "on-click": "gnome-control-center wifi",
+    "tooltip": false
+  },
+  "custom/media": {
+    "format": " {}",
+    "max-length": 40,
+    "interval": 30, // Remove this if your script is endless and write in loop
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh 2> /dev/null", // Script in resources folder
+    "exec-if": "pgrep spotify"
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 {volume}%",
+    "format-icons": {
+      "default": [
+        "󰕿",
+        "󰖀",
+        "󰕾"
+      ],
+      "headphone": "󰋋",
+      "headset": "󰋋"
+    },
+    "tooltip": true,
+    "tooltip-format": "Device: {desc}",
+    "on-click": "~/.config/waybar/scripts/volume-control.sh -o m",
+    "on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
+    "on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
+    "min-length": 6,
+    "max-length": 6
+  },
+  "custom/backlight": {
+    "exec": "~/.config/waybar/scripts/brightness-control.sh",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "on-scroll-up": "~/.config/waybar/scripts/brightness-control.sh -o i",
+    "on-scroll-down": "~/.config/waybar/scripts/brightness-control.sh -o d",
+    "interval": 1,
+    "min-length": 6,
+    "max-length": 6
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}% {power}W, {time}",
+    "format-time": "{H}h {M}m",
+    "format-icons": [
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂"
+    ],
+    "format-warning": "󰁻 {capacity}%",
+    "format-critical": "󱃍 {capacity}%",
+    "format-charging": "󱘖 {capacity}%",
+    "tooltip-format": "Discharging: {time}",
+    "tooltip-format-charging": "Charging: {time}",
+    "interval": 1,
+    "min-length": 6,
+    "max-length": 29
+  },
+  "custom/power": {
+    "format": " ",
+    "tooltip": true,
+    "tooltip-format": "Power Menu",
+    "on-click": "~/.config/rofi/powermenu/type-6/powermenu.sh"
+  },
+  // === Padding ===
+  "custom/paddw": {
+    "format": " ",
+    "tooltip": false
+  },
+  "custom/paddc": {
+    "format": " ",
+    "tooltip": false
+  }
+}
