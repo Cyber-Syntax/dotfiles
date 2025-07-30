@@ -6,6 +6,7 @@ This module extends the global widgets with laptop-specific additions.
 
 from libqtile import qtile
 from qtile_extras import widget
+import subprocess
 
 # Import the global widget module
 from global_widget import (
@@ -107,6 +108,7 @@ laptop_specific_widgets = [
 # Laptop-specific widgets to add near the end (before power button)
 laptop_end_widgets = [
     widget.Battery(
+        notify_below=25,
         decorations=[
             getattr(widget.decorations, widget_decoration)(
                 **decorations[widget_decoration] | {"extrawidth": 4}

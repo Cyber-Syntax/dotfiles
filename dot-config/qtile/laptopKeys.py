@@ -13,7 +13,7 @@ from global_keys import global_keys, global_mouse, mod
 laptop_keys = [
     # Laptop-specific app launchers
     Key([mod], "Return", lazy.spawn("kitty"), desc="Launch terminal"),
-    Key([mod], "z", lazy.spawn("pcmanfm"), desc="Launch file manager"),
+    # Key([mod], "z", lazy.spawn("pcmanfm"), desc="Launch file manager"),
     # Laptop-specific window switching with Control+Tab
     Key(
         [mod, "control"],

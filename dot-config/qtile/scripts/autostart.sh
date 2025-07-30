@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 COLORSCHEME=Nord
 
-lxpolkit
+lxpolkit &
 nm-applet & # network manager applet
 #NOTE: compositor is necessary for qtile to prevent tearing
 picom -b & # compositor
