@@ -81,6 +81,7 @@ image/svg+xml=feh.desktop
 image/svg+xml-compressed=feh.desktop
 image/vnd.wap.wbmp=feh.desktop
 image/x-icns=feh.desktop
+x-scheme-handler/discord-1038970224050962582=nuclear.desktop
 
 
 [Added Associations]

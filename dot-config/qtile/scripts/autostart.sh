@@ -16,11 +16,11 @@ HOSTNAME=$(hostname)
 #FIXME: seems like hostname is not detected correctly
 # which it is try to run on laptophostname named fedora-laptop
 if [ "$HOSTNAME" = "fedora" ]; then
-  xset -dpms &                                           # disable power management (DPMS) causes screen to sleep after 10 minutes
-  xset s off &                                           # disable screen saver
-  ~/.local/share/myunicorn/super-productivity.AppImage & # task app new location
-  keepassxc &                                            # password manager
-  ckb-next --background &                                # corsair keyboard manager
+  xset -dpms &                                 # disable power management (DPMS) causes screen to sleep after 10 minutes
+  xset s off &                                 # disable screen saver
+  ~/Applications/super-productivity.AppImage & # task app new location
+  keepassxc &                                  # password manager
+  ckb-next --background &                      # corsair keyboard manager
   # else
   #   # For laptop (hostname = "fedoraLaptop") or any other machine
   #   # Laptop-specific applications will go here when ready

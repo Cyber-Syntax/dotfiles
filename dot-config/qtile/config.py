@@ -73,7 +73,7 @@ groups = [
         matches=[
             Match(
                 wm_class=re.compile(
-                    r"^(firefox|brave-browser|chromium-browser|librewolf)$"
+                    r"^(firefox|brave-browser|chromium-browser|librewolf|zen)$"
                 )
             )
         ],
@@ -90,7 +90,7 @@ groups = [
         "3",
         screen_affinity=0,
         layout="max",
-        matches=[Match(wm_class=re.compile(r"^(siyuan|obsidian|freetube)$"))],
+        matches=[Match(wm_class=re.compile(r"^(siyuan|obsidian|freetube|heroic)$"))],
         label=" ",
     ),
     Group(

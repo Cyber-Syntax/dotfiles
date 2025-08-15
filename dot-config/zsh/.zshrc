@@ -86,8 +86,14 @@ alias tnew="tmux new -s"
 alias tls="tmux ls"
 alias tat="tmux attach -t"
 
+## Export git user for Docusaurus deployment
+## with this, you don't need SSH keys to deploy
+## this would be use your git username and your github_pat
+## paste your github personal access token when github prompts for password
+export GIT_USER=Cyber-Syntax
+
 # Docusaurus deployment alias
-alias dinodeploy="yarn build & USE_SSH=true yarn deploy"
+alias dinodeploy="yarn build & yarn deploy"
 alias dinolocal="npm run start"
 
 # Fedora related aliases

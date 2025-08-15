@@ -204,6 +204,26 @@ def no_text(text):
     return ""
 
 
+def get_appimage_updates():
+    import subprocess
+
+    try:
+        out = subprocess.check_output(
+            [
+                "/bin/bash",
+                "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash",
+                "--check",
+            ],
+            stderr=subprocess.STDOUT,
+            timeout=10,
+        )
+        return out.decode().strip()
+    except subprocess.CalledProcessError as e:
+        return e.output.decode().strip() or f"Exit {e.returncode}"
+    except Exception as e:
+        return f"Error: {e}"
+
+
 # Common left widgets for all machines
 global_left = [
     # GroupBox is identical on both desktop and laptop
@@ -228,8 +248,26 @@ global_left = [
 
 # Common right widgets for all machines
 global_right = [
-    # custom script caller widget
+    # Custom appimage updates script call
     widget.GenPollText(
+        name="my-unicorn",
+        func=get_appimage_updates,
+        update_interval=9600,  # Update every 2 hours
+        mouse_callbacks={
+            "Button1": lambda: qtile.spawn(
+                'kitty -- bash -c "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash --update"'
+            ),
+        },
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    # Custom fedora package manager script call
+    widget.GenPollText(
+        name="fedora-package-manager",
         func=lambda: subprocess.check_output(
             "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --status",
             timeout=225,
@@ -237,7 +275,7 @@ global_right = [
         )
         .decode("utf-8")
         .strip(),
-        update_interval=3600,  # Update every 60 minutes
+        update_interval=9600,  # Update every 2 hours
         mouse_callbacks={
             "Button1": lambda: qtile.spawn(
                 'kitty -- bash -c "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update"'
