@@ -211,7 +211,7 @@ def get_appimage_updates():
         out = subprocess.check_output(
             [
                 "/bin/bash",
-                "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash",
+                "/home/developer/.local/share/my-unicorn/scripts/update.bash",
                 "--check",
             ],
             stderr=subprocess.STDOUT,

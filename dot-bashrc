@@ -11,8 +11,6 @@
 # Vimix-white-cursors
 # export XCURSOR_PATH=${XCURSOR_PATH}:~/.local/share/icons
 # export PATH=$(echo $PATH | tr ":" "\n" | grep -v "/.local/bin" | tr "\n" ":" | sed s/.$//)
-# Added by my‑unicorn installer
-export PATH="$HOME/.local/bin:$PATH"
 
 # Use zsh as default shell, fallback to bash if zsh not available
 if [[ $(ps --no-header --pid=$PPID --format=cmd) != "zsh" ]]; then
