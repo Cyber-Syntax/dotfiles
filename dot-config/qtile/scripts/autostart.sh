@@ -19,6 +19,7 @@ if [ "$HOSTNAME" = "fedora" ]; then
   xset -dpms &                                 # disable power management (DPMS) causes screen to sleep after 10 minutes
   xset s off &                                 # disable screen saver
   ~/Applications/super-productivity.AppImage & # task app new location
+  ~/Applications/zen-browser.AppImage &        # browser
   keepassxc &                                  # password manager
   ckb-next --background &                      # corsair keyboard manager
   # else

@@ -255,7 +255,7 @@ global_right = [
         update_interval=9600,  # Update every 2 hours
         mouse_callbacks={
             "Button1": lambda: qtile.spawn(
-                'kitty -- bash -c "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash --update"'
+                'alacritty -e bash -c "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash --update"'
             ),
         },
         decorations=[
@@ -278,7 +278,7 @@ global_right = [
         update_interval=9600,  # Update every 2 hours
         mouse_callbacks={
             "Button1": lambda: qtile.spawn(
-                'kitty -- bash -c "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update"'
+                'alacritty -e bash -c "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update"'
             ),
         },
         decorations=[

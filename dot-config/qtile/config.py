@@ -89,7 +89,7 @@ groups = [
     Group(
         "3",
         screen_affinity=0,
-        layout="max",
+        layout="monadtall",
         matches=[Match(wm_class=re.compile(r"^(siyuan|obsidian|freetube|heroic)$"))],
         label=" ",
     ),

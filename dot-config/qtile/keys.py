@@ -14,7 +14,6 @@ from global_keys import global_keys, global_mouse, mod
 # Desktop-specific key bindings
 desktop_keys = [
     # Desktop-specific app launchers
-    Key([mod], "Return", lazy.spawn("kitty -d ~"), desc="Launch terminal"),
     Key(
         [mod],
         "p",

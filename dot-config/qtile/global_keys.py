@@ -12,6 +12,9 @@ from libqtile.lazy import lazy
 
 # Define constants
 mod = "mod4"  # Sets mod key to SUPER/WINDOWS
+# TERMINAL = "kitty -d ~"  # My terminal of choice
+TERMINAL = "alacritty"  # My terminal of choice
+BROWSER = "brave"  # My browser of choice
 
 # Common mouse bindings
 global_mouse = [
@@ -29,6 +32,7 @@ global_mouse = [
 
 # Common key bindings for all machines
 global_keys = [
+    Key([mod], "Return", lazy.spawn(TERMINAL), desc="Launch terminal"),
     # Window management
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating"),
