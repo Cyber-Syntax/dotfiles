@@ -3,20 +3,17 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- old: github_dark,
-      colorscheme = "github_dark",
+      colorscheme = "monokai",
     },
   },
-
-  -- {
-  --   "xiantang/darcula-dark.nvim",
-  --   dependencies = {
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  -- },
   -- -- base16
-  -- {
-  --   "RRethy/base16-nvim",
-  -- },
+  {
+    "RRethy/base16-nvim",
+  },
+  {
+    "tanvirtin/monokai.nvim",
+  },
+  { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
   -- {
   --   "AlexvZyl/nordic.nvim",
   --   lazy = false,

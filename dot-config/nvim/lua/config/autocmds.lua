@@ -23,6 +23,10 @@ vim.o.updatetime = 250
 --   update_in_insert = false,
 -- })
 
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+
 -- Remove whitespace on save
 autocmd("BufWritePre", {
   pattern = "",

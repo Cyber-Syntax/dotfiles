@@ -4,10 +4,7 @@ live_config_reload = true
 working_directory = "None"
 
 # Themes --
-import = [
-  "~/.config/alacritty/mocha.toml",
-  "~/.config/alacritty/keybinds.toml"
-]
+import = ["~/.config/alacritty/mocha.toml", "~/.config/alacritty/keybinds.toml"]
 
 [scrolling]
 history = 10000
@@ -25,7 +22,7 @@ columns = 160
 lines = 80
 
 [cursor]
-style.shape= "Beam"
+style.shape = "Beam"
 style.blinking = "On"
 vi_mode_style.shape = "Block"
 vi_mode_style.blinking = "On"
@@ -51,10 +48,12 @@ TERM = "xterm-256color"
 # size = 19.0
 
 [font]
-normal = { family = "JetBrainsMono Nerd Font Mono", style = "Regular" }
-bold = { family = "JetBrainsMono Nerd Font Mono", style = "Bold" }
-italic = { family = "JetBrainsMono Nerd Font Mono", style = "Italic" }
-size = 19.0
+# Old: JetBrainsMono Nerd Font Mono
+# normal = { family = "JetbrainsMono Nerd Font Mono", style = "Regular" }
+normal = { family = "MesloLGS Nerd Font", style = "Regular" }
+bold = { family = "MesloLGS Nerd Font", style = "Bold" }
+italic = { family = "MesloLGS Nerd Font", style = "Italic" }
+size = 17.0
 # fallback = ["JetBrains Mono Nerd Font", "Symbols Nerd Font"]
 
 # [font.bold]

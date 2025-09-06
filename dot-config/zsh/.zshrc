@@ -1,14 +1,8 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# Switched to starship because powerlevel10k stop maintenance
+eval "$(starship init zsh)"
 
 # # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-
 
 #### TMUX
 # Enable tmux all the time when zsh starts
@@ -30,8 +24,8 @@ export ZSH="$HOME/.config/.oh-my-zsh"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # -------------------------------------------------------------------
 # Completion and compinit: autoload and initialize completion.
@@ -133,22 +127,22 @@ alias bpush='git --git-dir=$HOME/dotfiles --work-tree=$HOME push -u origin bare-
 
 # alias badd-all='git --git-dir=$HOME/dotfiles --work-tree=$HOME add ~/Documents/scripts ~/.config/nvim ~/.config/qtile/ ~/.config/kitty/ ~/.config/dunst/ ~/.config/hypr/ ~/.config/waybar/ ~/.config/tmux/ ~/.config/alacritty/ ~/.config/zsh/ ~/.config/mimeapps.list .zshenv .gitignore'
 # bare repo functions:
-badd-all() {
-  git --git-dir="$HOME/dotfiles" --work-tree="$HOME" add \
-    "$HOME/Documents/scripts" \
-    "$HOME/.config/nvim"     \
-    "$HOME/.config/qtile"    \
-    "$HOME/.config/kitty"    \
-    "$HOME/.config/dunst"    \
-    "$HOME/.config/hypr" \
-    "$HOME/.config/waybar" \
-    "$HOME/.config/tmux" \
-    "$HOME/.config/alacritty" \
-    "$HOME/.config/zsh" \
-    "$HOME/.config/mimeapps.list" \
-    "$HOME/.zshenv" \
-    "$HOME/.gitignore"
-}
+# badd-all() {
+#   git --git-dir="$HOME/dotfiles" --work-tree="$HOME" add \
+#     "$HOME/Documents/scripts" \
+#     "$HOME/.config/nvim"     \
+#     "$HOME/.config/qtile"    \
+#     "$HOME/.config/kitty"    \
+#     "$HOME/.config/dunst"    \
+#     "$HOME/.config/hypr" \
+#     "$HOME/.config/waybar" \
+#     "$HOME/.config/tmux" \
+#     "$HOME/.config/alacritty" \
+#     "$HOME/.config/zsh" \
+#     "$HOME/.config/mimeapps.list" \
+#     "$HOME/.zshenv" \
+#     "$HOME/.gitignore"
+# }
 
 # Standard Git aliases
 alias gst="git status"
@@ -179,10 +173,6 @@ alias gcomain="git checkout main"
 alias icat="kitten icat"  # Kitty terminal image preview
 
 # Neovim related aliases
-# fzf not work
-# alias n="nvim -c 'FzfLua oldfiles'"
-# alias nlv="NVIM_APPNAME=nvim.lazyvim nvim -c 'Telescope oldfiles'"
-
 alias n="nvim"
 
 # General utility aliases
@@ -293,9 +283,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # -------------------------------------------------------------------
 # Extra shell initialization
 # -------------------------------------------------------------------
@@ -303,21 +290,11 @@ source $ZSH/oh-my-zsh.sh
 # Bind Ctrl+Space to accept autosuggestion (the escape sequence here may need adjustments depending on terminal emulator)
 bindkey '^@' autosuggest-accept
 
-# Source the Powerlevel10k theme, if installed.
-if [ -f "$HOME/powerlevel10k/powerlevel10k.zsh-theme" ]; then
-  source "$HOME/powerlevel10k/powerlevel10k.zsh-theme"
-fi
-
 # Enable wayland on kitty if running on wayland
 if [ "$WAYLAND_DISPLAY" ]; then
   export KITTY_ENABLE_WAYLAND=1
 fi
 # force x11 kitty -o "linux_display_server=x11"
-
-# If a personal Powerlevel10k configuration exists, source it.
-if [ -f "$HOME/.p10k.zsh" ]; then
-  source "$HOME/.p10k.zsh"
-fi
 
 # Additional keybindings
 
@@ -360,7 +337,6 @@ export CHROME_BIN="/usr/bin/brave-browser-stable"
 # # Add the user's local bin directory (as defined by xdg-user-dir) to PATH.
 # export PATH="$PATH:$(xdg-user-dir USER)/.local/bin"
 
-
 # Initialize zoxide for fast directory navigation.
 if command -v zoxide > /dev/null 2>&1; then
   eval "$(zoxide init zsh)"
@@ -368,7 +344,6 @@ fi
 
 # uv auto completions
 eval "$(uv generate-shell-completion zsh)"
-
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)

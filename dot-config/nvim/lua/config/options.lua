@@ -11,7 +11,7 @@ vim.opt.laststatus = 3
 vim.opt.splitkeep = "screen"
 
 --NOTE: other options
-vim.o.background = "light" -- or "light" for light mode
+vim.o.background = "dark" -- or "light" for light mode
 --Hide The order of your lazy.nvim warning
 vim.g.lazyvim_check_order = false
 

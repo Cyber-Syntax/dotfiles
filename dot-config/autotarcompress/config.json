@@ -11,12 +11,11 @@
     "~/Pictures",
     "~/Documents",
     "~/.config/syncthing",
-    "~/.config/myunicorn",
+    "~/.config/my-unicorn/",
     "~/.config/FreeTube",
     "~/dotfiles"
   ],
   "ignore_list": [
-    "~/Documents/appimages",
     "~/Documents/global-repos",
     "~/Documents/backup-for-cloud",
     "~/Documents/.stversions",
