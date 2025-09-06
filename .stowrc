@@ -2,3 +2,5 @@
 --target=/home/developer
 --ignore=.stowrc
 --ignore=setup.sh
+--ignore=.stfolder
+--ignore=stversions

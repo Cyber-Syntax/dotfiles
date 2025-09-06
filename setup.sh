@@ -7,7 +7,7 @@ set -euo pipefail
 DOTFILES_DIR="$HOME/dotfiles"
 REMOTE_URL="https://github.com/Cyber-Syntax/dotfiles.git"
 TARGET_DIR="$HOME"
-CONFIG_DIRS=(nvim zsh kitty tmux autotarcompress fedora-setup alacritty hypr i3 polybar dunst picom waybar qtile awesome auto-cpufreq)
+CONFIG_DIRS=(nvim zsh kitty tmux autotarcompress fedora-setup alacritty hypr i3 polybar dunst picom waybar qtile awesome auto-cpufreq gammastep starship)
 CONFIG_FILES=(bashrc zshenv)
 
 # Help message

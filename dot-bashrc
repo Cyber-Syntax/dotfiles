@@ -1,3 +1,6 @@
+# Added by my-unicorn installer
+export PATH="$HOME/.local/bin:$PATH"
+
 #Auto start with xinitrc
 #export PATH="/home/developer/.local/bin:$PATH"
 # export GTK_PATH=$GTK_PATH:/usr/lib64/gtk-3.0
