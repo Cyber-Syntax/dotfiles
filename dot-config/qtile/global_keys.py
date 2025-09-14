@@ -12,8 +12,8 @@ from libqtile.lazy import lazy
 
 # Define constants
 mod = "mod4"  # Sets mod key to SUPER/WINDOWS
-# TERMINAL = "kitty -d ~"  # My terminal of choice
-TERMINAL = "alacritty"  # My terminal of choice
+TERMINAL = "kitty -d ~"  # My terminal of choice
+# TERMINAL = "alacritty"  # My terminal of choice
 BROWSER = "brave"  # My browser of choice
 
 # Common mouse bindings

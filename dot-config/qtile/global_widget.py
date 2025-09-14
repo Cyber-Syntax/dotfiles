@@ -255,7 +255,7 @@ global_right = [
         update_interval=9600,  # Update every 2 hours
         mouse_callbacks={
             "Button1": lambda: qtile.spawn(
-                'alacritty -e bash -c "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash --update"'
+                'alacritty -e bash -c "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash --update-outdated"'
             ),
         },
         decorations=[

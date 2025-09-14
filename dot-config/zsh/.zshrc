@@ -1,4 +1,5 @@
 # Switched to starship because powerlevel10k stop maintenance
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
 # # If you come from bash you might have to change your $PATH.
