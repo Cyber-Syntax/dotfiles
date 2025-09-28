@@ -23,3 +23,12 @@ if [[ $(ps --no-header --pid=$PPID --format=cmd) != "zsh" ]]; then
     echo "zsh not found, using bash instead"
   fi
 fi
+
+# AutoTarCompress completion
+source "/home/developer/.local/share/autotarcompress/autocomplete/bash_autocomplete"
+# >>> my-unicorn completion start >>>
+MY_UNICORN_COMPLETION_DIR="/home/developer/.local/share/my-unicorn/autocomplete"
+if [ -f "$MY_UNICORN_COMPLETION_DIR/bash_autocomplete" ]; then
+  source "$MY_UNICORN_COMPLETION_DIR/bash_autocomplete"
+fi
+# <<< my-unicorn completion end <<<

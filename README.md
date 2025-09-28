@@ -7,14 +7,18 @@
 >
 > [!CAUTION]
 > Backup your files!
-> 
+>
 > Always `cd ~/dotfiles` dir before any stow command
 >
+
+## Dependencies
+### neovim dependencies, add to dotfiles
+- lazygit nodejs npm laurocks tree-sitter-cli
 
 ## Automatic setup with shell script
 > [!NOTE]
 > setup option:
-> 
+>
 > This would move your dotfiles to `~/dotfiles`
 > It would show preview of changes before applying them
 >
@@ -25,7 +29,7 @@
 
 > [!NOTE]
 > deploy option:
-> 
+>
 > This would deploy your dotfiles to your home directory
 > It would show preview of changes before applying them
 >

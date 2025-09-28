@@ -4,7 +4,10 @@ live_config_reload = true
 working_directory = "None"
 
 # Themes --
-import = ["~/.config/alacritty/mocha.toml", "~/.config/alacritty/keybinds.toml"]
+import = [
+  "~/.config/alacritty/nordic.toml",
+  "~/.config/alacritty/keybinds.toml",
+]
 
 [scrolling]
 history = 10000

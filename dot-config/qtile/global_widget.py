@@ -256,6 +256,7 @@ global_right = [
         mouse_callbacks={
             "Button1": lambda: qtile.spawn(
                 'alacritty -e bash -c "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash --update-outdated"'
+                # 'ghostty -e bash -c "/home/developer/.local/share/my-unicorn/scripts/update.bash --update-outdated"'
             ),
         },
         decorations=[
@@ -279,6 +280,7 @@ global_right = [
         mouse_callbacks={
             "Button1": lambda: qtile.spawn(
                 'alacritty -e bash -c "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update"'
+                # 'ghostty -e bash -c "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update"'
             ),
         },
         decorations=[

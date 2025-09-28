@@ -3,7 +3,7 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
 # # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 #### TMUX
 # Enable tmux all the time when zsh starts
@@ -29,10 +29,11 @@ export ZSH="$HOME/.config/.oh-my-zsh"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # -------------------------------------------------------------------
+# Added by AutoTarCompress to enable shell completion
+fpath=(/home/developer/.config/zsh/completions $fpath)
 # Completion and compinit: autoload and initialize completion.
 # -------------------------------------------------------------------
-autoload -U compinit && compinit
-
+autoload -Uz compinit && compinit
 # -------------------------------------------------------------------
 # History
 # -------------------------------------------------------------------
@@ -349,5 +350,5 @@ eval "$(uv generate-shell-completion zsh)"
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
 
-# Added by my‑unicorn installer
+# Added by my-unicorn installer
 export PATH="$HOME/.local/bin:$PATH"
