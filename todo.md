@@ -1,0 +1,4 @@
+- [ ] dependencies install script
+- starship, qtile-extras -> mostly aur, copr repos
+- default repos -> stow and similar
+- oh-my-zsh -> git clone and its own install script

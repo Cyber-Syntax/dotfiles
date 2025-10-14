@@ -27,6 +27,12 @@ INTERVAL=${INTERVAL:-300}
 # xautolock command to ensure running
 XAUTOLOCK_CMD=(xautolock -time 15 -locker 'systemctl suspend' -notify 600 -notifier 'i3lock | xset dpms force off')
 
+#NOTE: both below not works, it is still dim even audio is playing
+# XAUTOLOCK_CMD=(xautolock -time 10 -locker 'i3lock' -notify 30 -notifier 'notify-send -u critical -t 10000 -- "LOCKING screen in 30 seconds"' -killtime 15 -killer 'systemctl suspend' -detectsleep)
+# XAUTOLOCK_CMD=(xautolock -time 15 -locker 'systemctl suspend' -notify 600 -notifier 'i3lock | xset dpms force off')
+
+
+
 start_xautolock_if_needed() {
   if ! pgrep -x xautolock >/dev/null 2>&1; then
     "${XAUTOLOCK_CMD[@]}" &>/dev/null &
