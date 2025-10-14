@@ -21,6 +21,7 @@ Options:
   --setup       Run setup: preview and move files to dotfiles structure
   --deploy      Run deployment: preview and apply stow symlinks
   --init-git    (Experimental) Initialize the dotfiles Git repository
+  --deps        Install platform dependencies (delegates to scripts/install-deps.sh)
   --help        Show this help message
 EOF
 }
@@ -156,6 +157,28 @@ init_git() {
   fi
 }
 
+# Install dependencies helper: delegates to scripts/install-deps.sh
+install_deps() {
+  # Prefer executable in the dotfiles scripts directory (user-editable)
+  if [ -x "$DOTFILES_DIR/scripts/install-deps.sh" ]; then
+    echo "[+] Running dependency installer: $DOTFILES_DIR/scripts/install-deps.sh"
+    "$DOTFILES_DIR/scripts/install-deps.sh" "${DEPENDENCIES[@]}"
+    return
+  fi
+
+  # Fallback: scripts relative to this script (useful when running from repo checkout)
+  SCRIPT_REL="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)/scripts/install-deps.sh"
+  if [ -x "$SCRIPT_REL" ]; then
+    echo "[+] Running dependency installer: $SCRIPT_REL"
+    "$SCRIPT_REL" "${DEPENDENCIES[@]}"
+    return
+  fi
+
+  echo "[!] Dependency installer not found."
+  echo "[!] Please add an executable scripts/install-deps.sh either in the dotfiles repo or next to this script."
+  exit 1
+}
+
 # Main logic: parse arguments
 if [ $# -eq 0 ]; then
   show_help
@@ -173,6 +196,9 @@ case "$1" in
   ;;
 --init-git)
   init_git
+  ;;
+--deps)
+  install_deps
   ;;
 --help)
   show_help
