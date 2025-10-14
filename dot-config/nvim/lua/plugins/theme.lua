@@ -3,25 +3,21 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- old: github_dark,
-      colorscheme = "monokai",
+      colorscheme = "nordic",
     },
   },
   -- -- base16
-  {
-    "RRethy/base16-nvim",
-  },
-  {
-    "tanvirtin/monokai.nvim",
-  },
-  { "ellisonleao/gruvbox.nvim", priority = 1000, config = true, opts = ... },
   -- {
-  --   "AlexvZyl/nordic.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require("nordic").load()
-  --   end,
+  --   "RRethy/base16-nvim",
   -- },
+  {
+    "AlexvZyl/nordic.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("nordic").load()
+    end,
+  },
   {
     "projekt0n/github-nvim-theme",
     name = "github-theme",

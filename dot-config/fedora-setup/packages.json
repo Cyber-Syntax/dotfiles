@@ -20,6 +20,8 @@
     "gimp"
   ],
   "dev": [
+    "iftop",
+    "nm-applet",
     "gparted",
     "kernel-tools",
     "kdiskmark",

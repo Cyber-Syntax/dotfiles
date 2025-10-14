@@ -1,4 +1,5 @@
 return {
+  --NOTE: currently not work as expected... Hard to maintain...
   -- {
   --   "olimorris/codecompanion.nvim",
   --   -- opts = {},

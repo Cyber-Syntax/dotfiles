@@ -252,7 +252,9 @@ global_right = [
     widget.GenPollText(
         name="my-unicorn",
         func=get_appimage_updates,
-        update_interval=9600,  # Update every 2 hours
+        # update_interval=48000,  # Update every 10 hour
+        # TESTING:
+        update_interval=None,  # update only once
         mouse_callbacks={
             "Button1": lambda: qtile.spawn(
                 'alacritty -e bash -c "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash --update-outdated"'
@@ -276,7 +278,9 @@ global_right = [
         )
         .decode("utf-8")
         .strip(),
-        update_interval=9600,  # Update every 2 hours
+        # update_interval=48000,  # Update every 10 hour
+        # TESTING:
+        update_interval=None,  # update only once
         mouse_callbacks={
             "Button1": lambda: qtile.spawn(
                 'alacritty -e bash -c "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update"'
