@@ -234,6 +234,13 @@ def start_once():
     subprocess.Popen([home])
 
 
+# xautolock script for idle lock, sleep etc.
+@hook.subscribe.startup_once
+def start_once():
+    home = os.path.expanduser("~/.config/qtile/scripts/idle.sh")
+    subprocess.Popen([home])
+
+
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
