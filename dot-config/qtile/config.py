@@ -56,7 +56,7 @@ hostname = get_hostname()
 if hostname == "fedora":
     from keys import keys
     from widget import *
-elif hostname == "fedora-laptop":
+elif hostname == "developer-laptop":
     from laptopKeys import keys
     from laptopWidget import *
 else:
