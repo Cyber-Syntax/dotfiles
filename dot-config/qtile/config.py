@@ -82,7 +82,7 @@ groups = [
     Group(
         "2",
         screen_affinity=0,
-        layout="monadtall",
+        layout="max",
         matches=[Match(wm_class=re.compile(r"^(code|zed)$"))],
         label="",
     ),
@@ -111,7 +111,7 @@ groups = [
         "6",
         screen_affinity=0,
         layout="monadtall",
-        matches=[Match(wm_class=re.compile(r"^(pcmanfm)$"))],
+        matches=[Match(wm_class=re.compile(r"^(pcmanfm|virt-manager)$"))],
         label=" ",
     ),
 ]

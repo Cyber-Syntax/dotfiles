@@ -4,6 +4,8 @@ eval "$(starship init zsh)"
 
 # # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+# export cargo
+export PATH="$HOME/.local/share/cargo/bin:$PATH"
 
 #### TMUX
 # Enable tmux all the time when zsh starts
