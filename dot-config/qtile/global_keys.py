@@ -46,22 +46,10 @@ global_keys = [
     # Change location of the windows like left: 1,2,3 right:1
     # became left:1 , right: 1,2,3 window.
     Key([mod, "shift"], "space", lazy.layout.flip()),
-    # Screen/Group management
-    Key(
-        [mod], "Tab", lazy.screen.next_group(skip_empty=True), desc="Move to next group"
-    ),
-    Key(
-        [mod, "shift"],
-        "Tab",
-        lazy.screen.prev_group(skip_empty=True),
-        desc="Move to previous group",
-    ),
     # Apps
     ## folder pcmanfm
     Key([mod], "z", lazy.spawn("pcmanfm"), desc="Launch file manager"),
     # Window focus and movement
-    Key([mod], "d", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "a", lazy.layout.up(), desc="Move focus up"),
     Key([mod], "w", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod], "e", lazy.layout.shuffle_up(), desc="Move window up"),
     Key([mod], 49, lazy.layout.next(), desc="Move window focus to other window"),

@@ -1,24 +1,22 @@
 #!/usr/bin/env bash
-COLORSCHEME=Nord
 
 lxpolkit &
-nm-applet & # network manager applet
-#NOTE: picom compositor is necessary for qtile to prevent tearing
-picom -b &
+picom -b & # compositor (necessary to prevent screen tearing in qtile)
 numlockx on &
 setxkbmap tr &
 gammastep & # redshift alternative (works wayland and xorg)
 python3 /home/developer/Documents/my-repos/WallpaperChanger/main.py &
+
 flatpak run io.github.martchus.syncthingtray &
-# custom xautolock script to prevent locking/suspending when audio is playing
 
 # Determine which machine-specific setup to run
+#TODO: hostname detection need better logic, might be better to handle in config.py
 HOSTNAME=$(hostname)
-#FIXME: seems like hostname is not detected correctly
 # which it is try to run on laptophostname named fedora-laptop
 if [ "$HOSTNAME" = "fedora" ]; then
   # xset -dpms &                                 # disable power management (DPMS) causes screen to sleep after 10 minutes
   # xset s off &                                 # disable screen saver
+  nm-applet &                                  # network manager applet
   ~/Applications/super-productivity.AppImage & # task app new location
   ~/Applications/zen-browser.AppImage &        # browser
   keepassxc &                                  # password manager

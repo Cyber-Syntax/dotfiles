@@ -1,37 +1,22 @@
 """
-Desktop-specific widgets for Qtile.
+Desktop widget configuration for Qtile (Two-monitor setup).
 
-This module extends the global widgets with desktop-specific additions.
+Monitor Layout:
+- Left Monitor: GroupBox + TaskList for workspace/app management
+- Right Monitor: System widgets (updates, sensors, clock, systray, etc.)
+
+NOTE: Systray can only appear once, so it goes on the right monitor.
 """
 
-import gi
+import os
+
 from libqtile import bar, qtile
 from libqtile.config import Screen
 from libqtile.lazy import lazy
 from qtile_extras import widget
-from qtile_extras.popup.toolkit import (
-    PopupRelativeLayout,
-    PopupSlider,
-    PopupText,
-)
 
-# Add GTK dependencies
-try:
-    gi.require_version("Gtk", "3.0")
-    from gi.repository import Gtk
-
-    GTK_THEME = Gtk.Settings.get_default().get_property("gtk-icon-theme-name")
-    GTK_THEME_AVAILABLE = True
-except (ImportError, ValueError):
-    GTK_THEME = None
-    GTK_THEME_AVAILABLE = False
-    print("Warning: Could not load GTK, falling back to default icon theme")
-
-# Import the terminal variable from variables.py
-# Import all the shared widget configurations
+# Import shared utilities
 from global_widget import (
-    global_right,
-    global_left,
     bar_background_color,
     bar_background_opacity,
     bar_bottom_margin,
@@ -42,86 +27,121 @@ from global_widget import (
     bar_right_margin,
     bar_size,
     bar_top_margin,
-    colors,
     decorations,
+    flexible_spacing_seperator,
+    get_appimage_updates,
+    get_fedora_updates,
     layouts_margin,
     left_offset,
     nord_theme,
     right_offset,
-    sep,
     smart_parse_text,
     space,
     widget_decoration,
 )
 from variables import terminal
 
-# qtile extras setup
-VOLUME_NOTIFICATION = PopupRelativeLayout(
-    width=200,
-    height=50,
-    hide_on_mouse_leave=True,
-    controls=[
-        PopupText(
-            text="Volume:",
-            name="text",
-            pos_x=1.1,
-            pos_y=1.1,
-            height=1.2,
-            width=1.8,
-            v_align="middle",
-            h_align="center",
-        ),
-        PopupSlider(
-            name="volume",
-            pos_x=0.1,
-            pos_y=0.3,
-            width=0.8,
-            height=0.8,
-            colour_below="00ffff",
-            bar_border_size=2,
-            bar_border_margin=3,
-            bar_size=4,
-            marker_size=1,
-            end_margin=1,
-        ),
-    ],
-)
-# TODO: make more global like tasklist etc. could be global too?
-left = global_left + [
-    # "pyxdg" package is needed for wayland for TaskList
-    # widget.GroupBox(
-    #     font=f"{bar_font} Bold",
-    #     disable_drag=True,
-    #     borderwidth=0,
-    #     fontsize=15,
-    #     inactive=nord_theme["disabled"],
-    #     active=bar_foreground_color,
-    #     block_highlight_text_color=nord_theme["accent"],
-    #     padding=7,
-    # ),
+# ============================================================================
+# LEFT MONITOR WIDGETS (Monitor 0)
+# ============================================================================
+
+left_monitor_widgets = [
+    # GroupBox showing only specific workspaces for this monitor
+    widget.GroupBox(
+        font=f"{bar_font} Bold",
+        visible_groups=["1", "3", "5"],  # Workspaces for left monitor
+        disable_drag=True,
+        borderwidth=0,
+        fontsize=15,
+        highlight_method="line",
+        inactive=nord_theme["disabled"],
+        active=bar_foreground_color,
+        block_highlight_text_color=nord_theme["accent"],
+        padding=7,
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
     space,
+    # TaskList showing all open applications
     widget.TaskList(
-        border="#414868",  # border clour
+        border="#414868",
         highlight_method="block",
-        max_title_with=80,
-        txt_minimized="",
-        txt_floating="",
-        txt_maximized="",
+        max_title_width=80,
+        txt_minimized="",
+        txt_floating="",
+        txt_maximized="",
         parse_text=smart_parse_text,
         spacing=3,
         icon_size=25,
         border_width=0,
-        fontsize=13,  # Do not change! Cause issue with specified widget_defaults
+        fontsize=13,
         stretch=False,
         padding_x=1,
         padding_y=1,
         hide_crash=True,
-        # theme_mode="preferred",
-        # theme_mode='fallback', #FIX: not work currently
         theme_path=[
             "~/.local/share/icons/",
-            "~/.local/share/flatpak/exports/share/icons/",  # Flatpak user icons
-            "/var/lib/flatpak/exports/share/icons/",  # Flatpak system icons
+            "~/.local/share/flatpak/exports/share/icons/",
+            "/var/lib/flatpak/exports/share/icons/",
+        ],
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+]
+
+
+# ============================================================================
+# RIGHT MONITOR WIDGETS (Monitor 1)
+# ============================================================================
+
+right_monitor_middle = [
+    # TaskList and GroupBox separator
+    # GroupBox for right monitor workspaces
+    widget.GroupBox(
+        font=f"{bar_font} Bold",
+        visible_groups=["2", "4", "6"],  # Workspaces for right monitor
+        disable_drag=True,
+        borderwidth=0,
+        fontsize=15,
+        highlight_method="line",
+        inactive=nord_theme["disabled"],
+        active=bar_foreground_color,
+        block_highlight_text_color=nord_theme["accent"],
+        padding=7,
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    # TaskList showing all open applications
+    widget.TaskList(
+        border="#414868",
+        highlight_method="block",
+        max_title_width=80,
+        txt_minimized="",
+        txt_floating="",
+        txt_maximized="",
+        parse_text=smart_parse_text,
+        spacing=3,
+        icon_size=25,
+        border_width=0,
+        fontsize=13,
+        stretch=False,
+        padding_x=1,
+        padding_y=1,
+        hide_crash=True,
+        theme_path=[
+            "~/.local/share/icons/",
+            "~/.local/share/flatpak/exports/share/icons/",
+            "/var/lib/flatpak/exports/share/icons/",
         ],
         decorations=[
             getattr(widget.decorations, widget_decoration)(
@@ -130,40 +150,41 @@ left = global_left + [
         ],
     ),
     space,
-    # TODO: define default apps, handle groups not find problem
-    #    default_apps = ["firefox", "code", "nemo", None, None, "firefox", None, "discord", "pavucontrol", "terminator -e bpytop",]
-    # widget.TextBox(
-    #     " ",
-    #     fontsize=20,
-    #     decorations=[
-    #         getattr(widget.decorations, widget_decoration)(
-    #             **decorations[widget_decoration] | {"extrawidth": 3}
-    #         )
-    #     ],
-    #     mouse_callbacks={
-    #         "Button1": lazy.function(
-    #             spawn_default_app, groups, default_apps, unset_default_app=run_launcher
-    #         ),
-    #     },
-    # ),
 ]
-middle = []
 
-right = [
+right_monitor_widgets = [
+    # System monitoring widgets (only on right monitor to avoid duplication)
     widget.UnitStatus(
         label="trash-cli",
         unitname="trash-cli.service",
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
     ),
+    space,
     widget.UnitStatus(
         label="borg",
         unitname="borgbackup-home.service",
-    ),
-    widget.UnitStatus(
-        # label ollama
-        label="ollama",
-        unitname="ollama.service",
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
     ),
     space,
+    widget.UnitStatus(
+        label="ollama",
+        unitname="ollama.service",
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    # Volume control
     widget.PulseVolumeExtra(
         fmt="{}",
         decorations=[
@@ -177,29 +198,12 @@ right = [
         limit_high=100,
         limit_loud=101,
         mode="both",
-        # mouse_callbacks={"Button3": lazy.function(widget.select_sink)},
     ),
-    # space,
-    # widget.Mpris2(
-    #     fmt="{}",
-    #     format=" {xesam:title} - {xesam:artist}",
-    #     paused_text="  {track}",
-    #     playing_text="  {track}",
-    #     scroll_fixed_width=False,
-    #     max_chars=200,
-    #     separator=", ",
-    #     stopped_text="",
-    #     width=200,
-    #     decorations=[
-    #         getattr(widget.decorations, widget_decoration)(
-    #             **decorations[widget_decoration] | {"extrawidth": 4}
-    #         )
-    #     ],
-    # ),
     space,
+    # Thermal sensor for CPU temperature
     widget.ThermalSensor(
         tag_sensor="Tctl",
-        foreground=colors[4],
+        foreground=nord_theme["warning"],
         fmt="🌡️ {}",
         update_interval=2,
         threshold=60,
@@ -215,6 +219,7 @@ right = [
         ],
     ),
     space,
+    # NVIDIA GPU sensor
     widget.NvidiaSensors(
         fmt="⚡ {}",
         format="{temp}°C {fan_speed} {perf}",
@@ -231,133 +236,175 @@ right = [
         ],
     ),
     space,
-    # widget.DF(
-    #     update_interval=60,
-    #     partition="/",
-    #     format="({uf}{m}|{r:.0f}%)",
-    #     fmt=" {}",
-    #     measure="G",  # G,M,B
-    #     warn_space=4,  # warn if only 5GB or less space left
-    #     visible_on_warn=True,
-    #     decorations=[
-    #         getattr(widget.decorations, widget_decoration)(
-    #             **decorations[widget_decoration] | {"extrawidth": 4}
-    #         )
-    #     ],
-    # ),
-    # space,
-    # widget.DF(
-    #     update_interval=60,
-    #     partition="/home",
-    #     format="({uf}{m}|{r:.0f}%)",
-    #     fmt=" {}",
-    #     warn_space=20,
-    #     visible_on_warn=True,
-    #     decorations=[
-    #         getattr(widget.decorations, widget_decoration)(
-    #             **decorations[widget_decoration] | {"extrawidth": 4}
-    #         )
-    #     ],
-    # ),
-    # space,
-    # widget.DF(
-    #     update_interval=60,
-    #     partition="/mnt/backups",
-    #     format="({uf}{m}|{r:.0f}%)",
-    #     fmt=" {}",
-    #     warn_space=10,
-    #     visible_on_warn=True,
-    #     decorations=[
-    #         getattr(widget.decorations, widget_decoration)(
-    #             **decorations[widget_decoration] | {"extrawidth": 4}
-    #         )
-    #     ],
-    # ),
-    # space,
-    # widget.GenPollText(
-    #     func=lambda: subprocess.check_output(
-    #         "/home/developer/.config/qtile/scripts/fedora-flatpak-status.sh",
-    #         timeout=15,
-    #         shell=True,
-    #     )
-    #     .decode("utf-8")
-    #     .strip(),
-    #     update_interval=3600,  # Update every 60 minutes
-    #     mouse_callbacks={
-    #         "Button1": lambda: qtile.spawn(
-    #             'kitty -- bash -c "/home/developer/.config/qtile/scripts/update-dnf-flatpak.sh"'
-    #         ),
-    #     },
-    #     decorations=[
-    #         getattr(widget.decorations, widget_decoration)(
-    #             **decorations[widget_decoration] | {"extrawidth": 4}
-    #         )
-    #     ],
-    # ),
-    # space,
-    # widget.Clock(
-    #     format="%A %d %B %Y %H:%M",
-    #     mouse_callbacks={"Button1": lambda: qtile.spawn("gnome-calendar")},
-    #     decorations=[
-    #         getattr(widget.decorations, widget_decoration)(
-    #             **decorations[widget_decoration] | {"extrawidth": 4}
-    #         )
-    #     ],
-    # ),
-    # space,
-    # # widget.StatusNotifier(),
-    # # NOTE: Systray would not able to handle transparent background some of the apps.
-    # widget.Systray(
-    #     decorations=[
-    #         getattr(widget.decorations, widget_decoration)(
-    #             **decorations[widget_decoration] | {"extrawidth": 4}
-    #         )
-    #     ],
-    # ),
-    # space,
-    # widget.CurrentLayoutIcon(
-    #     padding=10,
-    #     scale=0.6,
-    #     decorations=[
-    #         getattr(widget.decorations, widget_decoration)(
-    #             **decorations[widget_decoration] | {"extrawidth": 4}
-    #         )
-    #     ],
-    # ),
-    # space,
-    # widget.TextBox(
-    #     "⏻",
-    #     fontsize=20,
-    #     decorations=[
-    #         getattr(widget.decorations, widget_decoration)(
-    #             **decorations[widget_decoration] | {"extrawidth": 3}
-    #         )
-    #     ],
-    #     mouse_callbacks={
-    #         # "Button1": lazy.spawn(powermenu)
-    #         "Button1": lazy.spawn(
-    #             os.path.expanduser("~/.config/rofi/powermenu/type-6/powermenu.sh")
-    #         ),
-    #     },
-    # ),
-    # space,
-] + global_right  # Common global widgets
+    # AppImage updates check
+    widget.GenPollText(
+        name="my-unicorn",
+        func=get_appimage_updates,
+        update_interval=None,  # Check only once on startup
+        mouse_callbacks={
+            "Button1": lambda: qtile.spawn(
+                'alacritty -e bash -c "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash --update-outdated"'
+            ),
+        },
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    # Fedora package manager updates check
+    widget.GenPollText(
+        name="fedora-package-manager",
+        func=get_fedora_updates,
+        update_interval=None,  # Check only once on startup
+        mouse_callbacks={
+            "Button1": lambda: qtile.spawn(
+                'alacritty -e bash -c "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update"'
+            ),
+        },
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    # Media player status (MPRIS2)
+    widget.Mpris2(
+        fmt="{}",
+        format=" {xesam:title} - {xesam:artist}",
+        paused_text="  {track}",
+        playing_text="  {track}",
+        scroll_fixed_width=False,
+        max_chars=200,
+        separator=", ",
+        stopped_text="",
+        width=200,
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    # Disk usage for root partition
+    widget.DF(
+        update_interval=600,
+        partition="/",
+        format="({uf}{m}|{r:.0f}%)",
+        fmt=" {}",
+        measure="G",
+        warn_space=4,  # Warn if less than 4GB free
+        visible_on_warn=True,
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    # Disk usage for home partition
+    widget.DF(
+        update_interval=600,
+        partition="/home",
+        format="({uf}{m}|{r:.0f}%)",
+        fmt=" {}",
+        warn_space=20,  # Warn if less than 20GB free
+        visible_on_warn=True,
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    # Clock widget
+    widget.Clock(
+        format="%A %d %B %Y %H:%M",
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    # System tray (IMPORTANT: Can only be on ONE monitor)
+    widget.Systray(
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    # Power menu button
+    widget.TextBox(
+        "⏻",
+        fontsize=20,
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 3}
+            )
+        ],
+        mouse_callbacks={
+            "Button1": lazy.spawn(
+                os.path.expanduser("~/.config/rofi/powermenu/type-6/powermenu.sh")
+            ),
+        },
+    ),
+    space,
+]
 
 
+# ============================================================================
+# Screen Configuration for Two Monitors
+# ============================================================================
+
+
+def create_bar(widgets: list) -> bar.Bar:
+    """
+    Create a bar with consistent styling.
+
+    Args:
+        widgets: List of widget instances to display in the bar
+
+    Returns:
+        Configured bar.Bar instance
+    """
+    return bar.Bar(
+        widgets=widgets,
+        size=bar_size,
+        background=bar_background_color
+        + format(int(bar_background_opacity * 255), "02x"),
+        margin=[
+            bar_top_margin,
+            bar_right_margin,
+            bar_bottom_margin - layouts_margin,
+            bar_left_margin,
+        ],
+        opacity=bar_global_opacity,
+    )
+
+
+# Define screens for both monitors
+# flexible_spacing_seperator: separator between tasklist and right monitor widgets.
+# Example like below:
+# tasklist                                                   right monitor widgets.
+#
 screens = [
+    # Left Monitor (Primary) - Workspace management + TaskList
     Screen(
-        top=bar.Bar(
-            widgets=left_offset + left + sep + middle + sep + right + right_offset,
-            size=bar_size,
-            background=bar_background_color
-            + format(int(bar_background_opacity * 255), "02x"),
-            margin=[
-                bar_top_margin,
-                bar_right_margin,
-                bar_bottom_margin - layouts_margin,
-                bar_left_margin,
-            ],
-            opacity=bar_global_opacity,
+        top=create_bar(left_offset + left_monitor_widgets + right_offset),
+    ),
+    # Right Monitor (Secondary) - System information + Systray
+    Screen(
+        top=create_bar(
+            left_offset
+            + right_monitor_middle
+            + flexible_spacing_seperator
+            + right_monitor_widgets
+            + right_offset
         ),
     ),
 ]

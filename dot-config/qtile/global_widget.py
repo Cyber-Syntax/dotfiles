@@ -1,20 +1,23 @@
 """
-Global widget configurations shared between all Qtile machines.
+Shared widget utilities and helper functions for Qtile configuration.
 
-This module defines widget components and helper functions that are common to all machines,
-reducing code duplication and making configuration more maintainable.
+This module provides common utilities that can be imported by both desktop
+and laptop widget configurations. It does NOT define actual widget lists
+to keep things simple and explicit.
+
+IMPORTANT: For better maintainability, actual widget configurations should be
+defined explicitly in widget.py (desktop) and laptopWidget.py (laptop).
 """
 
-import calendar
-import os
-import subprocess
-
-from libqtile import bar, qtile
-from libqtile.config import Screen
-from libqtile.lazy import lazy
 from qtile_extras import widget
 
-import colors
+import themes
+from functions import (
+    get_appimage_updates,
+    get_fedora_updates,
+    no_text,
+    smart_parse_text,
+)
 from variables import (
     bar_background_color,
     bar_background_opacity,
@@ -28,7 +31,6 @@ from variables import (
     bar_size,
     bar_top_margin,
     layouts_margin,
-    nord_theme,
     widget_decoration,
     widget_decoration_border_color,
     widget_decoration_border_opacity,
@@ -52,39 +54,14 @@ from variables import (
     widget_right_offset,
 )
 
-
-# Custom calendar preview for the clock via calendar library
-def calendar_preview():
-    yy, mm = (
-        calendar.datetime.datetime.now().year,
-        calendar.datetime.datetime.now().month,
-    )
-    # dispaly the current moth's calendar
-    month_calendar = calendar.monthcalendar(yy, mm)
-
-    # display the calendar all year round
-    year_calendar = calendar.TextCalendar().formatyear(yy, 2, 1, 1, 3)
-
-    # display the current month in a popup
-    popup_text = f"{calendar.month_name[mm]} {yy}\n\n"
-
-
 # Use Nord color theme
-colors = colors.Nord
+nord_theme = themes.Nord
 
 
-# Widget tweaking utility class
-class WidgetTweaker:
-    def __init__(self, func):
-        self.format = func
+# ============================================================================
+# Widget Decoration Configurations
+# ============================================================================
 
-
-@WidgetTweaker
-def currentLayout(output):
-    return output.capitalize()
-
-
-# Common decoration configurations for all machines
 decorations = {
     "BorderDecoration": {
         "border_width": widget_decoration_border_width,
@@ -112,7 +89,7 @@ decorations = {
     },
 }
 
-# Global decoration configuration
+# Global decoration configuration applied to widgets by default
 decoration = [
     getattr(widget.decorations, widget_decoration)(**decorations[widget_decoration])
 ]
@@ -128,284 +105,60 @@ widget_defaults = dict(
 
 extension_defaults = widget_defaults.copy()
 
-# Common widget components
-sep = [widget.WindowName(foreground="#00000000", fmt="", decorations=[])]
+
+# ============================================================================
+# Common Widget Components (Spacers and Separators)
+# ============================================================================
+
+# Invisible separator for flexible spacing between widget groups
+flexible_spacing_seperator = [
+    widget.WindowName(foreground="#00000000", fmt="", decorations=[])
+]
+
+# Bar edge offsets
 left_offset = [widget.Spacer(length=widget_left_offset, decorations=[])]
 right_offset = [widget.Spacer(length=widget_right_offset, decorations=[])]
+
+# Standard spacing between widgets
 space = widget.Spacer(length=widget_gap, decorations=[])
 
 
-# Text parsing functions
-def smart_parse_text(text):
-    """
-    Display shortened text for applications with icons,
-    and full text for applications without icons.
-    """
-    # List of applications with working icons
-    apps_with_icons = [
-        "firefox",
-        "chromium",
-        "chrome",
-        "nemo",
-        "nautilus",
-        "kitty",
-        "terminal",
-        "brave",
-        "librewolf",
-    ]
+# ============================================================================
+# Bar Configuration Values (Re-exported for convenience)
+# ============================================================================
 
-    # List of applications without working icons that need text
-    apps_without_icons = ["zed", "some-other-app"]
-
-    # Clean up common suffixes
-    for suffix in [
-        " - Firefox",
-        " - Chromium",
-        " - Mozilla Firefox",
-        " — Mozilla Firefox",
-    ]:
-        text = text.replace(suffix, "")
-
-    original_text = text
-
-    # Check if this window belongs to an app that has a working icon
-    for app in apps_with_icons:
-        if app.lower() in text.lower():
-            # Shorten text instead of hiding it completely
-            app_name = app.capitalize()
-
-            # Extract the page title or document name
-            if ":" in text:
-                # For titles with format "App: Document"
-                title = text.split(":", 1)[1].strip()
-            else:
-                title = text.replace(app, "").replace(app.capitalize(), "").strip()
-
-            # Create a shortened version
-            if title:
-                short_title = title[:12] + "..." if len(title) > 15 else title
-                return short_title
-            else:
-                return app_name
-
-    # Check if this is an app we know doesn't have a working icon
-    for app in apps_without_icons:
-        if app.lower() in text.lower():
-            return original_text  # Show full text since icon doesn't work
-
-    # Default: return shortened text for other applications
-    if len(text) > 30:
-        return text[:27] + "..."
-    return text
-
-
-def no_text(text):
-    """Hide all window titles completely."""
-    return ""
-
-
-def get_appimage_updates():
-    import subprocess
-
-    try:
-        out = subprocess.check_output(
-            [
-                "/bin/bash",
-                "/home/developer/.local/share/my-unicorn/scripts/update.bash",
-                "--check",
-            ],
-            stderr=subprocess.STDOUT,
-            timeout=10,
-        )
-        return out.decode().strip()
-    except subprocess.CalledProcessError as e:
-        return e.output.decode().strip() or f"Exit {e.returncode}"
-    except Exception as e:
-        return f"Error: {e}"
-
-
-# Common left widgets for all machines
-global_left = [
-    # GroupBox is identical on both desktop and laptop
-    widget.GroupBox(
-        font=f"{bar_font} Bold",
-        disable_drag=True,
-        borderwidth=0,
-        fontsize=15,
-        highlight_method="line",
-        inactive=nord_theme["disabled"],
-        active=bar_foreground_color,
-        block_highlight_text_color=nord_theme["accent"],
-        padding=7,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
-    ),
-    space,
+# These are re-exported so widget modules can import everything from one place
+__all__ = [
+    # Theme colors
+    "nord_theme",
+    # Decoration configs
+    "decorations",
+    "decoration",
+    "widget_decoration",
+    # Widget defaults
+    "widget_defaults",
+    "extension_defaults",
+    # Common components
+    "flexible_spacing_seperator",
+    "left_offset",
+    "right_offset",
+    "space",
+    # Helper functions
+    "smart_parse_text",
+    "no_text",
+    "get_appimage_updates",
+    "get_fedora_updates",
+    # Bar configuration values
+    "bar_background_color",
+    "bar_background_opacity",
+    "bar_bottom_margin",
+    "bar_font",
+    "bar_fontsize",
+    "bar_foreground_color",
+    "bar_global_opacity",
+    "bar_left_margin",
+    "bar_right_margin",
+    "bar_size",
+    "bar_top_margin",
+    "layouts_margin",
 ]
-
-# Common right widgets for all machines
-global_right = [
-    # Custom appimage updates script call
-    widget.GenPollText(
-        name="my-unicorn",
-        func=get_appimage_updates,
-        # update_interval=48000,  # Update every 10 hour
-        # TESTING:
-        update_interval=None,  # update only once
-        mouse_callbacks={
-            "Button1": lambda: qtile.spawn(
-                'alacritty -e bash -c "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash --update-outdated"'
-                # 'ghostty -e bash -c "/home/developer/.local/share/my-unicorn/scripts/update.bash --update-outdated"'
-            ),
-        },
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
-    ),
-    space,
-    # Custom fedora package manager script call
-    widget.GenPollText(
-        name="fedora-package-manager",
-        func=lambda: subprocess.check_output(
-            "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --status",
-            timeout=225,
-            shell=True,
-        )
-        .decode("utf-8")
-        .strip(),
-        # update_interval=48000,  # Update every 10 hour
-        # TESTING:
-        update_interval=None,  # update only once
-        mouse_callbacks={
-            "Button1": lambda: qtile.spawn(
-                'alacritty -e bash -c "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update"'
-                # 'ghostty -e bash -c "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update"'
-            ),
-        },
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
-    ),
-    space,
-    widget.Mpris2(
-        fmt="{}",
-        format=" {xesam:title} - {xesam:artist}",
-        paused_text="  {track}",
-        playing_text="  {track}",
-        scroll_fixed_width=False,
-        max_chars=200,
-        separator=", ",
-        stopped_text="",
-        width=200,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
-    ),
-    space,
-    # Common disk usage widgets
-    widget.DF(
-        update_interval=600,
-        partition="/",
-        format="({uf}{m}|{r:.0f}%)",
-        fmt=" {}",
-        measure="G",  # G,M,B
-        warn_space=4,  # warn if only 5GB or less space left
-        visible_on_warn=True,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
-    ),
-    space,
-    widget.DF(
-        update_interval=600,
-        partition="/home",
-        format="({uf}{m}|{r:.0f}%)",
-        fmt=" {}",
-        warn_space=20,
-        visible_on_warn=True,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
-    ),
-    space,
-    # Clock widget is identical
-    widget.Clock(
-        format="%A %d %B %Y %H:%M",
-        # mouse_callbacks={"Button1": lambda: qtile.spawn("gnome-calendar")},
-        # lets use the library calendar instead
-        # mouse_callbacks={"Button1": lazy.group["scratchpad"].dropdown_toggle("khal")},
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
-    ),
-    space,
-    # System tray is identical
-    widget.Systray(
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
-    ),
-    space,
-    # Power menu button is identical
-    widget.TextBox(
-        "⏻",
-        fontsize=20,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 3}
-            )
-        ],
-        mouse_callbacks={
-            "Button1": lazy.spawn(
-                os.path.expanduser("~/.config/rofi/powermenu/type-6/powermenu.sh")
-            ),
-        },
-    ),
-    space,
-]
-
-
-# Common screen configuration function
-def create_screen(widgets_left, widgets_right, widgets_middle=None):
-    """Create a screen with the given widgets."""
-    if widgets_middle is None:
-        widgets_middle = []
-
-    return Screen(
-        top=bar.Bar(
-            widgets=left_offset
-            + widgets_left
-            + sep
-            + widgets_middle
-            + sep
-            + widgets_right
-            + right_offset,
-            size=bar_size,
-            background=bar_background_color
-            + format(int(bar_background_opacity * 255), "02x"),
-            margin=[
-                bar_top_margin,
-                bar_right_margin,
-                bar_bottom_margin - layouts_margin,
-                bar_left_margin,
-            ],
-            opacity=bar_global_opacity,
-        ),
-    )
