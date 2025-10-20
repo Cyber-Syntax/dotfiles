@@ -51,11 +51,11 @@ TERM = "xterm-256color"
 # size = 19.0
 
 [font]
-# Old: JetBrainsMono Nerd Font Mono
-# normal = { family = "JetbrainsMono Nerd Font Mono", style = "Regular" }
-normal = { family = "MesloLGS Nerd Font", style = "Regular" }
-bold = { family = "MesloLGS Nerd Font", style = "Bold" }
-italic = { family = "MesloLGS Nerd Font", style = "Italic" }
+#Old: JetBrainsMono Nerd Font Mono
+normal = { family = "JetbrainsMono Nerd Font Mono", style = "Regular" }
+# normal = { family = "MesloLGS Nerd Font", style = "Regular" }
+# bold = { family = "MesloLGS Nerd Font", style = "Bold" }
+# italic = { family = "MesloLGS Nerd Font", style = "Italic" }
 size = 17.0
 # fallback = ["JetBrains Mono Nerd Font", "Symbols Nerd Font"]
 

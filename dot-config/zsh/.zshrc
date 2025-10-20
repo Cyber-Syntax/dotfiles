@@ -1,3 +1,6 @@
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.config/oh-my-zsh"
+
 # Switched to starship because powerlevel10k stop maintenance
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
@@ -20,9 +23,6 @@ export PATH="$HOME/.local/share/cargo/bin:$PATH"
 # TERM=tmux
 
 #### ./TMUX
-
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.config/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -47,14 +47,15 @@ SAVEHIST=10000
 
 # zsh options
 setopt HIST_IGNORE_ALL_DUPS # remove older duplicate entries from history
-setopt HIST_REDUCE_BLANKS # remove superfluous blanks from history items
-setopt INC_APPEND_HISTORY # save history entries as soon as they are entered
-setopt SHARE_HISTORY # share history between different instances of the shell
-setopt AUTO_CD # cd by typing directory name if it's not a command
-setopt CORRECT_ALL # autocorrect commands
-setopt AUTO_LIST # automatically list choices on ambiguous completion
-setopt AUTO_MENU # automatically use menu completion
-setopt ALWAYS_TO_END # move cursor to end if word had one match
+setopt HIST_SAVE_NO_DUPS    # Do not write a duplicate event to the history file.
+setopt HIST_REDUCE_BLANKS   # remove superfluous blanks from history items
+setopt INC_APPEND_HISTORY   # save history entries as soon as they are entered
+setopt SHARE_HISTORY        # share history between different instances of the shell
+setopt AUTO_CD              # cd by typing directory name if it's not a command
+setopt CORRECT_ALL          # autocorrect commands
+setopt AUTO_LIST            # automatically list choices on ambiguous completion
+setopt AUTO_MENU            # automatically use menu completion
+setopt ALWAYS_TO_END        # move cursor to end if word had one match
 
 zstyle ':completion:*' menu select # select completions with arrow keys
 zstyle ':completion:*' group-name '' # group results by category
@@ -62,11 +63,9 @@ zstyle ':completion:::::' completer _expand _complete _ignored _approximate #ena
 
 plugins=(
     zsh-autosuggestions
-    zsh-you-should-use
     dirhistory
     zsh-navigation-tools
     git
-    # vi-mode #FIXME: this cause issue with dirhistory
     ssh
     npm
     pip
@@ -74,6 +73,7 @@ plugins=(
     copyfile
     copypath
     copybuffer
+    # vi-mode #FIXME: this cause issue with dirhistory
 )
 # -------------------------------------------------------------------
 # Aliases
