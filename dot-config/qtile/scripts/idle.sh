@@ -12,6 +12,7 @@
 #
 # Place this in your qtile autostart or run it in your X session.
 # Poll interval default is 300 seconds (5 minutes). Export INTERVAL to override.
+#TODO: make constants and improve for performance
 
 # Quiet helpers
 quiet_cmd() { command "$@" >/dev/null 2>&1 || true; }
@@ -201,3 +202,4 @@ while true; do
 
   sleep "$INTERVAL"
 done
+

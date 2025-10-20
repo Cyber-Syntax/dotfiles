@@ -1,3 +1,38 @@
+# CUSTOM IGNORE RULES
+
+# ignore appimages
+*AppImage
+*.AppImage*
+*appimage*
+# ignore flowchart
+*xopp*
+# ignore vscode
+.vscode
+# ignore
+*sha512*
+*SHA*
+# test
+# *test*.py
+*None*
+
+.pylintrc
+
+# syncthing conflict files
+*.sync-conflict-*
+
+# logs
+*.log*
+logs/*
+
+# ruff
+.ruff_cache
+*.vim
+
+# other
+examples
+
+# PYTHON RELATED IGNORE RULES
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -131,33 +166,3 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# ignore appimages
-*AppImage
-*.AppImage*
-*appimage*
-# ignore flowchart
-*xopp*
-# ignore vscode
-.vscode
-# ignore
-*sha512*
-*SHA*
-# test
-# *test*.py
-*None*
-
-.pylintrc
-
-# syncthing conflict files
-*.sync-conflict-*
-
-# logs
-*.log*
-logs/*
-
-# ruff
-.ruff_cache
-*.vim
-
-# other
-examples

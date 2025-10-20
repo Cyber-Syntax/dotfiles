@@ -12,7 +12,7 @@
 
 
 # # 2 monitor setup
-# Group("1", screen_affinity=1, matches=[Match(wm_class="superproductivity")], layout="monadtall", init=True), # DP_4: right monitor
+# Group("1", screen_affinity=1, matches=[Match(wm_class="superproductivity")], layout="monadtall", init=True), # DP_2: right monitor
 # Group("2", screen_affinity=0, layout="monadtall", init=True), # DP-2: left monitor
 # Group("3", screen_affinity=1, layout="monadtall"),
 # Group("4", screen_affinity=0, layout="monadtall"),
@@ -154,8 +154,8 @@
 # 2 monitor setup
 
 # # assing screen_affinity to each screen like DP-0 = 2, DP-2 = 0
-# DP_2 = 0 index
-# DP_4 = 1 index
+# DP_0 = 0 index
+# DP_2 = 1 index
 
 
 # # 1 monnitor group keybindings

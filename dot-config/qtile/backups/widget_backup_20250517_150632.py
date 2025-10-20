@@ -38,7 +38,7 @@ from global_widget import (
     decoration,
     decorations,
     extension_defaults,
-    sep,
+    flexible_spacing_seperator,
     smart_parse_text,
     space,
     widget_defaults,
@@ -419,7 +419,7 @@ right = [
 screens = [
     Screen(
         top=bar.Bar(
-            widgets=left_offset + left + sep + middle + sep + right + right_offset,
+            widgets=left_offset + left + flexible_spacing_seperator + middle + flexible_spacing_seperator + right + right_offset,
             size=bar_size,
             background=bar_background_color
             + format(int(bar_background_opacity * 255), "02x"),
