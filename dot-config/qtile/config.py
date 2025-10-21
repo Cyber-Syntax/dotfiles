@@ -27,7 +27,7 @@ import os
 import re  # this fixes the Match error on group
 import subprocess
 
-from functions import *
+from functions import get_hostname, to_screen
 from global_keys import mod  # Import mod from global_keys
 from libqtile import hook, layout
 from libqtile.config import Group, Key, Match
@@ -106,7 +106,8 @@ if hostname == "fedora":
         keys.extend(
             [
                 # mod1 + letter of group = switch to group
-                Key([mod], i.name, lazy.function(to_screen, i.name)),
+                # Key([mod], i.name, lazy.function(to_screen, i.name)),
+                Key([mod], i.name, to_screen(i.name)),
                 # switch to group with ability to go to prevous group if pressed again
                 # Key([mod], i.name, lazy.function(toscreen, i.name)),
                 # mod1 + shift + letter of group = switch to & move focused window to group

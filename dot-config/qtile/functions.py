@@ -1,9 +1,55 @@
+"""Custom functions for Qtile window manager configuration.
+
+# User-defined functions
+lazy.function(func, *args, **kwargs)
+Calls func(qtile, *args, **kwargs). NB. the qtile object is automatically passed as the first argument.
+
+Example:
+
+```python
+from libqtile.config import Key
+from libqtile.lazy import lazy
+
+@lazy.function
+def my_function(qtile):
+    ...
+
+keys = [
+    Key(
+        ["mod1"], "k",
+        my_function
+    )
+]
+```
+
+```python
+from libqtile.config import Key
+from libqtile.lazy import lazy
+from libqtile.log_utils import logger
+
+@lazy.function
+def multiply(qtile, value, multiplier=10):
+    logger.warning(f"Multiplication results: {value * multiplier}")
+
+keys = [
+    Key(
+        ["mod1"], "k",
+        multiply(10, multiplier=2)
+    )
+]
+```
+
+# Focus group from command line
+```bash
+qtile cmd-obj -o group 1 -f toscreen 
+```
+
+"""
+
 import subprocess
 
 from libqtile.lazy import lazy
 
-# qtile cmd-obj -o group 1 -f toscreen # focus from command line
-# qtile cmd-obj -o group 2 -f toscreen # focus from command line
 
 # Monitor indexes
 # TODO: use these constants and send them the variables.py
@@ -20,29 +66,34 @@ def get_hostname():
 
 # 2 monitor group keybindings
 # TODO: I didn't understand what was this used for
-def go_to_group(name: str):
-    """Switch to the specified group, handling multi-monitor setups."""
-
-    def _inner(qtile):
-        if len(qtile.screens) == 1:
-            qtile.groups_map[name].toscreen()
-            return
-        start_group = qtile.current_screen.group.name
-        if start_group == name:
-            return
-        else:
-            qtile.go_to_group(name)
-        return _inner
+@lazy.function
+def go_to_group(qtile, name: str):
+    """Switch to the specified group, handling multi-monitor setups.
+    
+    Args:
+        qtile: The current qtile instance.
+        name: The name of the group to switch to.
+    """
+    if len(qtile.screens) == 1:
+        qtile.groups_map[name].toscreen()
+        return
+    start_group = qtile.current_screen.group.name
+    if start_group == name:
+        return
+    qtile.go_to_group(name)
 
 
 # TODO: better comments
+@lazy.function
 def to_screen(qtile, group_name):
     """Switch to the specified group based on the current screen index.
 
     How to use:
-    Call this function with the current qtile instance and the group name you want to switch to.
-        lazy.function(to_screen, i.name)),
-        Key([mod], i.name, lazy.function(to_screen, i.name))
+        Without @lazy.function decorator:
+            lazy.function(to_screen, i.name)),
+            Key([mod], i.name, lazy.function(to_screen, i.name))
+        With @lazy.function decorator:
+            Key([mod], i.name, to_screen(i.name))
 
     ARGS:
         qtile: The current qtile instance.
@@ -65,7 +116,7 @@ def to_screen(qtile, group_name):
 
     current_screen_index = qtile.current_screen.index
 
-    # Extract workspace number from group_name (assumes format like "workspace_1", "workspace_2", etc.)
+    # Extract workspace number from group_name
     workspace_number = int(group_name[-1])
 
     # Determine the correct group index based on current screen index
@@ -354,8 +405,6 @@ def get_appimage_updates() -> str:
     Returns:
         Update status string or error message
     """
-    import subprocess
-
     try:
         out = subprocess.check_output(
             [
@@ -383,8 +432,6 @@ def get_fedora_updates() -> str:
     Returns:
         Update status string or error message
     """
-    import subprocess
-
     try:
         out = subprocess.check_output(
             "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --status",

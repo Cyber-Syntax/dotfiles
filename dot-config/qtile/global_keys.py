@@ -7,7 +7,7 @@ reducing code duplication and making configuration more maintainable.
 
 import os
 
-from libqtile.config import Click, Drag, Key
+from libqtile.config import Click, Drag, Key, KeyChord
 from libqtile.lazy import lazy
 
 # Define constants
@@ -33,6 +33,10 @@ global_mouse = [
 
 # Common key bindings for all machines
 global_keys = [
+    # Key chords
+    # The below code will launch brave when the user presses Mod + less(<), followed by b.
+    KeyChord([mod], "less", [Key([], "b", lazy.spawn("brave-browser"))]),
+    # apps
     Key([mod], "Return", lazy.spawn(TERMINAL), desc="Launch terminal"),
     # Window management
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
@@ -54,7 +58,7 @@ global_keys = [
     Key([mod], "e", lazy.layout.shuffle_up(), desc="Move window up"),
     Key([mod], 49, lazy.layout.next(), desc="Move window focus to other window"),
     # Applications
-    Key([mod], "less", lazy.spawn("firefox"), desc="Launch firefox"),
+    # Key([mod], "less", lazy.spawn("firefox"), desc="Launch firefox"),
     Key([mod], "l", lazy.spawn("i3lock"), desc="Lock the screen"),
     # Rofi menus
     Key(
