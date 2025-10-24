@@ -10,10 +10,6 @@ NOTE: Systray can only appear once, so it goes on the right monitor.
 
 import os
 
-from libqtile import bar, qtile
-from libqtile.config import Screen
-from libqtile.lazy import lazy
-from qtile_extras import widget
 
 # Import shared utilities
 from global_widget import (
@@ -39,7 +35,12 @@ from global_widget import (
     space,
     widget_decoration,
 )
+from libqtile import bar, qtile
+from libqtile.config import Screen
+from libqtile.lazy import lazy
+from qtile_extras import widget
 from variables import terminal
+# from functions import num_monitors
 
 # ============================================================================
 # LEFT MONITOR WIDGETS (Monitor 0)
@@ -392,12 +393,33 @@ def create_bar(widgets: list) -> bar.Bar:
 # Example like below:
 # tasklist                                                   right monitor widgets.
 #
+
+# FIXME: primary monitor is DP-2 but this use DP-0..
+# screens = [
+#     # Right Monitor (Primary) - System information + Systray
+#     Screen(
+#         top=create_bar(
+#             left_offset
+#             + right_monitor_middle
+#             + flexible_spacing_seperator
+#             + right_monitor_widgets
+#             + right_offset
+#         ),
+#     ),
+# ]
+#
+# if num_monitors > 1:
+#     for m in range(num_monitors - 1):
+#         screens.append(
+#             # Left Monitor (Secondary) - Workspace management + TaskList
+#             Screen(
+#                 top=create_bar(left_offset + left_monitor_widgets + right_offset),
+#             ),
+#         )
+#
+
 screens = [
-    # Left Monitor (Primary) - Workspace management + TaskList
-    Screen(
-        top=create_bar(left_offset + left_monitor_widgets + right_offset),
-    ),
-    # Right Monitor (Secondary) - System information + Systray
+    # Right Monitor (Primary) - System information + Systray
     Screen(
         top=create_bar(
             left_offset
@@ -406,5 +428,9 @@ screens = [
             + right_monitor_widgets
             + right_offset
         ),
+    ),
+    # Left Monitor (Secondary) - Workspace management + TaskList
+    Screen(
+        top=create_bar(left_offset + left_monitor_widgets + right_offset),
     ),
 ]

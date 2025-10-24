@@ -41,7 +41,7 @@ keys = [
 
 # Focus group from command line
 ```bash
-qtile cmd-obj -o group 1 -f toscreen 
+qtile cmd-obj -o group 1 -f toscreen
 ```
 
 """
@@ -50,11 +50,12 @@ import subprocess
 
 from libqtile.lazy import lazy
 
-
 # Monitor indexes
 # TODO: use these constants and send them the variables.py
-DP_0 = 0
-DP_2 = 1
+# DP_0 = 0
+# DP_2 = 1
+left_monitor = 1
+right_monitor = 0
 
 
 # 2 machine setup
@@ -69,7 +70,7 @@ def get_hostname():
 @lazy.function
 def go_to_group(qtile, name: str):
     """Switch to the specified group, handling multi-monitor setups.
-    
+
     Args:
         qtile: The current qtile instance.
         name: The name of the group to switch to.
@@ -120,9 +121,9 @@ def to_screen(qtile, group_name):
     workspace_number = int(group_name[-1])
 
     # Determine the correct group index based on current screen index
-    if current_screen_index == 0:  # Left monitor (index 0)
+    if current_screen_index == left_monitor:  # Left monitor (index 0)
         group_index = (workspace_number * 2) - 2
-    elif current_screen_index == 1:  # Right monitor (index 1)
+    elif current_screen_index == right_monitor:  # Right monitor (index 1)
         group_index = (workspace_number * 2) - 1
     else:
         print("Invalid screen index!")
@@ -144,9 +145,11 @@ def send_left(qtile):
     # Find screen_affinity use that index to send to the right monitor
     # screen_affinity = qtile.current_screen.group.screen_affinity
     #
-    if qtile.current_screen.index == DP_2:
-        qtile.current_window.togroup(qtile.screens[0].group.name, switch_group=False)
-        qtile.focus_screen(0)
+    if qtile.current_screen.index == right_monitor:
+        qtile.current_window.togroup(
+            qtile.screens[1].group.name, switch_group=False
+        )
+        qtile.focus_screen(1)
 
 
 # if screen_affinity == 2: # DP-2
@@ -167,9 +170,11 @@ def send_right(qtile):
     # screen_affinity = qtile.current_screen.group.screen_affinity
     #
 
-    if qtile.current_screen.index == DP_0:
-        qtile.current_window.togroup(qtile.screens[1].group.name, switch_group=False)
-        qtile.focus_screen(1)
+    if qtile.current_screen.index == left_monitor:
+        qtile.current_window.togroup(
+            qtile.screens[0].group.name, switch_group=False
+        )
+        qtile.focus_screen(0)
 
     # 3 monitor setup
     # if screen_affinity == 2: # DP-0
@@ -191,8 +196,8 @@ def focus_left_mon(qtile):
         qtile.focus_screen(qtile.current_screen.previous_group)
         return
 
-    if qtile.current_screen.index == 1:
-        qtile.focus_screen(0)
+    if qtile.current_screen.index == right_monitor:
+        qtile.focus_screen(1)
 
     # if qtile.current_screen.index == 0:
     #     qtile.focus_screen(2)
@@ -210,8 +215,8 @@ def focus_right_mon(qtile):
         qtile.focus_screen(qtile.current_screen.next_group)
         return
 
-    if qtile.current_screen.index == 0:
-        qtile.focus_screen(1)
+    if qtile.current_screen.index == left_monitor:
+        qtile.focus_screen(0)
 
     # if qtile.current_screen.index == 2:
     #     qtile.focus_screen(0)
@@ -356,7 +361,9 @@ def smart_parse_text(text: str) -> str:
             if ":" in text:
                 title = text.split(":", 1)[1].strip()
             else:
-                title = text.replace(app, "").replace(app.capitalize(), "").strip()
+                title = (
+                    text.replace(app, "").replace(app.capitalize(), "").strip()
+                )
 
             # Return shortened version
             if title:
@@ -443,3 +450,35 @@ def get_fedora_updates() -> str:
         return e.output.decode().strip() or f"Exit {e.returncode}"
     except (subprocess.TimeoutExpired, OSError) as e:
         return f"Error: {e}"
+
+
+# this import requires python-xlib to be installed
+from Xlib import display as xdisplay
+
+
+def get_num_monitors():
+    num_monitors = 0
+    try:
+        display = xdisplay.Display()
+        screen = display.screen()
+        resources = screen.root.xrandr_get_screen_resources()
+
+        for output in resources.outputs:
+            monitor = display.xrandr_get_output_info(
+                output, resources.config_timestamp
+            )
+            preferred = False
+            if hasattr(monitor, "preferred"):
+                preferred = monitor.preferred
+            elif hasattr(monitor, "num_preferred"):
+                preferred = monitor.num_preferred
+            if preferred:
+                num_monitors += 1
+    except Exception:
+        # always setup at least one monitor
+        return 1
+    else:
+        return num_monitors
+
+
+num_monitors = get_num_monitors()

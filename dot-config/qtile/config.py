@@ -105,13 +105,17 @@ if hostname == "fedora":
     for i in groups:
         keys.extend(
             [
-                # mod1 + letter of group = switch to group
-                # Key([mod], i.name, lazy.function(to_screen, i.name)),
+                # Go to group 1,3,5 via mod + 1,2,3 on left monitor
+                # Go to group 2,4,6 via mod + 1,2,3 on right monitor
                 Key([mod], i.name, to_screen(i.name)),
-                # switch to group with ability to go to prevous group if pressed again
-                # Key([mod], i.name, lazy.function(toscreen, i.name)),
-                # mod1 + shift + letter of group = switch to & move focused window to group
-                Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+                # Same things on both monitors
+                # Send window to group 1,3,5 via mod + shift + 1,2,3 on left monitor
+                # Send window to group 2,4,6 via mod + shift + 1,2,3 on right monitor
+                # Key([mod, "shift"], i.name, to_group(i.name)),
+                # This would use qtile built-in, so it would use normal defined groups
+                # Send window to group 3 -> mod + ctrl + 3
+                # Send windo to group 4 -> mod + ctrl + 4
+                Key([mod, "control"], i.name, lazy.window.togroup(i.name)),
             ]
         )
 elif hostname == "developer-laptop":
