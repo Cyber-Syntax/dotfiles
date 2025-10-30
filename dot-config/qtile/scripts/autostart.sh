@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 lxpolkit &
-picom -b & # compositor (necessary to prevent screen tearing in qtile)
+nm-applet & # network manager applet
+picom -b &  # compositor (necessary to prevent screen tearing in qtile)
 numlockx on &
 setxkbmap tr &
 gammastep & # redshift alternative (works wayland and xorg)
 python3 /home/developer/Documents/my-repos/WallpaperChanger/main.py &
-
 flatpak run io.github.martchus.syncthingtray &
 
 # Determine which machine-specific setup to run
@@ -16,7 +16,6 @@ HOSTNAME=$(hostname)
 if [ "$HOSTNAME" = "fedora" ]; then
   # xset -dpms &                                 # disable power management (DPMS) causes screen to sleep after 10 minutes
   # xset s off &                                 # disable screen saver
-  nm-applet &                                  # network manager applet
   ~/Applications/super-productivity.AppImage & # task app new location
   ~/Applications/zen-browser.AppImage &        # browser
   keepassxc &                                  # password manager

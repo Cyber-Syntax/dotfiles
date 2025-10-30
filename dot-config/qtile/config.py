@@ -27,7 +27,7 @@ import os
 import re  # this fixes the Match error on group
 import subprocess
 
-from functions import get_hostname, to_screen
+from functions import get_hostname, num_monitors
 from global_keys import mod  # Import mod from global_keys
 from libqtile import hook, layout
 from libqtile.config import Group, Key, Match
@@ -44,13 +44,32 @@ DP_4   right monitor :   screen_affinity=1, group 4 # view right
 """
 
 
+def get_screen_affinity(group_name: str, num_monitors: int) -> int | None:
+    """
+    Determine screen affinity based on monitor count.
+
+    Args:
+        group_name: Group identifier (e.g., "1", "2", etc.)
+        num_monitors: Number of connected monitors
+
+    Returns:
+        screen_affinity value or None for single monitor
+    """
+    if num_monitors == 1:
+        return None  # or 0, both work for single monitor
+
+    # Multi-monitor: odd groups → 0, even groups → 1
+    group_num = int(group_name)
+    return 0 if group_num % 2 != 0 else 1
+
+
 hostname = get_hostname()
 
 
 groups = [
     Group(
         "1",
-        screen_affinity=0,
+        screen_affinity=get_screen_affinity("1", num_monitors),
         layout="max",
         matches=[
             Match(
@@ -63,82 +82,123 @@ groups = [
     ),
     Group(
         "2",
-        screen_affinity=1,
+        screen_affinity=get_screen_affinity("2", num_monitors),
         layout="max",
         matches=[Match(wm_class=re.compile(r"^(code|zed)$"))],
         label="",
     ),
     Group(
         "3",
-        screen_affinity=0,
+        screen_affinity=get_screen_affinity("3", num_monitors),
         layout="monadtall",
-        matches=[Match(wm_class=re.compile(r"^(siyuan|obsidian|freetube|heroic)$"))],
+        matches=[
+            Match(wm_class=re.compile(r"^(siyuan|obsidian|freetube|heroic)$"))
+        ],
         label=" ",
     ),
     Group(
         "4",
-        screen_affinity=1,
+        screen_affinity=get_screen_affinity("4", num_monitors),
         layout="max",
         matches=[Match(wm_class=re.compile(r"^superproductivity$"))],
         label=" ",
     ),
     Group(
         "5",
-        screen_affinity=0,
+        screen_affinity=get_screen_affinity("5", num_monitors),
         layout="max",
         matches=[Match(wm_class=re.compile(r"^(spotify|Spotify)$"))],
         label=" ",
     ),
     Group(
         "6",
-        screen_affinity=1,
+        screen_affinity=get_screen_affinity("6", num_monitors),
         layout="monadtall",
         matches=[Match(wm_class=re.compile(r"^(pcmanfm|virt-manager)$"))],
         label=" ",
     ),
 ]
 
+
+def create_group_keys(mod: str, groups: list, num_monitors: int) -> list:
+    """
+    Generate group switching keys based on monitor configuration.
+
+    Args:
+        mod: Modifier key
+        groups: List of Group objects
+        num_monitors: Number of connected monitors
+
+    Returns:
+        List of Key objects
+    """
+    from functions import to_screen
+
+    keys = []
+
+    for i in groups:
+        if num_monitors == 1:
+            # Single monitor: standard behavior
+            keys.extend(
+                [
+                    # Screen/Group management
+                    # skip_empty: skip the empty workspaces/groups when cycling
+                    Key(
+                        [mod],
+                        "Tab",
+                        # lazy.screen.next_group(skip_empty=True),
+                        lazy.screen.next_group(),
+                        desc="Move to next group",
+                    ),
+                    Key(
+                        [mod, "shift"],
+                        "Tab",
+                        lazy.screen.prev_group(),
+                        desc="Move to previous group",
+                    ),
+                    # Window focus and movement
+                    Key(
+                        [mod], "d", lazy.layout.down(), desc="Move focus down"
+                    ),
+                    Key([mod], "a", lazy.layout.up(), desc="Move focus up"),
+                    # window cycles
+                    Key([mod], i.name, lazy.group[i.name].toscreen()),
+                    Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
+                    Key([mod, "control"], i.name, lazy.window.togroup(i.name)),
+                ]
+            )
+        else:
+            # Multi-monitor: custom navigation
+            keys.extend(
+                [
+                    Key([mod], i.name, to_screen(i.name)),
+                    Key([mod, "control"], i.name, lazy.window.togroup(i.name)),
+                ]
+            )
+
+    return keys
+
+
 if hostname == "fedora":
     from keys import keys
     from widget import *
 
-    for i in groups:
-        keys.extend(
-            [
-                # Go to group 1,3,5 via mod + 1,2,3 on left monitor
-                # Go to group 2,4,6 via mod + 1,2,3 on right monitor
-                Key([mod], i.name, to_screen(i.name)),
-                # Same things on both monitors
-                # Send window to group 1,3,5 via mod + shift + 1,2,3 on left monitor
-                # Send window to group 2,4,6 via mod + shift + 1,2,3 on right monitor
-                # Key([mod, "shift"], i.name, to_group(i.name)),
-                # This would use qtile built-in, so it would use normal defined groups
-                # Send window to group 3 -> mod + ctrl + 3
-                # Send windo to group 4 -> mod + ctrl + 4
-                Key([mod, "control"], i.name, lazy.window.togroup(i.name)),
-            ]
-        )
+    # Add dynamic group keys
+    keys.extend(create_group_keys(mod, groups, num_monitors))
 elif hostname == "developer-laptop":
-    from laptopKeys import keys
-    from laptopWidget import *
+    from laptop_keys import keys
+    from laptop_widget import *
 
-    for i in groups:
-        keys.extend(
-            [
-                # mod1 + letter of group = switch to group
-                Key([mod], i.name, lazy.group[i.name].toscreen()),
-                # switch to group with ability to go to prevous group if pressed again
-                # Key([mod], i.name, lazy.function(toscreen, i.name)),
-                # mod1 + shift + letter of group = switch to & move focused window to group
-                Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
-            ]
-        )
+    # Add dynamic group keys
+    keys.extend(create_group_keys(mod, groups, num_monitors))
 else:
     print("No hostname found")
     # Fallback to global keys if hostname not recognized
     from global_keys import global_keys as keys
     from global_keys import mod
 
+    # Add dynamic group keys
+    keys.extend(create_group_keys(mod, groups, num_monitors))
 
 layout_theme = {
     "border_width": layouts_border_width,

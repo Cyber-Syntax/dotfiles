@@ -26,7 +26,10 @@ global_mouse = [
         start=lazy.window.get_position(),
     ),
     Drag(
-        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()
+        [mod],
+        "Button3",
+        lazy.window.set_size_floating(),
+        start=lazy.window.get_size(),
     ),
     Click([mod], "Button1", lazy.window.bring_to_front()),
 ]
@@ -56,7 +59,9 @@ global_keys = [
     # Window focus and movement
     Key([mod], "w", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod], "e", lazy.layout.shuffle_up(), desc="Move window up"),
-    Key([mod], 49, lazy.layout.next(), desc="Move window focus to other window"),
+    Key(
+        [mod], 49, lazy.layout.next(), desc="Move window focus to other window"
+    ),
     # Applications
     # Key([mod], "less", lazy.spawn("firefox"), desc="Launch firefox"),
     Key([mod], "l", lazy.spawn("i3lock"), desc="Lock the screen"),
@@ -64,13 +69,17 @@ global_keys = [
     Key(
         [mod],
         "r",
-        lazy.spawn(os.path.expanduser("~/.config/rofi/launchers/type-3/launcher.sh")),
+        lazy.spawn(
+            os.path.expanduser("~/.config/rofi/launchers/type-3/launcher.sh")
+        ),
         desc="Launch application launcher",
     ),
     Key(
         [mod],
         "x",
-        lazy.spawn(os.path.expanduser("~/.config/rofi/powermenu/type-6/powermenu.sh")),
+        lazy.spawn(
+            os.path.expanduser("~/.config/rofi/powermenu/type-6/powermenu.sh")
+        ),
         desc="Launch power menu",
     ),
     Key(
@@ -105,8 +114,16 @@ global_keys = [
     # Generic media playback controls (hardware buttons vary by machine)
     # These will be overridden by machine-specific configs when needed
     Key(
-        [], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), desc="Play/Pause media"
+        [],
+        "XF86AudioPlay",
+        lazy.spawn("playerctl play-pause"),
+        desc="Play/Pause media",
     ),
     Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc="Next track"),
-    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), desc="Previous track"),
+    Key(
+        [],
+        "XF86AudioPrev",
+        lazy.spawn("playerctl previous"),
+        desc="Previous track",
+    ),
 ]

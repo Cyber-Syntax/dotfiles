@@ -3,10 +3,6 @@
 -- Add any additional keymaps here
 local map = vim.keymap.set
 
-vim.keymap.set("n", "<leader>aP", function()
-  require("codecompanion").prompt("copilot")
-end, { noremap = true, silent = true })
-
 --lets fix pasted from clipboard is not adding it below on the current line:
 map("n", "gp", "<cmd>put<CR>", { silent = true, desc = "Paste after cursor from clipboard" })
 map("n", "gP", "<cmd>put!<CR>", { silent = true, desc = "Paste before cursor from clipboard" })
@@ -88,27 +84,6 @@ map("i", "<C-e>", "<End>", { desc = "End" })
 map("n", "<leader>fo", ":ObsidianQuickSwitch<CR>", { desc = "Obsidian File Search", silent = true })
 map("n", "<leader>fO", ":ObsidianSearch<CR>", { desc = "Obsidian Search in Files", silent = true })
 
--- codecompanion
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>ac",
-  "<cmd>CodeCompanionActions<cr>",
-  { noremap = true, silent = true, desc = "CodeCompanion Actions" }
-)
-vim.keymap.set(
-  { "n", "v" },
-  "<leader>aC",
-  "<cmd>CodeCompanionChat Toggle<cr>",
-  { noremap = true, silent = true, desc = "CodeCompanion Chat Toggle" }
-)
-vim.keymap.set(
-  "v",
-  "<leader>ae",
-  "<cmd>CodeCompanionChat Add<cr>",
-  { noremap = true, silent = true, desc = "CodeCompanion Chat Add" }
-)
--- Expand 'cc' into 'CodeCompanion' in the command line
--- vim.cmd([[cab cc CodeCompanion]])
 -- up down + ctrl to move more lines
 map("n", "<C-Down>", "5j", { desc = "Move down 5 lines" })
 map("n", "<C-Up>", "5k", { desc = "Move up 5 lines" })

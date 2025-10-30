@@ -108,8 +108,20 @@ middle = [
 
 right = [
     # Laptop-specific volume widget with emoji indicators
+    widget.Bluetooth(
+        fmt="<i> {}</i>",
+        fontsize=15,
+        default_text="{connected_devices}",
+        default_show_battery=True,
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
     widget.Volume(
-        fmt="{}",
+        fmt=" {}",
         emoji=True,
         emoji_list=["🔇", "󰕿 ", "󰖀 ", "󰕾 "],
         fontsize=20,
@@ -132,6 +144,15 @@ right = [
         limit_normal=80,
         limit_high=100,
         limit_loud=101,
+        decorations=[
+            getattr(widget.decorations, widget_decoration)(
+                **decorations[widget_decoration] | {"extrawidth": 4}
+            )
+        ],
+    ),
+    space,
+    widget.CPU(
+        format="{freq_current}GHz {load_percent}%",
         decorations=[
             getattr(widget.decorations, widget_decoration)(
                 **decorations[widget_decoration] | {"extrawidth": 4}
@@ -239,6 +260,10 @@ right = [
     space,
     # Battery indicator (laptop-specific)
     widget.Battery(
+        format="{char} {percent:2.0%} | {hour:d}h {min:02d}m | {watt:.2f}W",
+        charge_char=" ",
+        discharge_char="🚨",
+        not_charging_char="",
         notify_below=25,
         decorations=[
             getattr(widget.decorations, widget_decoration)(
@@ -332,7 +357,7 @@ screens = [
         top=create_bar(
             left_offset
             + left
-            + flexible_spacing_seperator
+            # + flexible_spacing_seperator
             + middle
             + flexible_spacing_seperator
             + right

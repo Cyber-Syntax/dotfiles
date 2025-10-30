@@ -30,41 +30,21 @@ style.blinking = "On"
 vi_mode_style.shape = "Block"
 vi_mode_style.blinking = "On"
 
-# style:
-#   shape: Beam
-# vi_mode_style:
-#   shape: Block
-
 [colors]
 transparent_background_colors = false
 draw_bold_text_with_bright_colors = true
 
-[env]
-TERM = "xterm-256color"
-
-# [font]
-# # glyph_offset = { x = 5, y = 5 }
-# # normal.family = "Hack Nerd Font Mono"
-# # normal.family = "Source Code Pro"
-# normal.family = "JetBrains Mono"
-# normal.style = "Regular"
-# size = 19.0
-
+# Hack -> bad font rendering
+# DroidSansM Nerd Font -> bad font rendering
+#Old: JetBrainsMono Nerd Font Mono -> small icons on Mono
+# normal = { family = "Hack", style = "Regular" }
 [font]
-#Old: JetBrainsMono Nerd Font Mono
-normal = { family = "JetbrainsMono Nerd Font Mono", style = "Regular" }
-# normal = { family = "MesloLGS Nerd Font", style = "Regular" }
-# bold = { family = "MesloLGS Nerd Font", style = "Bold" }
-# italic = { family = "MesloLGS Nerd Font", style = "Italic" }
+normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetbrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetbrainsMono Nerd Font", style = "Italic" }
 size = 17.0
 # fallback = ["JetBrains Mono Nerd Font", "Symbols Nerd Font"]
 
-# [font.bold]
-# family = "JetBrains Mono"
-# style = "Bold"
-#
-# [font.italic]
-# family = "JetBrains Mono"
-# # family = "Source Code Pro Medium"
-# # family = "Hack Nerd Font Mono"
-# style = "Italic"
+# It was for tmux but seems like we solved RGB in tmux settings
+# [env]
+# TERM = "xterm-256color"

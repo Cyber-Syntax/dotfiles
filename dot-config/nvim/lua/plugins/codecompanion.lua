@@ -1,67 +1,194 @@
 return {
-  --NOTE: currently not work as expected... Hard to maintain...
-  -- {
-  --   "olimorris/codecompanion.nvim",
-  --   -- opts = {},
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
+  ------NOTE: disabled for avant.nvim usage
+
+  --NOTE: keymaps.lua was have these, I moved them here for better organization
+  -- Need to handle later if we want to use codecompanion
+
+  -- vim.keymap.set("n", "<leader>aP", function()
+  --   require("codecompanion").prompt("copilot")
+  -- end, { noremap = true, silent = true })
+
+  -- codecompanion
+  -- vim.keymap.set(
+  --   { "n", "v" },
+  --   "<leader>ac",
+  --   "<cmd>CodeCompanionActions<cr>",
+  --   { noremap = true, silent = true, desc = "CodeCompanion Actions" }
+  -- )
+  -- vim.keymap.set(
+  --   { "n", "v" },
+  --   "<leader>aC",
+  --   "<cmd>CodeCompanionChat Toggle<cr>",
+  --   { noremap = true, silent = true, desc = "CodeCompanion Chat Toggle" }
+  -- )
+  -- vim.keymap.set(
+  --   "v",
+  --   "<leader>ae",
+  --   "<cmd>CodeCompanionChat Add<cr>",
+  --   { noremap = true, silent = true, desc = "CodeCompanion Chat Add" }
+  -- )
+  -- Expand 'cc' into 'CodeCompanion' in the command line
+  -- vim.cmd([[cab cc CodeCompanion]])
+
+  ----NOTE: currently not work as expected... Hard to maintain...
+  ----   {
+  ----     "olimorris/codecompanion.nvim",
+  ----     opts = {
+  ----       adapters = {
+  ----         copilot = function()
+  ----           return require("codecompanion.adapters").extend("copilot", {
+  ----             schema = {
+  ----               model = {
+  ----                 order = 1,
+  ----                 mapping = "parameters",
+  ----                 type = "enum",
+  ----                 desc = "ID of the model to use. See the model endpoint compatibility table for details on which models work with the Chat API.",
+  ----                 ---@type string|fun(): string
+  ----                 default = "claude-4.5-sonnet",
+  ----                 choices = {
+  ----                   "claude-4-sonnet",
+  ----                   "claude-3.5-sonnet",
+  ----                   "claude-3.7-sonnet",
+  ----                   "gpt-4o-2024-08-06",
+  ----                 },
+  ----               },
+  ----             },
+  ----           })
+  ----         end,
+  ----       },
+  ----     --FIXME: this won't work with opts, so we need different approach for below
+  ----     },
+  ----     dependencies = {
+  ----       "nvim-lua/plenary.nvim",
+  ----       "nvim-treesitter/nvim-treesitter",
+  ----     },
+  ----
+  ----     --TODO: enable AGENTS.md file usage all times
+  ----     -- add gpt-5-mini to choices
+  ----     -- add new rules from copilot repo
+  ----
+  ----     -- opts = function(_, opts)
+  ----     --   local custom_opts =
+  ---- ,
+  ----     --   }
+  ----     --   return vim.tbl_deep_extend("force", opts, custom_opts)
+  ----     -- end,
+  ----
+  ----     config = function(_, opts)
+  ----       require("codecompanion").setup(opts)
+  ----     end,
+  ----   },
   --
-  --   opts = function(_, opts)
-  --     local custom_opts = {
-  --       adapters = {
-  --         copilot = function()
-  --           return require("codecompanion.adapters").extend("copilot", {
-  --             schema = {
-  --               model = {
-  --                 order = 1,
-  --                 mapping = "parameters",
-  --                 type = "enum",
-  --                 desc = "ID of the model to use. See the model endpoint compatibility table for details on which models work with the Chat API.",
-  --                 ---@type string|fun(): string
-  --                 default = "claude-4-sonnet",
-  --                 choices = {
-  --                   "claude-3.5-sonnet",
-  --                   "claude-3.7-sonnet",
-  --                   "gpt-4o-2024-08-06",
-  --                 },
-  --               },
-  --             },
-  --           })
-  --         end,
-  --       },
-  --       prompt_library = {
-  --         ["copilot"] = {
-  --           strategy = "chat",
-  --           description = "Read and discuss the Copilot instructions from the file",
-  --           opts = {
-  --             auto_submit = false,
-  --             short_name = "copilot",
-  --           },
-  --           references = {
-  --             {
-  --               type = "file",
-  --               path = ".github/copilot-instructions.md",
-  --             },
-  --           },
-  --           prompts = {
-  --             {
-  --               role = "user",
-  --               content = "Use the instructions provided in the file carefully and follow them to the letter and generate a response according to the instructions.",
-  --               opts = {
-  --                 contains_code = false,
-  --               },
-  --             },
-  --           },
-  --         },
-  --       },
-  --     }
-  --     return vim.tbl_deep_extend("force", opts, custom_opts)
-  --   end,
+  --{
+  --  "olimorris/codecompanion.nvim",
+  --  dependencies = {
+  --    "nvim-lua/plenary.nvim",
+  --    "nvim-treesitter/nvim-treesitter",
+  --  },
+  --  lazy = false,
+  --  config = function()
+  --    require("codecompanion").setup({
+  --      adapters = {
+  --        copilot = function()
+  --          return require("codecompanion.adapters").extend("copilot", {
+  --            schema = {
+  --              model = {
+  --                order = 1,
+  --                mapping = "parameters",
+  --                type = "enum",
+  --                desc = "ID of the model to use. See the model endpoint compatibility table for details on which models work with the Chat API.",
+  --                ---@type string|fun(): string
+  --                default = "claude-4.5-sonnet",
+  --                choices = {
+  --                  "claude-4-sonnet",
+  --                  "claude-3.5-sonnet",
+  --                  "claude-3.7-sonnet",
+  --                  "gpt-4o-2024-08-06",
+  --                },
+  --              },
+  --            },
+  --          })
+  --        end,
+  --      },
+  --      opts = {
+  --        log_level = "DEBUG",
+  --      },
+  --    })
   --
-  --   config = function(_, opts)
-  --     require("codecompanion").setup(opts)
-  --   end,
-  -- },
+  --    -- local keymap = vim.keymap
+  --    --
+  --    -- keymap.set("n", "<leader>at", "<cmd>CodeCompanionChat Toggle<CR>", { desc = "Toggle Code Companion Chat" })
+  --    -- keymap.set("v", "<leader>aa", "<cmd>CodeCompanion<CR>", { desc = "Open Code Companion Inline" })
+  --  end,
+  --},
+  --./return.end
 }
+
+-- prompt_library = {
+--   ["copilot"] = {
+--     strategy = "chat",
+--     description = "Read and discuss the Copilot instructions from the file",
+--     opts = {
+--       auto_submit = false,
+--       short_name = "copilot",
+--     },
+--     references = {
+--       {
+--         type = "file",
+--         path = ".github/copilot-instructions.md",
+--       },
+--     },
+--     prompts = {
+--       {
+--         role = "user",
+--         content = "Use the instructions provided in the file carefully and follow them to the letter and generate a response according to the instructions.",
+--         opts = {
+--           contains_code = false,
+--         },
+--       },
+--     },
+--   },
+--TODO: handle later
+-- ["python_context"] = {
+--   strategy = "chat",
+--   description = "Add some context",
+--   opts = {
+--     index = 11,
+--     is_default = true,
+--     is_slash_cmd = false,
+--     short_name = "ref",
+--     auto_submit = false,
+--   },
+--   -- These will appear at the top of the chat buffer
+--   context = {
+--     -- {
+--     --   type = "file",
+--     --   path = { -- This can be a string or a table of values
+--     --     "lua/codecompanion/health.lua",
+--     --     "lua/codecompanion/http.lua",
+--     --   },
+--     -- },
+--     {
+--       type = "file",
+--       path = "~/Documents/my-repos/copilot-instructions/instructions/python.instructions.md",
+--     },
+--     -- {
+--     --   type = "symbols",
+--     --   path = "lua/codecompanion/strategies/chat/init.lua",
+--     -- },
+--     -- {
+--     --   type = "url", -- This URL will even be cached for you!
+--     --   url = "https://raw.githubusercontent.com/olimorris/codecompanion.nvim/refs/heads/main/lua/codecompanion/commands.lua",
+--     -- },
+--   },
+--   prompts = {
+--     {
+--       role = "user",
+--       content = "I'll think of something clever to put here...",
+--       opts = {
+--         contains_code = true,
+--       },
+--     },
+--   },
+-- },
+-- },

@@ -14,9 +14,9 @@ return {
         per_level = 2,
         -- Heading levels <= this value will not be indented.
         -- Use 0 to begin indenting from the very first level.
-        skip_level = 1,
+        -- skip_level = 1,
         -- Do not indent heading titles, only the body.
-        skip_heading = false,
+        skip_heading = true,
         -- Prefix added when indenting, one per level.
         icon = "▎",
         -- Applied to icon.
@@ -551,12 +551,13 @@ return {
         -- Output is evaluated depending on the type.
         -- | function | `value(context)`              |
         -- | string[] | `cycle(value, context.level)` |
-        icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+        -- icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+        icons = { "󰼏 ", "󰎨 " },
         -- Determines how icons fill the available space.
         -- | right   | '#'s are concealed and icon is appended to right side                          |
         -- | inline  | '#'s are concealed and icon is inlined on left side                            |
         -- | overlay | icon is left padded with spaces and inserted on left hiding any additional '#' |
-        position = "overlay",
+        position = "inline",
         -- Added to the sign column if enabled.
         -- Output is evaluated by `cycle(value, context.level)`.
         signs = { "󰫎 " },

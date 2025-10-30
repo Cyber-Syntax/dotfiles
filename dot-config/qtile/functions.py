@@ -52,10 +52,8 @@ from libqtile.lazy import lazy
 
 # Monitor indexes
 # TODO: use these constants and send them the variables.py
-# DP_0 = 0
-# DP_2 = 1
-left_monitor = 1
-right_monitor = 0
+left_monitor_index = 1
+right_monitor_index = 0
 
 
 # 2 machine setup
@@ -66,25 +64,6 @@ def get_hostname():
 
 
 # 2 monitor group keybindings
-# TODO: I didn't understand what was this used for
-@lazy.function
-def go_to_group(qtile, name: str):
-    """Switch to the specified group, handling multi-monitor setups.
-
-    Args:
-        qtile: The current qtile instance.
-        name: The name of the group to switch to.
-    """
-    if len(qtile.screens) == 1:
-        qtile.groups_map[name].toscreen()
-        return
-    start_group = qtile.current_screen.group.name
-    if start_group == name:
-        return
-    qtile.go_to_group(name)
-
-
-# TODO: better comments
 @lazy.function
 def to_screen(qtile, group_name):
     """Switch to the specified group based on the current screen index.
@@ -114,6 +93,10 @@ def to_screen(qtile, group_name):
         mod + 2 -> would go to group 4
         mod + 3 -> would go to group 6
     """
+    # Safety check: fall back to standard behavior on single monitor
+    if len(qtile.screens) == 1:
+        qtile.groups_map[group_name].toscreen()
+        return
 
     current_screen_index = qtile.current_screen.index
 
@@ -121,9 +104,11 @@ def to_screen(qtile, group_name):
     workspace_number = int(group_name[-1])
 
     # Determine the correct group index based on current screen index
-    if current_screen_index == left_monitor:  # Left monitor (index 0)
+    if current_screen_index == left_monitor_index:  # Left monitor (index 0)
         group_index = (workspace_number * 2) - 2
-    elif current_screen_index == right_monitor:  # Right monitor (index 1)
+    elif (
+        current_screen_index == right_monitor_index
+    ):  # Right monitor (index 1)
         group_index = (workspace_number * 2) - 1
     else:
         print("Invalid screen index!")
@@ -142,10 +127,14 @@ def to_screen(qtile, group_name):
 @lazy.function
 def send_left(qtile):
     """Send the current window to the left screen."""
+    # Safety check: do nothing on single monitor
+    if len(qtile.screens) == 1:
+        return
+
     # Find screen_affinity use that index to send to the right monitor
     # screen_affinity = qtile.current_screen.group.screen_affinity
     #
-    if qtile.current_screen.index == right_monitor:
+    if qtile.current_screen.index == right_monitor_index:
         qtile.current_window.togroup(
             qtile.screens[1].group.name, switch_group=False
         )
@@ -167,10 +156,14 @@ def send_left(qtile):
 @lazy.function
 def send_right(qtile):
     """Send the current window to the right monitor"""
+    # Safety check: do nothing on single monitor
+    if len(qtile.screens) == 1:
+        return
+
     # screen_affinity = qtile.current_screen.group.screen_affinity
     #
 
-    if qtile.current_screen.index == left_monitor:
+    if qtile.current_screen.index == left_monitor_index:
         qtile.current_window.togroup(
             qtile.screens[0].group.name, switch_group=False
         )
@@ -191,12 +184,13 @@ def send_right(qtile):
 
 @lazy.function
 def focus_left_mon(qtile):
-    """Focus dp-0 left monitor"""
+    """Focus left monitor with single-monitor fallback."""
     if len(qtile.screens) == 1:
-        qtile.focus_screen(qtile.current_screen.previous_group)
+        # Fallback: cycle to previous layout
+        qtile.current_group.cmd_prev_layout()
         return
 
-    if qtile.current_screen.index == right_monitor:
+    if qtile.current_screen.index == right_monitor_index:
         qtile.focus_screen(1)
 
     # if qtile.current_screen.index == 0:
@@ -210,12 +204,13 @@ def focus_left_mon(qtile):
 
 @lazy.function
 def focus_right_mon(qtile):
-    """Focus dp-2 right monitor"""
+    """Focus right monitor with single-monitor fallback."""
     if len(qtile.screens) == 1:
-        qtile.focus_screen(qtile.current_screen.next_group)
+        # Fallback: cycle to next layout
+        qtile.current_group.cmd_next_layout()
         return
 
-    if qtile.current_screen.index == left_monitor:
+    if qtile.current_screen.index == left_monitor_index:
         qtile.focus_screen(0)
 
     # if qtile.current_screen.index == 2:
@@ -234,7 +229,12 @@ def focus_right_mon(qtile):
 
 @lazy.function
 def cycle_groups(qtile):
-    """Cycle through the the groups but but only the odd or even groups"""
+    """Cycle through the groups but only the odd or even groups (multi-monitor aware)"""
+    # Safety check: use standard behavior on single monitor
+    if len(qtile.screens) == 1:
+        qtile.current_screen.next_group(skip_empty=True)
+        return
+
     current_group_index = qtile.groups.index(qtile.current_group)
     next_group_index = current_group_index
 
@@ -271,7 +271,12 @@ def cycle_groups(qtile):
 
 @lazy.function
 def cycle_groups_reverse(qtile):
-    """Cycle through the groups in reverse order but only the odd or even groups"""
+    """Cycle through the groups in reverse order but only the odd or even groups (multi-monitor aware)"""
+    # Safety check: use standard behavior on single monitor
+    if len(qtile.screens) == 1:
+        qtile.current_screen.prev_group(skip_empty=True)
+        return
+
     current_group = qtile.current_group
     current_group_num = int(current_group.name)
     is_odd = current_group_num % 2 != 0
@@ -451,6 +456,8 @@ def get_fedora_updates() -> str:
     except (subprocess.TimeoutExpired, OSError) as e:
         return f"Error: {e}"
 
+
+# Multi monitor support
 
 # this import requires python-xlib to be installed
 from Xlib import display as xdisplay

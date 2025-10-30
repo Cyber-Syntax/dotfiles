@@ -1,5 +1,7 @@
 # Qtile
 
+Dynamic multi-monitor setup qtile personal configs. 
+
 ## New
 
 ![qtile_rice_hyprland](/.config/qtile/docs/src/assets/img/2024-11-25-15-00-51.png)

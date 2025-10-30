@@ -6,7 +6,7 @@ return {
   { import = "lazyvim.plugins.extras.lang.yaml" },
   { import = "lazyvim.plugins.extras.lang.toml" },
   { import = "lazyvim.plugins.extras.lang.typescript" },
-  -- { import = "lazyvim.plugins.extras.lang.markdown" },
+  { import = "lazyvim.plugins.extras.lang.markdown" },
   -- { import = "lazyvim.plugins.extras.lang.ansible" },
 
   -- UI EXTRAS
@@ -32,6 +32,7 @@ return {
 
   -- AI EXTRAS
   -- { import = "lazyvim.plugins.extras.ai.copilot-chat" },
+  { import = "lazyvim.plugins.extras.ai.avante" },
 
   --FIX: prettier cause formatting issues on .jsonc files
   -- { import = "lazyvim.plugins.extras.formatting.prettier" },

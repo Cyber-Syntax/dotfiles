@@ -16,7 +16,7 @@ return {
       },
     },
     panel = { enabled = false, auto_refresh = true },
-    copilot_model = "gpt-4o-copilot", -- Current LSP default is gpt-35-turbo, supports gpt-4o-copilot, claude-3.5-sonnet, claude-3-opus, claude-3-haiku
+    copilot_model = "gpt-5-mini", -- gpt-4o-copilot, claude-3.5-sonnet, claude-3-opus, claude-3-haiku
     filetypes = {
       yaml = false,
       markdown = false,
@@ -29,7 +29,8 @@ return {
       ["."] = false,
     },
     workspace_folders = {
-      "/home/developer/Documents/repository/",
+      "/home/developer/Documents/my-repos/",
+      "/home/developer/Documents/global-repos/",
     },
   },
   -- add ai_accept action
