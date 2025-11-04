@@ -106,9 +106,7 @@ def to_screen(qtile, group_name):
     # Determine the correct group index based on current screen index
     if current_screen_index == left_monitor_index:  # Left monitor (index 0)
         group_index = (workspace_number * 2) - 2
-    elif (
-        current_screen_index == right_monitor_index
-    ):  # Right monitor (index 1)
+    elif current_screen_index == right_monitor_index:  # Right monitor (index 1)
         group_index = (workspace_number * 2) - 1
     else:
         print("Invalid screen index!")
@@ -135,9 +133,7 @@ def send_left(qtile):
     # screen_affinity = qtile.current_screen.group.screen_affinity
     #
     if qtile.current_screen.index == right_monitor_index:
-        qtile.current_window.togroup(
-            qtile.screens[1].group.name, switch_group=False
-        )
+        qtile.current_window.togroup(qtile.screens[1].group.name, switch_group=False)
         qtile.focus_screen(1)
 
 
@@ -164,9 +160,7 @@ def send_right(qtile):
     #
 
     if qtile.current_screen.index == left_monitor_index:
-        qtile.current_window.togroup(
-            qtile.screens[0].group.name, switch_group=False
-        )
+        qtile.current_window.togroup(qtile.screens[0].group.name, switch_group=False)
         qtile.focus_screen(0)
 
     # 3 monitor setup
@@ -343,6 +337,7 @@ def smart_parse_text(text: str) -> str:
         "librewolf",
     ]
 
+    # TODO: add icon to zed, if we can
     # Applications without working icons - show full titles
     apps_without_icons = ["zed", "some-other-app"]
 
@@ -366,9 +361,7 @@ def smart_parse_text(text: str) -> str:
             if ":" in text:
                 title = text.split(":", 1)[1].strip()
             else:
-                title = (
-                    text.replace(app, "").replace(app.capitalize(), "").strip()
-                )
+                title = text.replace(app, "").replace(app.capitalize(), "").strip()
 
             # Return shortened version
             if title:
@@ -471,9 +464,7 @@ def get_num_monitors():
         resources = screen.root.xrandr_get_screen_resources()
 
         for output in resources.outputs:
-            monitor = display.xrandr_get_output_info(
-                output, resources.config_timestamp
-            )
+            monitor = display.xrandr_get_output_info(output, resources.config_timestamp)
             preferred = False
             if hasattr(monitor, "preferred"):
                 preferred = monitor.preferred

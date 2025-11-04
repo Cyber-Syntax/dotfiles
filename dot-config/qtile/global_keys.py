@@ -36,6 +36,25 @@ global_mouse = [
 
 # Common key bindings for all machines
 global_keys = [
+    # Screen/Group management
+    # skip_empty: skip the empty workspaces/groups when cycling
+    Key(
+        [mod],
+        "Tab",
+        # lazy.screen.next_group(skip_empty=True),
+        lazy.screen.next_group(),
+        desc="Move to next group",
+    ),
+    Key(
+        [mod, "shift"],
+        "Tab",
+        lazy.screen.prev_group(),
+        desc="Move to previous group",
+    ),
+    # Window focus and movement
+    Key([mod], "d", lazy.layout.down(), desc="Move focus down"),
+    Key([mod], "a", lazy.layout.up(), desc="Move focus up"),
+    #
     # Key chords
     # The below code will launch brave when the user presses Mod + less(<), followed by b.
     KeyChord([mod], "less", [Key([], "b", lazy.spawn("brave-browser"))]),
@@ -59,9 +78,7 @@ global_keys = [
     # Window focus and movement
     Key([mod], "w", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod], "e", lazy.layout.shuffle_up(), desc="Move window up"),
-    Key(
-        [mod], 49, lazy.layout.next(), desc="Move window focus to other window"
-    ),
+    Key([mod], 49, lazy.layout.next(), desc="Move window focus to other window"),
     # Applications
     # Key([mod], "less", lazy.spawn("firefox"), desc="Launch firefox"),
     Key([mod], "l", lazy.spawn("i3lock"), desc="Lock the screen"),
@@ -69,17 +86,13 @@ global_keys = [
     Key(
         [mod],
         "r",
-        lazy.spawn(
-            os.path.expanduser("~/.config/rofi/launchers/type-3/launcher.sh")
-        ),
+        lazy.spawn(os.path.expanduser("~/.config/rofi/launchers/type-3/launcher.sh")),
         desc="Launch application launcher",
     ),
     Key(
         [mod],
         "x",
-        lazy.spawn(
-            os.path.expanduser("~/.config/rofi/powermenu/type-6/powermenu.sh")
-        ),
+        lazy.spawn(os.path.expanduser("~/.config/rofi/powermenu/type-6/powermenu.sh")),
         desc="Launch power menu",
     ),
     Key(

@@ -1,13 +1,11 @@
 Nord = {
     "foreground": "#D8DEE9",
     "background": "#2E3440",
-    #TESTING: alt background color --- IGNORE ---
-    # "alt_background": "#181825",
     "alt_background": "#3B4252",
     "disabled": "#4C566A",
     "accent": "#81A1C1",
     "warning": "#EBCB8B",  # Nord yellow for warnings
-    "error": "#BF616A",    # Nord red for errors
+    "error": "#BF616A",  # Nord red for errors
 }
 
 

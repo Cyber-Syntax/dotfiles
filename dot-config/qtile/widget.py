@@ -90,11 +90,6 @@ def create_groupbox(screen_index: int, num_monitors: int) -> widget.GroupBox:
         active=bar_foreground_color,
         block_highlight_text_color=nord_theme["accent"],
         padding=7,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     )
 
 
@@ -127,11 +122,6 @@ left_monitor_widgets = [
             "~/.local/share/icons/",
             "~/.local/share/flatpak/exports/share/icons/",
             "/var/lib/flatpak/exports/share/icons/",
-        ],
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
         ],
     ),
 ]
@@ -169,11 +159,6 @@ right_monitor_middle = [
             "~/.local/share/flatpak/exports/share/icons/",
             "/var/lib/flatpak/exports/share/icons/",
         ],
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
 ]
@@ -181,22 +166,12 @@ right_monitor_middle = [
 right_monitor_widgets = [
     widget.Pomodoro(
         length_pomodori=30,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
     # System monitoring widgets (only on right monitor to avoid duplication)
     widget.UnitStatus(
         label="trash-cli",
         unitname="trash-cli.service",
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     # space,
     # NOTE: we switched the backintime
@@ -213,11 +188,6 @@ right_monitor_widgets = [
     widget.UnitStatus(
         label="ollama",
         unitname="ollama.service",
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
     # Volume control
@@ -248,11 +218,6 @@ right_monitor_widgets = [
             "Button1": lambda: qtile.spawn(terminal + " htop"),
             "Button3": lambda: qtile.spawn(terminal + " btop"),
         },
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
     # NVIDIA GPU sensor
@@ -265,11 +230,6 @@ right_monitor_widgets = [
         mouse_callbacks={
             "Button1": lambda: qtile.spawn(terminal + " watch -n 2 'nvidia-smi'")
         },
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
     # AppImage updates check
@@ -282,11 +242,6 @@ right_monitor_widgets = [
                 'alacritty -e bash -c "/home/developer/Documents/my-repos/my-unicorn/scripts/update.bash --update-outdated"'
             ),
         },
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
     # Fedora package manager updates check
@@ -299,11 +254,6 @@ right_monitor_widgets = [
                 'alacritty -e bash -c "/home/developer/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update"'
             ),
         },
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
     # Media player status (MPRIS2)
@@ -317,11 +267,6 @@ right_monitor_widgets = [
         separator=", ",
         stopped_text="",
         width=200,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
     # Disk usage for root partition
@@ -333,11 +278,6 @@ right_monitor_widgets = [
         measure="G",
         warn_space=4,  # Warn if less than 4GB free
         visible_on_warn=True,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
     # Disk usage for home partition
@@ -348,31 +288,15 @@ right_monitor_widgets = [
         fmt=" {}",
         warn_space=20,  # Warn if less than 20GB free
         visible_on_warn=True,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
     # Clock widget
     widget.Clock(
         format="%A %d %B %Y %H:%M",
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
     ),
     space,
     # System tray (IMPORTANT: Can only be on ONE monitor)
-    widget.Systray(
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 4}
-            )
-        ],
-    ),
+    widget.Systray(),
     space,
     ## Multi monitor setup, Xrandr script call
     # widget.TextBox(
@@ -395,11 +319,6 @@ right_monitor_widgets = [
     widget.TextBox(
         "⏻",
         fontsize=20,
-        decorations=[
-            getattr(widget.decorations, widget_decoration)(
-                **decorations[widget_decoration] | {"extrawidth": 3}
-            )
-        ],
         mouse_callbacks={
             "Button1": lazy.spawn(
                 os.path.expanduser("~/.config/rofi/powermenu/type-6/powermenu.sh")
@@ -479,11 +398,6 @@ def create_screens(num_monitors: int) -> list[Screen]:
                                 "~/.local/share/icons/",
                                 "~/.local/share/flatpak/exports/share/icons/",
                                 "/var/lib/flatpak/exports/share/icons/",
-                            ],
-                            decorations=[
-                                getattr(widget.decorations, widget_decoration)(
-                                    **decorations[widget_decoration] | {"extrawidth": 4}
-                                )
                             ],
                         )
                     ]
