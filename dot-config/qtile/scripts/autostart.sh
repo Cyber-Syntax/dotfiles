@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-lxpolkit &
+#BUG: lxpolkit not used on desktop nor laptop which no package found?
+# lxpolkit &
 nm-applet & # network manager applet
 picom -b &  # compositor (necessary to prevent screen tearing in qtile)
 numlockx on &
@@ -20,6 +21,7 @@ if [ "$HOSTNAME" = "fedora" ]; then
   ~/Applications/zen-browser.AppImage &        # browser
   keepassxc &                                  # password manager
   ckb-next --background &                      # corsair keyboard manager
+
   # else
   #   # For laptop (hostname = "fedoraLaptop") or any other machine
   #   # Laptop-specific applications will go here when ready
@@ -27,4 +29,5 @@ if [ "$HOSTNAME" = "fedora" ]; then
   #   # - Battery Guardian: ~/.local/share/battery-guardian/battery-guardian.py
 
   # :  # No-op command in case all other commands are commented out
+
 fi

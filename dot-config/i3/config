@@ -4,52 +4,42 @@
 # ============================= /.INFO ====================================
 
 # ============================= EXEC ====================================
-#TODO: setup host base settings
-# include ~/.config/sway/$(hostname)/*
-## SCRIPTS ##
-# exec env GTK_USE_PORTAL=1 GDK_DEBUG=portals
-# exec_always dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-# exec hash dbus-update-activation-environment 2>/dev/null && \
-#      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec dunst &
 
-# Upstream refuses to set XDG_CURRENT_DESKTOP so we have to.
-exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway
-exec systemctl --user import-environment DISPLAY \
-                                         SWAYSOCK \
-                                         WAYLAND_DISPLAY \
-                                         XDG_CURRENT_DESKTOP
-
-exec hash dbus-update-activation-environment 2>/dev/null && \
-     dbus-update-activation-environment --systemd DISPLAY \
-                                                  SWAYSOCK \
-                                                  XDG_CURRENT_DESKTOP=sway \
-                                                  WAYLAND_DISPLAY
-
-exec waybar
-exec dunst & gammastep -c ~/.config/gammastep/config.ini
-exec blueman-applet
-# Idle configuration
-exec swayidle \
-  timeout 300 'exec $lock' \
-  timeout 600 'swaymsg "output * dpms off"' \
-  after-resume 'swaymsg "output * dpms on"' \
-  before-sleep 'exec $lock'
-
-#TODO: need to start with flatpak?
+#TODO: start with flatpak
 # exec syncthing-tray
 exec /usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh &
 # https://github.com/olemartinorg/i3-alternating-layout
 exec_always --no-startup-id ~/.config/i3/i3-alternating-layout.py
-# Background image script
-# exec --no-startup-id ~/Documents/repository/WallpaperChanger/main.py
-# XRANDR
-#	exec_always --no-startup-id ~/Documents/screenloyout/xrandr.sh
 # Swapping workspaces, Source: https://i3wm.org/docs/user-contributed/swapping-workspaces.html
 exec --no-startup-id ~/.config/i3/i3-display-swap.sh
 
+# Background image script
+exec --no-startup-id ~/Documents/repository/WallpaperChanger/main.py
+
+# Numclok
+exec --no-startup-id numlockx on
+## ./Keyboard ##
+
+## Other ##
+# gammastep
+exec --no-startup-id gammastep -c ~/.config/gammastep/config.ini
+# NetworkManager
+exec --no-startup-id nm-applet
+# Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# Picom (transparent alacritty)
+exec --no-startup-id picom -b
+
+# XRANDR
+#	exec_always --no-startup-id ~/Documents/screenloyout/xrandr.sh
+
 # NVIDIA AUTO FAN for propriety driver (Not work for now)
+#NOTE: systemd nfan.service is better way to do this and it is already set
 #exec_always --no-startup-id ~/Documents/nvidia/nfancurve/temp.sh
 ## ./SCRIPTS ##
+
 #gnome theme settings
 # set $gnome-schema org.gnome.desktop.interface
 # exec_always {
@@ -65,28 +55,16 @@ exec --no-startup-id ~/.config/i3/i3-display-swap.sh
 #     icon-theme:gtk-icon-theme-name \
 #     cursor-theme:gtk-cursor-theme-name
 #
+
 ## GNOME ##
 # lxpolkit for password ask e.g fedora media writer, backintime
-#TESTING: kde wasn't work lets test lxpolkit
-exec --no-startup-id lxpolkit
+#TODO: handle polkit if needed
+# exec --no-startup-id lxpolkit
 # THEME GNOME
 # exec --no-startup-id /usr/libexec/gsd-xsettings
 # exec --no-startup-id setxkbmap tr
-# Numclok
-exec --no-startup-id numlockx on
-## ./Keyboard ##
 
-## Other ##
-# Picom (transparent alacritty)
-#exec --no-startup-id picom -b
-# Redshift
-#exec --no-startup-id redshift -m randr -l 48:28 -t 6300:3000
-# gammastep
-exec --no-startup-id gammastep -c ~/.config/gammastep/config.ini
-# NetworkManager
-exec --no-startup-id nm-applet
-# Polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 # ============================= ./EXEC ====================
 
 ## Keyboard ##
@@ -96,15 +74,15 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # input * xkb_options "grp:win_space_toggle"
 
 # Input configuration
-input * {
-xkb_layout tr
-# dwt disabled
-tap enabled
-tap_button_map lrm
-middle_emulation enabled
-# xkb_variant nodeadkeys
-# xkb_options caps:swapescape
-}
+# input * {
+# xkb_layout tr
+# # dwt disabled
+# tap enabled
+# tap_button_map lrm
+# middle_emulation enabled
+# # xkb_variant nodeadkeys
+# # xkb_options caps:swapescape
+# }
 
 # Window borders
 default_border pixel 1
@@ -123,30 +101,17 @@ floating_modifier Mod4
 
 ## APPS ##
 # start a terminal
-bindsym Mod4+Return exec kitty
+bindsym Mod4+Return exec alacritty
 # Firefox, less = '<'
-bindsym Mod4+less exec firefox
+# bindsym Mod4+less exec firefox
 
-# autostart firefox
-#exec firefox
 # quit i3
 bindsym Mod4+Shift+q exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'
 # restart i3
-bindsym Mod4+Shift+r exec ./restart-i3.sh
+bindsym Mod4+ctrl+r exec ./restart-i3.sh
 # Files
 bindsym Mod4+z exec nautilus
-# Gnome setings
-bindsym Mod4+shift+s exec gnome-control-center
-# Discord
-#bindsym Mod4+x exec dbus-launch flatpak run com.github.Eloston.UngoogledChromium --user-data-dir=.config/discord-dir --app=https://discord.com
-# VSCode
-bindsym Mod4+v exec flatpak run com.visualstudio.code
-# Beekeper
-bindsym Mod4+b exec flatpak run io.beekeeperstudio.Studio
-# Tutanota
-bindsym Mod4+t exec flatpak run com.tutanota.Tutanota
-# Siyuan
-bindsym Mod4+s exec ~/Documents/appimages/siyuan.AppImage
+
 # superProductivity autostart
 #exec ~/Documents/appimages/super-productivity.AppImage
 #bindsym mod4+c exec ~/Documents/appimages/super-productivity.AppImage
@@ -154,8 +119,6 @@ bindsym Mod4+s exec ~/Documents/appimages/siyuan.AppImage
 exec /usr/bin/syncthing serve --no-browser --no-restart --logflags=0
 # Keepassxc
 exec keepassxc
-# nuclear
-bindsym Mod4+n exec flatpak run org.js.nuclear.Nuclear
 # ROFI
 bindsym Mod4+r exec --no-startup-id ~/.config/rofi/launchers/type-6/launcher.sh
 bindsym Mod4+x exec --no-startup-id ~/.config/rofi/powermenu/type-6/powermenu.sh
