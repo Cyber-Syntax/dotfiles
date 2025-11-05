@@ -5,40 +5,38 @@
 
 # ============================= EXEC ====================================
 exec dunst &
+exec --no-startup-id nm-applet &
+exec --no-startup-id picom -b &
+exec --no-startup-id numlockx on &
+exec --no-startup-id gammastep -c ~/.config/gammastep/config.ini &
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 
-#TODO: start with flatpak
-# exec syncthing-tray
-exec /usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh &
+# custom app/scripts
+exec_always --no-startup-id ~/Documents/my-repos/WallpaperChanger/main.py &
+exec --no-startup-id ckb-next --background &
+exec flatpak run io.github.martchus.syncthingtray &
+exec ~/Applications/super-productivity.AppImage &
+exec ~/Applications/zen-browser.AppImage &
+exec keepassxc &
+
+# exec /usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh &
+
+# exec --no-startup-id lxpolkit
+# exec --no-startup-id setxkbmap tr
+
+# Sycthing
+# exec /usr/bin/syncthing serve --no-browser --no-restart --logflags=0
+
+# layout that looks like a monadtall
 # https://github.com/olemartinorg/i3-alternating-layout
-exec_always --no-startup-id ~/.config/i3/i3-alternating-layout.py
+# exec_always --no-startup-id ~/.config/i3/i3-alternating-layout.py
+
+# for 2 monitor setup
 # Swapping workspaces, Source: https://i3wm.org/docs/user-contributed/swapping-workspaces.html
-exec --no-startup-id ~/.config/i3/i3-display-swap.sh
-
-# Background image script
-exec --no-startup-id ~/Documents/repository/WallpaperChanger/main.py
-
-# Numclok
-exec --no-startup-id numlockx on
-## ./Keyboard ##
-
-## Other ##
-# gammastep
-exec --no-startup-id gammastep -c ~/.config/gammastep/config.ini
-# NetworkManager
-exec --no-startup-id nm-applet
-# Polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
-# Picom (transparent alacritty)
-exec --no-startup-id picom -b
+# exec --no-startup-id ~/.config/i3/i3-display-swap.sh
 
 # XRANDR
 #	exec_always --no-startup-id ~/Documents/screenloyout/xrandr.sh
-
-# NVIDIA AUTO FAN for propriety driver (Not work for now)
-#NOTE: systemd nfan.service is better way to do this and it is already set
-#exec_always --no-startup-id ~/Documents/nvidia/nfancurve/temp.sh
-## ./SCRIPTS ##
 
 #gnome theme settings
 # set $gnome-schema org.gnome.desktop.interface
@@ -56,13 +54,8 @@ exec --no-startup-id picom -b
 #     cursor-theme:gtk-cursor-theme-name
 #
 
-## GNOME ##
-# lxpolkit for password ask e.g fedora media writer, backintime
-#TODO: handle polkit if needed
-# exec --no-startup-id lxpolkit
 # THEME GNOME
 # exec --no-startup-id /usr/libexec/gsd-xsettings
-# exec --no-startup-id setxkbmap tr
 
 
 # ============================= ./EXEC ====================
@@ -74,6 +67,7 @@ exec --no-startup-id picom -b
 # input * xkb_options "grp:win_space_toggle"
 
 # Input configuration
+#FIXME: below input * not working in i3 config
 # input * {
 # xkb_layout tr
 # # dwt disabled
@@ -105,20 +99,10 @@ bindsym Mod4+Return exec alacritty
 # Firefox, less = '<'
 # bindsym Mod4+less exec firefox
 
-# quit i3
-bindsym Mod4+Shift+q exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'
-# restart i3
-bindsym Mod4+ctrl+r exec ./restart-i3.sh
 # Files
 bindsym Mod4+z exec nautilus
 
-# superProductivity autostart
-#exec ~/Documents/appimages/super-productivity.AppImage
-#bindsym mod4+c exec ~/Documents/appimages/super-productivity.AppImage
-# Sycthing
-exec /usr/bin/syncthing serve --no-browser --no-restart --logflags=0
-# Keepassxc
-exec keepassxc
+
 # ROFI
 bindsym Mod4+r exec --no-startup-id ~/.config/rofi/launchers/type-6/launcher.sh
 bindsym Mod4+x exec --no-startup-id ~/.config/rofi/powermenu/type-6/powermenu.sh
@@ -169,31 +153,48 @@ bindsym Mod4+f fullscreen toggle
 #	workspace $ws6 output DP-0 DP-1
 #	workspace $ws5 output DP-2
 
-# Focus apps after boot i3
+## Focus apps after boot i3
+
 # Firefox focus
 #for_window [urgent=latest class="firefox"] focus output DP-2
+
 # superProductivity focus
-for_window [urgent=latest class="superProductivity" instance="superproductivity"] focus workspace $ws3
+for_window [urgent=latest class="superProductivity" instance="superproductivity"] focus workspace $ws4
 
 # SEND APPS LEFT TO RIGHT ETC.
 bindsym Mod4+e exec i3-msg move window to output right
 bindsym Mod4+w exec i3-msg move window to output left
 
 # SPECIFIC APPS START SPECIFIC WORKSPACE
-assign [class="superProductivity"] "5"
 assign [class="^Chromium$"] $ws1
+assign [class="^Zen$"] $ws1
+assign [class="^brave-browser$"] $ws1
 assign [class="^code$"] $ws2
-assign [class="^Signal$"] $ws4
+assign [class="^zed$"] $ws2
+assign [class="^freetube$"] $ws3
+assign [class="^Signal$"] $ws3
+assign [class="superProductivity"] "4"
 assign [class="^Spotify$"] $ws5
 # assign [class="^KeePass2$"] $wsF11
 
 
 # Set workspace names
-set $ws1   1:
-set $ws2   2:
-set $ws3   3:3
-set $ws4   4:4
-set $ws5   5:
+set $ws1   1
+set $ws2   2
+set $ws3   3
+set $ws4   4
+set $ws5   5
+
+
+# set $ws1   1:
+# set $ws2   2:
+# set $ws3   3:3
+# set $ws4   4:4
+# set $ws5   5:
+
+# Cycle groups
+bindsym Mod4+Tab workspace next
+bindsym Mod4+Shift+Tab workspace prev
 
 # switch to workspace
 bindsym Mod4+1 workspace number $ws1
@@ -213,12 +214,21 @@ bindsym Mod4+Shift+6 move container to workspace number $ws6
 
 ## ./WORKSPACES ##
 
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym F1 restart
-#bindsym Mod4+ctrl+r restart
+
+# restart better to restart polybar etc.
+bindsym Mod4+ctrl+r exec bash -c "/home/developer/.config/i3/restart-i3.sh"
+
 # exit i3 (logs you out of your X session)
-set $executeExit exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym Mod4+Shift+e $executeExit
+# set $executeExit exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# bindsym Mod4+Shift+e $executeExit
+
+# quit i3
+bindsym Mod4+Shift+q exec i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'
+# restart i3
+# bindsym Mod4+ctrl+r exec ./restart-i3.sh
 
 # change focus between tiling / floating windows
 bindsym Mod4+space focus mode_toggle
@@ -347,7 +357,8 @@ gaps outer 0
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Roboto Regular 11
+# font pango:Roboto Regular 11
+font pango:JetbrainsMono Nerd Font Regular 11
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -359,8 +370,8 @@ exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 #exec --no-startup-id xss-lock  --transfer-sleep-lock -- i3lock --nofork -t 3600
-exec_always --no-startup-id xset dpms 0 0 600 &
-exec_always --no-startup-id xss-lock -- i3lock --nofork -t 3600
+# exec_always --no-startup-id xset dpms 0 0 600 &
+# exec_always --no-startup-id xss-lock -- i3lock --nofork -t 3600
 
 ## UNUSED ##
 
