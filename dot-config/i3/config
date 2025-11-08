@@ -4,6 +4,7 @@
 # ============================= /.INFO ====================================
 
 # ============================= EXEC ====================================
+#TESTING: execs
 exec dunst &
 exec --no-startup-id nm-applet &
 exec --no-startup-id picom -b &
@@ -13,6 +14,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 
 # custom app/scripts
 exec_always --no-startup-id ~/Documents/my-repos/WallpaperChanger/main.py &
+exec --no-startup-id ~/.local/share/linux-system-utils/power/idle.sh &
 exec --no-startup-id ckb-next --background &
 exec flatpak run io.github.martchus.syncthingtray &
 exec ~/Applications/super-productivity.AppImage &
@@ -155,15 +157,21 @@ bindsym Mod4+f fullscreen toggle
 
 ## Focus apps after boot i3
 
-# Firefox focus
-#for_window [urgent=latest class="firefox"] focus output DP-2
-
-# superProductivity focus
-for_window [urgent=latest class="superProductivity" instance="superproductivity"] focus workspace $ws4
 
 # SEND APPS LEFT TO RIGHT ETC.
 bindsym Mod4+e exec i3-msg move window to output right
 bindsym Mod4+w exec i3-msg move window to output left
+
+
+#smart|urgent|focus|none
+focus_on_window_activation focus
+
+# Firefox focus
+#for_window [urgent=latest class="firefox"] focus output DP-2
+
+# superProductivity focus
+#FIXME: not working
+for_window [urgent=latest class="superProductivity" instance="superproductivity"] focus workspace $ws4
 
 # SPECIFIC APPS START SPECIFIC WORKSPACE
 assign [class="^Chromium$"] $ws1
@@ -175,8 +183,8 @@ assign [class="^freetube$"] $ws3
 assign [class="^Signal$"] $ws3
 assign [class="superProductivity"] "4"
 assign [class="^Spotify$"] $ws5
+assign [class="^virt-manager$"] $ws6
 # assign [class="^KeePass2$"] $wsF11
-
 
 # Set workspace names
 set $ws1   1
@@ -348,7 +356,7 @@ popup_during_fullscreen smart
 
 force_display_urgency_hint 500 ms
 
-# focus_on_window_activation smart #smart|urgent|focus|none
+
 
 # default border pixel width (gaps)
 gaps inner 0
