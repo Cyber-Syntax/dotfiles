@@ -139,8 +139,11 @@ workspace_layout tabbed
 # toggle between tabbed
 bindsym Mod4+y layout tabbed
 
+# Toggle splith(dikey) / tabbed
+bindsym Mod4+space layout toggle tabbed splith
+
 #bindsym Mod4+p layout stacking
-#bindsym Mod4+y layout toggle split
+bindsym Mod4+s layout toggle split
 
 # enter fullscreen mode for the focused container
 bindsym Mod4+f fullscreen toggle
@@ -239,7 +242,7 @@ bindsym Mod4+Shift+q exec i3-nagbar -t warning -m 'You pressed the exit shortcut
 # bindsym Mod4+ctrl+r exec ./restart-i3.sh
 
 # change focus between tiling / floating windows
-bindsym Mod4+space focus mode_toggle
+# bindsym Mod4+space focus mode_toggle
 
 # move the currently focused window to the scratchpad
 bindsym Mod4+Shift+minus move scratchpad
@@ -349,11 +352,7 @@ for_window [all] title_window_icon on
 # enable window icons for all windows with extra horizontal padding
 for_window [all] title_window_icon padding 3px
 
-# disable colored borders
-smart_borders on
-
 popup_during_fullscreen smart
-
 force_display_urgency_hint 500 ms
 
 

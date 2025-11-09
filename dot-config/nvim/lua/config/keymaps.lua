@@ -99,3 +99,79 @@ map("v", "<C-j>", "5j", { desc = "Move to window below" })
 map("v", "<C-k>", "5k", { desc = "Move to window above" })
 map("v", "<C-l>", "5l", { desc = "Move to window right" })
 map("v", "<C-h>", "5h", { desc = "Move to window left" })
+
+-- -- -- Custom toggle checkbox function
+-- Markdown TODO utilities
+local M = {}
+
+-- Toggle checkbox on current line
+function M.toggle_checkbox()
+  local line = vim.api.nvim_get_current_line()
+  if line:find("%[ %]") then
+    line = line:gsub("%[ %]", "[x]", 1)
+  elseif line:find("%[x%]") then
+    line = line:gsub("%[x%]", "[ ]", 1)
+  else
+    return
+  end
+  vim.api.nvim_set_current_line(line)
+end
+
+-- Insert new TODO line
+function M.new_todo()
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  vim.api.nvim_buf_set_lines(0, row, row, false, { "- [ ] " })
+  vim.api.nvim_win_set_cursor(0, { row + 1, 6 })
+  vim.defer_fn(function()
+    vim.cmd.startinsert()
+  end, 10)
+end
+
+-- Keymaps
+vim.keymap.set("n", "<leader>tt", M.toggle_checkbox, { desc = "Toggle Markdown Checkbox", silent = true })
+vim.keymap.set("n", "<leader>tn", M.new_todo, { desc = "Insert new TODO", silent = true })
+
+vim.keymap.set("i", "<C-t>", function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+  M.new_todo()
+end, { desc = "Insert new TODO", silent = true })
+
+-- return M
+
+-- local M = {}
+--
+-- -- Toggle a markdown checkbox on the current line
+-- function M.toggle_checkbox()
+--   local line = vim.api.nvim_get_current_line()
+--   if line:match("%[ %]") then
+--     line = line:gsub("%[ %]", "[x]")
+--   elseif line:match("%[x%]") then
+--     line = line:gsub("%[x%]", "[ ]")
+--   else
+--     return -- no checkbox on this line
+--   end
+--   vim.api.nvim_set_current_line(line)
+-- end
+--
+-- map("n", "<leader>td", M.toggle_checkbox, { desc = "Toggle Markdown Checkbox" })
+-- --
+-- -- map("n", "<leader>tn", M.new_todo, { desc = "New TODO item" })
+--
+-- local function new_todo()
+--   local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
+--   vim.api.nvim_buf_set_lines(0, row, row, false, { "- [ ] " })
+--   vim.api.nvim_win_set_cursor(0, { row + 1, 6 })
+--
+--   -- Delay re-entering insert mode slightly so it happens after the buffer change
+--   vim.defer_fn(function()
+--     vim.cmd("startinsert")
+--   end, 10)
+-- end
+--
+-- vim.keymap.set("n", "<leader>tn", new_todo, { desc = "Insert new todo" })
+--
+-- vim.keymap.set("i", "<C-t>", function()
+--   -- Exit insert mode first, run the function
+--   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
+--   new_todo()
+-- end, { desc = "Insert new todo", silent = true })

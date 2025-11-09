@@ -18,7 +18,7 @@ return {
 
   -- EDITOR EXTRAS
   -- fast file navigation
-  { import = "lazyvim.plugins.extras.editor.harpoon2" },
+  -- { import = "lazyvim.plugins.extras.editor.harpoon2" },
   -- highlight same words under cursor
   { import = "lazyvim.plugins.extras.editor.illuminate" },
   -- show the outline of the file like headings on markdown, class, function etc.

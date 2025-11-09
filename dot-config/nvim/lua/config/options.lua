@@ -3,6 +3,14 @@
 -- Add any additional options here
 --
 
+-- LazyVim root dir detection
+-- Each entry can be:
+-- * the name of a detector function like `lsp` or `cwd`
+-- * a pattern or array of patterns like `.git` or `lua`.
+-- * a function with signature `function(buf) -> string|string[]`
+vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
+-- vim.g.root_spec = { "cwd" }
+
 --NOTE: for edgy.nvim
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3

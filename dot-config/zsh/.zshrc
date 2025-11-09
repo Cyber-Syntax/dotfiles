@@ -61,10 +61,7 @@ zstyle ':completion:*' menu select # select completions with arrow keys
 zstyle ':completion:*' group-name '' # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
 
-export UPDATE_ZSH_DAYS=30  # Check updates monthly (autoupdate plugin)
 plugins=(
-    autoupdate
-    taskwarrior
     zsh-autosuggestions
     dirhistory
     zsh-navigation-tools
@@ -76,7 +73,7 @@ plugins=(
     copyfile
     copypath
     copybuffer
-    # vi-mode #FIXME: this cause issue with dirhistory
+    # vi-mode #NOTE: this cause issue with dirhistory
 )
 # -------------------------------------------------------------------
 # Aliases
@@ -252,6 +249,8 @@ ENABLE_CORRECTION="true"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
+# ~/.config/oh-my-zsh/custom/plugins/
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
