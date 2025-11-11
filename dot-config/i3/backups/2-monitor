@@ -1,0 +1,11 @@
+## WORKSPACES ##
+# Workspace Monitor
+# workspace $ws1 output DP-0 DP-1x
+# workspace $ws2 output DP-2
+# workspace $ws3 output HDMI-0 HDMI-1
+
+#	workspace $ws4 output DP-0 DP-1
+#	workspace $ws6 output DP-0 DP-1
+#	workspace $ws5 output DP-2
+
+

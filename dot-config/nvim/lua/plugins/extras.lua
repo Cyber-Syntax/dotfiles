@@ -7,18 +7,17 @@ return {
   { import = "lazyvim.plugins.extras.lang.toml" },
   { import = "lazyvim.plugins.extras.lang.typescript" },
   { import = "lazyvim.plugins.extras.lang.markdown" },
-  -- { import = "lazyvim.plugins.extras.lang.ansible" },
 
   -- UI EXTRAS
   -- NOTE: This make class, function, try:, if command is seen on the top of the file
   -- It would helpful for: "am I on the try block or if block, am I on the folder class or zip class"
   { import = "lazyvim.plugins.extras.ui.treesitter-context" },
-  { import = "lazyvim.plugins.extras.ui.indent-blankline" },
-  -- { import = "lazyvim.plugins.extras.ui.edgy" },
+
+  -- Indent highlights, like inside class,for, if blocks etc.
+  -- disable indent-blankline scope when mini-indentscope is enabled
+  { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
 
   -- EDITOR EXTRAS
-  -- fast file navigation
-  -- { import = "lazyvim.plugins.extras.editor.harpoon2" },
   -- highlight same words under cursor
   { import = "lazyvim.plugins.extras.editor.illuminate" },
   -- show the outline of the file like headings on markdown, class, function etc.
