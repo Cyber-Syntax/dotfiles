@@ -22,9 +22,12 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 
 # custom app/scripts
 exec_always --no-startup-id ~/Documents/my-repos/WallpaperChanger/main.py &
-exec --no-startup-id ~/.local/share/linux-system-utils/power/idle.sh &
 exec flatpak run io.github.martchus.syncthingtray --wait &
 exec ~/Applications/zen-browser.AppImage &
+
+#TESTING: There is suspend issue with nvidia nfancurve.service(disabled for testing)
+# if this still persist, that it is idle.sh issue
+exec --no-startup-id ~/.local/share/linux-system-utils/power/idle.sh &
 
 
 # ============================= ./EXEC ====================
@@ -199,16 +202,17 @@ bindsym Mod4+Shift+Right move right
 # ============================= WORKSPACES ====================================
 
 # SPECIFIC APPS START SPECIFIC WORKSPACE
-assign [class="^Chromium$"] $ws1
-assign [class="^Zen$"] $ws1
-assign [class="^brave-browser$"] $ws1
-assign [class="^code$"] $ws2
-assign [class="^zed$"] $ws2
-assign [class="^freetube$"] $ws3
-assign [class="^Signal$"] $ws3
+assign [class="^Chromium$"] 1
+assign [class="^Zen$"] 1
+assign [class="^brave-browser$"] 1
+assign [class="^code$"] 2
+assign [class="^zed$"] 2
+assign [class="^FreeTube$"] 3
+assign [class="^Signal$"] 3
 assign [class="superProductivity"] "4"
-assign [class="^Spotify$"] $ws5
-assign [class="^virt-manager$"] $ws6
+assign [class="^Spotify$"] 5
+#FIXME: "5", 5, $ws5 all not working? class name is correct, but seems like i3 issue?
+assign [class="virt-manager"] "5"
 
 # Set workspace names
 set $ws1   1

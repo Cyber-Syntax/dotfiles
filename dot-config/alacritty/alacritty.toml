@@ -39,10 +39,12 @@ draw_bold_text_with_bright_colors = true
 #Old: JetBrainsMono Nerd Font Mono -> small icons on Mono
 # normal = { family = "Hack", style = "Regular" }
 [font]
+# normal = { family = "terminal-font", style = "Regular" }
 normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
 bold = { family = "JetbrainsMono Nerd Font", style = "Bold" }
 italic = { family = "JetbrainsMono Nerd Font", style = "Italic" }
-size = 17.0
+size = 18.0
+
 # fallback = ["JetBrains Mono Nerd Font", "Symbols Nerd Font"]
 
 # It was for tmux but seems like we solved RGB in tmux settings

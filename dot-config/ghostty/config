@@ -25,7 +25,7 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.
-# font-family = Iosevka
+#font-family = Iosevka
 font-size = 21
 # window-padding-x = 2
 #

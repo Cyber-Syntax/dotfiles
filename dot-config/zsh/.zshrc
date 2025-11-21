@@ -90,6 +90,10 @@ alias tat="tmux attach -t"
 ## paste your github personal access token when github prompts for password
 export GIT_USER=Cyber-Syntax
 
+# linutil aliases
+alias copytovm="~/Documents/my-repos/linux-system-utils/automation/copy-repos-to-vm.sh"
+alias fsmodmove="~/Documents/my-repos/linux-system-utils/games/fs_mod_move.sh"
+
 # Docusaurus deployment alias
 alias dinodeploy="yarn build & yarn deploy"
 alias dinolocal="npm run start"

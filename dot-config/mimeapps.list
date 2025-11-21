@@ -51,6 +51,7 @@ text/x-makefile=nvim.desktop
 text/x-tcl=nvim.desktop
 text/x-pascal=nvim.desktop
 inode/directory=pcmanfm.desktop
+x-scheme-handler/discord-1038970224050962582=nuclear.desktop
 
 [Added Associations]
 application/x-extension-html=zen-browser.desktop;
