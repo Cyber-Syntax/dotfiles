@@ -66,13 +66,17 @@ include ~/.config/i3/hosts/$(hostname).conf
 floating_modifier Mod4
 
 ## APPS ##
+set $TERM ghostty
+set $FILE_MANAGER nautilus
+
 # start a terminal
-bindsym Mod4+Return exec alacritty
-# Firefox, less = '<'
-# bindsym Mod4+less exec firefox
+bindsym Mod4+Return exec $TERM
 
 # Files
-bindsym Mod4+z exec nautilus
+bindsym Mod4+z exec $FILE_MANAGER
+
+# Firefox, less = '<'
+# bindsym Mod4+less exec firefox
 
 # ROFI
 bindsym Mod4+r exec --no-startup-id ~/.config/rofi/launchers/type-6/launcher.sh
@@ -201,24 +205,23 @@ bindsym Mod4+Shift+Right move right
 # ============================= WORKSPACES ====================================
 
 # SPECIFIC APPS START SPECIFIC WORKSPACE
-assign [class="^Chromium$"] 1
-assign [class="^Zen$"] 1
-assign [class="^brave-browser$"] 1
-assign [class="^code$"] 2
-assign [class="^zed$"] 2
+assign [class="^zen$"] 1
+assign [class="^Brave-browser$"] 1
+assign [class="^Chromium-browser$"] 1
+assign [class="^Code$"] 2
+assign [class="^dev.zed.Zed$"] 2
 assign [class="^FreeTube$"] 3
 assign [class="^Signal$"] 3
-assign [class="superProductivity"] "4"
+assign [class="superProductivity"] 4
 assign [class="^Spotify$"] 5
-#FIXME: "5", 5, $ws5 all not working? class name is correct, but seems like i3 issue?
-assign [class="virt-manager"] "5"
+assign [class="^Virt-manager$"] 5
 
 # Set workspace names
-set $ws1   1
-set $ws2   2
-set $ws3   3
-set $ws4   4
-set $ws5   5
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
 
 # Cycle groups
 bindsym Mod4+Tab workspace next
