@@ -25,10 +25,9 @@ exec_always --no-startup-id ~/Documents/my-repos/WallpaperChanger/main.py &
 exec flatpak run io.github.martchus.syncthingtray --wait &
 exec ~/Applications/zen-browser.AppImage &
 
-#TESTING: There is suspend issue with nvidia nfancurve.service(disabled for testing)
-# if this still persist, that it is idle.sh issue
-exec --no-startup-id ~/.local/share/linux-system-utils/power/idle.sh &
-
+#NOTE: only locks not work when screen off
+#TODO: find a way to lock screen via i3lock?
+exec_always --no-startup-id xfce4-power-manager
 
 # ============================= ./EXEC ====================
 

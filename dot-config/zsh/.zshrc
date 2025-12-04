@@ -84,6 +84,9 @@ alias tnew="tmux new -s"
 alias tls="tmux ls"
 alias tat="tmux attach -t"
 
+## journalctl
+alias journalctl_verbose="SYSTEMD_COLORS=1 journalctl --since=today --boot --reverse --no-hostname | less -R"
+
 ## Export git user for Docusaurus deployment
 ## with this, you don't need SSH keys to deploy
 ## this would be use your git username and your github_pat

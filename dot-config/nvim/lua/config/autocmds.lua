@@ -13,6 +13,45 @@
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
 vim.o.updatetime = 250
+
+-- Enabling wrapping on markdown, log, and text files
+-- set default max text
+vim.o.textwidth = 80
+
+-- 1. Ensure filetype detection knows about .log
+vim.filetype.add({
+  extension = {
+    log = "log",
+  },
+})
+
+-- 2. Autocmd group for wrap settings
+local wrapGroup = vim.api.nvim_create_augroup("LogAndMdWrap", { clear = true })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = wrapGroup,
+  pattern = "*.log",
+  callback = function()
+    -- Force filetype to log (if not detected)
+    vim.bo.filetype = "log"
+
+    -- Set wrap options for this buffer
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.breakindent = true
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = wrapGroup,
+  pattern = { "log", "markdown", "text" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.breakindent = true
+  end,
+})
+
 --vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
 --NOTE: add virtual text for diagnostics

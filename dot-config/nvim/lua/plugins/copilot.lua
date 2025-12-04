@@ -8,7 +8,8 @@ return {
       enabled = not vim.g.ai_cmp,
       auto_trigger = true,
       hide_during_completion = vim.g.ai_cmp,
-      debounce = 75, -- Seems like latency for suggestions
+      --NOTE: seems like this is tempature and not allowed on raptor-mini model
+      -- debounce = 75, -- Seems like latency for suggestions
       keymap = {
         accept = false, -- handled by nvim-cmp / blink.cmp
         next = "<M-]>",

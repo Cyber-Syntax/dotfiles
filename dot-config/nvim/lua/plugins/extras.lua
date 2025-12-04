@@ -31,7 +31,9 @@ return {
 
   -- AI EXTRAS
   -- { import = "lazyvim.plugins.extras.ai.copilot-chat" },
-  { import = "lazyvim.plugins.extras.ai.avante" },
+
+  --NOTE: It isn't able to use tools like zed editor etc.
+  -- { import = "lazyvim.plugins.extras.ai.avante" },
 
   --FIX: prettier cause formatting issues on .jsonc files
   -- { import = "lazyvim.plugins.extras.formatting.prettier" },
