@@ -66,8 +66,8 @@ include ~/.config/i3/hosts/$(hostname).conf
 floating_modifier Mod4
 
 ## APPS ##
-set $TERM ghostty
-set $FILE_MANAGER nautilus
+set $TERM alacritty
+set $FILE_MANAGER pcmanfm
 
 # start a terminal
 bindsym Mod4+Return exec $TERM
