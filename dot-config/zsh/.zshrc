@@ -1,5 +1,6 @@
-# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.config/oh-my-zsh"
+
+# Path to your Oh My Zsh installation.
 
 # Switched to starship because powerlevel10k stop maintenance
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
@@ -9,20 +10,6 @@ eval "$(starship init zsh)"
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 # export cargo
 export PATH="$HOME/.local/share/cargo/bin:$PATH"
-
-#### TMUX
-# Enable tmux all the time when zsh starts
-# if [ "$TMUX" = "" ]; then tmux; fi
-
-# This fixes colors on tmux but cause issue on zsh
-# shell echoing the commands as they executed
-#NOTE: this cause cursor to beam all the time even on normal and visual mode
-# TERM=screen-256color
-
-#TERM=tmux-256color
-# TERM=tmux
-
-#### ./TMUX
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -73,6 +60,7 @@ plugins=(
     copyfile
     copypath
     copybuffer
+    uv
     # vi-mode #NOTE: this cause issue with dirhistory
 )
 # -------------------------------------------------------------------
@@ -107,21 +95,7 @@ alias dnfins="sudo dnf install"
 alias dnfrm="sudo dnf remove"
 alias dnfse="sudo dnf search"
 
-# # NixOS related aliases
-# alias stable-flu="sudo nix flake update home-manager nixvim nixpkgs firefox-addons nixos-hardware"
-# alias all-flu="sudo nix flake update"
-# alias boot-nixos="sudo nixos-rebuild boot --flake .#nixos"
-# alias boot-laptop="sudo nixos-rebuild boot --flake .#laptop"
-# alias switch-nixos="sudo nixos-rebuild switch --flake .#nixos"
-# alias upgrade-nixos="sudo nixos-rebuild switch --recreate-lock-file --flake .#nixos"
-# alias switch-laptop="sudo nixos-rebuild switch --flake .#laptop"
-# alias upgrade-laptop="sudo nixos-rebuild switch --recreate-lock-file --flake .#laptop"
-# alias ll-nix="ll /nix/var/nix/profiles"
-# alias switch-gen="sudo nix-env --profile /nix/var/nix/profiles/system --switch-generation"
-# alias del-gen="sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations"
-
 # Python project related aliases
-alias pm='python3 main.py'
 alias va='source .venv/bin/activate'
 
 # Git bare repo aliases
@@ -136,25 +110,6 @@ alias badd='git --git-dir=$HOME/dotfiles --work-tree=$HOME add'
 alias bcmt='git --git-dir=$HOME/dotfiles --work-tree=$HOME commit -a'
 alias bpush='git --git-dir=$HOME/dotfiles --work-tree=$HOME push -u origin bare-repo'
 
-# alias badd-all='git --git-dir=$HOME/dotfiles --work-tree=$HOME add ~/Documents/scripts ~/.config/nvim ~/.config/qtile/ ~/.config/kitty/ ~/.config/dunst/ ~/.config/hypr/ ~/.config/waybar/ ~/.config/tmux/ ~/.config/alacritty/ ~/.config/zsh/ ~/.config/mimeapps.list .zshenv .gitignore'
-# bare repo functions:
-# badd-all() {
-#   git --git-dir="$HOME/dotfiles" --work-tree="$HOME" add \
-#     "$HOME/Documents/scripts" \
-#     "$HOME/.config/nvim"     \
-#     "$HOME/.config/qtile"    \
-#     "$HOME/.config/kitty"    \
-#     "$HOME/.config/dunst"    \
-#     "$HOME/.config/hypr" \
-#     "$HOME/.config/waybar" \
-#     "$HOME/.config/tmux" \
-#     "$HOME/.config/alacritty" \
-#     "$HOME/.config/zsh" \
-#     "$HOME/.config/mimeapps.list" \
-#     "$HOME/.zshenv" \
-#     "$HOME/.gitignore"
-# }
-
 # Standard Git aliases
 alias gst="git status"
 alias gb="git branch"
@@ -168,9 +123,6 @@ alias adog="log --all --decorate --oneline --graph"
 
 # advancade git aliases for my own repos
 alias grebase="git fetch && git rebase"
-
-# Git rebase current branch
-# alias grebase="git fetch origin && git rebase origin/main"
 
 # more advanced Git aliases
 alias grebasemaster="git fetch upstream && git rebase upstream/master"
@@ -217,11 +169,11 @@ alias duhdot="du -sh .[^.]* | sort -h"
 
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
+zstyle ':omz:update' frequency 7
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -294,7 +246,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias ohmyzsh="mate $HOME/.config/oh-my-zsh"
 
 # -------------------------------------------------------------------
 # Extra shell initialization
@@ -332,7 +284,6 @@ bindkey '^Z' undo
 # delete last word with ctrl+w(seems like default?)
 # bindkey '^W' backward-kill-word
 # bindkey '^[[Z' reverse-menu-complete
-
 
 # environment variables
 # https://github.com/elFarto/nvidia-vaapi-driver#direct-backend

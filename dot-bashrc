@@ -32,3 +32,9 @@ if [ -f "$MY_UNICORN_COMPLETION_DIR/bash_autocomplete" ]; then
   source "$MY_UNICORN_COMPLETION_DIR/bash_autocomplete"
 fi
 # <<< my-unicorn completion end <<<
+# >>> aps completion start >>>
+APS_COMPLETION_DIR="/home/developer/.local/share/aps/autocomplete"
+if [ -f "$APS_COMPLETION_DIR/bash_autocomplete" ]; then
+  source "$APS_COMPLETION_DIR/bash_autocomplete"
+fi
+# <<< aps completion end <<<
