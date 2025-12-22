@@ -179,5 +179,4 @@ configuration {
 	me-accept-custom: "Control+MouseDPrimary";
 */
 }
-// @theme "/home/developer/.local/share/rofi/themes/catppuccin-mocha.rasi"
-@theme "/home/developer/.config/rofi/colors/nord.rasi"
+@theme "~/.config/rofi/colors/nord.rasi"

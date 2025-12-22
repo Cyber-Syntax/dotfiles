@@ -3,6 +3,8 @@
  * Author : Aditya Shakya (adi1090x)
  * Github : @adi1090x
  *
+ * Modified by Cyber-Syntax
+ *
  * Rofi Theme File
  * Rofi Version: 1.7.3
  **/
@@ -48,8 +50,8 @@ window {
 /*****----- Main Box -----*****/
 mainbox {
     background-color:            transparent;
-    orientation:                 horizontal;
-    children:                    [ "topbox", "listview" ];
+    orientation:                 vertical;
+    children:                    [ "message", "listview" ];
 }
 
 /*****----- Topbox -----*****/
@@ -109,7 +111,7 @@ prompt {
 message {
     enabled:                     true;
     margin:                      0px;
-    padding:                     15px;
+    padding:                     20px 30px;
     border-radius:               10px;
     background-color:            @active;
     text-color:                  @background;

@@ -3,31 +3,29 @@
  * Author : Aditya Shakya (adi1090x)
  * Github : @adi1090x
  * 
+ * Modified by Cyber-Syntax
+ *
  * Rofi Theme File
  * Rofi Version: 1.7.3
  **/
 
 /*****----- Configuration -----*****/
 configuration {
-	modi:                       "drun,run,filebrowser,window";
+	modi:                       "drun";
     show-icons:                 true;
     display-drun:               "APPS";
-    display-run:                "RUN";
-    display-filebrowser:        "FILES";
-    display-window:             "WINDOW";
 	drun-display-format:        "{name}";
-	window-format:              "{w} · {c} · {t}";
 }
 
 /*****----- Global Properties -----*****/
 * {
     font:                        "JetBrains Mono Nerd Font 10";
-    background:                  #11092D;
-    background-alt:              #281657;
-    foreground:                  #FFFFFF;
-    selected:                    #DF5296;
-    active:                      #6E77FF;
-    urgent:                      #8E3596;
+    background:                  #2E3440FF;
+    background-alt:              #383E4AFF;
+    foreground:                  #E5E9F0FF;
+    selected:                    #81A1C1FF;
+    active:                      #A3BE8CFF;
+    urgent:                      #BF616AFF;
 }
 
 /*****----- Main Window -----*****/
@@ -52,17 +50,10 @@ window {
 mainbox {
     enabled:                     true;
     spacing:                     0px;
-    background-color:            transparent;
-    orientation:                 horizontal;
-    children:                    [ "imagebox", "listbox" ];
-}
-
-imagebox {
     padding:                     20px;
     background-color:            transparent;
-    background-image:            url("~/.config/rofi/images/j.jpg", height);
     orientation:                 vertical;
-    children:                    [ "inputbar", "dummy", "mode-switcher" ];
+    children:                    [ "inputbar", "listbox" ];
 }
 
 listbox {
@@ -70,11 +61,7 @@ listbox {
     padding:                     20px;
     background-color:            transparent;
     orientation:                 vertical;
-    children:                    [ "message", "listview" ];
-}
-
-dummy {
-    background-color:            transparent;
+    children:                    [ "listview" ];
 }
 
 /*****----- Inputbar -----*****/
@@ -105,7 +92,7 @@ entry {
 
 /*****----- Mode Switcher -----*****/
 mode-switcher{
-    enabled:                     true;
+    enabled:                     false;
     spacing:                     20px;
     background-color:            transparent;
     text-color:                  @foreground;
@@ -187,23 +174,4 @@ element-text {
     cursor:                      inherit;
     vertical-align:              0.5;
     horizontal-align:            0.0;
-}
-
-/*****----- Message -----*****/
-message {
-    background-color:            transparent;
-}
-textbox {
-    padding:                     15px;
-    border-radius:               10px;
-    background-color:            @background-alt;
-    text-color:                  @foreground;
-    vertical-align:              0.5;
-    horizontal-align:            0.0;
-}
-error-message {
-    padding:                     15px;
-    border-radius:               20px;
-    background-color:            @background;
-    text-color:                  @foreground;
 }
