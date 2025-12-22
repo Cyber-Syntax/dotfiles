@@ -1,21 +1,15 @@
-export ZSH="$HOME/.config/oh-my-zsh"
-
 # Path to your Oh My Zsh installation.
+export ZSH="$HOME/.config/oh-my-zsh"
+ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 
 # Switched to starship because powerlevel10k stop maintenance
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
 # # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 # export cargo
 export PATH="$HOME/.local/share/cargo/bin:$PATH"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # -------------------------------------------------------------------
 # Added by AutoTarCompress to enable shell completion
@@ -66,14 +60,16 @@ plugins=(
 # -------------------------------------------------------------------
 # Aliases
 # -------------------------------------------------------------------
+
 # Tmux
 alias t="tmux"
-alias tnew="tmux new -s"
-alias tls="tmux ls"
-alias tat="tmux attach -t"
 
 ## journalctl
-alias journalctl_verbose="SYSTEMD_COLORS=1 journalctl --since=today --boot --reverse --no-hostname | less -R"
+alias journalctl_verbose="SYSTEMD_COLORS=1 journalctl --reverse --no-hostname | less -R"
+alias journalctl_today="SYSTEMD_COLORS=1 journalctl --since=today --reverse --no-hostname | less -R"
+alias journalctl_follow="SYSTEMD_COLORS=1 journalctl -f --no-hostname | less -R"
+alias journalctl_boot="SYSTEMD_COLORS=1 journalctl -b --reverse --no-hostname | less -R"
+alias journalctl_boot_follow="SYSTEMD_COLORS=1 journalctl -b -f --no-hostname | less -R"
 
 ## Export git user for Docusaurus deployment
 ## with this, you don't need SSH keys to deploy
@@ -89,26 +85,8 @@ alias fsmodmove="~/Documents/my-repos/linux-system-utils/games/fs_mod_move.sh"
 alias dinodeploy="yarn build & yarn deploy"
 alias dinolocal="npm run start"
 
-# Fedora related aliases
-alias dnfup="sudo dnf upgrade --refresh"
-alias dnfins="sudo dnf install"
-alias dnfrm="sudo dnf remove"
-alias dnfse="sudo dnf search"
-
 # Python project related aliases
 alias va='source .venv/bin/activate'
-
-# Git bare repo aliases
-alias bare='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
-alias bst='git --git-dir=$HOME/dotfiles --work-tree=$HOME status'
-alias bfetch='git --git-dir=$HOME/dotfiles --work-tree=$HOME fetch origin bare-repo'
-alias breset='git --git-dir=$HOME/dotfiles --work-tree=$HOME reset --hard origin/bare-repo'
-alias bpull='git --git-dir=$HOME/dotfiles --work-tree=$HOME pull origin bare-repo'
-alias bsingle-log='git --git-dir=$HOME/dotfiles --work-tree=$HOME log --follow -p --'
-alias badog='git --git-dir=$HOME/dotfiles --work-tree=$HOME log --all --decorate --oneline --graph'
-alias badd='git --git-dir=$HOME/dotfiles --work-tree=$HOME add'
-alias bcmt='git --git-dir=$HOME/dotfiles --work-tree=$HOME commit -a'
-alias bpush='git --git-dir=$HOME/dotfiles --work-tree=$HOME push -u origin bare-repo'
 
 # Standard Git aliases
 alias gst="git status"
@@ -118,6 +96,7 @@ alias gcmt="git commit -am"
 alias gpl="git pull"
 alias gp="git push"
 alias gf="git fetch"
+alias gfa='gf --all'
 alias gdf="git diff"
 alias adog="log --all --decorate --oneline --graph"
 
@@ -130,7 +109,6 @@ alias grebasemain="git fetch upstream && git rebase upstream/main"
 alias gpushmain="git push origin main"
 alias gpushmaster="git push origin master"
 alias gpush_master_force_no_verify="git push origin master --no-verify --force"
-alias gcomain="git checkout main"
 
 # Other aliases
 alias icat="kitten icat"  # Kitty terminal image preview
@@ -153,12 +131,6 @@ alias ez="eza -Tlahmo -L1 --sort=size --total-size --no-user --smart-group"
 alias duh="du -sh * | sort -h"
 alias duhdot="du -sh .[^.]* | sort -h"
 
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -206,9 +178,6 @@ ENABLE_CORRECTION="true"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 # ~/.config/oh-my-zsh/custom/plugins/
 
 # Which plugins would you like to load?
@@ -289,6 +258,9 @@ bindkey '^Z' undo
 # https://github.com/elFarto/nvidia-vaapi-driver#direct-backend
 export NVD_LOG=1
 export NVD_BACKEND=direct # default
+
+# CUDA path
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
 
 export SUDO_EDITOR="nvim"
 

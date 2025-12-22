@@ -12,8 +12,6 @@
 
 #### ./TMUX
 
-
-
 # alias badd-all='git --git-dir=$HOME/dotfiles --work-tree=$HOME add ~/Documents/scripts ~/.config/nvim ~/.config/qtile/ ~/.config/kitty/ ~/.config/dunst/ ~/.config/hypr/ ~/.config/waybar/ ~/.config/tmux/ ~/.config/alacritty/ ~/.config/zsh/ ~/.config/mimeapps.list .zshenv .gitignore'
 # bare repo functions:
 # badd-all() {
@@ -33,8 +31,6 @@
 #     "$HOME/.gitignore"
 # }
 
-
-
 # # NixOS related aliases
 # alias stable-flu="sudo nix flake update home-manager nixvim nixpkgs firefox-addons nixos-hardware"
 # alias all-flu="sudo nix flake update"
@@ -48,4 +44,14 @@
 # alias switch-gen="sudo nix-env --profile /nix/var/nix/profiles/system --switch-generation"
 # alias del-gen="sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations"
 
-
+# Git bare repo aliases
+# alias bare='git --git-dir=$HOME/dotfiles --work-tree=$HOME'
+# alias bst='git --git-dir=$HOME/dotfiles --work-tree=$HOME status'
+# alias bfetch='git --git-dir=$HOME/dotfiles --work-tree=$HOME fetch origin bare-repo'
+# alias breset='git --git-dir=$HOME/dotfiles --work-tree=$HOME reset --hard origin/bare-repo'
+# alias bpull='git --git-dir=$HOME/dotfiles --work-tree=$HOME pull origin bare-repo'
+# alias bsingle-log='git --git-dir=$HOME/dotfiles --work-tree=$HOME log --follow -p --'
+# alias badog='git --git-dir=$HOME/dotfiles --work-tree=$HOME log --all --decorate --oneline --graph'
+# alias badd='git --git-dir=$HOME/dotfiles --work-tree=$HOME add'
+# alias bcmt='git --git-dir=$HOME/dotfiles --work-tree=$HOME commit -a'
+# alias bpush='git --git-dir=$HOME/dotfiles --work-tree=$HOME push -u origin bare-repo'

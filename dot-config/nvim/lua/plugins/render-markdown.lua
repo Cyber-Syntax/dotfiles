@@ -7,7 +7,7 @@ return {
         -- level of the heading. Indenting starts from level 2 headings onward by default.
 
         -- Turn on / off org-indent-mode.
-        enabled = true,
+        enabled = false,
         -- Additional modes to render indents.
         render_modes = false,
         -- Amount of additional padding added for each heading level.

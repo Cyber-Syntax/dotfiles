@@ -11,11 +11,11 @@ hostname=$(hostname)
 # 2 machine setup: desktop and laptop
 if [ "$hostname" = "fedora" ]; then
   echo "Launching polybar for desktop..."
-  polybar desktop 2>&1 | tee -a ~/.config/polybar/logs/desktop.log &
+  polybar desktop 2>&1 | tee -a /tmp/polybar/desktop.log &
   disown
 elif [ "$hostname" = "developer-laptop" ]; then
   echo "Launching polybar for laptop..."
-  polybar laptop 2>&1 | tee -a ~/.config/polybar/logs/laptop.log &
+  polybar laptop 2>&1 | tee -a /tmp/polybar/laptop.log &
   disown
 else
   echo "No polybar configuration for this host."

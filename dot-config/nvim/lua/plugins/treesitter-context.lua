@@ -1,3 +1,4 @@
+-- This plugin shows the current context of the code at the top of the window
 return {
   {
     "nvim-treesitter/nvim-treesitter-context",

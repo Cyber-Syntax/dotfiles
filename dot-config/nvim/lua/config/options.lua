@@ -11,6 +11,15 @@
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 -- vim.g.root_spec = { "cwd" }
 
+-- Set text width to 79 characters
+vim.opt.textwidth = 79
+-- enable line wrapping
+vim.opt.wrap = true
+-- enable line breaking at word boundaries
+vim.opt.linebreak = true
+-- enable break indent
+vim.opt.breakindent = true
+
 --NOTE: for edgy.nvim
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3

@@ -1,8 +1,14 @@
 ## GNU Stow ignore file for dotfiles
 
+# logs 
+*.log.1
+
 # history shell
 .zsh_history
 .zcompdump*
+
+# shell backups 
+*.zshrc.backup*
 
 # syncthing
 .stfolder/
