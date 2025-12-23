@@ -1,7 +1,10 @@
 ## GNU Stow ignore file for dotfiles
 
+# auto-penguin-setup package metadata
+metadata.jsonl
+
 # logs 
-*.log.1
+*.log*
 
 # history shell
 .zsh_history
