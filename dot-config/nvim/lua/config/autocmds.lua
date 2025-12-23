@@ -12,6 +12,20 @@
 -- https://github.com/neovim/neovim/issues/4386
 --TODO: enable soft wrap for markdown, text, .log files after this is implemented in neovim
 
+--TESTING: Auto update lazyvim
+local function augroup(name)
+  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+end
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = augroup("autoupdate"),
+  callback = function()
+    if require("lazy.status").has_updates then
+      require("lazy").update({ show = false })
+    end
+  end,
+})
+
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Show line diagnostics automatically in hover window
