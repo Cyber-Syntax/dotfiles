@@ -6,6 +6,14 @@ ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
+#TODO: Search proper path export and handle them correctly
+# If you must add user paths, better add them as last in the PATH.
+#
+# Or if you want to replace a system command with your own version, add it to /usr/local/bin. It works because /usr/local/bin is in PATH before /usr/bin:
+# `export PATH="$PATH:$HOME/.local/bin"`
+#
+# Anyway, you really have to know what you are doing. Otherwise you may even compromise the security of your system.
+
 # # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 # export cargo
@@ -75,7 +83,10 @@ alias fsmodmove="~/.local/share/linux-system-utils/games/fs_mod_move.sh"
 # Tmux
 alias t="tmux"
 
-## journalctl
+# systemctl
+alias systemctlnop="systemctl --no-pager -l"
+
+# journalctl
 alias journalctl_verbose="SYSTEMD_COLORS=1 journalctl --reverse --no-hostname | less -R"
 alias journalctl_today="SYSTEMD_COLORS=1 journalctl --since=today --reverse --no-hostname | less -R"
 alias journalctl_follow="SYSTEMD_COLORS=1 journalctl -f --no-hostname | less -R"

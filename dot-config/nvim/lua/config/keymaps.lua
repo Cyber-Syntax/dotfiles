@@ -81,8 +81,8 @@ map("i", "<C-e>", "<End>", { desc = "End" })
 --TODO:  maybe caps2esc would be better
 
 -- -- -- Obsidian.nvim
-map("n", "<leader>fo", ":ObsidianQuickSwitch<CR>", { desc = "Obsidian File Search", silent = true })
-map("n", "<leader>fO", ":ObsidianSearch<CR>", { desc = "Obsidian Search in Files", silent = true })
+map("n", "<leader>fo", ":Obsidian quick_switch<CR>", { desc = "Obsidian File Search", silent = true })
+map("n", "<leader>fO", ":Obsidian search<CR>", { desc = "Obsidian Search in Files", silent = true })
 
 -- up down + ctrl to move more lines
 map("n", "<C-Down>", "5j", { desc = "Move down 5 lines" })
