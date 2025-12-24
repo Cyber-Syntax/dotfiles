@@ -1,0 +1,35 @@
+{
+  "config_version": "1.0.0",
+  "appimage": {
+    "version": "16.7.3",
+    "name": "super-productivity.AppImage",
+    "rename": "super-productivity",
+    "name_template": "superProductivity-{characteristic_suffix}.AppImage",
+    "characteristic_suffix": [
+      "x86_64",
+      "amd64"
+    ],
+    "installed_date": "2025-12-20T18:56:27.791283",
+    "digest": "sha256:68d4b2f4c1811672e36340ef5e831a93a5d0987e6c7d9b45fe18df1fa9d49b8c"
+  },
+  "owner": "johannesjo",
+  "repo": "super-productivity",
+  "github": {
+    "repo": true,
+    "prerelease": false
+  },
+  "verification": {
+    "digest": true,
+    "skip": false,
+    "checksum_file": "",
+    "checksum_hash_type": "sha256"
+  },
+  "icon": {
+    "url": "https://raw.githubusercontent.com/johannesjo/super-productivity/master/src/assets/icons/favicon-192x192.png",
+    "name": "super-productivity.png",
+    "installed": true,
+    "source": "extraction",
+    "path": "/home/developer/Applications/icons/super-productivity.png",
+    "extraction": true
+  }
+}

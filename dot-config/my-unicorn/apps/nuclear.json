@@ -1,0 +1,33 @@
+{
+  "config_version": "1.0.0",
+  "source": "url",
+  "owner": "nukeop",
+  "repo": "nuclear",
+  "installed_path": "/home/developer/Applications/nuclear.AppImage",
+  "appimage": {
+    "version": "0.6.48",
+    "name": "nuclear.AppImage",
+    "rename": "nuclear",
+    "name_template": "",
+    "characteristic_suffix": [],
+    "installed_date": "2025-12-07T09:53:55.085852",
+    "digest": "sha256:937a8658f9fe3b891acecaeb64060722f4abae2c7d2cd9e726064626a9496c91"
+  },
+  "github": {
+    "prerelease": false
+  },
+  "verification": {
+    "digest": true,
+    "skip": false,
+    "checksum_file": "",
+    "checksum_hash_type": "sha256"
+  },
+  "icon": {
+    "extraction": true,
+    "url": null,
+    "name": "nuclear.png",
+    "source": "extraction",
+    "installed": true,
+    "path": "/home/developer/Applications/icons/nuclear.png"
+  }
+}

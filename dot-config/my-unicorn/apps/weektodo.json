@@ -1,0 +1,35 @@
+{
+  "config_version": "1.0.0",
+  "source": "catalog",
+  "appimage": {
+    "version": "2.2.0",
+    "name": "weektodo.AppImage",
+    "rename": "weektodo",
+    "name_template": "WeekToDo-{latest_version}.AppImage",
+    "characteristic_suffix": [
+      ""
+    ],
+    "installed_date": "2025-08-29T14:53:15.890192",
+    "digest": null
+  },
+  "owner": "manuelernestog",
+  "repo": "weekToDo",
+  "github": {
+    "repo": true,
+    "prerelease": false
+  },
+  "verification": {
+    "digest": false,
+    "skip": true,
+    "checksum_file": "",
+    "checksum_hash_type": "sha256"
+  },
+  "icon": {
+    "extraction": true,
+    "url": "",
+    "name": "weektodo.png",
+    "source": "extraction",
+    "installed": true,
+    "path": "/home/developer/Applications/icons/weektodo.png"
+  }
+}

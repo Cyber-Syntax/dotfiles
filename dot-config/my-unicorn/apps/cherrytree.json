@@ -1,0 +1,33 @@
+{
+  "config_version": "1.0.0",
+  "source": "catalog",
+  "appimage": {
+    "version": "1.6.2",
+    "name": "cherrytree.AppImage",
+    "rename": "cherrytree",
+    "name_template": "",
+    "characteristic_suffix": [],
+    "installed_date": "2025-11-19T12:00:02.059467",
+    "digest": "sha256:a62773969b955162161b85f9f85dd17efcc10c1ebc2dee332688ba693999e535"
+  },
+  "owner": "giuspen",
+  "repo": "cherrytree",
+  "github": {
+    "repo": true,
+    "prerelease": false
+  },
+  "verification": {
+    "digest": true,
+    "skip": false,
+    "checksum_file": "",
+    "checksum_hash_type": "sha256"
+  },
+  "icon": {
+    "extraction": true,
+    "url": null,
+    "name": "cherrytree.png",
+    "source": "extraction",
+    "installed": true,
+    "path": "/home/developer/Applications/icons/cherrytree.png"
+  }
+}

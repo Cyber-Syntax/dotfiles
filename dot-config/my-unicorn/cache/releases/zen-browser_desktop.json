@@ -1,0 +1,19 @@
+{
+  "cached_at": "2025-12-24T12:53:33.549516+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "zen-browser",
+    "repo": "desktop",
+    "version": "1.17.15b",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "zen-x86_64.AppImage",
+        "size": 114569712,
+        "digest": "sha256:f33bb4567cd22c730d6d99a69cece0801d6b0a3d978a12024601c9288f0802e8",
+        "browser_download_url": "https://github.com/zen-browser/desktop/releases/download/1.17.15b/zen-x86_64.AppImage"
+      }
+    ],
+    "original_tag_name": "1.17.15b"
+  }
+}

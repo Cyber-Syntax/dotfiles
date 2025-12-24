@@ -1,0 +1,19 @@
+{
+  "cached_at": "2025-12-24T12:53:33.402121+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "johannesjo",
+    "repo": "super-productivity",
+    "version": "16.7.3",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "superProductivity-x86_64.AppImage",
+        "size": 133239855,
+        "digest": "sha256:68d4b2f4c1811672e36340ef5e831a93a5d0987e6c7d9b45fe18df1fa9d49b8c",
+        "browser_download_url": "https://github.com/johannesjo/super-productivity/releases/download/v16.7.3/superProductivity-x86_64.AppImage"
+      }
+    ],
+    "original_tag_name": "v16.7.3"
+  }
+}

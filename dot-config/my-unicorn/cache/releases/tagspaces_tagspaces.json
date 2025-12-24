@@ -1,0 +1,19 @@
+{
+  "cached_at": "2025-12-24T12:53:33.410384+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "tagspaces",
+    "repo": "tagspaces",
+    "version": "6.7.3",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "tagspaces-linux-x86_64-6.7.3.AppImage",
+        "size": 162309075,
+        "digest": "sha256:9951587ed5ebe8ff7ce6a77ec6fa0b7debfc1a787991e31c3224831306c19342",
+        "browser_download_url": "https://github.com/tagspaces/tagspaces/releases/download/v6.7.3/tagspaces-linux-x86_64-6.7.3.AppImage"
+      }
+    ],
+    "original_tag_name": "v6.7.3"
+  }
+}

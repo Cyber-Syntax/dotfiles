@@ -1,0 +1,12 @@
+{
+  "cached_at": "2025-12-19T12:21:58.816719+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "Cyber-Syntax",
+    "repo": "my-unicorn",
+    "version": "1.12.2-alpha",
+    "prerelease": true,
+    "assets": [],
+    "original_tag_name": "v1.12.2-alpha"
+  }
+}

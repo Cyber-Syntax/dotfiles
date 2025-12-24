@@ -1,0 +1,34 @@
+{
+  "config_version": "1.0.0",
+  "source": "catalog",
+  "owner": "Legcord",
+  "repo": "Legcord",
+  "installed_path": "/home/developer/Applications/legcord.AppImage",
+  "appimage": {
+    "version": "1.1.6",
+    "name": "legcord.AppImage",
+    "rename": "legcord",
+    "name_template": "",
+    "characteristic_suffix": [],
+    "installed_date": "2025-12-07T09:55:20.787648",
+    "digest": "sha256:1d6af8f37ec940400b5ec34e84990a8bd95b0bbfe6fcca21699321b807ad6c00"
+  },
+  "github": {
+    "repo": true,
+    "prerelease": false
+  },
+  "verification": {
+    "digest": true,
+    "skip": false,
+    "checksum_file": "latest-linux.yml",
+    "checksum_hash_type": "sha512"
+  },
+  "icon": {
+    "extraction": true,
+    "url": null,
+    "name": "legcord.png",
+    "source": "extraction",
+    "installed": true,
+    "path": "/home/developer/Applications/icons/legcord.png"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "cached_at": "2025-12-24T12:53:33.365221+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "JonMagon",
+    "repo": "KDiskMark",
+    "version": "3.2.0",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "KDiskMark-3.2.0-fio-3.40-x86_64.AppImage",
+        "size": 52540608,
+        "digest": "sha256:64ca6a761becdfd51950ec4f4481ee403031c2b45536d78739284b0f2dba8146",
+        "browser_download_url": "https://github.com/JonMagon/KDiskMark/releases/download/3.2.0/KDiskMark-3.2.0-fio-3.40-x86_64.AppImage"
+      }
+    ],
+    "original_tag_name": "3.2.0"
+  }
+}

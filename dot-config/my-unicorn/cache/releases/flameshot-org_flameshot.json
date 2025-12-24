@@ -1,0 +1,25 @@
+{
+  "cached_at": "2025-12-24T12:53:33.597904+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "flameshot-org",
+    "repo": "flameshot",
+    "version": "13.3.0",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "Flameshot-13.3.0.x86_64.AppImage",
+        "size": 50792952,
+        "digest": "sha256:8bb380584b69bab28398e7c33ddd4e285dff7c0816c64918c9427762ce6735df",
+        "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v13.3.0/Flameshot-13.3.0.x86_64.AppImage"
+      },
+      {
+        "name": "Flameshot-13.3.0.x86_64.AppImage.sha256sum",
+        "size": 99,
+        "digest": "sha256:b64fcfa682a1ed74f0432879c796831fd4230c7c43e7740499229bd0322d9501",
+        "browser_download_url": "https://github.com/flameshot-org/flameshot/releases/download/v13.3.0/Flameshot-13.3.0.x86_64.AppImage.sha256sum"
+      }
+    ],
+    "original_tag_name": "v13.3.0"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "cached_at": "2025-12-24T12:53:33.800312+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "nukeop",
+    "repo": "nuclear",
+    "version": "0.6.48",
+    "prerelease": true,
+    "assets": [
+      {
+        "name": "nuclear-v0.6.48-x86_64.AppImage",
+        "size": 193494265,
+        "digest": "sha256:937a8658f9fe3b891acecaeb64060722f4abae2c7d2cd9e726064626a9496c91",
+        "browser_download_url": "https://github.com/nukeop/nuclear/releases/download/v0.6.48/nuclear-v0.6.48-x86_64.AppImage"
+      }
+    ],
+    "original_tag_name": "v0.6.48"
+  }
+}

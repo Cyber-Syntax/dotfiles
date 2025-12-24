@@ -1,0 +1,19 @@
+{
+  "cached_at": "2025-12-24T12:53:33.399761+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "standardnotes",
+    "repo": "app",
+    "version": "3.198.5",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "standard-notes-3.198.5-linux-x86_64.AppImage",
+        "size": 169871207,
+        "digest": "sha256:213c81d52f94fac84e39cd768923cd8ba70be304f4368eab460a1e8996777772",
+        "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.198.5/standard-notes-3.198.5-linux-x86_64.AppImage"
+      }
+    ],
+    "original_tag_name": "@standardnotes/desktop@3.198.5"
+  }
+}

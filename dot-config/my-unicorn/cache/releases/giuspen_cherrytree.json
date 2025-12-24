@@ -1,0 +1,19 @@
+{
+  "cached_at": "2025-12-24T12:53:33.393812+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "giuspen",
+    "repo": "cherrytree",
+    "version": "1.6.2",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "CherryTree-1.6.2-x86_64.AppImage",
+        "size": 104888824,
+        "digest": "sha256:a62773969b955162161b85f9f85dd17efcc10c1ebc2dee332688ba693999e535",
+        "browser_download_url": "https://github.com/giuspen/cherrytree/releases/download/v1.6.2/CherryTree-1.6.2-x86_64.AppImage"
+      }
+    ],
+    "original_tag_name": "v1.6.2"
+  }
+}

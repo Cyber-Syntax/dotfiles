@@ -1,0 +1,35 @@
+{
+  "config_version": "1.0.0",
+  "source": "catalog",
+  "owner": "obsidianmd",
+  "repo": "obsidian-releases",
+  "appimage": {
+    "rename": "obsidian",
+    "name_template": "{rename}-{latest_version}.AppImage",
+    "characteristic_suffix": [
+      ""
+    ],
+    "version": "1.10.6",
+    "name": "obsidian.AppImage",
+    "installed_date": "2025-12-03T19:27:13.584135",
+    "digest": "sha256:162d753076d0610e4dccfdccf391c13af5fcb557ba7574b77f0e90ac3c522b1c"
+  },
+  "github": {
+    "repo": true,
+    "prerelease": false
+  },
+  "verification": {
+    "digest": true,
+    "skip": false,
+    "checksum_file": "",
+    "checksum_hash_type": "sha256"
+  },
+  "icon": {
+    "extraction": true,
+    "url": null,
+    "name": "obsidian.png",
+    "source": "extraction",
+    "installed": true,
+    "path": "/home/developer/Applications/icons/obsidian.png"
+  }
+}

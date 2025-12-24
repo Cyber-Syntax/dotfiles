@@ -1,0 +1,36 @@
+{
+  "config_version": "1.0.0",
+  "source": "url",
+  "owner": "neovim",
+  "repo": "neovim",
+  "appimage": {
+    "rename": "neovim",
+    "name_template": "",
+    "characteristic_suffix": [],
+    "version": "0.11.5",
+    "name": "neovim.AppImage",
+    "installed_date": "2025-11-02T20:07:10.639792",
+    "digest": "sha256:7a4adf657f0b775ee4f4de6c94353b4a0548a3c6b31049a20538e05d4eea411a"
+  },
+  "github": {
+    "repo": true,
+    "prerelease": false
+  },
+  "verification": {
+    "digest": true,
+    "skip": false,
+    "checksum_file": "",
+    "checksum_hash_type": "sha256"
+  },
+  "icon": {
+    "extraction": true,
+    "url": null,
+    "name": "neovim.png",
+    "source": "extraction",
+    "installed": true,
+    "path": "/home/developer/Applications/icons/neovim.png"
+  },
+  "url_metadata": {
+    "target_url": "https://github.com/neovim/neovim/releases"
+  }
+}

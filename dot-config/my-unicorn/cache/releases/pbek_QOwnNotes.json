@@ -1,0 +1,25 @@
+{
+  "cached_at": "2025-12-24T12:53:33.419320+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "pbek",
+    "repo": "QOwnNotes",
+    "version": "25.12.7",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "QOwnNotes-x86_64.AppImage",
+        "size": 43514360,
+        "digest": "sha256:8335664cbea58a971786db097d2916a320e01f921afc7681f9a6384ebe37b742",
+        "browser_download_url": "https://github.com/pbek/QOwnNotes/releases/download/v25.12.7/QOwnNotes-x86_64.AppImage"
+      },
+      {
+        "name": "QOwnNotes-x86_64.AppImage.sha256sum",
+        "size": 92,
+        "digest": "sha256:1fe9f6d237c9200d5e33c26e5a0d5d1883d0e19ba5989dffc84d352a5c260e4a",
+        "browser_download_url": "https://github.com/pbek/QOwnNotes/releases/download/v25.12.7/QOwnNotes-x86_64.AppImage.sha256sum"
+      }
+    ],
+    "original_tag_name": "v25.12.7"
+  }
+}

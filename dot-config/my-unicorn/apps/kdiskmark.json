@@ -1,0 +1,35 @@
+{
+  "config_version": "1.0.0",
+  "source": "catalog",
+  "appimage": {
+    "version": "3.2.0",
+    "name": "kdiskmark.AppImage",
+    "rename": "kdiskmark",
+    "name_template": "kdiskmark-{characteristic_suffix}.AppImage",
+    "characteristic_suffix": [
+      "x86_64"
+    ],
+    "installed_date": "2025-11-19T11:59:53.250427",
+    "digest": "sha256:64ca6a761becdfd51950ec4f4481ee403031c2b45536d78739284b0f2dba8146"
+  },
+  "owner": "JonMagon",
+  "repo": "KDiskMark",
+  "github": {
+    "repo": true,
+    "prerelease": false
+  },
+  "verification": {
+    "digest": true,
+    "skip": false,
+    "checksum_file": "",
+    "checksum_hash_type": "sha256"
+  },
+  "icon": {
+    "extraction": true,
+    "url": "https://raw.githubusercontent.com/JonMagon/KDiskMark/master/data/icons/128-apps-kdiskmark.png",
+    "name": "kdiskmark.png",
+    "source": "extraction",
+    "installed": true,
+    "path": "/home/developer/Applications/icons/kdiskmark.png"
+  }
+}
