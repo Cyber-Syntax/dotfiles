@@ -6,7 +6,7 @@ set -euo pipefail
 # Variables
 DOTFILES_DIR="$HOME/dotfiles"
 REMOTE_URL="https://github.com/Cyber-Syntax/dotfiles.git"
-CONFIG_DIRS=(nvim zsh kitty tmux autotarcompress auto-penguin-setup alacritty hypr i3 polybar dunst picom waybar qtile auto-cpufreq gammastep starship MangoHud)
+CONFIG_DIRS=(nvim zsh kitty tmux autotarcompress auto-penguin-setup alacritty hypr i3 polybar dunst picom waybar qtile auto-cpufreq gammastep starship MangoHud gtk-2.0 gtk-3.0 gtk-4.0)
 CONFIG_FILES=(bashrc zshenv gitconfig)
 
 # Help message
@@ -15,10 +15,11 @@ show_help() {
 Usage: setup.sh [OPTION]
 
 Options:
-  --setup       Run setup: preview and move files to dotfiles structure
-  --deploy      Run deployment: preview and apply stow symlinks
-  --init-git    (Experimental) Initialize the dotfiles Git repository
-  --help        Show this help message
+  --setup             Run setup: preview and move files to dotfiles structure
+  --deploy            Run deployment: preview and apply stow symlinks
+  --clean             Clean up backup files
+  --init-git          (Experimental) Initialize the dotfiles Git repository
+  --help              Show this help message
 EOF
 }
 
@@ -30,7 +31,9 @@ preview_move() {
   for dir in "${CONFIG_DIRS[@]}"; do
     SRC="$HOME/.config/$dir"
     DEST="$DOTFILES_DIR/dot-config/$dir"
-    if [ -d "$SRC" ]; then
+    if [ -L "$SRC" ]; then
+      echo "  ✗ $SRC -> $DEST (already a symlink, likely stowed)"
+    elif [ -d "$SRC" ]; then
       echo "  ✓ $SRC -> $DEST"
     else
       echo "  ✗ $SRC -> $DEST (source not found)"
@@ -40,7 +43,9 @@ preview_move() {
   for file in "${CONFIG_FILES[@]}"; do
     SRC="$HOME/.$file"
     DEST="$DOTFILES_DIR/dot-$file"
-    if [ -f "$SRC" ]; then
+    if [ -L "$SRC" ]; then
+      echo "  ✗ $SRC -> $DEST (already a symlink, likely stowed)"
+    elif [ -f "$SRC" ]; then
       echo "  ✓ $SRC -> $DEST"
     else
       echo "  ✗ $SRC -> $DEST (source not found)"
@@ -78,7 +83,11 @@ setup() {
   for dir in "${CONFIG_DIRS[@]}"; do
     SRC="$HOME/.config/$dir"
     DEST="$DOTFILES_DIR/dot-config/$dir"
-    if [ -d "$SRC" ]; then
+    if [ -L "$SRC" ]; then
+      echo "[!] Skipping $SRC (already a symlink, likely stowed—unstow first.)"
+    elif [ -d "$SRC" ]; then
+      echo "[+] backing up $SRC"
+      cp -r "$SRC" "$SRC.backup"
       echo "[+] moving $SRC to $DEST"
       mv "$SRC" "$DEST"
     else
@@ -89,7 +98,11 @@ setup() {
   for file in "${CONFIG_FILES[@]}"; do
     SRC="$HOME/.$file"
     DEST="$DOTFILES_DIR/dot-$file"
-    if [ -f "$SRC" ]; then
+    if [ -L "$SRC" ]; then
+      echo "[!] Skipping $SRC (already a symlink, likely stowed—unstow first.)"
+    elif [ -f "$SRC" ]; then
+      echo "[+] backing up $SRC"
+      cp "$SRC" "$SRC.backup"
       echo "[+] moving $SRC to $DEST"
       mv "$SRC" "$DEST"
     else
@@ -103,6 +116,9 @@ setup() {
 --target=$HOME
 --ignore=.stowrc
 --ignore=setup.sh
+--ignore=.stfolder
+--ignore=stversions
+--ignore=docs
 EOF
 }
 
@@ -131,6 +147,62 @@ confirm_deploy() {
     ;;
   *)
     echo "[!] Deployment aborted by user."
+    exit 1
+    ;;
+  esac
+}
+
+# Cleanup backups function
+cleanup_backups() {
+  echo "[+] Removing backup files..."
+  for dir in "${CONFIG_DIRS[@]}"; do
+    BACKUP="$HOME/.config/$dir.backup"
+    if [ -e "$BACKUP" ]; then
+      echo "[+] Removing $BACKUP"
+      rm -rf "$BACKUP"
+    fi
+  done
+  for file in "${CONFIG_FILES[@]}"; do
+    BACKUP="$HOME/.$file.backup"
+    if [ -e "$BACKUP" ]; then
+      echo "[+] Removing $BACKUP"
+      rm -f "$BACKUP"
+    fi
+  done
+  echo "[+] Cleanup complete."
+}
+
+# Dry-cleanup preview function
+preview_cleanup() {
+  echo "[+] Preview of backup files to be removed:"
+  echo "[+] Checking for backups in $HOME"
+
+  for dir in "${CONFIG_DIRS[@]}"; do
+    BACKUP="$HOME/.config/$dir.backup"
+    if [ -e "$BACKUP" ]; then
+      echo "  ✓ $BACKUP"
+    fi
+  done
+
+  for file in "${CONFIG_FILES[@]}"; do
+    BACKUP="$HOME/.$file.backup"
+    if [ -e "$BACKUP" ]; then
+      echo "  ✓ $BACKUP"
+    fi
+  done
+}
+
+# Confirm before cleanup
+confirm_cleanup() {
+  preview_cleanup
+  printf "Do you want to proceed with removing backup files? [y/N]: "
+  read -r answer
+  case "$answer" in
+  [Yy]*)
+    cleanup_backups
+    ;;
+  *)
+    echo "[!] Cleanup aborted by user."
     exit 1
     ;;
   esac
@@ -167,6 +239,9 @@ case "$1" in
 --deploy)
   dry_run
   confirm_deploy
+  ;;
+--clean)
+  confirm_cleanup
   ;;
 --init-git)
   init_git

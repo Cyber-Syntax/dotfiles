@@ -4,3 +4,4 @@
 --ignore=setup.sh
 --ignore=.stfolder
 --ignore=stversions
+--ignore=docs
