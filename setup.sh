@@ -15,10 +15,10 @@ show_help() {
 Usage: setup.sh [OPTION]
 
 Options:
-  --setup             Run setup: preview and move files to dotfiles structure
-  --deploy            Run deployment: preview and apply stow symlinks
+  --move              Run move: preview and move files to dotfiles structure
+  --stow              Run stow: preview and apply stow symlinks
   --clean             Clean up backup files
-  --init-git          (Experimental) Initialize the dotfiles Git repository
+  --git               (Experimental) Initialize the dotfiles Git repository
   --help              Show this help message
 EOF
 }
@@ -55,14 +55,14 @@ preview_move() {
 
 # Confirm before setup
 confirm_setup() {
-  printf "Do you want to proceed with setting up dotfiles structure and moving files? [y/N]: "
+  printf "Do you want to proceed with moving files to dotfiles structure? [y/N]: "
   read -r answer
   case "$answer" in
   [Yy]*)
     setup
     ;;
   *)
-    echo "[!] Setup aborted by user."
+    echo "[!] Move aborted by user."
     exit 1
     ;;
   esac
@@ -70,7 +70,7 @@ confirm_setup() {
 
 # Setup function: move user configs into dotfiles repo structure
 setup() {
-  echo "[+] Setting up dotfiles directory structure..."
+  echo "[+] Moving files to dotfiles directory structure..."
 
   # Create dotfiles directory if it doesn't exist
   if [ ! -d "$DOTFILES_DIR" ]; then
@@ -131,22 +131,22 @@ dry_run() {
 
 # Deploy function: Actually perform symlinking
 deploy() {
-  echo "[+] Deploying dotfiles..."
+  echo "[+] Stowing dotfiles..."
   cd "$DOTFILES_DIR"
   stow .
-  echo "[+] Deployment complete."
+  echo "[+] Stowing complete."
 }
 
 # Confirm before deploy
 confirm_deploy() {
-  printf "Do you want to proceed with actual deployment? [y/N]: "
+  printf "Do you want to proceed with actual stowing? [y/N]: "
   read -r answer
   case "$answer" in
   [Yy]*)
     deploy
     ;;
   *)
-    echo "[!] Deployment aborted by user."
+    echo "[!] Stowing aborted by user."
     exit 1
     ;;
   esac
@@ -232,18 +232,18 @@ if [ $# -eq 0 ]; then
 fi
 
 case "$1" in
---setup)
+--move)
   preview_move
   confirm_setup
   ;;
---deploy)
+--stow)
   dry_run
   confirm_deploy
   ;;
 --clean)
   confirm_cleanup
   ;;
---init-git)
+--git)
   init_git
   ;;
 --help)

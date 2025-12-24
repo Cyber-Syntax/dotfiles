@@ -17,7 +17,7 @@
 
 - i3wm (Currently using)
     - Polybar
-- Qtile
+- Qtile (WARNING: Not maintained, broken config...)
 - Hyprland
     - Waybar
 
@@ -68,39 +68,70 @@
 - uv oh-my-zsh stow zsh
 
 ## Automatic setup with shell script
->
+
 > [!NOTE]
-> setup option:
+>
+> The setup script `setup.sh` helps automate the process of organizing your dotfiles into a
+> structured format and deploying them using GNU Stow. It provides options for setting up,
+> deploying, and cleaning up backup files, making it easier to manage your dotfiles.
+
+```bash
+./setup.sh --help
+Usage: setup.sh [OPTION]
+
+Options:
+  --move              Run move: preview and move files to dotfiles structure
+  --stow              Run stow: preview and apply stow symlinks
+  --clean             Clean up backup files
+  --git               (Experimental) Initialize the dotfiles Git repository
+  --help              Show this help message
+```
+
+## Move option
+
+> [!NOTE]
 >
 > This would move your dotfiles to `~/dotfiles`
 > It would show preview of changes before applying them
+> It creates backups of original files before moving them to prevent data loss
 >
 > - For .config files:  `~/.config/nvim` to `~/dotfiles/dot-config/nvim`
 > - For dot files: `~/.vim` to `~/dotfiles/dot-vim`
 > - For dot files: `~/.zshrc` to `~/dotfiles/dot-zshrc`
-
-> [!NOTE]
-> deploy option:
->
-> This would deploy your dotfiles to your home directory
-> It would show preview of changes before applying them
->
-> - This using stow to deploy your files.
-> - Command used for preview: `stow -n -v --dotfiles --target="$HOME" .`
-> - Command used for deploy: `stow -v --dotfiles --target="$HOME" .`
 
 ```bash
 # Make the setup script executable
 chmod +x setup.sh
 
 # Run the setup script
-./setup.sh --setup
+./setup.sh --move
+```
 
+## Stow option
+
+> [!NOTE]
+>
+> This would stow your dotfiles to your home directory
+> It would show preview of changes before applying them
+>
+> - This using stow to deploy your files.
+> - Command used for preview: `stow -n -v --dotfiles --target="$HOME" .`
+> - Command used for deploy: `stow -v --dotfiles --target="$HOME" .`
+>
+```bash
 # This would deploy your dotfiles to your home directory
-./setup.sh --deploy
+./setup.sh --stow
+```
 
-# This would initialize git repository in your dotfiles directory
-./setup.sh --init-git
+## Clean option
+
+> [!NOTE]
+>
+> This would remove backup files created during setup
+> It would show preview of backups to be removed before applying them
+
+```bash
+./setup.sh --clean
 ```
 
 ## Manual Setup
@@ -118,41 +149,45 @@ git remote add origin https://github.com/Cyber-Syntax/dotfiles.git
 git push -u origin main
 ```
 
-3. Make folder for ~/.config
+1. Make folder for ~/.config
 
 ```bash
 mkdir -p ~/dotfiles/dot-config/
 ```
 
-4. Copy your configs
+1. Copy your configs
 
 ```bash
 cp -r ~/.config/nvim ~/dotfiles/dot-config/
 ```
 
-5. test stow dry without change anything to make sure about changes correct
+1. test stow dry without change anything to make sure about changes correct
 
 ```bash
 cd ~/dotfiles &
 stow -n -v --dotfiles --target="$HOME" .
 ```
 
-6. If everythings work perfect, stow your files
+1. If everythings work perfect, stow your files
 
 ```bash
 cd ~/dotfiles &
 stow --dotfiles --target="$HOME" .
 ```
 
-7. Alias for stow `~/dotfiles/.stowrc`:
+1. Alias for stow `~/dotfiles/.stowrc`:
 
 ```bash
 --dotfiles
---target="$HOME"
+--target=/home/developer
 --ignore=.stowrc
+--ignore=setup.sh
+--ignore=.stfolder
+--ignore=stversions
+--ignore=docs
 ```
 
-8. stow files to symlink
+1. stow files to symlink
 
 ```bash
 cd ~/dotfiles &
