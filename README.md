@@ -1,15 +1,13 @@
-
 # My personal dotfiles
->
+
 > I've moved to using GNU Stow for my personal dotfiles maintenance instead of a bare repository.
 
 ## How to setup GNU Stow for your dotfiles?
->
+
 > [!CAUTION]
 > Backup your files!
 >
 > Always `cd ~/dotfiles` dir before any stow command
->
 
 ## My current setup
 
@@ -23,18 +21,18 @@
 
 #### General apps used with window managers
 
-- Rofi      : for application launcher
-- Dunst     : for notification
+- Rofi : for application launcher
+- Dunst : for notification
 - Flameshot : for screenshot
-- Picom     : for compositor
-- Pcmanfm   : for file management
+- Picom : for compositor
+- Pcmanfm : for file management
 - gammastep : for blue light filter
 
 ### Terminal Emulators
 
-- Ghostty   : Currently using because support images and tabs well.
+- Ghostty : Currently using because support images and tabs well.
 - Alacritty : Previously used for better performance but lack of tabs support.
-- Kitty     : Previously used for good features but performance is not as good as Alacritty.
+- Kitty : Previously used for good features but performance is not as good as Alacritty.
 
 ### Shells
 
@@ -44,11 +42,11 @@
 
 ### Other tools
 
-- Tmux               : Currently using for terminal multiplexer.
-- Starship           : Powerlevel10k alternative written in Rust for prompt for any shell.
-- MangoHud           : For monitoring system performance in games.
-- containers         : Podman config for setting custom directory for containers and images.
-- mimeapps.list      : For setting default applications for file types and protocols.
+- Tmux : Currently using for terminal multiplexer.
+- Starship : Powerlevel10k alternative written in Rust for prompt for any shell.
+- MangoHud : For monitoring system performance in games.
+- containers : Podman config for setting custom directory for containers and images.
+- mimeapps.list : For setting default applications for file types and protocols.
 
 - [autocpufreq](https://github.com/AdnanHodzic/auto-cpufreq)
     - For automatic CPU frequency scaling.
@@ -56,6 +54,8 @@
     - My Script config to automatically compress tar files after creation.
 - [auto-penguin-setup](https://github.com/Cyber-Syntax/auto-penguin-setup)
     - My script config to automate setup for linux distros.
+- [my-unicorn](https://github.com/Cyber-Syntax/my-unicorn)
+    - My script config to automate appimage management.
 
 ## Dependencies
 
@@ -95,7 +95,7 @@ Options:
 > It would show preview of changes before applying them
 > It creates backups of original files before moving them to prevent data loss
 >
-> - For .config files:  `~/.config/nvim` to `~/dotfiles/dot-config/nvim`
+> - For .config files: `~/.config/nvim` to `~/dotfiles/dot-config/nvim`
 > - For dot files: `~/.vim` to `~/dotfiles/dot-vim`
 > - For dot files: `~/.zshrc` to `~/dotfiles/dot-zshrc`
 
@@ -117,7 +117,7 @@ chmod +x setup.sh
 > - This using stow to deploy your files.
 > - Command used for preview: `stow -n -v --dotfiles --target="$HOME" .`
 > - Command used for deploy: `stow -v --dotfiles --target="$HOME" .`
->
+
 ```bash
 # This would deploy your dotfiles to your home directory
 ./setup.sh --stow
