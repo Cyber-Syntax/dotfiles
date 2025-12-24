@@ -93,10 +93,11 @@ bindsym Mod4+m exec pactl set-default-sink $(pactl list short sinks |awk '{print
 bindsym Mod4+q kill
 
 # FOCUS MONITORS
-bindsym Mod4+a focus left
+bindsym Mod4+a focus left ; exec --no-startup-id ~/.config/i3/scripts/move-cursor-to-focused.sh
+bindsym Mod4+d focus right ; exec --no-startup-id ~/.config/i3/scripts/move-cursor-to-focused.sh
+
 bindsym Mod4+Down focus down
 bindsym Mod4+Up focus up
-bindsym Mod4+d focus right
 
 # toggle tiling / floating
 bindsym Mod4+Shift+space floating toggle
