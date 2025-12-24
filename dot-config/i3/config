@@ -10,8 +10,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # layout that looks like a monadtall
 # https://github.com/olemartinorg/i3-alternating-layout
-#NOTE: currently cause issue, maybe we fix it later
-# exec_always --no-startup-id ~/.config/i3/scripts/i3-alternating-layout.py
+exec_always --no-startup-id ~/.config/i3/scripts/i3-alternating-layout.py
 
 exec dunst &
 exec --no-startup-id nm-applet &
@@ -95,9 +94,8 @@ bindsym Mod4+q kill
 # FOCUS MONITORS
 bindsym Mod4+a focus left ; exec --no-startup-id ~/.config/i3/scripts/move-cursor-to-focused.sh
 bindsym Mod4+d focus right ; exec --no-startup-id ~/.config/i3/scripts/move-cursor-to-focused.sh
-
-bindsym Mod4+Down focus down
-bindsym Mod4+Up focus up
+bindsym Mod4+w focus down ; exec --no-startup-id ~/.config/i3/scripts/move-cursor-to-focused.sh
+bindsym Mod4+s focus up ; exec --no-startup-id ~/.config/i3/scripts/move-cursor-to-focused.sh
 
 # toggle tiling / floating
 bindsym Mod4+Shift+space floating toggle
@@ -112,14 +110,14 @@ bindsym Mod4+y layout tabbed
 bindsym Mod4+space layout toggle tabbed splith
 
 #bindsym Mod4+p layout stacking
-bindsym Mod4+s layout toggle split
+# bindsym Mod4+s layout toggle split
 
 # enter fullscreen mode for the focused container
 bindsym Mod4+f fullscreen toggle
 
 # SEND APPS LEFT TO RIGHT ETC.
-bindsym Mod4+e exec i3-msg move window to output right
-bindsym Mod4+w exec i3-msg move window to output left
+# bindsym Mod4+e exec i3-msg move window to output right
+# bindsym Mod4+w exec i3-msg move window to output left
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym F1 restart
