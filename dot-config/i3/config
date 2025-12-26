@@ -110,7 +110,7 @@ bindsym Mod4+y layout tabbed
 bindsym Mod4+space layout toggle tabbed splith
 
 #bindsym Mod4+p layout stacking
-# bindsym Mod4+s layout toggle split
+bindsym Mod4+less layout toggle split
 
 # enter fullscreen mode for the focused container
 bindsym Mod4+f fullscreen toggle
@@ -263,9 +263,7 @@ focus_on_window_activation focus
 
 # Firefox focus
 #for_window [urgent=latest class="firefox"] focus output DP-2
-
 # superProductivity focus
-#TESTING:
 # for_window [urgent=latest class="superProductivity" instance="superproductivity"] focus workspace $ws4
 
 # popup on fullscreen

@@ -29,10 +29,9 @@ autoload -Uz compinit && compinit
 # History
 # -------------------------------------------------------------------
 # Set history file path and limits.
-# HISTFILE="$HOME/.histfile" # This already in .zshenv
 HISTFILE="$HOME/.config/zsh/.zsh_history"
-HISTSIZE=20000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 
 # zsh options
 setopt HIST_IGNORE_ALL_DUPS # remove older duplicate entries from history
@@ -82,6 +81,8 @@ alias fsmodmove="~/.local/share/linux-system-utils/games/fs_mod_move.sh"
 
 # Tmux
 alias t="tmux"
+alias ta="tmux attach-session"
+alias tkill="tmux kill-server"
 
 # systemctl
 alias systemctlnop="systemctl --no-pager -l"
@@ -156,6 +157,10 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Disable % eof, prevent % print output when
+# there is no newline on program output
+unsetopt PROMPT_SP
+
 # -------------------------------------------------------------------
 # Extra shell initialization
 # -------------------------------------------------------------------
@@ -204,5 +209,4 @@ fi
 # uv auto completions
 eval "$(uv generate-shell-completion zsh)"
 
-# Added by my-unicorn installer
-export PATH="$HOME/.local/bin:$PATH"
+

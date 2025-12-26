@@ -69,13 +69,6 @@ return {
         "<cmd>CodeCompanionChat Add<cr>",
         { noremap = true, silent = true, desc = "CodeCompanion Chat Add" }
       )
-      -- Expand 'cc' into 'CodeCompanion' in the command line
-      -- vim.cmd([[cab cc CodeCompanion]])
-
-      -- vim.keymap.set("n", "<leader>aP", function()
-      --   require("codecompanion").prompt("copilot")
-      -- end, { noremap = true, silent = true })
     end,
   },
 }
---./return.end

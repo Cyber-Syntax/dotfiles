@@ -28,7 +28,7 @@ return {
   ---@type Ollama.Config
   opts = {
     -- your configuration overrides
-    model = "llama3.2:latest",
+    model = "qwen2.5-coder:3b",
     url = "http://127.0.0.1:11434",
     serve = {
       on_start = false,

@@ -1,7 +1,6 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
---
 
 -- LazyVim root dir detection
 -- Each entry can be:
@@ -11,14 +10,18 @@
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 -- vim.g.root_spec = { "cwd" }
 
+--NOTE: soft wrap for text in custom size like 80 not implemented to neovim yet
+-- https://github.com/neovim/neovim/issues/4386
+--TODO: enable soft wrap for markdown, text, .log files after this is implemented in neovim
+--NOTE: below make hard wrap when writing
 -- Set text width to 79 characters
-vim.opt.textwidth = 79
+-- vim.opt.textwidth = 79
 -- enable line wrapping
-vim.opt.wrap = true
+-- vim.opt.wrap = true
 -- enable line breaking at word boundaries
-vim.opt.linebreak = true
--- enable break indent
-vim.opt.breakindent = true
+-- vim.opt.linebreak = true
+-- -- enable break indent
+-- vim.opt.breakindent = true
 
 --NOTE: for edgy.nvim
 -- views can only be fully collapsed with the global statusline
