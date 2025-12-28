@@ -179,7 +179,7 @@ stow --dotfiles --target="$HOME" .
 
 ```bash
 --dotfiles
---target=/home/developer
+--target=$HOME
 --ignore=.stowrc
 --ignore=setup.sh
 --ignore=.stfolder

@@ -25,6 +25,7 @@ fpath=(/home/developer/.config/zsh/completions $fpath)
 # Completion and compinit: autoload and initialize completion.
 # -------------------------------------------------------------------
 autoload -Uz compinit && compinit
+
 # -------------------------------------------------------------------
 # History
 # -------------------------------------------------------------------
@@ -45,26 +46,32 @@ setopt AUTO_LIST            # automatically list choices on ambiguous completion
 setopt AUTO_MENU            # automatically use menu completion
 setopt ALWAYS_TO_END        # move cursor to end if word had one match
 
-zstyle ':completion:*' menu select # select completions with arrow keys
-zstyle ':completion:*' group-name '' # group results by category
+zstyle ':completion:*' menu select                                          # select completions with arrow keys
+zstyle ':completion:*' group-name ''                                        # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
 
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    zsh-autosuggestions
-    dirhistory
-    zsh-navigation-tools
-    git
-    ssh
-    npm
-    pip
-    python
-    copyfile
-    copypath
-    copybuffer
-    uv
-    # vi-mode #NOTE: this cause issue with dirhistory
+  zsh-autosuggestions
+  dirhistory
+  zsh-navigation-tools
+  git
+  ssh
+  npm
+  pip
+  python
+  copyfile
+  copypath
+  copybuffer
+  uv
+  # vi-mode #NOTE: this cause issue with dirhistory
 )
+
+# oh-my-zsh auto update, check updates in 7 days
+zstyle ':omz:update' mode auto
+zstyle ':omz:update' frequency 7
+
+source $ZSH/oh-my-zsh.sh
 
 ## Export git user for Docusaurus deployment
 ## with this, you don't need SSH keys to deploy
@@ -75,6 +82,7 @@ export GIT_USER=Cyber-Syntax
 # -------------------------------------------------------------------
 # Aliases
 # -------------------------------------------------------------------
+
 # My personal script aliases
 alias copytovm="~/.local/share/linux-system-utils/automation/copy-repos-to-vm.sh"
 alias fsmodmove="~/.local/share/linux-system-utils/games/fs_mod_move.sh"
@@ -124,7 +132,7 @@ alias gpushmaster="git push origin master"
 alias gpush_master_force_no_verify="git push origin master --no-verify --force"
 
 # Other aliases
-alias icat="kitten icat"  # Kitty terminal image preview
+alias icat="kitten icat" # Kitty terminal image preview
 
 # Neovim related aliases
 alias n="nvim"
@@ -146,24 +154,35 @@ alias ez="eza -Tlahmo -L1 --sort=size --total-size --no-user --smart-group"
 alias duh="du -sh * | sort -h"
 alias duhdot="du -sh .[^.]* | sort -h"
 
-# oh-my-zsh auto update, check updates in 7 days
-zstyle ':omz:update' mode auto
-zstyle ':omz:update' frequency 7
-
 # command auto-correction.
 ENABLE_CORRECTION="true"
 
-source $ZSH/oh-my-zsh.sh
+# -------------------------------------------------------------------
+# USER CONFIGURATION
+# -------------------------------------------------------------------
+# XDG Base Directory Specification
+export XDG_STATE_HOME="$HOME/.local/state"
 
-# User configuration
+# Default Apps
+export EDITOR="nvim"
+export VISUAL="nvim"
+# Use neovim with `sudoedit` command
+export SUDO_EDITOR="nvim"
+
+# NVIDIA VAAPI Driver configuration
+# https://github.com/elFarto/nvidia-vaapi-driver#direct-backend
+export NVD_LOG=1
+export NVD_BACKEND=direct # default
+
+# NVIDIA CUDA Path
+export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+
+# Export this for development purposes
+export CHROME_BIN="/usr/bin/brave-browser-stable"
 
 # Disable % eof, prevent % print output when
 # there is no newline on program output
 unsetopt PROMPT_SP
-
-# -------------------------------------------------------------------
-# Extra shell initialization
-# -------------------------------------------------------------------
 
 # Additional keybindings
 # Bind Ctrl+Space to accept autosuggestion (the escape sequence here may need adjustments depending on terminal emulator)
@@ -187,26 +206,14 @@ bindkey '^[[1;5C' forward-word
 # this is undo tab completion with ctrl+z
 bindkey '^Z' undo
 
-# environment variables
-# https://github.com/elFarto/nvidia-vaapi-driver#direct-backend
-export NVD_LOG=1
-export NVD_BACKEND=direct # default
-
-# CUDA path
-export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
-
-# Use neovim with `sudoedit` command
-export SUDO_EDITOR="nvim"
-
-# Export this for development purposes
-export CHROME_BIN="/usr/bin/brave-browser-stable"
+# -------------------------------------------------------------------
+# Extra shell initialization
+# -------------------------------------------------------------------
 
 # Initialize zoxide for fast directory navigation.
-if command -v zoxide > /dev/null 2>&1; then
+if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
 
 # uv auto completions
 eval "$(uv generate-shell-completion zsh)"
-
-

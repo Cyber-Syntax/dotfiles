@@ -1,20 +1,3 @@
-# Added by my-unicorn installer
-export PATH="$HOME/.local/bin:$PATH"
-
-#Auto start with xinitrc
-#export PATH="/home/developer/.local/bin:$PATH"
-# export GTK_PATH=$GTK_PATH:/usr/lib64/gtk-3.0
-# export GTK_PATH=$GTK_PATH:/usr/lib64/gtk-2.0
-#
-# export .local/bin to PATH for appman script
-#TODO: testing them in .zshrc
-#export PATH=$PATH:$(xdg-user-dir USER)/.local/bin
-#export PATH=$(echo $PATH | tr ":" "\n" | grep -v "/.local/bin" | tr "\n" ":" | sed s/.$//)
-
-# Vimix-white-cursors
-# export XCURSOR_PATH=${XCURSOR_PATH}:~/.local/share/icons
-# export PATH=$(echo $PATH | tr ":" "\n" | grep -v "/.local/bin" | tr "\n" ":" | sed s/.$//)
-
 # Use zsh as default shell, fallback to bash if zsh not available
 if [[ $(ps --no-header --pid=$PPID --format=cmd) != "zsh" ]]; then
   if command -v zsh >/dev/null 2>&1; then
@@ -25,15 +8,15 @@ if [[ $(ps --no-header --pid=$PPID --format=cmd) != "zsh" ]]; then
 fi
 
 # AutoTarCompress completion
-source "/home/developer/.local/share/autotarcompress/autocomplete/bash_autocomplete"
+source "$HOME/.local/share/autotarcompress/autocomplete/bash_autocomplete"
 # >>> my-unicorn completion start >>>
-MY_UNICORN_COMPLETION_DIR="/home/developer/.local/share/my-unicorn/autocomplete"
+MY_UNICORN_COMPLETION_DIR="$HOME/.local/share/my-unicorn/autocomplete"
 if [ -f "$MY_UNICORN_COMPLETION_DIR/bash_autocomplete" ]; then
   source "$MY_UNICORN_COMPLETION_DIR/bash_autocomplete"
 fi
 # <<< my-unicorn completion end <<<
 # >>> aps completion start >>>
-APS_COMPLETION_DIR="/home/developer/.local/share/aps/autocomplete"
+APS_COMPLETION_DIR="$HOME/.local/share/aps/autocomplete"
 if [ -f "$APS_COMPLETION_DIR/bash_autocomplete" ]; then
   source "$APS_COMPLETION_DIR/bash_autocomplete"
 fi

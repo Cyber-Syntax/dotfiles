@@ -17,7 +17,7 @@ vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 -- Set text width to 79 characters
 -- vim.opt.textwidth = 79
 -- enable line wrapping
--- vim.opt.wrap = true
+vim.opt.wrap = true
 -- enable line breaking at word boundaries
 -- vim.opt.linebreak = true
 -- -- enable break indent
