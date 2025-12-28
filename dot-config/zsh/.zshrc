@@ -21,7 +21,7 @@ export PATH="$HOME/.local/share/cargo/bin:$PATH"
 
 # -------------------------------------------------------------------
 # Added by AutoTarCompress to enable shell completion
-fpath=(/home/developer/.config/zsh/completions $fpath)
+fpath=($HOME/.config/zsh/completions $fpath)
 # Completion and compinit: autoload and initialize completion.
 # -------------------------------------------------------------------
 autoload -Uz compinit && compinit
