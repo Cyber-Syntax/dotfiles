@@ -34,19 +34,8 @@ vi_mode_style.blinking = "On"
 transparent_background_colors = false
 draw_bold_text_with_bright_colors = true
 
-# Hack -> bad font rendering
-# DroidSansM Nerd Font -> bad font rendering
-#Old: JetBrainsMono Nerd Font Mono -> small icons on Mono
-# normal = { family = "Hack", style = "Regular" }
 [font]
-# normal = { family = "terminal-font", style = "Regular" }
 normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
 bold = { family = "JetbrainsMono Nerd Font", style = "Bold" }
 italic = { family = "JetbrainsMono Nerd Font", style = "Italic" }
 size = 18.0
-
-# fallback = ["JetBrains Mono Nerd Font", "Symbols Nerd Font"]
-
-# It was for tmux but seems like we solved RGB in tmux settings
-# [env]
-# TERM = "xterm-256color"
