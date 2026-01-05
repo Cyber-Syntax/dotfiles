@@ -70,6 +70,17 @@ return {
           path = "~/Documents/obsidian/main-vault/",
         },
       },
+      --TODO: https://github.com/obsidian-nvim/obsidian.nvim/issues/437
+      --NOTE: workaround to remove zettalkasten id to keep created file name title instead of id
+      -- e.g title-for-file.md instead of 1253AZBASD.md
+      note_id_func = function(title)
+        if title == nil then
+          return require("obsidian.builtin").zettle_id
+        end
+
+        -- Keep the title as-is
+        return title
+      end,
       -- Optional, if you keep notes in a specific subdirectory of your vault.
       notes_subdir = "1.INBOX",
       --  * "current_dir" - put new notes in same directory as the current buffer.

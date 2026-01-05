@@ -1,6 +1,7 @@
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "codecompanion" },
     opts = {
       indent = {
         -- Mimic org-indent-mode behavior by indenting everything under a heading based on the

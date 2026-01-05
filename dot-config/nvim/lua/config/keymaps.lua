@@ -80,9 +80,26 @@ map("i", "<C-e>", "<End>", { desc = "End" })
 
 --TODO:  maybe caps2esc would be better
 
+--     :Obsidian today [OFFSET] - open/create a new daily note
+--         offset is in days, e.g. use :Obsidian today -1 to go to yesterday's note.
+--         Unlike :Obsidian yesterday and :Obsidian tomorrow this command does not differentiate between weekdays and weekends
+
 -- -- -- Obsidian.nvim
 map("n", "<leader>fo", ":Obsidian quick_switch<CR>", { desc = "Obsidian File Search", silent = true })
 map("n", "<leader>fO", ":Obsidian search<CR>", { desc = "Obsidian Search in Files", silent = true })
+map("n", "<leader>fd", ":Obsidian today<CR>", { desc = "Obsidian open/create a new daily note", silent = true })
+map(
+  "n",
+  "<leader>fy",
+  ":Obsidian yesterday<CR>",
+  { desc = "Obsidian open/create the daily note for the previous working day", silent = true }
+)
+map(
+  "n",
+  "<leader>fY",
+  ":Obsidian tomorrow<CR>",
+  { desc = "Obsidian open/create the daily note for the next working day", silent = true }
+)
 
 -- up down + ctrl to move more lines
 map("n", "<C-Down>", "5j", { desc = "Move down 5 lines" })
@@ -99,6 +116,33 @@ map("v", "<C-j>", "5j", { desc = "Move to window below" })
 map("v", "<C-k>", "5k", { desc = "Move to window above" })
 map("v", "<C-l>", "5l", { desc = "Move to window right" })
 map("v", "<C-h>", "5h", { desc = "Move to window left" })
+
+-- Codecompanion.nvim
+map(
+  { "n", "v" },
+  "<leader>ac",
+  "<cmd>CodeCompanionActions<cr>",
+  { noremap = true, silent = true, desc = "CodeCompanion Actions" }
+)
+map(
+  { "n", "v" },
+  "<leader>aC",
+  "<cmd>CodeCompanionChat Toggle<cr>",
+  { noremap = true, silent = true, desc = "CodeCompanion Chat Toggle" }
+)
+map(
+  "v",
+  "<leader>ae",
+  "<cmd>CodeCompanionChat Add<cr>",
+  { noremap = true, silent = true, desc = "CodeCompanion Chat Add" }
+)
+
+-- vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+-- vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+-- vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+--
+-- -- Expand 'cc' into 'CodeCompanion' in the command line
+-- vim.cmd([[cab cc CodeCompanion]])
 
 --TODO: send these to seperated file as custom functions
 -- -- -- Custom toggle checkbox function
