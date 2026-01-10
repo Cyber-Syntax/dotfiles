@@ -80,11 +80,8 @@ bindsym Mod4+z exec $FILE_MANAGER
 # ROFI
 bindsym Mod4+r exec --no-startup-id ~/.config/rofi/launchers/type-6/launcher.sh
 bindsym Mod4+x exec --no-startup-id ~/.config/rofi/powermenu/type-6/powermenu.sh
+bindsym Mod4+m exec --no-startup-id ~/.config/rofi/output/pulseaudio.sh
 
-## PulseAudio-pipewire ##
-# pipewire
-bindsym Mod4+m exec pactl set-default-sink $(pactl list short sinks |awk '{print $2}' |rofi $rofi_args -dmenu)
-## ./PulseAudio-pipewire ##
 ## ./APPS ##
 
 # USEFUL SHORTCUTS
@@ -313,6 +310,7 @@ hide_edge_borders smart
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 # font pango:Roboto Regular 11
-font pango:JetbrainsMono Nerd Font Regular 11
+# font pango:JetbrainsMono Nerd Font Regular 11
+font pango:MesloLGM Nerd Font Mono Regular 11
 
 # ============================= ./RULES ====================================

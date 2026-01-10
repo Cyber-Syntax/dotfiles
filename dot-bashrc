@@ -1,23 +1,20 @@
-# Use zsh as default shell, fallback to bash if zsh not available
-if [[ $(ps --no-header --pid=$PPID --format=cmd) != "zsh" ]]; then
-  if command -v zsh >/dev/null 2>&1; then
-    exec zsh
-  else
-    echo "zsh not found, using bash instead"
+# Source completions
+for file in $HOME/.config/bash/completions/*; do
+    [ -f "$file" ] && source "$file"
+done
+
+# auto-switch to zsh unless DISABLE_AUTO_ZSH is set or parent is already zsh
+#
+# DISABLE_AUTO_ZSH=1 exec bash    # replaces current shell with bash and inherits the opt-out
+#
+if [[ -z "${DISABLE_AUTO_ZSH-}" ]]; then
+  parent_cmd=$(ps --no-header --pid="$PPID" --format=comm 2>/dev/null || true)
+  if [[ "$parent_cmd" != "zsh" ]]; then
+    if command -v zsh >/dev/null 2>&1; then
+      exec zsh
+    else
+      echo "zsh not found, staying in bash"
+    fi
   fi
 fi
 
-# AutoTarCompress completion
-source "$HOME/.local/share/autotarcompress/autocomplete/bash_autocomplete"
-# >>> my-unicorn completion start >>>
-MY_UNICORN_COMPLETION_DIR="$HOME/.local/share/my-unicorn/autocomplete"
-if [ -f "$MY_UNICORN_COMPLETION_DIR/bash_autocomplete" ]; then
-  source "$MY_UNICORN_COMPLETION_DIR/bash_autocomplete"
-fi
-# <<< my-unicorn completion end <<<
-# >>> aps completion start >>>
-APS_COMPLETION_DIR="$HOME/.local/share/aps/autocomplete"
-if [ -f "$APS_COMPLETION_DIR/bash_autocomplete" ]; then
-  source "$APS_COMPLETION_DIR/bash_autocomplete"
-fi
-# <<< aps completion end <<<

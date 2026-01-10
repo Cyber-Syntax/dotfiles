@@ -30,15 +30,16 @@ vim.opt.laststatus = 3
 -- To prevent this, set `splitkeep` to either `screen` or `topline`.
 vim.opt.splitkeep = "screen"
 
---NOTE: other options
-vim.o.background = "dark" -- or "light" for light mode
+--NOTE: migrated to light theme because of eyestrain (Some resource say, light better for people who have astigmatism)
+--NOTE: most of the theme can't handle this, bug somewhere probably
+-- vim.opt.background = "light" -- or "light" for light mode
 --Hide The order of your lazy.nvim warning
 vim.g.lazyvim_check_order = false
 
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
 
-vim.o.updatetime = 250
+vim.opt.updatetime = 250
 -- vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
 -- vim.lsp.inlay_hint(0, false)

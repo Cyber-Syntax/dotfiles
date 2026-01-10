@@ -9,6 +9,16 @@ import = [
   "~/.config/alacritty/keybinds.toml",
 ]
 
+[font]
+normal = { family = "MesloLGM Nerd Font Mono", style = "Regular" }
+bold = { family = "MesloLGM Nerd Font Mono", style = "Bold" }
+italic = { family = "MesloLGM Nerd Font Mono", style = "Italic" }
+# old
+# normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
+# bold = { family = "JetbrainsMono Nerd Font", style = "Bold" }
+# italic = { family = "JetbrainsMono Nerd Font", style = "Italic" }
+size = 17.0
+
 [scrolling]
 history = 10000
 
@@ -33,9 +43,3 @@ vi_mode_style.blinking = "On"
 [colors]
 transparent_background_colors = false
 draw_bold_text_with_bright_colors = true
-
-[font]
-normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
-bold = { family = "JetbrainsMono Nerd Font", style = "Bold" }
-italic = { family = "JetbrainsMono Nerd Font", style = "Italic" }
-size = 18.0
