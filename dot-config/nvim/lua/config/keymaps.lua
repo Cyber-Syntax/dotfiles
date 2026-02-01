@@ -2,6 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 local map = vim.keymap.set
+local checkbox_util = require("utils.checkbox_util")
 
 --lets fix pasted from clipboard is not adding it below on the current line:
 map("n", "gp", "<cmd>put<CR>", { silent = true, desc = "Paste after cursor from clipboard" })
@@ -144,130 +145,11 @@ map(
 -- -- Expand 'cc' into 'CodeCompanion' in the command line
 -- vim.cmd([[cab cc CodeCompanion]])
 
---TODO: send these to seperated file as custom functions
--- -- -- Custom toggle checkbox function
--- Markdown TODO utilities
-local M = {}
-
--- Toggle checkbox on current line
-function M.toggle_checkbox()
-  local line = vim.api.nvim_get_current_line()
-  if line:find("%[ %]") then
-    line = line:gsub("%[ %]", "[x]", 1)
-    vim.api.nvim_set_current_line(line)
-    M.move_to_done()
-  elseif line:find("%[x%]") then
-    line = line:gsub("%[x%]", "[ ]", 1)
-    vim.api.nvim_set_current_line(line)
-  else
-    return
-  end
-end
-
-function M.move_to_done()
-  local buf = vim.api.nvim_get_current_buf()
-  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-  local start_row = vim.api.nvim_win_get_cursor(0)[1] - 1
-  local current_line = lines[start_row + 1]
-
-  -- Only process checkbox lines
-  if not current_line:find("^%s*%- %[") then
-    return
-  end
-
-  -- Determine initial indentation level
-  local initial_indent = current_line:match("^(%s*)")
-  local initial_indent_len = #initial_indent
-
-  local end_row = start_row
-
-  -- Collect all lines that belong to this task (look forward only)
-  for i = start_row + 2, #lines do
-    local l = lines[i]
-
-    -- Stop at headings
-    if l:find("^#") then
-      break
-    end
-
-    -- Empty lines - include them for now
-    if l == "" then
-      end_row = i - 1
-    else
-      local line_indent = l:match("^(%s*)")
-      local line_indent_len = #line_indent
-
-      -- Check if this is a checkbox line
-      if l:find("^%s*%- %[") then
-        -- If it's indented more than the parent, it's a subtask - include it
-        if line_indent_len > initial_indent_len then
-          end_row = i - 1
-        else
-          -- Same or less indentation - it's a sibling or parent, stop here
-          break
-        end
-      else
-        -- Non-checkbox line (description, code block, etc.)
-        -- Include if indented more than the task
-        if line_indent_len > initial_indent_len then
-          end_row = i - 1
-        else
-          -- Same or less indentation, stop here
-          break
-        end
-      end
-    end
-  end
-
-  local task_lines = {}
-  for i = start_row, end_row do
-    table.insert(task_lines, lines[i + 1])
-  end
-  local delete_count = end_row - start_row + 1
-
-  -- Find done section (support both # and ## headings)
-  local done_row = -1
-  for i = 1, #lines do
-    if lines[i]:find("^##? done") or lines[i]:find("^##? Done") then
-      done_row = i - 1
-      break
-    end
-  end
-
-  if done_row ~= -1 then
-    -- Adjust done_row if we're deleting before it
-    if start_row <= done_row then
-      done_row = done_row - delete_count
-    end
-    done_row = done_row + 1
-  end
-
-  -- Delete task from original location
-  vim.api.nvim_buf_set_lines(buf, start_row, end_row + 1, false, {})
-
-  if done_row == -1 then
-    done_row = vim.api.nvim_buf_line_count(buf)
-  end
-
-  -- Insert task after done heading
-  vim.api.nvim_buf_set_lines(buf, done_row, done_row, false, task_lines)
-end
-
--- Insert new TODO line
-function M.new_todo()
-  local row = vim.api.nvim_win_get_cursor(0)[1]
-  vim.api.nvim_buf_set_lines(0, row, row, false, { "- [ ] " })
-  vim.api.nvim_win_set_cursor(0, { row + 1, 6 })
-  vim.defer_fn(function()
-    vim.cmd.startinsert()
-  end, 10)
-end
-
--- Keymaps
-vim.keymap.set("n", "<leader>tt", M.toggle_checkbox, { desc = "Toggle Markdown Checkbox", silent = true })
-vim.keymap.set("n", "<leader>tn", M.new_todo, { desc = "Insert new TODO", silent = true })
+-- Custom function to toggle checkbox in Markdown or create one if it doesn't exist
+vim.keymap.set("n", "<leader>tt", checkbox_util.toggle_checkbox, { desc = "Toggle/Create Markdown Checkbox", silent = true })
+vim.keymap.set("n", "<leader>tn", checkbox_util.new_todo, { desc = "Insert new TODO", silent = true })
 
 vim.keymap.set("i", "<C-t>", function()
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
-  M.new_todo()
+  checkbox_util.new_todo()
 end, { desc = "Insert new TODO", silent = true })
