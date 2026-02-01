@@ -210,6 +210,7 @@ assign [class="^FreeTube$"] 3
 assign [class="^Signal$"] 3
 assign [class="superProductivity"] 4
 assign [class="^Spotify$"] 5
+assign [class="^nuclear$"] 5
 assign [class="^Virt-manager$"] 5
 
 # Set workspace names
