@@ -1,36 +1,26 @@
 {
-  "config_version": "1.0.0",
+  "catalog_ref": "standard-notes",
+  "config_version": "2.0.0",
   "source": "catalog",
-  "owner": "standardnotes",
-  "repo": "app",
-  "appimage": {
-    "rename": "standard-notes",
-    "name_template": "standard-notes-{latest_version}-linux-{characteristic_suffix}.AppImage",
-    "characteristic_suffix": [
-      "x86_64",
-      "amd64"
-    ],
-    "version": "3.198.5",
-    "name": "standard-notes.AppImage",
+  "state": {
+    "icon": {
+      "installed": true,
+      "method": "extraction",
+      "path": "/home/developer/Applications/icons/standard-notes.png"
+    },
     "installed_date": "2025-12-07T09:55:23.313715",
-    "digest": "sha256:213c81d52f94fac84e39cd768923cd8ba70be304f4368eab460a1e8996777772"
-  },
-  "github": {
-    "repo": true,
-    "prerelease": false
-  },
-  "verification": {
-    "digest": true,
-    "skip": false,
-    "checksum_file": "SHA256SUMS",
-    "checksum_hash_type": "sha256"
-  },
-  "icon": {
-    "extraction": true,
-    "url": null,
-    "name": "standard-notes.png",
-    "source": "extraction",
-    "installed": true,
-    "path": "/home/developer/Applications/icons/standard-notes.png"
+    "installed_path": "",
+    "verification": {
+      "methods": [
+        {
+          "algorithm": "sha256",
+          "filename": "SHA256SUMS",
+          "status": "passed",
+          "type": "checksum_file"
+        }
+      ],
+      "passed": true
+    },
+    "version": "3.198.5"
   }
 }

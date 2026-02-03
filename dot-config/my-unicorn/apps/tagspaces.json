@@ -1,38 +1,26 @@
 {
-  "config_version": "1.0.0",
+  "catalog_ref": "tagspaces",
+  "config_version": "2.0.0",
   "source": "catalog",
-  "owner": "tagspaces",
-  "repo": "tagspaces",
-  "installed_path": "/home/developer/Applications/tagspaces.AppImage",
-  "appimage": {
-    "version": "6.7.3",
-    "name": "tagspaces.AppImage",
-    "rename": "tagspaces",
-    "name_template": "{repo}-{latest_version}-{characteristic_suffix}.AppImage",
-    "characteristic_suffix": [
-      "linux-x86_64",
-      "x86_64",
-      "amd64"
-    ],
+  "state": {
+    "icon": {
+      "installed": true,
+      "method": "extraction",
+      "path": "/home/developer/Applications/icons/tagspaces.png"
+    },
     "installed_date": "2025-12-07T09:55:18.962135",
-    "digest": "sha256:9951587ed5ebe8ff7ce6a77ec6fa0b7debfc1a787991e31c3224831306c19342"
-  },
-  "github": {
-    "repo": true,
-    "prerelease": false
-  },
-  "verification": {
-    "digest": true,
-    "skip": false,
-    "checksum_file": "SHA256SUMS.txt",
-    "checksum_hash_type": "sha256"
-  },
-  "icon": {
-    "extraction": true,
-    "url": "https://raw.githubusercontent.com/tagspaces/tagspaces/master/assets/icon.png",
-    "name": "tagspaces.png",
-    "source": "extraction",
-    "installed": true,
-    "path": "/home/developer/Applications/icons/tagspaces.png"
+    "installed_path": "/home/developer/Applications/tagspaces.AppImage",
+    "verification": {
+      "methods": [
+        {
+          "algorithm": "sha256",
+          "filename": "SHA256SUMS.txt",
+          "status": "passed",
+          "type": "checksum_file"
+        }
+      ],
+      "passed": true
+    },
+    "version": "6.7.3"
   }
 }

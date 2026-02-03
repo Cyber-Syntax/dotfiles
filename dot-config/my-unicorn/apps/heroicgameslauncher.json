@@ -1,35 +1,28 @@
 {
-  "config_version": "1.0.0",
+  "catalog_ref": "heroicgameslauncher",
+  "config_version": "2.0.0",
   "source": "catalog",
-  "appimage": {
-    "version": "2.18.1",
-    "name": "heroicgameslauncher.AppImage",
-    "rename": "heroicgameslauncher",
-    "name_template": "HeroicGamesLauncher-{characteristic_suffix}.AppImage",
-    "characteristic_suffix": [
-      "x86_64"
-    ],
+  "state": {
+    "icon": {
+      "installed": true,
+      "method": "extraction",
+      "path": "/home/developer/Applications/icons/heroicgameslauncher.png"
+    },
     "installed_date": "2025-08-20T18:13:50.238354",
-    "digest": "sha256:d405ca3a029d51d3b478fca5fda05eeb60908dcd6e9e11bd2f17161c173f1240"
-  },
-  "owner": "Heroic-Games-Launcher",
-  "repo": "HeroicGamesLauncher",
-  "github": {
-    "repo": true,
-    "prerelease": false
-  },
-  "verification": {
-    "digest": true,
-    "skip": false,
-    "checksum_file": "",
-    "checksum_hash_type": "sha256"
-  },
-  "icon": {
-    "url": "",
-    "name": "heroicgameslauncher.png",
-    "source": "extraction",
-    "installed": true,
-    "path": "/home/developer/Applications/icons/heroicgameslauncher.png",
-    "extraction": true
+    "installed_path": "",
+    "verification": {
+      "methods": [
+        {
+          "algorithm": "sha256",
+          "computed": "d405ca3a029d51d3b478fca5fda05eeb60908dcd6e9e11bd2f17161c173f1240",
+          "expected": "d405ca3a029d51d3b478fca5fda05eeb60908dcd6e9e11bd2f17161c173f1240",
+          "source": "github_api",
+          "status": "passed",
+          "type": "digest"
+        }
+      ],
+      "passed": true
+    },
+    "version": "2.18.1"
   }
 }

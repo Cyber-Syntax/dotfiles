@@ -1,36 +1,58 @@
 {
-  "config_version": "1.0.0",
+  "catalog_ref": null,
+  "config_version": "2.0.0",
+  "overrides": {
+    "appimage": {
+      "naming": {
+        "architectures": [
+          "amd64",
+          "x86_64"
+        ],
+        "target_name": "flameshot",
+        "template": ""
+      }
+    },
+    "icon": {
+      "filename": "flameshot.png",
+      "method": "extraction"
+    },
+    "metadata": {
+      "description": "",
+      "display_name": "flameshot",
+      "name": "flameshot"
+    },
+    "source": {
+      "owner": "flameshot-org",
+      "prerelease": false,
+      "repo": "flameshot",
+      "type": "github"
+    },
+    "verification": {
+      "method": "digest"
+    }
+  },
   "source": "url",
-  "owner": "flameshot-org",
-  "repo": "flameshot",
-  "appimage": {
-    "rename": "flameshot",
-    "name_template": "",
-    "characteristic_suffix": [],
-    "version": "13.3.0",
-    "name": "flameshot.AppImage",
+  "state": {
+    "icon": {
+      "installed": true,
+      "method": "extraction",
+      "path": "/home/developer/Applications/icons/flameshot.png"
+    },
     "installed_date": "2025-11-19T12:00:04.409203",
-    "digest": "sha256:8bb380584b69bab28398e7c33ddd4e285dff7c0816c64918c9427762ce6735df"
-  },
-  "github": {
-    "repo": true,
-    "prerelease": false
-  },
-  "verification": {
-    "digest": true,
-    "skip": false,
-    "checksum_file": "",
-    "checksum_hash_type": "sha256"
-  },
-  "icon": {
-    "extraction": true,
-    "url": null,
-    "name": "flameshot.png",
-    "source": "extraction",
-    "installed": true,
-    "path": "/home/developer/Applications/icons/flameshot.png"
-  },
-  "url_metadata": {
-    "target_url": "https://github.com/flameshot-org/flameshot/releases"
+    "installed_path": "",
+    "verification": {
+      "methods": [
+        {
+          "algorithm": "sha256",
+          "computed": "8bb380584b69bab28398e7c33ddd4e285dff7c0816c64918c9427762ce6735df",
+          "expected": "8bb380584b69bab28398e7c33ddd4e285dff7c0816c64918c9427762ce6735df",
+          "source": "github_api",
+          "status": "passed",
+          "type": "digest"
+        }
+      ],
+      "passed": true
+    },
+    "version": "13.3.0"
   }
 }

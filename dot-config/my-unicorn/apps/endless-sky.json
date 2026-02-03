@@ -1,35 +1,28 @@
 {
-  "config_version": "1.0.0",
+  "catalog_ref": "endless-sky",
+  "config_version": "2.0.0",
   "source": "catalog",
-  "appimage": {
-    "version": "0.10.16",
-    "name": "endless-sky.AppImage",
-    "rename": "endless-sky",
-    "name_template": "{repo}-{characteristic_suffix}.AppImage",
-    "characteristic_suffix": [
-      "x86_64.AppImage"
-    ],
+  "state": {
+    "icon": {
+      "installed": true,
+      "method": "extraction",
+      "path": "/home/developer/Applications/icons/endless-sky.png"
+    },
     "installed_date": "2025-10-28T13:59:49.127083",
-    "digest": "sha256:143a9cc5f87258c7dd85bc61fd274eddc9fdc2e94196529927b00615b75c5315"
-  },
-  "owner": "endless-sky",
-  "repo": "endless-sky",
-  "github": {
-    "repo": true,
-    "prerelease": false
-  },
-  "verification": {
-    "digest": true,
-    "skip": false,
-    "checksum_file": "",
-    "checksum_hash_type": "sha256"
-  },
-  "icon": {
-    "extraction": true,
-    "url": null,
-    "name": "endless-sky.png",
-    "source": "extraction",
-    "installed": true,
-    "path": "/home/developer/Applications/icons/endless-sky.png"
+    "installed_path": "",
+    "verification": {
+      "methods": [
+        {
+          "algorithm": "sha256",
+          "computed": "143a9cc5f87258c7dd85bc61fd274eddc9fdc2e94196529927b00615b75c5315",
+          "expected": "143a9cc5f87258c7dd85bc61fd274eddc9fdc2e94196529927b00615b75c5315",
+          "source": "github_api",
+          "status": "passed",
+          "type": "digest"
+        }
+      ],
+      "passed": true
+    },
+    "version": "0.10.16"
   }
 }
