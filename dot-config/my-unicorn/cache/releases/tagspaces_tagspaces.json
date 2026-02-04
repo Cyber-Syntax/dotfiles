@@ -1,5 +1,5 @@
 {
-  "cached_at": "2026-02-04T16:29:56.373952+03:00",
+  "cached_at": "2026-02-04T17:54:41.170577+00:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "tagspaces",
@@ -7,12 +7,6 @@
     "version": "6.8.2",
     "prerelease": false,
     "assets": [
-      {
-        "name": "SHA256SUMS.txt",
-        "size": 3036,
-        "digest": "sha256:c2383ecd1c666ac5dceaf7bf596fdd3996869a77dac1e686184e285715c50fe9",
-        "browser_download_url": "https://github.com/tagspaces/tagspaces/releases/download/v6.8.2/SHA256SUMS.txt"
-      },
       {
         "name": "tagspaces-linux-x86_64-6.8.2.AppImage",
         "size": 159537674,

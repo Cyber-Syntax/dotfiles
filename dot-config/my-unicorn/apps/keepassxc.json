@@ -38,11 +38,9 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/keepassxc.png"
     },
-    "installed_date": "2026-02-04T17:02:23.626583+03:00",
+    "installed_date": "2026-02-04T20:22:38.462959+03:00",
     "installed_path": "/home/developer/Applications/keepassxc.AppImage",
     "verification": {
-      "actual_method": "digest",
-      "digest": true,
       "methods": [
         {
           "algorithm": "SHA256",
@@ -61,7 +59,6 @@
           "type": "checksum_file"
         }
       ],
-      "overall_passed": true,
       "passed": true
     },
     "version": "2.7.11"

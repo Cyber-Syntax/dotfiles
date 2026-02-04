@@ -8,11 +8,9 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/qownnotes.png"
     },
-    "installed_date": "2026-02-04T16:58:46.817599+03:00",
+    "installed_date": "2026-02-04T20:21:21.566353+03:00",
     "installed_path": "/home/developer/Applications/qownnotes.AppImage",
     "verification": {
-      "actual_method": "digest",
-      "digest": true,
       "methods": [
         {
           "algorithm": "SHA256",
@@ -31,7 +29,6 @@
           "type": "checksum_file"
         }
       ],
-      "overall_passed": true,
       "passed": true
     },
     "version": "26.2.0"

@@ -1,31 +1,19 @@
 {
-  "cached_at": "2026-02-04T16:29:56.377870+03:00",
+  "cached_at": "2026-02-04T17:54:41.214072+00:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "standardnotes",
     "repo": "app",
-    "version": "3.198.5",
+    "version": "3.201.10",
     "prerelease": false,
     "assets": [
       {
-        "name": "latest-linux.yml",
-        "size": 412,
-        "digest": "sha256:7ad349074b2cc0bf4009836cb15d14f0b7b7aba6b0a2cffcc1feff463e681832",
-        "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.198.5/latest-linux.yml"
-      },
-      {
-        "name": "SHA256SUMS",
-        "size": 2429,
-        "digest": "sha256:81bfbfd09585f7a0614981a096a9bb74b6485a89c1d4a60b106530eb6b7dba9e",
-        "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.198.5/SHA256SUMS"
-      },
-      {
-        "name": "standard-notes-3.198.5-linux-x86_64.AppImage",
-        "size": 169871207,
-        "digest": "sha256:213c81d52f94fac84e39cd768923cd8ba70be304f4368eab460a1e8996777772",
-        "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.198.5/standard-notes-3.198.5-linux-x86_64.AppImage"
+        "name": "standard-notes-3.201.10-linux-x86_64.AppImage",
+        "size": 166804840,
+        "digest": "sha256:37c76d6f60f73d979675111a4e285d12db3fdd9f3645e9805144097afb26352d",
+        "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.201.10/standard-notes-3.201.10-linux-x86_64.AppImage"
       }
     ],
-    "original_tag_name": "@standardnotes/desktop@3.198.5"
+    "original_tag_name": "@standardnotes/desktop@3.201.10"
   }
 }

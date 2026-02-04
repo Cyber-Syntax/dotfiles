@@ -8,11 +8,9 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/legcord.png"
     },
-    "installed_date": "2026-02-04T17:02:47.197536+03:00",
+    "installed_date": "2026-02-04T20:23:03.652253+03:00",
     "installed_path": "/home/developer/Applications/legcord.AppImage",
     "verification": {
-      "actual_method": "digest",
-      "digest": true,
       "methods": [
         {
           "algorithm": "SHA256",
@@ -31,7 +29,6 @@
           "type": "checksum_file"
         }
       ],
-      "overall_passed": true,
       "passed": true
     },
     "version": "1.2.1"

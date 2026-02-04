@@ -11,8 +11,6 @@
     "installed_date": "2026-02-04T17:04:00.759972+03:00",
     "installed_path": "/home/developer/Applications/tagspaces.AppImage",
     "verification": {
-      "actual_method": "digest",
-      "digest": true,
       "methods": [
         {
           "algorithm": "SHA256",
@@ -31,7 +29,6 @@
           "type": "checksum_file"
         }
       ],
-      "overall_passed": true,
       "passed": true
     },
     "version": "6.8.2"
