@@ -6,10 +6,10 @@
     "icon": {
       "installed": true,
       "method": "extraction",
-      "path": "/home/developer/Applications/icons/beekeper-studio.png"
+      "path": "/home/developer/Applications/icons/beekeeper-studio.png"
     },
-    "installed_date": "2025-12-22T19:35:00.061134",
-    "installed_path": "",
+    "installed_date": "2026-02-03T21:37:43.523641+03:00",
+    "installed_path": "/home/developer/Applications/beekeeper-studio.AppImage",
     "verification": {
       "methods": [
         {
@@ -21,6 +21,6 @@
       ],
       "passed": true
     },
-    "version": "5.5.2"
+    "version": "5.5.6"
   }
 }

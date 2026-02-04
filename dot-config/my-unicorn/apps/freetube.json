@@ -8,7 +8,7 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/freetube.png"
     },
-    "installed_date": "2025-11-20T17:24:38.772857",
+    "installed_date": "2026-02-03T21:37:24.964751+03:00",
     "installed_path": "/home/developer/Applications/freetube.AppImage",
     "verification": {
       "methods": [
@@ -23,6 +23,6 @@
       ],
       "passed": true
     },
-    "version": "0.23.12-beta"
+    "version": "0.23.13-beta"
   }
 }

@@ -1,19 +1,19 @@
 {
-  "cached_at": "2025-12-24T12:53:33.393812+00:00",
+  "cached_at": "2026-02-04T14:04:29.593071+00:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "giuspen",
     "repo": "cherrytree",
-    "version": "1.6.2",
+    "version": "1.6.3",
     "prerelease": false,
     "assets": [
       {
-        "name": "CherryTree-1.6.2-x86_64.AppImage",
-        "size": 104888824,
-        "digest": "sha256:a62773969b955162161b85f9f85dd17efcc10c1ebc2dee332688ba693999e535",
-        "browser_download_url": "https://github.com/giuspen/cherrytree/releases/download/v1.6.2/CherryTree-1.6.2-x86_64.AppImage"
+        "name": "CherryTree-1.6.3-x86_64.AppImage",
+        "size": 104905208,
+        "digest": "sha256:6838f8e3ffcc2b1b42d6b2d0139c1a34e051e7bf3e94baffc3f6fc1a659573f7",
+        "browser_download_url": "https://github.com/giuspen/cherrytree/releases/download/v1.6.3/CherryTree-1.6.3-x86_64.AppImage"
       }
     ],
-    "original_tag_name": "v1.6.2"
+    "original_tag_name": "v1.6.3"
   }
 }

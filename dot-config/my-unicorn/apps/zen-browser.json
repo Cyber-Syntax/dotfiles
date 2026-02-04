@@ -8,7 +8,7 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/zen-browser.png"
     },
-    "installed_date": "2025-12-22T08:59:40.795157",
+    "installed_date": "2026-02-03T21:37:26.117787+03:00",
     "installed_path": "/home/developer/Applications/zen-browser.AppImage",
     "verification": {
       "methods": [
@@ -23,6 +23,6 @@
       ],
       "passed": true
     },
-    "version": "1.17.15b"
+    "version": "1.18.3b"
   }
 }

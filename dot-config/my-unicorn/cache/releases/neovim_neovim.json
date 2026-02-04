@@ -1,19 +1,19 @@
 {
-  "cached_at": "2025-12-24T12:53:33.418140+00:00",
+  "cached_at": "2026-02-04T14:04:29.580092+00:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "neovim",
     "repo": "neovim",
-    "version": "0.11.5",
+    "version": "0.11.6",
     "prerelease": false,
     "assets": [
       {
         "name": "nvim-linux-x86_64.appimage",
-        "size": 11020792,
-        "digest": "sha256:7a4adf657f0b775ee4f4de6c94353b4a0548a3c6b31049a20538e05d4eea411a",
-        "browser_download_url": "https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.appimage"
+        "size": 11037176,
+        "digest": "sha256:77dd16d86e6549a0bbbbfbc18636d434ffe5b0ac8b9854a7669e35cc4b93dda0",
+        "browser_download_url": "https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-x86_64.appimage"
       }
     ],
-    "original_tag_name": "v0.11.5"
+    "original_tag_name": "v0.11.6"
   }
 }

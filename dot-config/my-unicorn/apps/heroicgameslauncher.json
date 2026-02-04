@@ -8,8 +8,8 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/heroicgameslauncher.png"
     },
-    "installed_date": "2025-08-20T18:13:50.238354",
-    "installed_path": "",
+    "installed_date": "2026-02-03T21:37:12.736751+03:00",
+    "installed_path": "/home/developer/Applications/heroicgameslauncher.AppImage",
     "verification": {
       "methods": [
         {
@@ -23,6 +23,6 @@
       ],
       "passed": true
     },
-    "version": "2.18.1"
+    "version": "2.19.1"
   }
 }

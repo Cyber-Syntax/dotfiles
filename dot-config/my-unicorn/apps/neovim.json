@@ -38,14 +38,14 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/neovim.png"
     },
-    "installed_date": "2025-11-02T20:07:10.639792",
-    "installed_path": "",
+    "installed_date": "2026-02-04T17:01:32.844187+03:00",
+    "installed_path": "/home/developer/Applications/neovim.AppImage",
     "verification": {
       "methods": [
         {
-          "algorithm": "sha256",
-          "computed": "7a4adf657f0b775ee4f4de6c94353b4a0548a3c6b31049a20538e05d4eea411a",
-          "expected": "7a4adf657f0b775ee4f4de6c94353b4a0548a3c6b31049a20538e05d4eea411a",
+          "algorithm": "SHA256",
+          "computed": "77dd16d86e6549a0bbbbfbc18636d434ffe5b0ac8b9854a7669e35cc4b93dda0",
+          "expected": "sha256:77dd16d86e6549a0bbbbfbc18636d434ffe5b0ac8b9854a7669e35cc4b93dda0",
           "source": "github_api",
           "status": "passed",
           "type": "digest"
@@ -53,6 +53,6 @@
       ],
       "passed": true
     },
-    "version": "0.11.5"
+    "version": "0.11.6"
   }
 }

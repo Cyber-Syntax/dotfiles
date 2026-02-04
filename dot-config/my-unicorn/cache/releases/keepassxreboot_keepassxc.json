@@ -1,5 +1,5 @@
 {
-  "cached_at": "2025-12-24T12:53:33.427055+00:00",
+  "cached_at": "2026-02-04T17:01:30.016567+03:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "keepassxreboot",
@@ -18,18 +18,6 @@
         "size": 101,
         "digest": "sha256:be70377f88cbac52154fcf5a370d2257efb34ea7401a155da427e8df67a839e1",
         "browser_download_url": "https://github.com/keepassxreboot/keepassxc/releases/download/2.7.11/KeePassXC-2.7.11-1-x86_64.AppImage.DIGEST"
-      },
-      {
-        "name": "KeePassXC-2.7.11-x86_64.AppImage",
-        "size": 53286080,
-        "digest": "sha256:4629e533d3377d02df883790a3466849a9a1ce9898b7d716d3298acff306766b",
-        "browser_download_url": "https://github.com/keepassxreboot/keepassxc/releases/download/2.7.11/KeePassXC-2.7.11-x86_64.AppImage"
-      },
-      {
-        "name": "KeePassXC-2.7.11-x86_64.AppImage.DIGEST",
-        "size": 99,
-        "digest": "sha256:be8bbd63cf49518dbaf46abcfca7e13339bd228a592bcb682e61b5d62fe9a090",
-        "browser_download_url": "https://github.com/keepassxreboot/keepassxc/releases/download/2.7.11/KeePassXC-2.7.11-x86_64.AppImage.DIGEST"
       }
     ],
     "original_tag_name": "2.7.11"

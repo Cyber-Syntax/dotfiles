@@ -1,19 +1,25 @@
 {
-  "cached_at": "2025-12-24T12:53:33.410384+00:00",
+  "cached_at": "2026-02-04T16:29:56.373952+03:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "tagspaces",
     "repo": "tagspaces",
-    "version": "6.7.3",
+    "version": "6.8.2",
     "prerelease": false,
     "assets": [
       {
-        "name": "tagspaces-linux-x86_64-6.7.3.AppImage",
-        "size": 162309075,
-        "digest": "sha256:9951587ed5ebe8ff7ce6a77ec6fa0b7debfc1a787991e31c3224831306c19342",
-        "browser_download_url": "https://github.com/tagspaces/tagspaces/releases/download/v6.7.3/tagspaces-linux-x86_64-6.7.3.AppImage"
+        "name": "SHA256SUMS.txt",
+        "size": 3036,
+        "digest": "sha256:c2383ecd1c666ac5dceaf7bf596fdd3996869a77dac1e686184e285715c50fe9",
+        "browser_download_url": "https://github.com/tagspaces/tagspaces/releases/download/v6.8.2/SHA256SUMS.txt"
+      },
+      {
+        "name": "tagspaces-linux-x86_64-6.8.2.AppImage",
+        "size": 159537674,
+        "digest": "sha256:3c8ca310ab79d09202b55c2a832d5d09c7caf81c5db2270821dc05e90172e2df",
+        "browser_download_url": "https://github.com/tagspaces/tagspaces/releases/download/v6.8.2/tagspaces-linux-x86_64-6.8.2.AppImage"
       }
     ],
-    "original_tag_name": "v6.7.3"
+    "original_tag_name": "v6.8.2"
   }
 }

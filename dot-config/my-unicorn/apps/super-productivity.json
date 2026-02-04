@@ -8,8 +8,8 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/super-productivity.png"
     },
-    "installed_date": "2025-12-20T18:56:27.791283",
-    "installed_path": "",
+    "installed_date": "2026-02-03T21:36:40.137153+03:00",
+    "installed_path": "/home/developer/Applications/super-productivity.AppImage",
     "verification": {
       "methods": [
         {
@@ -23,6 +23,6 @@
       ],
       "passed": true
     },
-    "version": "16.7.3"
+    "version": "17.0.12"
   }
 }

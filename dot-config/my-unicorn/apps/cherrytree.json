@@ -8,8 +8,8 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/cherrytree.png"
     },
-    "installed_date": "2025-11-19T12:00:02.059467",
-    "installed_path": "",
+    "installed_date": "2026-02-03T21:36:34.487998+03:00",
+    "installed_path": "/home/developer/Applications/cherrytree.AppImage",
     "verification": {
       "methods": [
         {
@@ -23,6 +23,6 @@
       ],
       "passed": true
     },
-    "version": "1.6.2"
+    "version": "1.6.3"
   }
 }

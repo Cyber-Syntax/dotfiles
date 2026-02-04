@@ -1,19 +1,19 @@
 {
-  "cached_at": "2025-12-24T12:53:33.402121+00:00",
+  "cached_at": "2026-02-04T14:04:29.831150+00:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "johannesjo",
     "repo": "super-productivity",
-    "version": "16.7.3",
+    "version": "17.0.12",
     "prerelease": false,
     "assets": [
       {
         "name": "superProductivity-x86_64.AppImage",
-        "size": 133239855,
-        "digest": "sha256:68d4b2f4c1811672e36340ef5e831a93a5d0987e6c7d9b45fe18df1fa9d49b8c",
-        "browser_download_url": "https://github.com/johannesjo/super-productivity/releases/download/v16.7.3/superProductivity-x86_64.AppImage"
+        "size": 135306234,
+        "digest": "sha256:06490da85240da5655edab3b0371c79b3cec3f4edfbb35f567fb8dac0db65d2b",
+        "browser_download_url": "https://github.com/super-productivity/super-productivity/releases/download/v17.0.12/superProductivity-x86_64.AppImage"
       }
     ],
-    "original_tag_name": "v16.7.3"
+    "original_tag_name": "v17.0.12"
   }
 }

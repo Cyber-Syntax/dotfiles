@@ -1,0 +1,31 @@
+{
+  "catalog_ref": "appflowy",
+  "config_version": "2.0.0",
+  "source": "catalog",
+  "state": {
+    "icon": {
+      "installed": true,
+      "method": "extraction",
+      "path": "/home/developer/Applications/icons/appflowy.png"
+    },
+    "installed_date": "2026-02-04T17:02:31.823527+03:00",
+    "installed_path": "/home/developer/Applications/appflowy.AppImage",
+    "verification": {
+      "actual_method": "digest",
+      "digest": true,
+      "methods": [
+        {
+          "algorithm": "SHA256",
+          "computed": "0254da2f1cfcfc6930c529f2236a2723b7a013561d2780fcee8e2da039cf0247",
+          "expected": "sha256:0254da2f1cfcfc6930c529f2236a2723b7a013561d2780fcee8e2da039cf0247",
+          "source": "github_api",
+          "status": "passed",
+          "type": "digest"
+        }
+      ],
+      "overall_passed": true,
+      "passed": true
+    },
+    "version": "0.11.1"
+  }
+}

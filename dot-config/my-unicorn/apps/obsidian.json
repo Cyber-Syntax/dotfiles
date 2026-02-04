@@ -8,8 +8,8 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/obsidian.png"
     },
-    "installed_date": "2025-12-03T19:27:13.584135",
-    "installed_path": "",
+    "installed_date": "2026-02-03T21:36:34.015700+03:00",
+    "installed_path": "/home/developer/Applications/obsidian.AppImage",
     "verification": {
       "methods": [
         {
@@ -23,6 +23,6 @@
       ],
       "passed": true
     },
-    "version": "1.10.6"
+    "version": "1.11.5"
   }
 }

@@ -28,11 +28,7 @@
       "type": "github"
     },
     "verification": {
-      "checksum_file": {
-        "algorithm": "sha256",
-        "filename": "KeePassXC-{version}-x86_64.AppImage.DIGEST"
-      },
-      "method": "checksum_file"
+      "method": "digest"
     }
   },
   "source": "url",
@@ -42,17 +38,30 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/keepassxc.png"
     },
-    "installed_date": "2025-12-07T09:55:09.966991",
+    "installed_date": "2026-02-04T17:02:23.626583+03:00",
     "installed_path": "/home/developer/Applications/keepassxc.AppImage",
     "verification": {
+      "actual_method": "digest",
+      "digest": true,
       "methods": [
         {
-          "algorithm": "sha256",
-          "filename": "KeePassXC-{version}-x86_64.AppImage.DIGEST",
+          "algorithm": "SHA256",
+          "computed": "31fc1f7944480c1739aa7f4b4c397b036ba48438ceb946de12a3a5c89e8d5423",
+          "expected": "sha256:31fc1f7944480c1739aa7f4b4c397b036ba48438ceb946de12a3a5c89e8d5423",
+          "source": "github_api",
+          "status": "passed",
+          "type": "digest"
+        },
+        {
+          "algorithm": "SHA256",
+          "computed": "31fc1f7944480c1739aa7f4b4c397b036ba48438ceb946de12a3a5c89e8d5423",
+          "expected": "31fc1f7944480c1739aa7f4b4c397b036ba48438ceb946de12a3a5c89e8d5423",
+          "source": "https://github.com/keepassxreboot/keepassxc/releases/download/2.7.11/KeePassXC-2.7.11-1-x86_64.AppImage.DIGEST",
           "status": "passed",
           "type": "checksum_file"
         }
       ],
+      "overall_passed": true,
       "passed": true
     },
     "version": "2.7.11"
