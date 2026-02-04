@@ -20,7 +20,30 @@
   icon_corner_radius = 5
   font = "Opensans 12"
   icon_theme = "Papirus-Dark"
-  origin = top-right
+  origin = top-center
+   ### Geometry ###
+
+    # dynamic width from 0 to 300
+    # width = (0, 300)
+    # constant width of 300
+    width = 300
+
+    # The height of a single notification, excluding the frame.
+    height = (0, 300)
+
+    # Position the notification in the top right corner
+    origin = top-center
+
+    # Offset from the origin
+    offset = (30, 50)
+
+    # Scale factor. It is auto-detected if value is 0.
+    scale = 0
+
+    # Maximum number of notification (0 means no limit)
+    notification_limit = 20
+
+
   offset = 0
   frame_width = 4
   corners = all
@@ -38,9 +61,10 @@
   # Display indicators for URLs (U) and actions (A).
   show_indicators = yes
 
-# dbus
+  # dbus
   ignore_dbusclose = false
-# mouse
+
+  # mouse
   mouse_left_click = close_current
   mouse_middle_click = do_action, close_current
   mouse_right_click = close_all
@@ -52,12 +76,14 @@
 [urgency_low]
   background = "#1e1e2eb0"
   foreground = "#cdd6f4"
+  timeout = 15
+  override_pause_level = 30
 
 [urgency_normal]
   background = "#1e1e2eb0"
   foreground = "#cdd6f4"
-  timeout = 10
-  override_pause_level = 30
+  timeout = 30
+  override_pause_level = 40
 
 [urgency_critical]
   background = "#1e1e2eb0"

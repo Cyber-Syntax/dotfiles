@@ -112,7 +112,8 @@ return {
 
       -- Optional, boolean or a function that takes a filename and returns a boolean.
       -- `true` indicates that you don't want obsidian.nvim to manage frontmatter.
-      disable_frontmatter = true,
+      -- disable_frontmatter = true,
+      frontmatter_enabled = false,
 
       -- Optional, for templates (see below).
       templates = {
@@ -132,7 +133,7 @@ return {
       },
 
       attachments = {
-        img_folder = "assets/", -- This is the default
+        folder = "assets/",
       },
       statusline = { enabled = false },
       footer = { enabled = false },
