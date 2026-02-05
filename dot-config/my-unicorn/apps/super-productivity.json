@@ -8,21 +8,29 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/super-productivity.png"
     },
-    "installed_date": "2026-02-03T21:36:40.137153+03:00",
+    "installed_date": "2026-02-05T18:13:07.645039+03:00",
     "installed_path": "/home/developer/Applications/super-productivity.AppImage",
     "verification": {
       "methods": [
         {
-          "algorithm": "sha256",
-          "computed": "68d4b2f4c1811672e36340ef5e831a93a5d0987e6c7d9b45fe18df1fa9d49b8c",
-          "expected": "68d4b2f4c1811672e36340ef5e831a93a5d0987e6c7d9b45fe18df1fa9d49b8c",
+          "algorithm": "SHA256",
+          "computed": "749b19efd484c930a539a32028f9d72f7087c4381813edbf14845ebbd06dea05",
+          "expected": "sha256:749b19efd484c930a539a32028f9d72f7087c4381813edbf14845ebbd06dea05",
           "source": "github_api",
           "status": "passed",
           "type": "digest"
+        },
+        {
+          "algorithm": "SHA512",
+          "computed": "86eb60c2b8751935bdcb4475283a32f295983eb17f26911df83f07de62568405f2e1a326d49e2383a7e9ce19050b03cbc1cb4681a03172fa89447bf842a1688b",
+          "expected": "86eb60c2b8751935bdcb4475283a32f295983eb17f26911df83f07de62568405f2e1a326d49e2383a7e9ce19050b03cbc1cb4681a03172fa89447bf842a1688b",
+          "source": "https://github.com/super-productivity/super-productivity/releases/download/v17.1.1/latest-linux.yml",
+          "status": "passed",
+          "type": "checksum_file"
         }
       ],
       "passed": true
     },
-    "version": "17.0.12"
+    "version": "17.1.1"
   }
 }

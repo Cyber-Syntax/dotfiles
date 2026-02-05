@@ -1,5 +1,5 @@
 {
-  "cached_at": "2026-02-04T17:54:41.214072+00:00",
+  "cached_at": "2026-02-05T18:12:48.599443+03:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "standardnotes",
@@ -7,6 +7,18 @@
     "version": "3.201.10",
     "prerelease": false,
     "assets": [
+      {
+        "name": "latest-linux.yml",
+        "size": 378,
+        "digest": "sha256:ec8490384e6298c94e07489c260a8be91cad35651b63114a6137be6a8468e64b",
+        "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.201.10/latest-linux.yml"
+      },
+      {
+        "name": "SHA256SUMS",
+        "size": 1738,
+        "digest": "sha256:967f1ca94c158b48b41cd4d12f6abdfff0937c71a5c7a5f4dcdd121a26791544",
+        "browser_download_url": "https://github.com/standardnotes/app/releases/download/%40standardnotes/desktop%403.201.10/SHA256SUMS"
+      },
       {
         "name": "standard-notes-3.201.10-linux-x86_64.AppImage",
         "size": 166804840,
