@@ -10,13 +10,13 @@ import = [
 ]
 
 [font]
-normal = { family = "MesloLGM Nerd Font Mono", style = "Regular" }
-bold = { family = "MesloLGM Nerd Font Mono", style = "Bold" }
-italic = { family = "MesloLGM Nerd Font Mono", style = "Italic" }
+# normal = { family = "MesloLGM Nerd Font Mono", style = "Regular" }
+# bold = { family = "MesloLGM Nerd Font Mono", style = "Bold" }
+# italic = { family = "MesloLGM Nerd Font Mono", style = "Italic" }
 # old
-# normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
-# bold = { family = "JetbrainsMono Nerd Font", style = "Bold" }
-# italic = { family = "JetbrainsMono Nerd Font", style = "Italic" }
+normal = { family = "JetbrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetbrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetbrainsMono Nerd Font", style = "Italic" }
 size = 17.0
 
 [scrolling]

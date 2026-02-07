@@ -1,7 +1,8 @@
 --dotfiles
---target=$HOME
+--target='/home/developer'
 --ignore=.stowrc
 --ignore=setup.sh
 --ignore=.stfolder
+--ignore=.stignore
 --ignore=stversions
 --ignore=docs

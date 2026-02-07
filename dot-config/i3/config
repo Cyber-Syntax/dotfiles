@@ -65,7 +65,7 @@ include ~/.config/i3/hosts/$(hostname).conf
 floating_modifier Mod4
 
 ## APPS ##
-set $TERM alacritty
+set $TERM ghostty
 set $FILE_MANAGER pcmanfm
 
 # start a terminal
