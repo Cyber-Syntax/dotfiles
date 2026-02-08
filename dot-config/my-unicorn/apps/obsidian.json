@@ -8,14 +8,14 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/obsidian.png"
     },
-    "installed_date": "2026-02-03T21:36:34.015700+03:00",
+    "installed_date": "2026-02-06T09:35:18.237576+03:00",
     "installed_path": "/home/developer/Applications/obsidian.AppImage",
     "verification": {
       "methods": [
         {
-          "algorithm": "sha256",
-          "computed": "162d753076d0610e4dccfdccf391c13af5fcb557ba7574b77f0e90ac3c522b1c",
-          "expected": "162d753076d0610e4dccfdccf391c13af5fcb557ba7574b77f0e90ac3c522b1c",
+          "algorithm": "SHA256",
+          "computed": "cabb130eb8fb7fc92c0f1b2357a17a351691edd10d0d718d27ac4fe216772ad4",
+          "expected": "sha256:cabb130eb8fb7fc92c0f1b2357a17a351691edd10d0d718d27ac4fe216772ad4",
           "source": "github_api",
           "status": "passed",
           "type": "digest"
@@ -23,6 +23,6 @@
       ],
       "passed": true
     },
-    "version": "1.11.5"
+    "version": "1.11.7"
   }
 }
