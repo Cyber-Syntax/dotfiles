@@ -1,0 +1,11 @@
+{
+  "last_backup_time": "2026-01-06T19:07:08.713781+00:00",
+  "last_backup_file": "/home/developer/Documents/backup-for-cloud/06-01-2026.tar.zst",
+  "backup_count": 1,
+  "metadata_version": "2.0",
+  "file_hashes": {
+    "06-01-2026.tar.zst": "a856d73a1e3484ebb2b81cc8f8466f6a37d1296b597e7abeeab6073de1bad2bd",
+    "06-01-2026.tar.zst.enc": "82ea67030d886eb7321d6008acc9cc3c77b3bd33cb9e6330cba49c3cebe8139e",
+    "06-01-2026.tar.zst-decrypted": "a856d73a1e3484ebb2b81cc8f8466f6a37d1296b597e7abeeab6073de1bad2bd"
+  }
+}
