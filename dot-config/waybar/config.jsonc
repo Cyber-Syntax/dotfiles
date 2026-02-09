@@ -7,9 +7,9 @@
   "height": 37,
   // === Positions ===
   "modules-left": [
-    "hyprland/workspaces", // workspaces
+    // "hyprland/workspaces", // workspaces
     "sway/workspaces",
-    // "sway/window",
+    "sway/window",
     // "wlr/taskbar",
     "custom/paddw"
   ],
@@ -27,6 +27,7 @@
   ],
   "modules-right": [
     "custom/updates", // updates
+    "custom/appimage-updates",
     // "custom/media", // media info
     "mpris",
     "custom/paddw",
@@ -40,6 +41,7 @@
     "custom/backlight", // brightness
     "custom/paddw",
     "battery", // battery
+    "custom/info-timezone",
     "custom/paddw",
     "idle_inhibitor",
     "custom/paddw",
@@ -55,43 +57,61 @@
     "on-scroll-down": "~/.config/waybar/scripts/brightness-control.sh -o d",
     "interval": 1,
     "min-length": 6,
-    "max-length": 6
+    "max-length": 6,
   },
   "custom/updates": {
-    "exec": "bash $HOME/Documents/repository/linux-system-utils/package-management/fedora-flatpak-status.sh",
-    "on-click-right": "kitty -e $HOME/Documents/repository/linux-system-utils/package-management/update-dnf-flatpak.sh",
-    // "on-click-middle": "swaymsg exec '$term -e sudo dnf update'",
-    "return-type": "text", // or "json" if your script returns JSON
-    "interval": 900,
+    "exec": "~/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --status",
+    "exec-if": "bash -c '[ \"$(~/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --status)\" != \"Up-to-date\" ]'",
+    "on-click": "alacritty -e bash -c '~/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --update; exec bash'",
+    "return-type": "text",
+    "interval": 4600,
     "format": "{}",
-    "tooltip": false
+    "tooltip": false,
+  },
+  "custom/appimage-updates": {
+    "exec": "~/.local/bin/my-unicorn-update --polybar",
+    "exec-if": "bash -c '[ \"$(~/.local/bin/my-unicorn-update)\" != \"\" ]'",
+    "on-click": "alacritty -e bash -c '~/.local/bin/my-unicorn-update --update-outdated; exec bash'",
+    "return-type": "text",
+    "interval": 4600,
+    "format": "{}",
+    "tooltip": false,
+  },
+  "custom/info-timezone": {
+    "exec": "~/.local/share/linux-system-utils/system/info/date_time.sh",
+    "tail": true,
+    "on-click": "pkill -USR1 -f date_time.sh",
+    "on-click-right": "~/.config/rofi/calendar/launch.sh",
+    "return-type": "text",
+    "format": "{}",
+    "tooltip": false,
   },
   "custom/ws": {
     "format": "  ",
     "tooltip": false,
     "min-length": 3,
-    "max-length": 3
+    "max-length": 3,
   },
   "custom/cpu-temp": {
     "exec": "sensors | grep 'Package id 0:' | awk '{print $4}'",
     "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>🌡 {text}",
     "interval": 5,
-    "on-click": "kitty -e 'watch -n1 sensors'"
+    "on-click": "kitty -e 'watch -n1 sensors'",
   },
   "custom/power": {
     "format": " ",
     "tooltip": true,
     "tooltip-format": "Power Menu",
-    "on-click": "~/.config/rofi/powermenu/type-6/powermenu.sh"
+    "on-click": "~/.config/rofi/powermenu/type-6/powermenu.sh",
   },
   // === Padding ===
   "custom/paddw": {
     "format": " ",
-    "tooltip": false
+    "tooltip": false,
   },
   "custom/paddc": {
     "format": " ",
-    "tooltip": false
+    "tooltip": false,
   },
   // === Modules ===
   "wlr/taskbar": {
@@ -107,12 +127,12 @@
     "all-outputs": false,
     "active-first": true,
     "app_ids-mapping": {
-      "firefoxdeveloperedition": "firefox-developer-edition"
+      "firefoxdeveloperedition": "firefox-developer-edition",
     },
     "rewrite": {
       "Firefox Web Browser": "Firefox",
-      "Foot Server": "Terminal"
-    }
+      "Foot Server": "Terminal",
+    },
   },
   "mpris": {
     "format": "{player_icon} {artist} {title}",
@@ -121,16 +141,16 @@
     "player-icons": {
       "default": "▶",
       "mpv": "🎵",
-      "spotify": " "
+      "spotify": " ",
     },
     "status-icons": {
-      "paused": "⏸"
+      "paused": "⏸",
     },
     "ignored-players": [
       "firefox",
       "zen",
       "FreeTube"
-    ]
+    ],
   },
   "sway/workspaces": {
     "disable-scroll": true,
@@ -148,8 +168,8 @@
       "high-priority-named": [
         "1",
         "2"
-      ]
-    }
+      ],
+    },
   },
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -164,20 +184,20 @@
       "6": " ",
       "7": " ",
       "8": " ",
-      "9": " "
+      "9": " ",
     },
     "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
       "4": [],
-      "5": []
-    }
+      "5": [],
+    },
   },
   "memory": {
     "states": {
       "warning": 75,
-      "critical": 90
+      "critical": 90,
     },
     "format": "󰘚 {percentage}%",
     "format-critical": "󰀦 {percentage}%",
@@ -185,12 +205,12 @@
     "tooltip-format": "Memory Used: {used:0.1f} GB / {total:0.1f} GB",
     "interval": 5,
     "min-length": 7,
-    "max-length": 7
+    "max-length": 7,
   },
   "tray": {
     "icon-size": 16,
     "spacing": 0,
-    "show-passive-items": "true"
+    "show-passive-items": "true",
   },
   "custom/storage": {
     "format": " {}",
@@ -198,7 +218,7 @@
     "format-alt-click": "click-right",
     "return-type": "json",
     "interval": 60,
-    "exec": "~/.config/waybar/scripts/storage.sh"
+    "exec": "~/.config/waybar/scripts/storage.sh",
   },
   "privacy": {
     "icon-spacing": 4,
@@ -208,30 +228,30 @@
       {
         "type": "screenshare",
         "tooltip": true,
-        "tooltip-icon-size": 24
+        "tooltip-icon-size": 24,
       },
       {
         "type": "audio-out",
         "tooltip": true,
-        "tooltip-icon-size": 24
+        "tooltip-icon-size": 24,
       },
       {
         "type": "audio-in",
         "tooltip": true,
-        "tooltip-icon-size": 24
-      }
-    ]
+        "tooltip-icon-size": 24,
+      },
+    ],
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": " ", // prevent locking screen
-      "deactivated": " " // able to lock screen
+      "deactivated": " ", // able to lock screen
     },
     "tooltip": true,
     "tooltip-format-activated": "Presentation Mode",
     "tooltip-format-deactivated": "Idle Mode",
-    "start-activated": true
+    "start-activated": true,
   },
   "clock#date": {
     "format": "󰨳 {:%H:%M - %d-%m-%Y}",
@@ -243,15 +263,15 @@
       "format": {
         "months": "<span color='#b4befe'><b>{}</b></span>",
         "weekdays": "<span color='#a6adc8' font='7'>{}</span>",
-        "today": "<span color='#f38ba8'><b>{}</b></span>"
-      }
+        "today": "<span color='#f38ba8'><b>{}</b></span>",
+      },
     },
     "actions": {
       "on-click": "mode",
-      "on-click-right": "mode"
+      "on-click-right": "mode",
     },
     "min-length": 8,
-    "max-length": 25
+    "max-length": 25,
   },
   "network": {
     "format": "{icon}",
@@ -260,16 +280,14 @@
     "format-wifi": "<span font='Font Awesome 5 Free 10'></span> ({signalStrength}%)",
     "format-ethernet": " ",
     "format-disconnected": "⚠ Disconnected",
-    //"on-click": "kitty -e ~/sway/scripts/network-manager",
-    // "on-click": "gnome-control-center wifi",
-    "tooltip": false
+    "tooltip": false,
   },
   "custom/media": {
     "format": " {}",
     "max-length": 40,
     "interval": 30, // Remove this if your script is endless and write in loop
     "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh 2> /dev/null", // Script in resources folder
-    "exec-if": "pgrep spotify"
+    "exec-if": "pgrep spotify",
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -281,7 +299,7 @@
         "󰕾"
       ],
       "headphone": "󰋋",
-      "headset": "󰋋"
+      "headset": "󰋋",
     },
     "tooltip": true,
     "tooltip-format": "Device: {desc}",
@@ -289,12 +307,12 @@
     "on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
     "on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
     "min-length": 6,
-    "max-length": 6
+    "max-length": 6,
   },
   "battery": {
     "states": {
       "warning": 30,
-      "critical": 15
+      "critical": 15,
     },
     "format": "{icon} {capacity}% {power}W, {time}",
     "format-time": "{H}h {M}m",
@@ -314,6 +332,6 @@
     "tooltip-format-charging": "Charging: {time}",
     "interval": 1,
     "min-length": 6,
-    "max-length": 29
-  }
+    "max-length": 29,
+  },
 }

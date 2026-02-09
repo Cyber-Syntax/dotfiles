@@ -31,7 +31,7 @@
 
 @define-color pulseaudio      #38372f; /* Nord1 */
 @define-color backlight       #38372f; /* Nord2 */
-@define-color battery         #ECEFF4; /* Nord10 */
+@define-color battery         #38372f; /* Nord2*/
 @define-color power           #8FBCBB; /* Nord7 */
 
 /* State Colors */
