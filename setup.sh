@@ -6,8 +6,8 @@ set -euo pipefail
 # Variables
 DOTFILES_DIR="$HOME/dotfiles"
 REMOTE_URL="https://github.com/Cyber-Syntax/dotfiles.git"
-CONFIG_DIRS=(nvim zsh kitty tmux autotarcompress auto-penguin-setup alacritty hypr i3 polybar dunst picom waybar qtile auto-cpufreq gammastep starship MangoHud gtk-2.0 gtk-3.0 gtk-4.0 my-unicorn xdg-desktop-portal backintime gh)
-CONFIG_FILES=(bashrc zshenv gitconfig)
+CONFIG_DIRS=(nvim zsh kitty tmux autotarcompress auto-penguin-setup alacritty hypr i3 polybar dunst picom waybar qtile auto-cpufreq gammastep starship MangoHud gtk-2.0 gtk-3.0 gtk-4.0 my-unicorn xdg-desktop-portal backintime gh btop sway)
+CONFIG_FILES=(bashrc zshenv gitconfig markdownlint)
 
 # Help message
 show_help() {
@@ -111,7 +111,7 @@ setup() {
   done
 
   echo "[+] Writing .stowrc"
-  #TESTING: globbing home in purpose 
+  #TESTING: globbing home in purpose
   # This makes --target='home/$USER'
   # Mine is `--target='/home/developer'`
   cat >"$DOTFILES_DIR/.stowrc" <<EOF
