@@ -8,29 +8,29 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/standard-notes.png"
     },
-    "installed_date": "2026-02-08T10:54:47.893538+03:00",
+    "installed_date": "2026-02-10T10:44:17.407409+03:00",
     "installed_path": "/home/developer/Applications/standard-notes.AppImage",
     "verification": {
       "methods": [
         {
           "algorithm": "SHA256",
-          "computed": "37c76d6f60f73d979675111a4e285d12db3fdd9f3645e9805144097afb26352d",
-          "expected": "sha256:37c76d6f60f73d979675111a4e285d12db3fdd9f3645e9805144097afb26352d",
+          "computed": "06bf7cef03ebe302443434053cafb37ffd8b67f9ef83ae79f611a2db49f09e3d",
+          "expected": "sha256:06bf7cef03ebe302443434053cafb37ffd8b67f9ef83ae79f611a2db49f09e3d",
           "source": "github_api",
           "status": "passed",
           "type": "digest"
         },
         {
           "algorithm": "SHA256",
-          "computed": "37c76d6f60f73d979675111a4e285d12db3fdd9f3645e9805144097afb26352d",
-          "expected": "37c76d6f60f73d979675111a4e285d12db3fdd9f3645e9805144097afb26352d",
-          "source": "https://github.com/standardnotes/app/releases/download/@standardnotes/desktop@3.201.10/SHA256SUMS",
+          "computed": "06bf7cef03ebe302443434053cafb37ffd8b67f9ef83ae79f611a2db49f09e3d",
+          "expected": "06bf7cef03ebe302443434053cafb37ffd8b67f9ef83ae79f611a2db49f09e3d",
+          "source": "https://github.com/standardnotes/app/releases/download/@standardnotes/desktop@3.201.18/SHA256SUMS",
           "status": "passed",
           "type": "checksum_file"
         }
       ],
       "passed": true
     },
-    "version": "3.201.10"
+    "version": "3.201.18"
   }
 }

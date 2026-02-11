@@ -154,6 +154,7 @@ alias e5="eza -F --all --long --sort=size --total-size --tree --level=5"
 alias ecl5="eza --no-user --no-time --no-permissions --no-filesize --no-git --tree --git-ignore --level=5"
 alias ee="eza -F --all --long --sort=size --total-size --smart-group"
 alias ez="eza -Tlahmo -L1 --sort=size --total-size --no-user --smart-group"
+alias ez_clean="eza --no-user --no-time --no-permissions --no-filesize --no-git --tree --git-ignore"
 alias duh="du -sh * | sort -h"
 alias duhdot="du -sh .[^.]* | sort -h"
 

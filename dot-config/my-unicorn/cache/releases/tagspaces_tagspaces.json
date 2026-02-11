@@ -1,25 +1,25 @@
 {
-  "cached_at": "2026-02-09T15:59:02.579495+03:00",
+  "cached_at": "2026-02-11T18:14:56.854738+03:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "tagspaces",
     "repo": "tagspaces",
-    "version": "6.9.0",
+    "version": "6.9.1",
     "prerelease": false,
     "assets": [
       {
         "name": "SHA256SUMS.txt",
         "size": 3036,
-        "digest": "sha256:11e93ecdb105bc276f9273816b2473583929b0e5c5527f8b7b8e47e7edcfa093",
-        "browser_download_url": "https://github.com/tagspaces/tagspaces/releases/download/v6.9.0/SHA256SUMS.txt"
+        "digest": "sha256:98b4914735ab722705aa2fb21150cbe4337e525d9d27940255a44f5526fd9556",
+        "browser_download_url": "https://github.com/tagspaces/tagspaces/releases/download/v6.9.1/SHA256SUMS.txt"
       },
       {
-        "name": "tagspaces-linux-x86_64-6.9.0.AppImage",
-        "size": 156651258,
-        "digest": "sha256:d96cb3416f38b1a23451867832e0f9ba121ddf1a9e594d42ac367a88ba3beaf3",
-        "browser_download_url": "https://github.com/tagspaces/tagspaces/releases/download/v6.9.0/tagspaces-linux-x86_64-6.9.0.AppImage"
+        "name": "tagspaces-linux-x86_64-6.9.1.AppImage",
+        "size": 156672946,
+        "digest": "sha256:a3ee1ff28e164495c31eaa77c7e536cb8041f6f3e2472c08060dc5bfa9fda065",
+        "browser_download_url": "https://github.com/tagspaces/tagspaces/releases/download/v6.9.1/tagspaces-linux-x86_64-6.9.1.AppImage"
       }
     ],
-    "original_tag_name": "v6.9.0"
+    "original_tag_name": "v6.9.1"
   }
 }

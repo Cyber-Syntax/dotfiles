@@ -1,25 +1,25 @@
 {
-  "cached_at": "2026-02-09T15:59:02.838916+03:00",
+  "cached_at": "2026-02-11T18:14:57.216705+03:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "johannesjo",
     "repo": "super-productivity",
-    "version": "17.1.5",
+    "version": "17.1.6",
     "prerelease": false,
     "assets": [
       {
         "name": "latest-linux.yml",
         "size": 1528,
-        "digest": "sha256:237e03ab330171c115a26478f7e6836df62b8fd114344b48cc472dc5a919541e",
-        "browser_download_url": "https://github.com/super-productivity/super-productivity/releases/download/v17.1.5/latest-linux.yml"
+        "digest": "sha256:4c6e51112aaf86589ac485ce5a0958f31a701e0c4d4c1df308192e2c900ef96f",
+        "browser_download_url": "https://github.com/super-productivity/super-productivity/releases/download/v17.1.6/latest-linux.yml"
       },
       {
         "name": "superProductivity-x86_64.AppImage",
-        "size": 135441697,
-        "digest": "sha256:ff85d7fbfbc92225bdca86d864ab8bf0ece5c558cbeed0bb70a1ab787503caa5",
-        "browser_download_url": "https://github.com/super-productivity/super-productivity/releases/download/v17.1.5/superProductivity-x86_64.AppImage"
+        "size": 135446030,
+        "digest": "sha256:9e081d5fd1a85579aa778ed84966104f6bb720a2a12ed114d267f466363ccd12",
+        "browser_download_url": "https://github.com/super-productivity/super-productivity/releases/download/v17.1.6/superProductivity-x86_64.AppImage"
       }
     ],
-    "original_tag_name": "v17.1.5"
+    "original_tag_name": "v17.1.6"
   }
 }

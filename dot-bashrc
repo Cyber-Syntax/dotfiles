@@ -1,3 +1,5 @@
+export XDG_RUNTIME_DIR=/run/user/1000
+
 # Source completions
 for file in $HOME/.config/bash/completions/*; do
     [ -f "$file" ] && source "$file"
@@ -18,3 +20,9 @@ if [[ -z "${DISABLE_AUTO_ZSH-}" ]]; then
   fi
 fi
 
+# >>> aps completion start >>>
+APS_COMPLETION_DIR="/home/developer/.local/share/aps/autocomplete"
+if [ -f "$APS_COMPLETION_DIR/bash_autocomplete" ]; then
+  source "$APS_COMPLETION_DIR/bash_autocomplete"
+fi
+# <<< aps completion end <<<
