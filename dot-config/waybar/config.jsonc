@@ -7,10 +7,10 @@
   "height": 37,
   // === Positions ===
   "modules-left": [
-    // "hyprland/workspaces", // workspaces
-    "sway/workspaces",
-    "sway/window",
-    // "wlr/taskbar",
+    "hyprland/workspaces", // workspaces
+    // "sway/workspaces",
+    // "sway/window",
+    "wlr/taskbar",
     "custom/paddw"
   ],
   "modules-center": [
