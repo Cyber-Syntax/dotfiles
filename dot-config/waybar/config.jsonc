@@ -15,21 +15,22 @@
   ],
   "modules-center": [
     "custom/paddc",
-    "custom/storage",
+    "mpris",
+    "custom/paddw",
+    "custom/updates", // updates
+    "custom/appimage-updates",
     "custom/paddw",
     "custom/cpu-temp",
     "custom/paddw",
     "custom/paddw",
     "clock#date",
     "custom/paddw",
-    "network",
+    // "network",
     "custom/paddw"
   ],
   "modules-right": [
-    "custom/updates", // updates
-    "custom/appimage-updates",
+    "custom/storage",
     // "custom/media", // media info
-    "mpris",
     "custom/paddw",
     "privacy",
     "custom/paddw",
@@ -38,10 +39,10 @@
     "pulseaudio", // output device
     "custom/paddw",
     // "bluetooth",
-    "custom/backlight", // brightness
+    // "custom/backlight", // brightness
     "custom/paddw",
-    "battery", // battery
-    "custom/info-timezone",
+    // "battery", // battery
+    // "custom/info-timezone",
     "custom/paddw",
     "idle_inhibitor",
     "custom/paddw",
@@ -94,9 +95,11 @@
   },
   "custom/cpu-temp": {
     "exec": "sensors | grep 'Package id 0:' | awk '{print $4}'",
+    "exec-if": "$(sensors | grep 'CPU:' | tr -d 'CPU:         +' | sed 's/°C//' | awk '{print $1}') -gt 30",
+    // exec-if = [ $(sensors | grep 'CPU:' | tr -d 'CPU:         +' | sed 's/°C//' | awk '{print $1}') -gt 50 ]
     "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>🌡 {text}",
     "interval": 5,
-    "on-click": "kitty -e 'watch -n1 sensors'",
+    "on-click": "alacritty -e 'watch -n1 sensors'",
   },
   "custom/power": {
     "format": " ",
@@ -208,7 +211,7 @@
     "max-length": 7,
   },
   "tray": {
-    "icon-size": 16,
+    "icon-size": 26,
     "spacing": 0,
     "show-passive-items": "true",
   },
@@ -217,8 +220,9 @@
     "format-alt": " {percentage}%",
     "format-alt-click": "click-right",
     "return-type": "json",
-    "interval": 60,
-    "exec": "~/.config/waybar/scripts/storage.sh",
+    "interval": 4600,
+    "exec": "~/.local/share/linux-system-utils/system/info/storage.sh -j",
+    "exec-if": "bash -c '[ \"$(~/.local/share/linux-system-utils/system/info/storage.sh -s)\" != \"Enough free space\" ]'",
   },
   "privacy": {
     "icon-spacing": 4,
@@ -306,6 +310,7 @@
     "on-click": "~/.config/waybar/scripts/volume-control.sh -o m",
     "on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
     "on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
+    "on-click-right": "~/.config/rofi/output/pulseaudio.sh",
     "min-length": 6,
     "max-length": 6,
   },
