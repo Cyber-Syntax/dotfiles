@@ -58,7 +58,7 @@
     "on-scroll-down": "~/.config/waybar/scripts/brightness-control.sh -o d",
     "interval": 1,
     "min-length": 6,
-    "max-length": 6,
+    "max-length": 6
   },
   "custom/updates": {
     "exec": "~/.local/share/linux-system-utils/package-management/fedora-package-manager.sh --status",
@@ -67,7 +67,7 @@
     "return-type": "text",
     "interval": 4600,
     "format": "{}",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/appimage-updates": {
     "exec": "~/.local/bin/my-unicorn-update --polybar",
@@ -76,7 +76,7 @@
     "return-type": "text",
     "interval": 4600,
     "format": "{}",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/info-timezone": {
     "exec": "~/.local/share/linux-system-utils/system/info/date_time.sh",
@@ -85,36 +85,55 @@
     "on-click-right": "~/.config/rofi/calendar/launch.sh",
     "return-type": "text",
     "format": "{}",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/ws": {
     "format": "  ",
     "tooltip": false,
     "min-length": 3,
-    "max-length": 3,
+    "max-length": 3
   },
-  "custom/cpu-temp": {
-    "exec": "sensors | grep 'Package id 0:' | awk '{print $4}'",
-    "exec-if": "$(sensors | grep 'CPU:' | tr -d 'CPU:         +' | sed 's/°C//' | awk '{print $1}') -gt 30",
-    // exec-if = [ $(sensors | grep 'CPU:' | tr -d 'CPU:         +' | sed 's/°C//' | awk '{print $1}') -gt 50 ]
+  "custom/nvme-temp": {
+    "exec": "~/.local/share/linux-system-utils/system/info/temp.sh --nvme",
+    "exec-if": "bash -c 'temp=$(~/.local/share/linux-system-utils/system/info/temp.sh --nvme | grep -o \"[0-9.]*\"); [ $(echo \"$temp > 50\" | bc -l) -eq 1 ]'",
     "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>🌡 {text}",
     "interval": 5,
-    "on-click": "alacritty -e 'watch -n1 sensors'",
+    "on-click": "alacritty -e 'watch -n1 sensors'"
+  },
+  "custom/gpu-temp": {
+    "exec": "~/.local/share/linux-system-utils/system/info/temp.sh --gpu",
+    "exec-if": "bash -c 'temp=$(~/.local/share/linux-system-utils/system/info/temp.sh --gpu | grep -o \"[0-9.]*\"); [ $(echo \"$temp > 50\" | bc -l) -eq 1 ]'",
+    "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>🌡 {text}",
+    "interval": 5,
+    "on-click": "alacritty -e 'watch -n1 sensors'"
+  },
+  "custom/cpu-temp": {
+    "exec": "~/.local/share/linux-system-utils/system/info/temp.sh --cpu",
+    //  /system/info/temp.sh --gpu --nvme --cpu
+    // CPU: 34.0°C
+    // GPU: 33°C
+    // NVME: 38.9°C
+    // show only if cpu temp above 50.0°C
+    // "exec-if": "bash -c '[ \"$(~/.local/share/linux-system-utils/system/info/temp.sh --cpu)\" != \"\" ]'",
+    "exec-if": "bash -c 'temp=$(~/.local/share/linux-system-utils/system/info/temp.sh --cpu | grep -o \"[0-9.]*\"); [ $(echo \"$temp > 50\" | bc -l) -eq 1 ]'",
+    "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>🌡 {text}",
+    "interval": 5,
+    "on-click": "alacritty -e 'watch -n1 sensors'"
   },
   "custom/power": {
     "format": " ",
     "tooltip": true,
     "tooltip-format": "Power Menu",
-    "on-click": "~/.config/rofi/powermenu/type-6/powermenu.sh",
+    "on-click": "~/.config/rofi/powermenu/type-6/powermenu.sh"
   },
   // === Padding ===
   "custom/paddw": {
     "format": " ",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/paddc": {
     "format": " ",
-    "tooltip": false,
+    "tooltip": false
   },
   // === Modules ===
   "wlr/taskbar": {
@@ -130,12 +149,12 @@
     "all-outputs": false,
     "active-first": true,
     "app_ids-mapping": {
-      "firefoxdeveloperedition": "firefox-developer-edition",
+      "firefoxdeveloperedition": "firefox-developer-edition"
     },
     "rewrite": {
       "Firefox Web Browser": "Firefox",
-      "Foot Server": "Terminal",
-    },
+      "Foot Server": "Terminal"
+    }
   },
   "mpris": {
     "format": "{player_icon} {artist} {title}",
@@ -144,16 +163,16 @@
     "player-icons": {
       "default": "▶",
       "mpv": "🎵",
-      "spotify": " ",
+      "spotify": " "
     },
     "status-icons": {
-      "paused": "⏸",
+      "paused": "⏸"
     },
     "ignored-players": [
       "firefox",
       "zen",
       "FreeTube"
-    ],
+    ]
   },
   "sway/workspaces": {
     "disable-scroll": true,
@@ -171,8 +190,8 @@
       "high-priority-named": [
         "1",
         "2"
-      ],
-    },
+      ]
+    }
   },
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -182,25 +201,25 @@
       "1": " ",
       "2": " ",
       "3": "",
-      "4": " ",
-      "5": "",
+      "4": "",
+      "5": " ",
       "6": " ",
       "7": " ",
       "8": " ",
-      "9": " ",
+      "9": " "
     },
     "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
       "4": [],
-      "5": [],
-    },
+      "5": []
+    }
   },
   "memory": {
     "states": {
       "warning": 75,
-      "critical": 90,
+      "critical": 90
     },
     "format": "󰘚 {percentage}%",
     "format-critical": "󰀦 {percentage}%",
@@ -208,12 +227,12 @@
     "tooltip-format": "Memory Used: {used:0.1f} GB / {total:0.1f} GB",
     "interval": 5,
     "min-length": 7,
-    "max-length": 7,
+    "max-length": 7
   },
   "tray": {
     "icon-size": 26,
     "spacing": 0,
-    "show-passive-items": "true",
+    "show-passive-items": "true"
   },
   "custom/storage": {
     "format": " {}",
@@ -222,7 +241,7 @@
     "return-type": "json",
     "interval": 4600,
     "exec": "~/.local/share/linux-system-utils/system/info/storage.sh -j",
-    "exec-if": "bash -c '[ \"$(~/.local/share/linux-system-utils/system/info/storage.sh -s)\" != \"Enough free space\" ]'",
+    "exec-if": "bash -c '[ \"$(~/.local/share/linux-system-utils/system/info/storage.sh -s)\" != \"Enough free space\" ]'"
   },
   "privacy": {
     "icon-spacing": 4,
@@ -232,30 +251,30 @@
       {
         "type": "screenshare",
         "tooltip": true,
-        "tooltip-icon-size": 24,
+        "tooltip-icon-size": 24
       },
       {
         "type": "audio-out",
         "tooltip": true,
-        "tooltip-icon-size": 24,
+        "tooltip-icon-size": 24
       },
       {
         "type": "audio-in",
         "tooltip": true,
-        "tooltip-icon-size": 24,
-      },
-    ],
+        "tooltip-icon-size": 24
+      }
+    ]
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": " ", // prevent locking screen
-      "deactivated": " ", // able to lock screen
+      "deactivated": " " // able to lock screen
     },
     "tooltip": true,
     "tooltip-format-activated": "Presentation Mode",
     "tooltip-format-deactivated": "Idle Mode",
-    "start-activated": true,
+    "start-activated": true
   },
   "clock#date": {
     "format": "󰨳 {:%H:%M - %d-%m-%Y}",
@@ -267,15 +286,15 @@
       "format": {
         "months": "<span color='#b4befe'><b>{}</b></span>",
         "weekdays": "<span color='#a6adc8' font='7'>{}</span>",
-        "today": "<span color='#f38ba8'><b>{}</b></span>",
-      },
+        "today": "<span color='#f38ba8'><b>{}</b></span>"
+      }
     },
     "actions": {
       "on-click": "mode",
-      "on-click-right": "mode",
+      "on-click-right": "mode"
     },
     "min-length": 8,
-    "max-length": 25,
+    "max-length": 25
   },
   "network": {
     "format": "{icon}",
@@ -284,14 +303,14 @@
     "format-wifi": "<span font='Font Awesome 5 Free 10'></span> ({signalStrength}%)",
     "format-ethernet": " ",
     "format-disconnected": "⚠ Disconnected",
-    "tooltip": false,
+    "tooltip": false
   },
   "custom/media": {
     "format": " {}",
     "max-length": 40,
     "interval": 30, // Remove this if your script is endless and write in loop
     "exec": "$HOME/.config/waybar/scripts/mediaplayer.sh 2> /dev/null", // Script in resources folder
-    "exec-if": "pgrep spotify",
+    "exec-if": "pgrep spotify"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
@@ -303,7 +322,7 @@
         "󰕾"
       ],
       "headphone": "󰋋",
-      "headset": "󰋋",
+      "headset": "󰋋"
     },
     "tooltip": true,
     "tooltip-format": "Device: {desc}",
@@ -311,13 +330,13 @@
     "on-scroll-up": "~/.config/waybar/scripts/volume-control.sh -o i",
     "on-scroll-down": "~/.config/waybar/scripts/volume-control.sh -o d",
     "on-click-right": "~/.config/rofi/output/pulseaudio.sh",
-    "min-length": 6,
-    "max-length": 6,
+    "min-length": 7,
+    "max-length": 9
   },
   "battery": {
     "states": {
       "warning": 30,
-      "critical": 15,
+      "critical": 15
     },
     "format": "{icon} {capacity}% {power}W, {time}",
     "format-time": "{H}h {M}m",
@@ -337,6 +356,6 @@
     "tooltip-format-charging": "Charging: {time}",
     "interval": 1,
     "min-length": 6,
-    "max-length": 29,
-  },
+    "max-length": 29
+  }
 }

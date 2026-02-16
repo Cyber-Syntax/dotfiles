@@ -7,7 +7,7 @@ set -euo pipefail
 DOTFILES_DIR="$HOME/dotfiles"
 REMOTE_URL="https://github.com/Cyber-Syntax/dotfiles.git"
 CONFIG_DIRS=(nvim zsh kitty tmux autotarcompress auto-penguin-setup alacritty hypr i3 polybar dunst picom waybar qtile auto-cpufreq gammastep starship MangoHud gtk-2.0 gtk-3.0 gtk-4.0 my-unicorn xdg-desktop-portal backintime gh btop sway)
-CONFIG_FILES=(bashrc zshenv gitconfig markdownlint)
+CONFIG_FILES=(bashrc zshenv gitconfig markdownlint prettierrc)
 
 # Help message
 show_help() {

@@ -8,15 +8,10 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/weektodo.png"
     },
-    "installed_date": "2025-08-29T14:53:15.890192",
-    "installed_path": "",
+    "installed_date": "2026-02-13T13:27:52.591432+03:00",
+    "installed_path": "/home/developer/Applications/weektodo.AppImage",
     "verification": {
-      "methods": [
-        {
-          "status": "skipped",
-          "type": "skip"
-        }
-      ],
+      "methods": [],
       "passed": false
     },
     "version": "2.2.0"

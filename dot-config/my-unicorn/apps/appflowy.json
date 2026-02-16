@@ -8,14 +8,14 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/appflowy.png"
     },
-    "installed_date": "2026-02-08T10:54:28.134369+03:00",
+    "installed_date": "2026-02-14T19:51:58.513408+03:00",
     "installed_path": "/home/developer/Applications/appflowy.AppImage",
     "verification": {
       "methods": [
         {
           "algorithm": "SHA256",
-          "computed": "0254da2f1cfcfc6930c529f2236a2723b7a013561d2780fcee8e2da039cf0247",
-          "expected": "sha256:0254da2f1cfcfc6930c529f2236a2723b7a013561d2780fcee8e2da039cf0247",
+          "computed": "9c751ba5f499448090bc40c91ea767bf3273b371b554eec451c9632db0203ffb",
+          "expected": "sha256:9c751ba5f499448090bc40c91ea767bf3273b371b554eec451c9632db0203ffb",
           "source": "github_api",
           "status": "passed",
           "type": "digest"
@@ -23,6 +23,6 @@
       ],
       "passed": true
     },
-    "version": "0.11.1"
+    "version": "0.11.2"
   }
 }

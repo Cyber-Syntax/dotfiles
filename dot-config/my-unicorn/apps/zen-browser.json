@@ -8,14 +8,14 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/zen-browser.png"
     },
-    "installed_date": "2026-02-07T15:58:57.913820+03:00",
+    "installed_date": "2026-02-16T16:37:57.722722+03:00",
     "installed_path": "/home/developer/Applications/zen-browser.AppImage",
     "verification": {
       "methods": [
         {
           "algorithm": "SHA256",
-          "computed": "1e655374f84bedeb6f0f3cb24afd1560f0421887957b6a9d5e47a77375f51ca7",
-          "expected": "sha256:1e655374f84bedeb6f0f3cb24afd1560f0421887957b6a9d5e47a77375f51ca7",
+          "computed": "97336217d330fdabfa0f3ba0172f3aba30b708688254f3a4fa6da9f67ccfcebc",
+          "expected": "sha256:97336217d330fdabfa0f3ba0172f3aba30b708688254f3a4fa6da9f67ccfcebc",
           "source": "github_api",
           "status": "passed",
           "type": "digest"
@@ -23,6 +23,6 @@
       ],
       "passed": true
     },
-    "version": "1.18.5b"
+    "version": "1.18.8b"
   }
 }

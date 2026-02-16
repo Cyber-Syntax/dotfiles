@@ -1,0 +1,25 @@
+{
+  "cached_at": "2026-01-25T10:04:44.990347+00:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "laurent22",
+    "repo": "joplin",
+    "version": "3.5.12",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "Joplin-3.5.12.AppImage",
+        "size": 158078830,
+        "digest": "sha256:63c24806ef8788e0631e4900828fd456b222342de8aa4fb3c2435d6c5b5d729f",
+        "browser_download_url": "https://github.com/laurent22/joplin/releases/download/v3.5.12/Joplin-3.5.12.AppImage"
+      },
+      {
+        "name": "Joplin-3.5.12.AppImage.sha512",
+        "size": 128,
+        "digest": "sha256:b90d79ccf53892ef359616ef90ba3c32be8603a368e27f2650b5c5415397f747",
+        "browser_download_url": "https://github.com/laurent22/joplin/releases/download/v3.5.12/Joplin-3.5.12.AppImage.sha512"
+      }
+    ],
+    "original_tag_name": "v3.5.12"
+  }
+}
