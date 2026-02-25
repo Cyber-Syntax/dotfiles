@@ -1,9 +1,16 @@
-#!/usr/bin/env python3
-import sys
-import subprocess
-import shlex
+#!/usr/bin/env -S uv run --script
+#
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#  "freetype-py",
+# ]
+# ///
 
-from freetype import Face, FT_LOAD_DEFAULT
+import subprocess
+import sys
+
+from freetype import Face
 
 
 def has_glyph(fontfile, char):
@@ -14,7 +21,7 @@ def has_glyph(fontfile, char):
         charcode = ord(char)
         glyph_index = face.get_char_index(charcode)
         return glyph_index != 0
-    except Exception as e:
+    except Exception:
         # skip fonts that FreeType can't open
         return False
 

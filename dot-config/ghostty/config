@@ -29,6 +29,7 @@
 font-size = 19
 theme = Catppuccin Latte
 window-theme = ghostty
+confirm-close-surface = false
 # window-padding-x = 2
 #
 # remove title-bar

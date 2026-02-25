@@ -6,7 +6,10 @@
 # ============================= EXEC ====================================
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
+# exec --no-startup-id dex --autostart --environment i3
+
+# exec dbus-update-activation-environment DISPLAY XAUTHORITY
+# exec dbus-update-activation-environment --all
 
 # layout that looks like a monadtall
 # https://github.com/olemartinorg/i3-alternating-layout
@@ -21,12 +24,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 
 # custom app/scripts
 exec_always --no-startup-id ~/Documents/my-repos/WallpaperChanger/main.py &
-exec flatpak run io.github.martchus.syncthingtray --wait &
 exec ~/Applications/zen-browser.AppImage &
-
-#NOTE: only locks not work when screen off
-#TODO: find a way to lock screen via i3lock?
-exec_always --no-startup-id xfce4-power-manager
 
 # ============================= ./EXEC ====================
 
