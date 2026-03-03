@@ -1,20 +1,20 @@
 return {
   {
     "LazyVim/LazyVim",
-    -- opts = {
-    --   --NOTE: migrated to gruvbox because of eyestrain (Some resource say, light better for people who have astigmatism)
-    --   colorsheme = "monokai-pro-classic",
-    -- },
+    opts = function(_, opts)
+      --NOTE: migrated to gruvbox because of eyestrain (Some resource say, light better for people who have astigmatism)
+      opts.colorscheme = "catppuccin-latte"
+    end,
   },
 
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      style = "day", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
-    },
-  },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {
+  --     style = "day", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
+  --   },
+  -- },
 
   --
   -- {

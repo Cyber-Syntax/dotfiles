@@ -18,6 +18,8 @@ eval "$(starship init zsh)"
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 # export cargo
 export PATH="$HOME/.local/share/cargo/bin:$PATH"
+# export doom
+export PATH="$HOME/.config/emacs/bin:$PATH"
 
 # -------------------------------------------------------------------
 # Added by AutoTarCompress to enable shell completion
@@ -162,6 +164,10 @@ ENABLE_CORRECTION="true"
 # -------------------------------------------------------------------
 # USER CONFIGURATION
 # -------------------------------------------------------------------
+
+# Virt-manager shared folder
+export VIRT_SHARED_FOLDER_DIR=/mnt/backups/virt-manager-share/shared-folder
+
 # XDG Base Directory Specification
 export XDG_STATE_HOME="$HOME/.local/state"
 
