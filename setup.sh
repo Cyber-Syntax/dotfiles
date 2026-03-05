@@ -123,6 +123,7 @@ setup() {
 --ignore=.stignore
 --ignore=stversions
 --ignore=docs
+--ignore=plans
 EOF
 }
 
