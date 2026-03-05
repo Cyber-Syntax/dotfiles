@@ -3,7 +3,7 @@ return {
     "LazyVim/LazyVim",
     opts = function(_, opts)
       --NOTE: migrated to gruvbox because of eyestrain (Some resource say, light better for people who have astigmatism)
-      opts.colorscheme = "catppuccin-latte"
+      opts.colorscheme = "catppuccin-mocha"
     end,
   },
 

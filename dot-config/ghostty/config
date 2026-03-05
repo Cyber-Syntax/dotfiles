@@ -27,7 +27,7 @@
 # # separated by equals signs.
 #font-family = Iosevka
 font-size = 19
-theme = Catppuccin Latte
+theme = Catppuccin Mocha
 window-theme = ghostty
 confirm-close-surface = false
 # window-padding-x = 2

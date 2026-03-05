@@ -15,19 +15,25 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-nord-light)
+(setq doom-theme 'doom-one)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
 ;;; -----------------------------------------------------------------------
-;;  DEFAULT DIRECTORY
+;;  DIRECTORY
 ;;; -----------------------------------------------------------------------
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Documents/orgfiles/")
+;; (setq org-directory "~/Documents/orgfiles/")
+
+  (setq org-agenda-files
+        (append
+         (directory-files-recursively "~/Documents/orgfiles/" "\\.org$")
+         (directory-files-recursively "~/Documents/my-repos/" "\\.org$")
+         (directory-files-recursively "~/dotfiles/" "\\.org$")))
 
 ;;; -----------------------------------------------------------------------
 ;;  FONTS
@@ -48,22 +54,44 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
-;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
-;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
-;; refresh your font settings. If Emacs still can't find your font, it likely
-;; wasn't installed correctly. Font issues are rarely Doom issues!
+;; If you or Emacs can't find your font, use 'M-x describe-font' for it, and
+;; 'M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
+;; refresh your font settings. Font issues are rarely Doom issues!
 
 ;; Increase fonts on emacs for better view
 (add-hook 'doom-init-ui-hook #'doom-big-font-mode)
 
 (setq doom-font (font-spec :family "JetBrainsMonoNL Nerd Font Propo" :size 19))
+
 ;; (setq doom-font "Terminus (TTF):pixelsize=12:antialias=off")
 ;; (setq doom-font "Fira Code-14")
 
-;; enable soft-wrapping
+;; ;; enable soft-wrapping
+;; (setq +word-wrap-extra-indent 'single)
+;; (setq +word-wrap-fill-style 'soft)
+;; ;; set soft wrap lenght to max 80
+;; (setq-default fill-column 80)
+;; (+global-word-wrap-mode +1)
+
+;; set up defaults for your soft wrap behaviour
 (setq +word-wrap-extra-indent 'single)
 (setq +word-wrap-fill-style 'soft)
-(+global-word-wrap-mode +1)
+(setq-default fill-column 80)
+
+;; disable global word wrap if you've enabled it before
+(+global-word-wrap-mode -1)
+
+;; enable soft wrap only in org-mode
+(add-hook 'org-mode-hook
+          (lambda ()
+            (+word-wrap-mode +1)
+            (setq-local fill-column 80)))
+
+;; enable soft wrap only in markdown-mode
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (+word-wrap-mode +1)
+            (setq-local fill-column 80)))
 
 ;;; -----------------------------------------------------------------------
 ;;  CUSTOM EMACS SETTINGS
@@ -123,7 +151,7 @@
 ;;; Notes:
 ;;; - Emacs must be running to receive notifications.
 ;;; - Times below are minutes BEFORE scheduled/deadline time.
-;;; - org-wild-notifier focuses on calendar-style notifications: 
+;;; - org-wild-notifier focuses on calendar-style notifications:
 ;;;     remind me 10 minutes before my meeting, not every 5 minutes until it happens.
 ;;; ---------------------------------------------------------------------------
 
@@ -159,121 +187,38 @@
   ;; org-wild-notifier-show-any-overdue-with-day-wide-alerts
   ;; Include overdue items in day-wide alerts (default: t)
 
+  ;; TODO: this isn't work for overdue tasks
   ;; remind about day‑wide items at 9 a.m. and 2 p.m.
   (setq org-wild-notifier-day-wide-alert-times '("09:00" "14:00"))
 
   (org-wild-notifier-mode 1))
 
-;; ;; CUSTOM TODO-KANBAN MANAGEMENT
-;; (after! org
-;; ;; This not fix either, make it remove enter usage on recur tasks
-;; ;; Fix: In Doom, `RET` in `evil-org-mode-map` motion state runs `+org/dwim-at-point`,
-;; ;; which *toggles todo headings* (and therefore advances repeating tasks).
-;; ;; Rebind RET to `org-return` so pressing Enter on a heading doesn't mark it DONE.
-;; ;; (This is independent from the kanban hook code.)
-;; (map! :after org
-;;       :map evil-org-mode-map
-;;       :m "RET" #'org-return)
-;;   ;; Workflow states
-;;   (setq org-todo-keywords
-;;         '((sequence "BACKLOG" "TODO" "DOING" "TEST" "DONE" "CANCELLED")))
+;; CUSTOM agenda
+;;
 
-;;   (setq org-todo-keyword-faces
-;;         '(("BACKLOG" . "purple")
-;;           ("TODO" . "tomato")
-;;           ("DOING" . "orange")
-;;           ("TEST" . "cyan")
-;;           ("DONE" . "forest green")
-;;           ("CANCELLED" . "gray")))
+;;(org-ql-search (org-agenda-files) '(and (todo) (scheduled :to -1)))
+;;
+(setq org-agenda-custom-commands
+      '(("o" "Overdue tasks"
+         ((org-ql-block
+           '(and (todo) (scheduled :to -1))
+           ((org-ql-block-header "Overdue scheduled tasks")))))))
 
-;;   ;; Move subtree preserving original headline stars (so *** stays ***)
-;;   (defun my/org--move-entry-to-top-heading (heading)
-;;     "Cut current Org subtree and insert it under a top-level *HEADING.
-;; The subtree is inserted verbatim so its original number of leading stars is preserved."
-;;     (when (org-at-heading-p)
-;;       (let* ((first-line (save-excursion (org-back-to-heading t) (buffer-substring-no-properties (point) (line-end-position))))
-;;              ;; copy subtree text (we capture it before cutting so we can insert it verbatim)
-;;              (subtree-text (progn (org-back-to-heading t) (org-copy-subtree) (current-kill 0)))
-;;              (orig-pos (point-marker)))
-;;         ;; remove the original subtree
-;;         (org-cut-subtree)
-;;         ;; find or create the top-level heading
-;;         (save-excursion
-;;           (goto-char (point-min))
-;;           (if (re-search-forward (concat "^\\* " (regexp-quote heading) "$") nil t)
-;;               (beginning-of-line)
-;;             ;; create the top-level heading at end of buffer
-;;             (goto-char (point-max))
-;;             (unless (bolp) (insert "\n"))
-;;             (insert (concat "* " heading "\n")))
-;;           ;; go to end of that heading's subtree
-;;           (org-end-of-subtree t t)
-;;           (unless (bolp) (insert "\n"))
-;;           ;; insert the subtree text verbatim (preserves stars)
-;;           (let ((insert-pos (point)))
-;;             (insert subtree-text)
-;;             ;; ensure there is a final newline
-;;             (unless (bolp) (insert "\n"))
-;;             ;; move point to start of inserted subtree for convenience
-;;             (goto-char insert-pos)
-;;             (when (search-forward (string-trim first-line) nil t)
-;;               (goto-char (match-beginning 0))))))))
+;; (setq org-agenda-custom-commands
+;;       '(("g" "GTD dashboard"
+;;          (;; Overdue = missed scheduled/deadline items (before today)
+;;           (tags-todo "SCHEDULED<\"<today>\"|DEADLINE<\"<today>\""
+;;                      ((org-agenda-overriding-header "Overdue")))
 
+;;           ;; Due = scheduled/deadline today
+;;           (tags-todo "SCHEDULED=\"<today>\"|DEADLINE=\"<today>\""
+;;                      ((org-agenda-overriding-header "Due today")))
 
-;; (defun my/org--is-recurring-task-p ()
-;;   "Return t if the current Org headline has a recurring SCHEDULED or DEADLINE.
+;;           ;; Priority A bucket (keep this)
+;;           (tags-todo "+PRIORITY=\"A\""
+;;                      ((org-agenda-overriding-header "Important tasks")))
 
-;; Detects Org repeaters inside planning timestamps, e.g.:
-;;   SCHEDULED: <2026-03-02 Mon 18:00 +1d>
-;;   DEADLINE:  <2026-03-02 Mon 18:00 ++1w>
-;;   SCHEDULED: <2026-03-02 Mon 18:00 .+2d>
-
-;; This scans the whole metadata/planning area because repeaters are part of the
-;; timestamp syntax and may not be exposed via `org-entry-get`."
-;;   (save-excursion
-;;     (org-back-to-heading t)
-;;     (let* ((end (save-excursion (org-end-of-meta-data t) (point)))
-;;            (meta (buffer-substring-no-properties (point) end)))
-;;       (string-match-p
-;;        (rx (or "SCHEDULED:" "DEADLINE:")
-;;            (* space)
-;;            (or "<" "[")
-;;            (+ (not (any ">]")))
-;;            (or ">" "]")
-;;            (* space)
-;;            (or "++" ".+" "+")
-;;            (+ digit)
-;;            (any "hdwmy"))
-;;        meta))))
-
-
-;;   ;; Hook to move on state change
-;;   (defun my/org-move-on-todo-state-change ()
-;;     "Move the current Org entry to the appropriate emoji-prefixed kanban column after state change.
-
-;; Important: Skip moving when Org is *repeating* a task (recurring SCHEDULED/DEADLINE).
-;; When a repeating task is completed, Org updates/reschedules it in-place. If we
-;; cut/paste the subtree at that moment, Org can no longer update the original
-;; heading correctly, leading to wrong columns like BACKLOG."
-;;     (when (and (derived-mode-p 'org-mode)
-;;                (org-at-heading-p)
-;;                ;; If this is a recurring task, let Org handle the repeat/reschedule
-;;                ;; without us moving the subtree.
-;;                (not (my/org--is-recurring-task-p))
-;;                ;; Also skip if Org is currently repeating the task as part of this
-;;                ;; state change (extra safety).
-;;                (not (bound-and-true-p org-log-repeat)))
-;;       (let ((state (org-get-todo-state)))
-;;         (cond
-;;          ((string= state "BACKLOG")
-;;           (my/org--move-entry-to-top-heading "📥 BACKLOG"))
-;;          ((string= state "TODO")
-;;           (my/org--move-entry-to-top-heading "🔲 TODO"))
-;;          ((string= state "DOING")
-;;           (my/org--move-entry-to-top-heading "🔁 DOING"))
-;;          ((string= state "TEST")
-;;           (my/org--move-entry-to-top-heading "📝 TEST"))
-;;          ((string= state "DONE")
-;;           (my/org--move-entry-to-top-heading "✅ DONE"))))))
-
-;;   (add-hook 'org-after-todo-state-change-hook #'my/org-move-on-todo-state-change))
+;;           ;; Hide "Backlog" completely by not showing it at all.
+;;           ;; If you want a "DOING" kanban lane instead, add a section like:
+;;           (todo "DOING" ((org-agenda-overriding-header "🔁 DOING")))
+;;           ))))

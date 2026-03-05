@@ -4,12 +4,20 @@
 # ============================= /.INFO ====================================
 
 # ============================= EXEC ====================================
+
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-# exec --no-startup-id dex --autostart --environment i3
+#TESTING:
+exec --no-startup-id dex --autostart --environment i3
 
+## DBUS
 # exec dbus-update-activation-environment DISPLAY XAUTHORITY
-# exec dbus-update-activation-environment --all
+# Alternative to above dbus-update-activation-environment command:
+exec dbus-update-activation-environment --all
+
+## GNOME KEYRING
+# exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+# script that need to run on bashrc if above not work
 
 # layout that looks like a monadtall
 # https://github.com/olemartinorg/i3-alternating-layout
@@ -23,6 +31,7 @@ exec --no-startup-id gammastep -c ~/.config/gammastep/config.ini &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 
 # custom app/scripts
+exec --no-startup-id emacs --daemon=doom
 exec_always --no-startup-id ~/Documents/my-repos/WallpaperChanger/main.py &
 exec ~/Applications/zen-browser.AppImage &
 
@@ -115,8 +124,7 @@ bindsym Mod4+f fullscreen toggle
 # bindsym Mod4+w exec i3-msg move window to output left
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym F1 restart
-
+# bindsym F1 restart
 # restart better to restart polybar etc.
 bindsym Mod4+ctrl+r exec bash -c "$HOME/.config/i3/scripts/restart-i3.sh"
 
@@ -208,6 +216,8 @@ assign [class="^FreeTube$"] 3
 assign [class="^Signal$"] 3
 assign [class="superProductivity"] 4
 assign [class="^Spotify$"] 5
+assign [class="^ncspot$"] 5
+assign [class="^SimpMusic$"] 5
 assign [class="^nuclear$"] 5
 assign [class="^easyeffects$"] 5
 assign [class="^Virt-manager$"] 5
