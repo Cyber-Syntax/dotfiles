@@ -1,6 +1,10 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
+;;; -----------------------------------------------------------------------
+;;; MELPA/ELPA/EMACSMIRROR PACKAGES
+;;; -----------------------------------------------------------------------
+;;
 ;; To install a package:
 ;;
 ;;   1. Declare them here in a `package!' statement,
@@ -8,8 +12,6 @@
 ;;   3. Restart Emacs.
 ;;
 ;; Use 'C-h f package\!' to look up documentation for the `package!' macro.
-
-
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
 ;;
@@ -17,24 +19,24 @@
 ;; for query
 (package! org-ql)
 
+;; for good agenda view
+(package! org-super-agenda)
+
+;; fold/unfold section headers in org-agenda buffers (TAB to toggle)
+;; FIXME: this isn't work yet, maybe github host would work
+;; https://github.com/gregsexton/origami.el
+;; (package! origami)
+
+;;; -----------------------------------------------------------------------
+;;; GITHUB PACKAGES
+;;; -----------------------------------------------------------------------
+;;
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/radian-software/straight.el#the-recipe-format
 ;; (package! another-package
 ;;   :recipe (:host github :repo "username/repo"))
-
-;; Notification plugin for agenda tasks
-(package! org-wild-notifier
-  :recipe (:host github
-           :repo "emacsorphanage/org-wild-notifier"
-           :files ("org-wild-notifier.el")))
-
-;; `alert' is the backend used by org-wild-notifier.  In case it's not
-;; available via your normal package archives, pull it directly from the
-;; official repository here as requested.
-(package! alert
-  :recipe (:host github :repo "jwiegley/alert"))
-
+;;
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
 ;; `:files' in the `:recipe':
@@ -44,6 +46,20 @@
 ;;
 ;;
 
+;; Notification plugin for agenda tasks
+(package! org-wild-notifier
+  :recipe (:host github
+           :repo "emacsorphanage/org-wild-notifier"
+           :files ("org-wild-notifier.el")))
+
+;; `alert' is the backend used by org-wild-notifier to handle priority notifications
+(package! alert
+  :recipe (:host github :repo "jwiegley/alert"))
+
+;;; -----------------------------------------------------------------------
+;;; OTHER ADVANCED CONFIGURATION FOR PACKAGES
+;;; -----------------------------------------------------------------------
+;;
 ;; If you'd like to disable a package included with Doom, you can do so here
 ;; with the `:disable' property:
 ;; (package! builtin-package :disable t)
@@ -61,7 +77,6 @@
 
 ;; Use `:pin' to specify a particular commit to install.
 ;; (package! builtin-package :pin "1a2b3c4d5e")
-
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
 ;; release. The `unpin!' macro allows you to unpin single packages...

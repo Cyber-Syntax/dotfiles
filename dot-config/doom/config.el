@@ -38,19 +38,19 @@
 ;;; -----------------------------------------------------------------------
 ;;  FONTS
 ;;; -----------------------------------------------------------------------
+;;
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
 ;; - `doom-font' -- the primary font to use
 ;; - `doom-variable-pitch-font' -- a non-monospace font (where applicable)
 ;; - `doom-big-font' -- used for `doom-big-font-mode'; use this for
 ;;   presentations or streaming.
-
 ;; - `doom-symbol-font' -- for symbols
 ;; - `doom-serif-font' -- for the `fixed-pitch-serif' face
 ;;
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
-
+;;
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 ;;
@@ -62,16 +62,6 @@
 (add-hook 'doom-init-ui-hook #'doom-big-font-mode)
 
 (setq doom-font (font-spec :family "JetBrainsMonoNL Nerd Font Propo" :size 19))
-
-;; (setq doom-font "Terminus (TTF):pixelsize=12:antialias=off")
-;; (setq doom-font "Fira Code-14")
-
-;; ;; enable soft-wrapping
-;; (setq +word-wrap-extra-indent 'single)
-;; (setq +word-wrap-fill-style 'soft)
-;; ;; set soft wrap lenght to max 80
-;; (setq-default fill-column 80)
-;; (+global-word-wrap-mode +1)
 
 ;; set up defaults for your soft wrap behaviour
 (setq +word-wrap-extra-indent 'single)
@@ -162,7 +152,7 @@
   (setq alert-default-style 'notifications)
 
   ;; times in minutes before the scheduled/deadline event
-  (setq org-wild-notifier-alert-time '(60 30 15 5 4 3 2 1))
+  (setq org-wild-notifier-alert-time '(30 15 5 4 3 2 1))
 
   ;; customisation requested by the user
   ;; Notification title and icon
@@ -193,32 +183,72 @@
 
   (org-wild-notifier-mode 1))
 
-;; CUSTOM agenda
-;;
+;;; -----------------------------------------------------------------------
+;;; CUSTOM AGENDA VIEWS
+;;; -----------------------------------------------------------------------
+;;;
+;;; org-super-agenda — GTD dashboard with file-grouped overflow
+;;;
+;;; Group order (first match wins):
+;;;   1. Overdue    — scheduled or deadline before today
+;;;   2. Today      — scheduled/deadline today + time-grid items
+;;;   3. Important  — priority A tasks
+;;;   4. DOING      — in-progress tasks
+;;;
+;;; ---------------------------------------------------------------------------
 
-;;(org-ql-search (org-agenda-files) '(and (todo) (scheduled :to -1)))
-;;
 (setq org-agenda-custom-commands
-      '(("o" "Overdue tasks"
-         ((org-ql-block
-           '(and (todo) (scheduled :to -1))
-           ((org-ql-block-header "Overdue scheduled tasks")))))))
+      '(("g" "Hugo view"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-super-agenda-groups
+                       '((:name "Today"
+                          :time-grid t
+                          :date today
+                          :todo "TODAY"
+                          :scheduled today
+                          :order 1)))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-super-agenda-groups
+                        '(;; Each group has an implicit boolean OR operator between its selectors.
+                          (:name "Deadline Today"
+                           :deadline today
+                           :face (:background "black"))
+                          (:name "Scheduled Today"
+                           :scheduled today)
+                          (:name "Passed Deadline"
+                           :and (:deadline past :todo ("TODO" "WAITING" "HOLD" "NEXT"))
+                           :face (:background "#7f1b19"))
+                          (:name "Work important"
+                           :and (:priority>= "B" :category "Work" :todo ("TODO" "NEXT")))
+                          (:name "Work other"
+                           :and (:category "Work" :todo ("TODO" "NEXT")))
+                          (:name "Important"
+                           :priority "A")
+                          (:priority<= "B"
+                           ;; Show this section after "Today" and "Important", because
+                           ;; their order is unspecified, defaulting to 0. Sections
+                           ;; are displayed lowest-number-first.
+                           :order 1)
+                          (:name "Papers"
+                           :file-path "org/roam/notes")
+                          (:name "Waiting"
+                           :todo "WAITING"
+                           :order 9)
+                          (:name "On hold"
+                           :todo "HOLD"
+                           :order 10)))))))))
+(add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
-;; (setq org-agenda-custom-commands
-;;       '(("g" "GTD dashboard"
-;;          (;; Overdue = missed scheduled/deadline items (before today)
-;;           (tags-todo "SCHEDULED<\"<today>\"|DEADLINE<\"<today>\""
-;;                      ((org-agenda-overriding-header "Overdue")))
+;; ;;; origami — fold/unfold sections in the agenda buffer only
+;; ;;;
+;; ;;; TAB toggles the fold state of the section header under point.
+;; ;;; Origami is hooked only to org-agenda-mode so it does not interfere
+;; ;;; with the native folding in regular org-mode buffers.
+;; ;;; ---------------------------------------------------------------------------
 
-;;           ;; Due = scheduled/deadline today
-;;           (tags-todo "SCHEDULED=\"<today>\"|DEADLINE=\"<today>\""
-;;                      ((org-agenda-overriding-header "Due today")))
+;; ;; (use-package origami
+;; ;;   :hook (org-agenda-mode . origami-mode)
+;; ;;   :bind (:map org-agenda-mode-map
+;; ;;          ("TAB" . origami-toggle-node)))
 
-;;           ;; Priority A bucket (keep this)
-;;           (tags-todo "+PRIORITY=\"A\""
-;;                      ((org-agenda-overriding-header "Important tasks")))
 
-;;           ;; Hide "Backlog" completely by not showing it at all.
-;;           ;; If you want a "DOING" kanban lane instead, add a section like:
-;;           (todo "DOING" ((org-agenda-overriding-header "🔁 DOING")))
-;;           ))))
