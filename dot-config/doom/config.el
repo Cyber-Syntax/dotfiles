@@ -88,6 +88,28 @@
 ;;; -----------------------------------------------------------------------
 (setq confirm-kill-emacs nil)        ;; Don't confirm on exit
 
+
+;;; TODO keywords and faces
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "HOLD(h@/!)" "SOMEDAY(s)" "|" "DONE(d)" "CANCELLED(c)")))
+
+(setq org-todo-keyword-faces
+      '(("WAITING" . (:foreground "orange" :weight bold))
+        ("HOLD"    . (:foreground "magenta"))
+        ("SOMEDAY" . (:foreground "gray"))))
+
+;; Custom agenda command: "a" shows agenda + todos, but skips backlog-like states
+(setq org-agenda-custom-commands
+      '(("a" "Agenda and actionable todos (skip SOMEDAY/HOLD/WAITING)"
+         ((agenda "" nil)
+          (todo "TODO|NEXT"
+                ((org-agenda-skip-function
+                  '(org-agenda-skip-entry-if 'todo '("SOMEDAY" "HOLD" "WAITING")))))))))
+
+
+;; ;; Alternative: maintain a separate backlog file (not included in `org-agenda-files`)
+;; (setq org-agenda-files '("~/org/tasks.org" "~/org/projects.org")) ; don't add backlog.org
+
 ;;; -----------------------------------------------------------------------
 ;;; EMACS PLUGINS
 ;;; -----------------------------------------------------------------------
@@ -190,17 +212,15 @@
 ;;; org-super-agenda — GTD dashboard with file-grouped overflow
 ;;;
 ;;; Group order (first match wins):
-;;;   1. Overdue    — scheduled or deadline before today
+;;;   1. Overdue    — scheduled past without a deadline
 ;;;   2. Today      — scheduled/deadline today + time-grid items
 ;;;   3. Important  — priority A tasks
 ;;;   4. DOING      — in-progress tasks
 ;;;
 ;;; ---------------------------------------------------------------------------
 
-(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
-
 (setq org-agenda-custom-commands
-      '(("g" "Hugo view"
+      '(("g" "GTD Dashboard"
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '((:name "Today"
@@ -217,8 +237,9 @@
                            :face (:background "#7f1b19"))
                           (:name "Scheduled Today"
                            :scheduled today)
-                          (:name "Overdue Tasks"
-                           :scheduled past)
+                          (:name "Overdue Tasks (No Deadline)"
+                           ;; Show only scheduled past tasks that don't have a deadline
+                           :and (:scheduled past :not (:deadline t)))
                           (:name "Passed Deadline"
                            :deadline past)
                           (:name "Work important"
@@ -236,10 +257,16 @@
                            :file-path "org/roam/notes")
                           (:name "Waiting"
                            :todo "WAITING"
-                           :order 9)
+                           :order 8)
                           (:name "On hold"
                            :todo "HOLD"
-                           :order 10)))))))))
+                           :order 9)
+                          (:name "Someday/Maybe"
+                           :todo "SOMEDAY"
+                           :order 10)
+                          (:name "Cancelled"
+                           :todo "CANCELLED"
+                           :order 11)))))))))
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
 ;; ;;; origami — fold/unfold sections in the agenda buffer only
@@ -253,5 +280,3 @@
 ;; ;;   :hook (org-agenda-mode . origami-mode)
 ;; ;;   :bind (:map org-agenda-mode-map
 ;; ;;          ("TAB" . origami-toggle-node)))
-
-
