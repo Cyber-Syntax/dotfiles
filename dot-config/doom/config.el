@@ -88,24 +88,25 @@
 ;;; -----------------------------------------------------------------------
 (setq confirm-kill-emacs nil)        ;; Don't confirm on exit
 
-
 ;;; TODO keywords and faces
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "WAITING(w@/!)" "HOLD(h@/!)" "SOMEDAY(s)" "|" "DONE(d)" "CANCELLED(c)")))
+;;; after! org ensures your settings apply after Org mode initializes.
+;;;
+;;; ‘!’ (for a timestamp) or ‘@’ (for a note with timestamp)
+(after! org
+  (setq org-todo-keywords
+      '((sequence "TODO(t)" "DOING(i!)" "BLOCKED(w@/!)" "|" "DONE(d!)")
+          (sequence "TESTING(e!)" "|" "Released(r!)")
+          (sequence "BACKLOG(k)" "|" "SOMEDAY(s)")
+          (sequence "BUG(b)" "|" "FIXED(f!)")
+          (sequence "|" "CANCELED(c!)")))
 
-(setq org-todo-keyword-faces
-      '(("WAITING" . (:foreground "orange" :weight bold))
-        ("HOLD"    . (:foreground "magenta"))
-        ("SOMEDAY" . (:foreground "gray"))))
-
-;; Custom agenda command: "a" shows agenda + todos, but skips backlog-like states
-(setq org-agenda-custom-commands
-      '(("a" "Agenda and actionable todos (skip SOMEDAY/HOLD/WAITING)"
-         ((agenda "" nil)
-          (todo "TODO|NEXT"
-                ((org-agenda-skip-function
-                  '(org-agenda-skip-entry-if 'todo '("SOMEDAY" "HOLD" "WAITING")))))))))
-
+  (setq org-todo-keyword-faces
+        '(("BLOCKED" . (:inherit (bold org-todo) :foreground "#f5870a"))
+          ("DOING"   . (:inherit (bold org-todo) :foreground "#355bf2"))
+          ("TESTING" . (:inherit (bold org-todo) :foreground "#f2ea02"))
+          ("HOLD"    . (:inherit (bold org-todo) :foreground "#8638fc"))
+          ("SOMEDAY" . (:inherit (bold org-todo) :foreground "gray"))
+          ("BUG"     . (:inherit (bold org-todo) :foreground "red")))))
 
 ;; ;; Alternative: maintain a separate backlog file (not included in `org-agenda-files`)
 ;; (setq org-agenda-files '("~/org/tasks.org" "~/org/projects.org")) ; don't add backlog.org
@@ -244,6 +245,8 @@
                            :deadline past)
                           (:name "Work important"
                            :and (:priority>= "B" :category "Work" :todo ("TODO" "NEXT")))
+                          (:name "DOING"
+                           :todo "DOING")
                           (:name "Work other"
                            :and (:category "Work" :todo ("TODO" "NEXT")))
                           (:name "Important"
@@ -253,14 +256,9 @@
                            ;; their order is unspecified, defaulting to 0. Sections
                            ;; are displayed lowest-number-first.
                            :order 1)
-                          (:name "Papers"
-                           :file-path "org/roam/notes")
-                          (:name "Waiting"
-                           :todo "WAITING"
+                          (:name "Blocked"
+                           :todo "BLOCKED"
                            :order 8)
-                          (:name "On hold"
-                           :todo "HOLD"
-                           :order 9)
                           (:name "Someday/Maybe"
                            :todo "SOMEDAY"
                            :order 10)
