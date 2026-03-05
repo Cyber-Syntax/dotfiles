@@ -197,6 +197,8 @@
 ;;;
 ;;; ---------------------------------------------------------------------------
 
+(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+
 (setq org-agenda-custom-commands
       '(("g" "Hugo view"
          ((agenda "" ((org-agenda-span 'day)
@@ -212,12 +214,13 @@
                         '(;; Each group has an implicit boolean OR operator between its selectors.
                           (:name "Deadline Today"
                            :deadline today
-                           :face (:background "black"))
+                           :face (:background "#7f1b19"))
                           (:name "Scheduled Today"
                            :scheduled today)
+                          (:name "Overdue Tasks"
+                           :scheduled past)
                           (:name "Passed Deadline"
-                           :and (:deadline past :todo ("TODO" "WAITING" "HOLD" "NEXT"))
-                           :face (:background "#7f1b19"))
+                           :deadline past)
                           (:name "Work important"
                            :and (:priority>= "B" :category "Work" :todo ("TODO" "NEXT")))
                           (:name "Work other"
