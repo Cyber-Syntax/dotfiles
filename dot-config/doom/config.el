@@ -110,7 +110,8 @@
 ;;; -----------------------------------------------------------------------
 (setq confirm-kill-emacs nil)        ;; Don't confirm on exit
 
-;;; TODO keywords and faces
+;;; -----------------------------------------------------------------------
+;;; CUSTOM TODO STATES
 ;;;
 ;;; after! org ensures your settings apply after Org mode initializes.
 ;;;
@@ -118,11 +119,11 @@
 ;;;
 ;;; NOTE: You can't list DONE, CANCELED, or FIXED on your custom agenda views,
 ;;; because they are considered "done" states.
-;;;
+;;; -----------------------------------------------------------------------
+
 (after! org
   (setq org-todo-keywords
-      '((sequence "TODO(t)" "DOING(i!)" "BLOCKED(w@/!)" "|" "DONE(d!)")
-          (sequence "TESTING(e!)" "|" "Released(r!)")
+      '((sequence "TODO(t)" "DOING(i!)" "TESTING(e!)" "BLOCKED(w@/!)" "BUY(B)" "READ(r)" "WATCH(v)" "|" "DONE(d!)")
           (sequence "BACKLOG(k@/!)" "SOMEDAY(s)" "|" "CANCELED(c!)")
           (sequence "BUG(b)" "|" "FIXED(f!)")))
 
@@ -254,6 +255,10 @@
 ;;;
 ;;; ---------------------------------------------------------------------------
 
+;; Fixes the keybind(jk) issue on org-super-agenda.
+(after! org-super-agenda
+  (setq org-super-agenda-header-map (make-sparse-keymap)))
+
 (setq org-agenda-start-day nil) ; Sets the agenda to start on today (fixes wrong date)
 (setq org-agenda-todo-ignore-deadlines nil)
 (setq org-agenda-skip-scheduled-if-done t
@@ -318,12 +323,21 @@
                           (:name "Backlog"
                            :todo "BACKLOG"
                            :order 12)
+                          (:name "Read"
+                           :todo "READ"
+                           :order 13)
+                          (:name "Watch"
+                           :todo "WATCH"
+                           :order 14)
+                          (:name "Buy"
+                           :todo "BUY"
+                           :order 15)
                           (:name "Next Tasks"
                            :todo "TODO"
-                           :order 13)
+                           :order 16)
                           (:name "SOMEDAY"
                            :todo "SOMEDAY"
-                           :order 14)
+                           :order 17)
                           ;; Discard all remaining items, hide other-items
                           (:discard (:anything t))))))))))
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
