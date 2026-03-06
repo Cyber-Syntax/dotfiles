@@ -1,0 +1,66 @@
+{
+  "catalog_ref": null,
+  "config_version": "2.0.0",
+  "overrides": {
+    "appimage": {
+      "naming": {
+        "architectures": [
+          "amd64",
+          "x86_64"
+        ],
+        "target_name": "muffon",
+        "template": ""
+      }
+    },
+    "icon": {
+      "filename": "muffon.png",
+      "method": "extraction"
+    },
+    "metadata": {
+      "description": "",
+      "display_name": "muffon",
+      "name": "muffon"
+    },
+    "source": {
+      "owner": "staniel359",
+      "prerelease": false,
+      "repo": "muffon",
+      "type": "github"
+    },
+    "verification": {
+      "method": "digest"
+    }
+  },
+  "source": "url",
+  "state": {
+    "icon": {
+      "installed": true,
+      "method": "extraction",
+      "path": "/home/developer/Applications/icons/muffon.png"
+    },
+    "installed_date": "2026-02-22T20:23:37.190636+03:00",
+    "installed_path": "/home/developer/Applications/muffon.AppImage",
+    "verification": {
+      "methods": [
+        {
+          "algorithm": "SHA256",
+          "computed": "06b3e5bc79f084ca0f566f0015ae9b17c03f8c20f0294ca7926c419703e6b227",
+          "expected": "sha256:06b3e5bc79f084ca0f566f0015ae9b17c03f8c20f0294ca7926c419703e6b227",
+          "source": "github_api",
+          "status": "passed",
+          "type": "digest"
+        },
+        {
+          "algorithm": "SHA512",
+          "computed": "3e4a254ce6826e74800e6a80c387a3e688c052e628feaece818a396bbd863db923cd7eb5e2bb6ad11ad14abb4d6a81e55665c39847c97c7360d11734c3df26d3",
+          "expected": "3e4a254ce6826e74800e6a80c387a3e688c052e628feaece818a396bbd863db923cd7eb5e2bb6ad11ad14abb4d6a81e55665c39847c97c7360d11734c3df26d3",
+          "source": "https://github.com/staniel359/muffon/releases/download/v2.4.0/latest-linux.yml",
+          "status": "passed",
+          "type": "checksum_file"
+        }
+      ],
+      "passed": true
+    },
+    "version": "2.4.0"
+  }
+}

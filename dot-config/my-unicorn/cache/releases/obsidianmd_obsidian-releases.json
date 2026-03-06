@@ -1,19 +1,19 @@
 {
-  "cached_at": "2026-02-16T17:22:36.985557+03:00",
+  "cached_at": "2026-03-06T14:47:22.588200+03:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "obsidianmd",
     "repo": "obsidian-releases",
-    "version": "1.11.7",
+    "version": "1.12.4",
     "prerelease": false,
     "assets": [
       {
-        "name": "Obsidian-1.11.7.AppImage",
-        "size": 124497400,
-        "digest": "sha256:cabb130eb8fb7fc92c0f1b2357a17a351691edd10d0d718d27ac4fe216772ad4",
-        "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.11.7/Obsidian-1.11.7.AppImage"
+        "name": "Obsidian-1.12.4.AppImage",
+        "size": 124009781,
+        "digest": "sha256:0e9d2e5a56f32d92ee4f809574f94ea4f789c9c0fd742d4c19a4fe744e232718",
+        "browser_download_url": "https://github.com/obsidianmd/obsidian-releases/releases/download/v1.12.4/Obsidian-1.12.4.AppImage"
       }
     ],
-    "original_tag_name": "v1.11.7"
+    "original_tag_name": "v1.12.4"
   }
 }

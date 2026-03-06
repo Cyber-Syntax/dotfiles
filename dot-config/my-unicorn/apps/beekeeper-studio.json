@@ -8,29 +8,29 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/beekeeper-studio.png"
     },
-    "installed_date": "2026-02-10T10:44:27.675628+03:00",
+    "installed_date": "2026-03-05T12:06:48.673566+03:00",
     "installed_path": "/home/developer/Applications/beekeeper-studio.AppImage",
     "verification": {
       "methods": [
         {
           "algorithm": "SHA256",
-          "computed": "683a9deddb5f8bb765a9f940c8b2c5dfae64b2518c19013126f2d9aaf8461b40",
-          "expected": "sha256:683a9deddb5f8bb765a9f940c8b2c5dfae64b2518c19013126f2d9aaf8461b40",
+          "computed": "1da5dd5e930100044b11a562af36bdbe10b00ad37c7d674463bb16a1762ff35c",
+          "expected": "sha256:1da5dd5e930100044b11a562af36bdbe10b00ad37c7d674463bb16a1762ff35c",
           "source": "github_api",
           "status": "passed",
           "type": "digest"
         },
         {
           "algorithm": "SHA512",
-          "computed": "337196e4c9c3e41d5c79ba7ddd896df85eba9bc3a5b21e6e7c2fc7064df6811f5b887d846d8576ec4be4e6a833454adda5d9a61e581174788383ed257736a003",
-          "expected": "337196e4c9c3e41d5c79ba7ddd896df85eba9bc3a5b21e6e7c2fc7064df6811f5b887d846d8576ec4be4e6a833454adda5d9a61e581174788383ed257736a003",
-          "source": "https://github.com/beekeeper-studio/beekeeper-studio/releases/download/v5.5.7/latest-linux.yml",
+          "computed": "c33aff06107c9c8be18d2afdbacd5a0d0d9f77a1649981ae881627cc247b83a5de798c020bbeb29f3d3b7a33470831ee29ceb76ff02399262f012f00748c8401",
+          "expected": "c33aff06107c9c8be18d2afdbacd5a0d0d9f77a1649981ae881627cc247b83a5de798c020bbeb29f3d3b7a33470831ee29ceb76ff02399262f012f00748c8401",
+          "source": "https://github.com/beekeeper-studio/beekeeper-studio/releases/download/v5.6.0/latest-linux.yml",
           "status": "passed",
           "type": "checksum_file"
         }
       ],
       "passed": true
     },
-    "version": "5.5.7"
+    "version": "5.6.0"
   }
 }

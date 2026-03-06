@@ -8,21 +8,29 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/heroicgameslauncher.png"
     },
-    "installed_date": "2026-02-03T21:37:12.736751+03:00",
+    "installed_date": "2026-02-27T16:39:37.900891+03:00",
     "installed_path": "/home/developer/Applications/heroicgameslauncher.AppImage",
     "verification": {
       "methods": [
         {
-          "algorithm": "sha256",
-          "computed": "d405ca3a029d51d3b478fca5fda05eeb60908dcd6e9e11bd2f17161c173f1240",
-          "expected": "d405ca3a029d51d3b478fca5fda05eeb60908dcd6e9e11bd2f17161c173f1240",
+          "algorithm": "SHA256",
+          "computed": "e45f524abecf8b61df8906973057e542fa6eba71f753ae656e99a4ba1406bb01",
+          "expected": "sha256:e45f524abecf8b61df8906973057e542fa6eba71f753ae656e99a4ba1406bb01",
           "source": "github_api",
           "status": "passed",
           "type": "digest"
+        },
+        {
+          "algorithm": "SHA512",
+          "computed": "751adbb718a0e3818fa98b4f66882e2e08a25cfde0931eeeeb9b50c870c3ad6336beebd91d1079433a23c38cd130cb39acc15d9678957a6dedda322b54219fc4",
+          "expected": "751adbb718a0e3818fa98b4f66882e2e08a25cfde0931eeeeb9b50c870c3ad6336beebd91d1079433a23c38cd130cb39acc15d9678957a6dedda322b54219fc4",
+          "source": "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.20.1/latest-linux.yml",
+          "status": "passed",
+          "type": "checksum_file"
         }
       ],
       "passed": true
     },
-    "version": "2.19.1"
+    "version": "2.20.1"
   }
 }

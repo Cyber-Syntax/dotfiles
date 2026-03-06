@@ -1,19 +1,19 @@
 {
-  "cached_at": "2026-02-16T17:22:38.038675+03:00",
+  "cached_at": "2026-03-06T14:47:23.390347+03:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "FreeTubeApp",
     "repo": "FreeTube",
-    "version": "0.23.13-beta",
+    "version": "0.23.14-beta",
     "prerelease": true,
     "assets": [
       {
-        "name": "freetube-0.23.13-beta-amd64.AppImage",
+        "name": "freetube-0.23.14-beta-amd64.AppImage",
         "size": 99723768,
-        "digest": "sha256:3072b0e2a608b47a9569790f7e017001c76eddc3144186adea1faefa165a7b3c",
-        "browser_download_url": "https://github.com/FreeTubeApp/FreeTube/releases/download/v0.23.13-beta/freetube-0.23.13-beta-amd64.AppImage"
+        "digest": "sha256:10f6d27d9e1abe6e8aefcd07e09b94700e65d07864e1365b079e5a8e7fb01168",
+        "browser_download_url": "https://github.com/FreeTubeApp/FreeTube/releases/download/v0.23.14-beta/freetube-0.23.14-beta-amd64.AppImage"
       }
     ],
-    "original_tag_name": "v0.23.13-beta"
+    "original_tag_name": "v0.23.14-beta"
   }
 }

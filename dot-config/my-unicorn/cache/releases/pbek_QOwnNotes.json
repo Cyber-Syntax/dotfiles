@@ -1,25 +1,25 @@
 {
-  "cached_at": "2026-02-16T17:22:37.000379+03:00",
+  "cached_at": "2026-03-06T14:47:23.021130+03:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "pbek",
     "repo": "QOwnNotes",
-    "version": "26.2.4",
+    "version": "26.3.4",
     "prerelease": false,
     "assets": [
       {
         "name": "QOwnNotes-x86_64.AppImage",
-        "size": 43616760,
-        "digest": "sha256:6ebbfe59dfdcb9e734535d541f41ba1af4728d8dae645e409b335019ff2ba195",
-        "browser_download_url": "https://github.com/pbek/QOwnNotes/releases/download/v26.2.4/QOwnNotes-x86_64.AppImage"
+        "size": 43747832,
+        "digest": "sha256:b4ee253b06be75b458673bcabaf4610191099ed34ee850082e5ce724c9ae8cd0",
+        "browser_download_url": "https://github.com/pbek/QOwnNotes/releases/download/v26.3.4/QOwnNotes-x86_64.AppImage"
       },
       {
         "name": "QOwnNotes-x86_64.AppImage.sha256sum",
         "size": 92,
-        "digest": "sha256:fb171829559dc69008148690243be2f5f482917ad8ae3d727dba4dedaeed9004",
-        "browser_download_url": "https://github.com/pbek/QOwnNotes/releases/download/v26.2.4/QOwnNotes-x86_64.AppImage.sha256sum"
+        "digest": "sha256:6a28910e06105853fa7c3fb0ed05f991ecd5b8a604641bcdc3231d4bffa08e9f",
+        "browser_download_url": "https://github.com/pbek/QOwnNotes/releases/download/v26.3.4/QOwnNotes-x86_64.AppImage.sha256sum"
       }
     ],
-    "original_tag_name": "v26.2.4"
+    "original_tag_name": "v26.3.4"
   }
 }

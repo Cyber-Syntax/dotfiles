@@ -8,23 +8,23 @@
           "amd64",
           "x86_64"
         ],
-        "target_name": "nuclear",
+        "target_name": "simpmusic",
         "template": ""
       }
     },
     "icon": {
-      "filename": "nuclear.png",
+      "filename": "simpmusic.png",
       "method": "extraction"
     },
     "metadata": {
       "description": "",
-      "display_name": "nuclear",
-      "name": "nuclear"
+      "display_name": "SimpMusic",
+      "name": "SimpMusic"
     },
     "source": {
-      "owner": "nukeop",
+      "owner": "maxrave-dev",
       "prerelease": false,
-      "repo": "nuclear",
+      "repo": "SimpMusic",
       "type": "github"
     },
     "verification": {
@@ -36,16 +36,16 @@
     "icon": {
       "installed": true,
       "method": "extraction",
-      "path": "/home/developer/Applications/icons/nuclear.png"
+      "path": "/home/developer/Applications/icons/simpmusic.png"
     },
-    "installed_date": "2026-03-05T20:13:24.188892+03:00",
-    "installed_path": "/home/developer/Applications/nuclear.AppImage",
+    "installed_date": "2026-02-27T16:39:46.493288+03:00",
+    "installed_path": "/home/developer/Applications/simpmusic.AppImage",
     "verification": {
       "methods": [
         {
           "algorithm": "SHA256",
-          "computed": "301549b2dc35a5ce18afa8a4bf4513dabe1450093ad7d1e8d70f8d0a859e4fd1",
-          "expected": "sha256:301549b2dc35a5ce18afa8a4bf4513dabe1450093ad7d1e8d70f8d0a859e4fd1",
+          "computed": "d11fbf57b75ccd80e3826853b3ce7eba435b09f12eee89e0d830838216956df1",
+          "expected": "sha256:d11fbf57b75ccd80e3826853b3ce7eba435b09f12eee89e0d830838216956df1",
           "source": "github_api",
           "status": "passed",
           "type": "digest"
@@ -53,6 +53,6 @@
       ],
       "passed": true
     },
-    "version": "1.16.0"
+    "version": "1.0.4"
   }
 }

@@ -8,14 +8,14 @@
       "method": "extraction",
       "path": "/home/developer/Applications/icons/freetube.png"
     },
-    "installed_date": "2026-02-03T21:37:24.964751+03:00",
+    "installed_date": "2026-03-05T20:13:21.746295+03:00",
     "installed_path": "/home/developer/Applications/freetube.AppImage",
     "verification": {
       "methods": [
         {
-          "algorithm": "sha256",
-          "computed": "2192afeea12f727f83044decbe0bdd92b0e98c78f6d22f9e613640419b16e44a",
-          "expected": "2192afeea12f727f83044decbe0bdd92b0e98c78f6d22f9e613640419b16e44a",
+          "algorithm": "SHA256",
+          "computed": "10f6d27d9e1abe6e8aefcd07e09b94700e65d07864e1365b079e5a8e7fb01168",
+          "expected": "sha256:10f6d27d9e1abe6e8aefcd07e09b94700e65d07864e1365b079e5a8e7fb01168",
           "source": "github_api",
           "status": "passed",
           "type": "digest"
@@ -23,6 +23,6 @@
       ],
       "passed": true
     },
-    "version": "0.23.13-beta"
+    "version": "0.23.14-beta"
   }
 }

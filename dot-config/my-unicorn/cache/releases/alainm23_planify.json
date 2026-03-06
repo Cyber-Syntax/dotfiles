@@ -1,0 +1,12 @@
+{
+  "cached_at": "2026-02-26T20:07:59.213296+03:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "alainm23",
+    "repo": "planify",
+    "version": "4.18.0",
+    "prerelease": false,
+    "assets": [],
+    "original_tag_name": "v4.18.0"
+  }
+}

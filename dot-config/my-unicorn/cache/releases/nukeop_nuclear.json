@@ -1,0 +1,19 @@
+{
+  "cached_at": "2026-03-06T14:47:22.600373+03:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "nukeop",
+    "repo": "nuclear",
+    "version": "1.16.0",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "nuclear-music-player_1.16.0_amd64.AppImage",
+        "size": 100149752,
+        "digest": "sha256:301549b2dc35a5ce18afa8a4bf4513dabe1450093ad7d1e8d70f8d0a859e4fd1",
+        "browser_download_url": "https://github.com/nukeop/nuclear/releases/download/player%401.16.0/nuclear-music-player_1.16.0_amd64.AppImage"
+      }
+    ],
+    "original_tag_name": "player@1.16.0"
+  }
+}

@@ -1,19 +1,19 @@
 {
-  "cached_at": "2026-02-16T17:22:37.003043+03:00",
+  "cached_at": "2026-03-06T14:47:22.995058+03:00",
   "ttl_hours": 24,
   "release_data": {
     "owner": "AppFlowy-IO",
     "repo": "AppFlowy",
-    "version": "0.11.2",
+    "version": "0.11.3",
     "prerelease": false,
     "assets": [
       {
-        "name": "AppFlowy-0.11.2-linux-x86_64.AppImage",
-        "size": 82541048,
-        "digest": "sha256:9c751ba5f499448090bc40c91ea767bf3273b371b554eec451c9632db0203ffb",
-        "browser_download_url": "https://github.com/AppFlowy-IO/AppFlowy/releases/download/0.11.2/AppFlowy-0.11.2-linux-x86_64.AppImage"
+        "name": "AppFlowy-0.11.3-linux-x86_64.AppImage",
+        "size": 82549240,
+        "digest": "sha256:6f3aed7f7b49ae870e1b115651f4e05f8621a2b85fd150290eaaf3460e5ef199",
+        "browser_download_url": "https://github.com/AppFlowy-IO/AppFlowy/releases/download/0.11.3/AppFlowy-0.11.3-linux-x86_64.AppImage"
       }
     ],
-    "original_tag_name": "0.11.2"
+    "original_tag_name": "0.11.3"
   }
 }

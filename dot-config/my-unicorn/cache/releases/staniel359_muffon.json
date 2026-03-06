@@ -1,0 +1,25 @@
+{
+  "cached_at": "2026-03-06T14:47:22.873162+03:00",
+  "ttl_hours": 24,
+  "release_data": {
+    "owner": "staniel359",
+    "repo": "muffon",
+    "version": "2.4.0",
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "latest-linux.yml",
+        "size": 866,
+        "digest": "sha256:fa65b0ca6015938f805cd30199c1d941afba2894a0c64bc7bcbcf305270da62f",
+        "browser_download_url": "https://github.com/staniel359/muffon/releases/download/v2.4.0/latest-linux.yml"
+      },
+      {
+        "name": "muffon-2.4.0-linux-x86_64.AppImage",
+        "size": 125974506,
+        "digest": "sha256:06b3e5bc79f084ca0f566f0015ae9b17c03f8c20f0294ca7926c419703e6b227",
+        "browser_download_url": "https://github.com/staniel359/muffon/releases/download/v2.4.0/muffon-2.4.0-linux-x86_64.AppImage"
+      }
+    ],
+    "original_tag_name": "v2.4.0"
+  }
+}
