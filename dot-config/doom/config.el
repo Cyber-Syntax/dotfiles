@@ -111,16 +111,20 @@
 (setq confirm-kill-emacs nil)        ;; Don't confirm on exit
 
 ;;; TODO keywords and faces
+;;;
 ;;; after! org ensures your settings apply after Org mode initializes.
 ;;;
 ;;; ‘!’ (for a timestamp) or ‘@’ (for a note with timestamp)
+;;;
+;;; NOTE: You can't list DONE, CANCELED, or FIXED on your custom agenda views,
+;;; because they are considered "done" states.
+;;;
 (after! org
   (setq org-todo-keywords
       '((sequence "TODO(t)" "DOING(i!)" "BLOCKED(w@/!)" "|" "DONE(d!)")
           (sequence "TESTING(e!)" "|" "Released(r!)")
-          (sequence "BACKLOG(k)" "|" "SOMEDAY(s)")
-          (sequence "BUG(b)" "|" "FIXED(f!)")
-          (sequence "|" "CANCELED(c!)")))
+          (sequence "BACKLOG(k@/!)" "SOMEDAY(s)" "|" "CANCELED(c!)")
+          (sequence "BUG(b)" "|" "FIXED(f!)")))
 
   (setq org-todo-keyword-faces
         '(("BLOCKED" . (:inherit (bold org-todo) :foreground "#f5870a"))
@@ -232,19 +236,36 @@
 ;;; CUSTOM AGENDA VIEWS
 ;;; -----------------------------------------------------------------------
 ;;;
-;;; org-super-agenda — GTD dashboard with file-grouped overflow
+;;; org-super-agenda — Dashboard with file-grouped overflow
 ;;;
 ;;; Group order (first match wins):
-;;;   1. Overdue    — scheduled past without a deadline
-;;;   2. Today      — scheduled/deadline today + time-grid items
-;;;   3. Important  — priority A tasks
-;;;   4. DOING      — in-progress tasks
+;;;   1. Today: scheduled today, deadline today, TODO "TODAY", time-grid items for today
+;;;   2. Overdue Tasks (No Deadline): scheduled past tasks that don't have a deadline
+;;;   3. Scheduled Today: scheduled today
+;;;   4. Testing: TODO "TESTING"
+;;;   5. DOING: TODO "DOING"
+;;;   6. Important (Priority A): priority "A"
+;;;   7. Important (Priority B): priority "B"
+;;;   8. Bugs: TODO "BUG"
+;;;   9. Blocked: TODO "BLOCKED"
+;;;   10. Priority <= C: priority "C" or lower (C, D, E...)
+;;;   11. Backlog: TODO "BACKLOG"
+;;;   12. Discard all remaining items, hide other-items
 ;;;
 ;;; ---------------------------------------------------------------------------
 
 (setq org-agenda-start-day nil) ; Sets the agenda to start on today (fixes wrong date)
+(setq org-agenda-todo-ignore-deadlines nil)
+(setq org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-agenda-include-deadlines t
+      org-agenda-include-diary t
+      org-agenda-block-separator nil
+      org-agenda-compact-blocks t
+      org-agenda-start-with-log-mode t)
+
 (setq org-agenda-custom-commands
-      '(("g" "GTD Dashboard"
+      '(("g" "Dashboard"
          ((agenda "" ((org-agenda-span 'day)
                       (org-super-agenda-groups
                        '((:name "Today"
@@ -252,44 +273,59 @@
                           :date today
                           :todo "TODAY"
                           :scheduled today
-                          :order 1)))))
+                          :order 1)
+                       ;; Discard all remaining items, including those in timeline (hide other-items)
+                       (:discard (:anything t))))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
                         '(;; Each group has an implicit boolean OR operator between its selectors.
+                          (:name "Passed Deadline"
+                           :deadline past
+                           :order 1)
                           (:name "Deadline Today"
                            :deadline today
-                           :face (:background "#7f1b19"))
-                          (:name "Scheduled Today"
-                           :scheduled today)
+                           :order 2)
                           (:name "Overdue Tasks (No Deadline)"
                            ;; Show only scheduled past tasks that don't have a deadline
-                           :and (:scheduled past :not (:deadline t)))
-                          (:name "Passed Deadline"
-                           :deadline past)
-                          (:name "Work important"
-                           :and (:priority>= "B" :category "Work" :todo ("TODO" "NEXT")))
+                           :and (:scheduled past :not (:deadline t))
+                           :order 3)
+                          (:name "Scheduled Today"
+                           :scheduled today
+                           :order 4)
                           (:name "Testing"
-                           :todo "TESTING")
+                           :todo "TESTING"
+                           :order 5)
                           (:name "DOING"
-                           :todo "DOING")
-                          (:name "Work other"
-                           :and (:category "Work" :todo ("TODO" "NEXT")))
-                          (:name "Important"
-                           :priority "A")
-                          (:priority<= "B"
-                           ;; Show this section after "Today" and "Important", because
-                           ;; their order is unspecified, defaulting to 0. Sections
-                           ;; are displayed lowest-number-first.
-                           :order 1)
-                          (:name "Blocked"
-                           :todo "BLOCKED"
+                           :todo "DOING"
+                           :order 6)
+                          (:name "Important (Priority A)"
+                           :priority "A"
+                           :order 7)
+                          (:name "Important (Priority B)"
+                           :priority "B"
                            :order 8)
                           (:name "Bugs"
                            :todo "BUG"
+                           :order 9)
+                          (:name "Blocked"
+                           :todo "BLOCKED"
                            :order 10)
+                          (:priority<= "C"
+                           ;; Show this section after "Today" and "Important", because
+                           ;; their order is unspecified, defaulting to 0. Sections
+                           ;; are displayed lowest-number-first.
+                           :order 11)
                           (:name "Backlog"
                            :todo "BACKLOG"
-                           :order 11)))))))))
+                           :order 12)
+                          (:name "Next Tasks"
+                           :todo "TODO"
+                           :order 13)
+                          (:name "SOMEDAY"
+                           :todo "SOMEDAY"
+                           :order 14)
+                          ;; Discard all remaining items, hide other-items
+                          (:discard (:anything t))))))))))
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
 ;; ;;; origami — fold/unfold sections in the agenda buffer only
