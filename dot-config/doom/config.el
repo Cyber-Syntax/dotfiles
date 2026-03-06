@@ -84,6 +84,28 @@
             (setq-local fill-column 80)))
 
 ;;; -----------------------------------------------------------------------
+;;  CUSTOM KEYBINDINGS
+;;; -----------------------------------------------------------------------
+
+;; Enable clipboard
+(map! "C-S-c" #'clipboard-kill-ring-save)
+(map! "C-S-v" #'clipboard-yank)
+
+;; custom shift, shift+tab indendation
+;; TODO: this isn't work because doom use snippet for tab
+;; find a way to handle it
+;; disable other doom keybind?
+;;
+;; (defun my-dedent-region (beg end)
+;;   "Dedent region by one level."
+;;   (interactive "r")
+;;   (unless (use-region-p) (message "No active region"))
+;;   (indent-rigidly beg end (- 0 tab-width)))
+
+;; (map! :v "S-<tab>" #'my-dedent-region
+;;       :v "<tab>"   #'indent-region)
+
+;;; -----------------------------------------------------------------------
 ;;  CUSTOM EMACS SETTINGS
 ;;; -----------------------------------------------------------------------
 (setq confirm-kill-emacs nil)        ;; Don't confirm on exit
@@ -220,6 +242,7 @@
 ;;;
 ;;; ---------------------------------------------------------------------------
 
+(setq org-agenda-start-day nil) ; Sets the agenda to start on today (fixes wrong date)
 (setq org-agenda-custom-commands
       '(("g" "GTD Dashboard"
          ((agenda "" ((org-agenda-span 'day)
@@ -245,6 +268,8 @@
                            :deadline past)
                           (:name "Work important"
                            :and (:priority>= "B" :category "Work" :todo ("TODO" "NEXT")))
+                          (:name "Testing"
+                           :todo "TESTING")
                           (:name "DOING"
                            :todo "DOING")
                           (:name "Work other"
@@ -259,11 +284,11 @@
                           (:name "Blocked"
                            :todo "BLOCKED"
                            :order 8)
-                          (:name "Someday/Maybe"
-                           :todo "SOMEDAY"
+                          (:name "Bugs"
+                           :todo "BUG"
                            :order 10)
-                          (:name "Cancelled"
-                           :todo "CANCELLED"
+                          (:name "Backlog"
+                           :todo "BACKLOG"
                            :order 11)))))))))
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
