@@ -292,76 +292,135 @@
       org-agenda-start-with-log-mode t)
 
 (setq org-agenda-custom-commands
-      '(("g" "Dashboard"
-         ((agenda "" ((org-agenda-span 'day)
-                      (org-super-agenda-groups
-                       '((:name "Today"
-                          :time-grid t
-                          :date today
-                          :todo "TODAY"
-                          :scheduled today
-                          :order 1)
-                         ;; Discard all remaining items, including those in timeline (hide other-items)
-                         (:discard (:anything t))))))
-          (alltodo "" ((org-agenda-overriding-header "")
-                       (org-super-agenda-groups
-                        '(;; Each group has an implicit boolean OR operator between its selectors.
-                          (:name "Passed Deadline"
-                           :deadline past
-                           :order 1)
-                          (:name "Deadline Today"
-                           :deadline today
-                           :order 2)
-                          (:name "Overdue Tasks (No Deadline)"
-                           ;; Show only scheduled past tasks that don't have a deadline
-                           :and (:scheduled past :not (:deadline t))
-                           :order 3)
-                          (:name "Scheduled Today"
-                           :scheduled today
-                           :order 4)
-                          (:name "Testing"
-                           :todo "TESTING"
-                           :order 5)
-                          (:name "DOING"
-                           :todo "DOING"
-                           :order 6)
-                          (:name "Important (Priority A)"
-                           :priority "A"
-                           :order 7)
-                          (:name "Important (Priority B)"
-                           :priority "B"
-                           :order 8)
-                          (:name "Bugs"
-                           :todo "BUG"
-                           :order 9)
-                          (:name "Blocked"
-                           :todo "BLOCKED"
-                           :order 10)
-                          (:priority<= "C"
-                           ;; Show this section after "Today" and "Important", because
-                           ;; their order is unspecified, defaulting to 0. Sections
-                           ;; are displayed lowest-number-first.
-                           :order 11)
-                          (:name "Backlog"
-                           :todo "BACKLOG"
-                           :order 12)
-                          (:name "Read"
-                           :todo "READ"
-                           :order 13)
-                          (:name "Watch"
-                           :todo "WATCH"
-                           :order 14)
-                          (:name "Buy"
-                           :todo "BUY"
-                           :order 15)
-                          (:name "Next Tasks"
-                           :todo "TODO"
-                           :order 16)
-                          (:name "SOMEDAY"
-                           :todo "SOMEDAY"
-                           :order 17)
-                          ;; Discard all remaining items, hide other-items
-                          (:discard (:anything t))))))))))
+  '(("g" "Personal Tasks"
+     ((agenda "" ((org-agenda-span 'day)
+                  (org-super-agenda-groups
+                   '((:name "Today"
+                      :time-grid t
+                      :date today
+                      :todo "TODAY"
+                      :scheduled today
+                      :order 1)
+                     (:discard (:anything t))))))
+      (alltodo "" ((org-agenda-overriding-header "")
+                   (org-super-agenda-groups
+                    '((:name "Passed Deadline"
+                       :and (:file-path "Documents/orgfiles" :deadline past)
+                       :order 1)
+                      (:name "Deadline Today"
+                        :and (:file-path "Documents/orgfiles" :deadline today)
+                        :order 2)
+                        (:name "Overdue Tasks (No Deadline)"
+                        :and (:file-path "Documents/orgfiles" :scheduled past :not (:deadline t))
+                        :order 3)
+                        (:name "Scheduled Today"
+                        :and (:file-path "Documents/orgfiles" :scheduled today)
+                        :order 4)
+                        (:name "Important (Priority A)"
+                        :and (:file-path "Documents/orgfiles" :priority "A")
+                        :order 5)
+                        (:name "Important (Priority B)"
+                        :and (:file-path "Documents/orgfiles" :priority "B")
+                        :order 6)
+                        (:name "Testing"
+                        :and (:file-path "Documents/orgfiles" :todo "TESTING")
+                        :order 7)
+                        (:name "DOING"
+                        :and (:file-path "Documents/orgfiles" :todo "DOING")
+                        :order 8)
+                        (:name "Projects with Future Deadlines"
+                        :and (:file-path "Documents/orgfiles" :deadline future)
+                        :order 9)
+                        (:name "Bugs"
+                        :and (:file-path "Documents/orgfiles" :todo "BUG")
+                        :order 10)
+                        (:name "Priority C or Lower"
+                        :and (:file-path "Documents/orgfiles" :priority<= "C")
+                        :order 11)
+                        (:name "Read"
+                        :and (:file-path "Documents/orgfiles" :todo "READ")
+                        :order 12)
+                        (:name "Watch"
+                        :and (:file-path "Documents/orgfiles" :todo "WATCH")
+                        :order 13)
+                        (:name "Backlog"
+                        :and (:file-path "Documents/orgfiles" :todo "BACKLOG")
+                        :order 14)
+                        (:name "Blocked"
+                        :and (:file-path "Documents/orgfiles" :todo "BLOCKED")
+                        :order 15)
+                        (:name "Next Tasks"
+                        :and (:file-path "Documents/orgfiles" :todo "TODO")
+                        :order 16)
+                        (:name "SOMEDAY"
+                        :and (:file-path "Documents/orgfiles" :todo "SOMEDAY")
+                        :order 17)
+                      (:discard (:anything t))))))))
+
+    ("G" "Project Tasks"
+     ((agenda "" ((org-agenda-span 'day)
+                  (org-super-agenda-groups
+                   '((:name "Today"
+                      :time-grid t
+                      :date today
+                      :todo "TODAY"
+                      :scheduled today
+                      :order 1)
+                     (:discard (:anything t))))))
+      (alltodo "" ((org-agenda-overriding-header "")
+                   (org-super-agenda-groups
+                    '((:name "Passed Deadline"
+                       :and (:file-path "my-repos\\|dotfiles" :deadline past)
+                       :order 1)
+                      (:name "Deadline Today"
+                      :and (:file-path "my-repos\\|dotfiles" :deadline today)
+                      :order 2)
+                      (:name "Overdue Tasks (No Deadline)"
+                      :and (:file-path "my-repos\\|dotfiles" :scheduled past :not (:deadline t))
+                      :order 3)
+                      (:name "Scheduled Today"
+                      :and (:file-path "my-repos\\|dotfiles" :scheduled today)
+                      :order 4)
+                      (:name "Important (Priority A)"
+                      :and (:file-path "my-repos\\|dotfiles" :priority "A")
+                      :order 5)
+                      (:name "Important (Priority B)"
+                      :and (:file-path "my-repos\\|dotfiles" :priority "B")
+                      :order 6)
+                      (:name "Testing"
+                      :and (:file-path "my-repos\\|dotfiles" :todo "TESTING")
+                      :order 7)
+                      (:name "DOING"
+                      :and (:file-path "my-repos\\|dotfiles" :todo "DOING")
+                      :order 8)
+                      (:name "Projects with Future Deadlines"
+                      :and (:file-path "my-repos\\|dotfiles" :deadline future)
+                      :order 9)
+                      (:name "Bugs"
+                      :and (:file-path "my-repos\\|dotfiles" :todo "BUG")
+                      :order 10)
+                      (:name "Priority C or Lower"
+                      :and (:file-path "my-repos\\|dotfiles" :priority<= "C")
+                      :order 11)
+                      (:name "Read"
+                      :and (:file-path "my-repos\\|dotfiles" :todo "READ")
+                      :order 12)
+                      (:name "Watch"
+                      :and (:file-path "my-repos\\|dotfiles" :todo "WATCH")
+                      :order 13)
+                      (:name "Backlog"
+                      :and (:file-path "my-repos\\|dotfiles" :todo "BACKLOG")
+                      :order 14)
+                      (:name "Blocked"
+                      :and (:file-path "my-repos\\|dotfiles" :todo "BLOCKED")
+                      :order 15)
+                      (:name "Next Tasks"
+                      :and (:file-path "my-repos\\|dotfiles" :todo "TODO")
+                      :order 16)
+                      (:name "SOMEDAY"
+                      :and (:file-path "my-repos\\|dotfiles" :todo "SOMEDAY")
+                      :order 17)
+                      (:discard (:anything t))))))))))
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
 
 ;; ;;; origami — fold/unfold sections in the agenda buffer only
