@@ -29,11 +29,11 @@
 ;; change `org-directory'. It must be set before org loads!
 ;; (setq org-directory "~/Documents/orgfiles/")
 
-  (setq org-agenda-files
-        (append
-         (directory-files-recursively "~/Documents/orgfiles/" "\\.org$")
-         (directory-files-recursively "~/Documents/my-repos/" "\\.org$")
-         (directory-files-recursively "~/dotfiles/" "\\.org$")))
+(setq org-agenda-files
+      (append
+       (directory-files-recursively "~/Documents/orgfiles/" "\\.org$")
+       (directory-files-recursively "~/Documents/my-repos/" "\\.org$")
+       (directory-files-recursively "~/dotfiles/" "\\.org$")))
 
 ;;; -----------------------------------------------------------------------
 ;;  FONTS
@@ -110,6 +110,25 @@
 ;;; -----------------------------------------------------------------------
 (setq confirm-kill-emacs nil)        ;; Don't confirm on exit
 
+;; remove ``` tick to became ```` tick on org mode
+(after! smartparens
+  (sp-local-pair 'org-mode "`" nil :actions nil))
+
+;; Fixes gc comment wrong behavior that won't work like neovim default
+;; basically, doom default don't comment all line if you on the middle (e.g line 4 not 0)
+;; so default one is need to go first line via `0` shortcut and select two line to work default
+(map! :v "gc" #'evilnc-comment-or-uncomment-lines)
+
+(after! org-agenda
+  (set-popup-rule! "^\\*Org Agenda"
+    :side 'right
+    :size 0.5
+    :select
+    :quit nil))
+;;TESTING: enable highlight for code lines in orgmode
+;;(setq org-src-fontify-natively t)
+;; (setq +tree-sitter-enable t)
+
 ;;; -----------------------------------------------------------------------
 ;;; CUSTOM TODO STATES
 ;;;
@@ -123,9 +142,10 @@
 
 (after! org
   (setq org-todo-keywords
-      '((sequence "TODO(t)" "DOING(i!)" "TESTING(e!)" "BLOCKED(w@/!)" "BUY(B)" "READ(r)" "WATCH(v)" "|" "DONE(d!)")
-          (sequence "BACKLOG(k@/!)" "SOMEDAY(s)" "|" "CANCELED(c!)")
-          (sequence "BUG(b)" "|" "FIXED(f!)")))
+        '((sequence "TODO(t)" "DOING(i!)" "TESTING(e!)" "BLOCKED(w@/!)"
+           "BUY(B)" "READ(r)" "WATCH(v)" "|" "DONE(d!)")
+          (sequence "BACKLOG(k@/!)" "SOMEDAY(s)" "|")
+          (sequence "BUG(b)" "|")))
 
   (setq org-todo-keyword-faces
         '(("BLOCKED" . (:inherit (bold org-todo) :foreground "#f5870a"))
@@ -209,7 +229,7 @@
   (setq org-wild-notifier-notification-title "Org Reminder")
 
   ;; Alert severity can be one of 'high, 'medium or 'low — affects the icon
-  (setq org-wild-notifier--alert-severity 'high)
+  (setq org-wild-notifier--alert-severity 'medium)
 
   ;; additional arguments passed through to `alert'
   (setq org-wild-notifier-extra-alert-plist '(:persistent t))
@@ -227,8 +247,10 @@
   ;; org-wild-notifier-show-any-overdue-with-day-wide-alerts
   ;; Include overdue items in day-wide alerts (default: t)
 
-  ;; TODO: this isn't work for overdue tasks
+  ;; NOTE: send notification for overdue tasks
   ;; remind about day‑wide items at 9 a.m. and 2 p.m.
+  ;; only DONE state won't send notif
+  ;; TODO: disable notification if deadline exist
   (setq org-wild-notifier-day-wide-alert-times '("09:00" "14:00"))
 
   (org-wild-notifier-mode 1))
@@ -279,8 +301,8 @@
                           :todo "TODAY"
                           :scheduled today
                           :order 1)
-                       ;; Discard all remaining items, including those in timeline (hide other-items)
-                       (:discard (:anything t))))))
+                         ;; Discard all remaining items, including those in timeline (hide other-items)
+                         (:discard (:anything t))))))
           (alltodo "" ((org-agenda-overriding-header "")
                        (org-super-agenda-groups
                         '(;; Each group has an implicit boolean OR operator between its selectors.
