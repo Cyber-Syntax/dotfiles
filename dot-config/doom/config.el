@@ -294,6 +294,7 @@
 (setq org-agenda-custom-commands
   '(("g" "Personal Tasks"
      ((agenda "" ((org-agenda-span 'day)
+                  (org-agenda-files (directory-files-recursively "~/Documents/orgfiles/" "\\.org$"))
                   (org-super-agenda-groups
                    '((:name "Today"
                       :time-grid t
@@ -303,62 +304,64 @@
                       :order 1)
                      (:discard (:anything t))))))
       (alltodo "" ((org-agenda-overriding-header "")
+                   (org-agenda-files (directory-files-recursively "~/Documents/orgfiles/" "\\.org$"))
                    (org-super-agenda-groups
                     '((:name "Passed Deadline"
-                       :and (:file-path "Documents/orgfiles" :deadline past)
+                       :deadline past
                        :order 1)
                       (:name "Deadline Today"
-                        :and (:file-path "Documents/orgfiles" :deadline today)
+                        :deadline today
                         :order 2)
                         (:name "Overdue Tasks (No Deadline)"
-                        :and (:file-path "Documents/orgfiles" :scheduled past :not (:deadline t))
+                        :and (:scheduled past :not (:deadline t))
                         :order 3)
                         (:name "Scheduled Today"
-                        :and (:file-path "Documents/orgfiles" :scheduled today)
+                        :scheduled today
                         :order 4)
                         (:name "Important (Priority A)"
-                        :and (:file-path "Documents/orgfiles" :priority "A")
+                        :priority "A"
                         :order 5)
                         (:name "Important (Priority B)"
-                        :and (:file-path "Documents/orgfiles" :priority "B")
+                        :priority "B"
                         :order 6)
                         (:name "Testing"
-                        :and (:file-path "Documents/orgfiles" :todo "TESTING")
+                        :todo "TESTING"
                         :order 7)
                         (:name "DOING"
-                        :and (:file-path "Documents/orgfiles" :todo "DOING")
+                        :todo "DOING"
                         :order 8)
                         (:name "Projects with Future Deadlines"
-                        :and (:file-path "Documents/orgfiles" :deadline future)
+                        :deadline future
                         :order 9)
                         (:name "Bugs"
-                        :and (:file-path "Documents/orgfiles" :todo "BUG")
+                        :todo "BUG"
                         :order 10)
                         (:name "Priority C or Lower"
-                        :and (:file-path "Documents/orgfiles" :priority<= "C")
+                        :priority<= "C"
                         :order 11)
                         (:name "Read"
-                        :and (:file-path "Documents/orgfiles" :todo "READ")
+                        :todo "READ"
                         :order 12)
                         (:name "Watch"
-                        :and (:file-path "Documents/orgfiles" :todo "WATCH")
+                        :todo "WATCH"
                         :order 13)
                         (:name "Backlog"
-                        :and (:file-path "Documents/orgfiles" :todo "BACKLOG")
+                        :todo "BACKLOG"
                         :order 14)
                         (:name "Blocked"
-                        :and (:file-path "Documents/orgfiles" :todo "BLOCKED")
+                        :todo "BLOCKED"
                         :order 15)
                         (:name "Next Tasks"
-                        :and (:file-path "Documents/orgfiles" :todo "TODO")
+                        :todo "TODO"
                         :order 16)
                         (:name "SOMEDAY"
-                        :and (:file-path "Documents/orgfiles" :todo "SOMEDAY")
+                        :todo "SOMEDAY"
                         :order 17)
                       (:discard (:anything t))))))))
 
     ("G" "Project Tasks"
      ((agenda "" ((org-agenda-span 'day)
+                  (org-agenda-files (append (directory-files-recursively "~/Documents/my-repos/" "\\.org$") (directory-files-recursively "~/dotfiles/" "\\.org$")))
                   (org-super-agenda-groups
                    '((:name "Today"
                       :time-grid t
@@ -368,57 +371,58 @@
                       :order 1)
                      (:discard (:anything t))))))
       (alltodo "" ((org-agenda-overriding-header "")
+                   (org-agenda-files (append (directory-files-recursively "~/Documents/my-repos/" "\\.org$") (directory-files-recursively "~/dotfiles/" "\\.org$")))
                    (org-super-agenda-groups
                     '((:name "Passed Deadline"
-                       :and (:file-path "my-repos\\|dotfiles" :deadline past)
+                       :deadline past
                        :order 1)
                       (:name "Deadline Today"
-                      :and (:file-path "my-repos\\|dotfiles" :deadline today)
+                      :deadline today
                       :order 2)
                       (:name "Overdue Tasks (No Deadline)"
-                      :and (:file-path "my-repos\\|dotfiles" :scheduled past :not (:deadline t))
+                      :and (:scheduled past :not (:deadline t))
                       :order 3)
                       (:name "Scheduled Today"
-                      :and (:file-path "my-repos\\|dotfiles" :scheduled today)
+                      :scheduled today
                       :order 4)
                       (:name "Important (Priority A)"
-                      :and (:file-path "my-repos\\|dotfiles" :priority "A")
+                      :priority "A"
                       :order 5)
                       (:name "Important (Priority B)"
-                      :and (:file-path "my-repos\\|dotfiles" :priority "B")
+                      :priority "B"
                       :order 6)
                       (:name "Testing"
-                      :and (:file-path "my-repos\\|dotfiles" :todo "TESTING")
+                      :todo "TESTING"
                       :order 7)
                       (:name "DOING"
-                      :and (:file-path "my-repos\\|dotfiles" :todo "DOING")
+                      :todo "DOING"
                       :order 8)
                       (:name "Projects with Future Deadlines"
-                      :and (:file-path "my-repos\\|dotfiles" :deadline future)
+                      :deadline future
                       :order 9)
                       (:name "Bugs"
-                      :and (:file-path "my-repos\\|dotfiles" :todo "BUG")
+                      :todo "BUG"
                       :order 10)
                       (:name "Priority C or Lower"
-                      :and (:file-path "my-repos\\|dotfiles" :priority<= "C")
+                      :priority<= "C"
                       :order 11)
                       (:name "Read"
-                      :and (:file-path "my-repos\\|dotfiles" :todo "READ")
+                      :todo "READ"
                       :order 12)
                       (:name "Watch"
-                      :and (:file-path "my-repos\\|dotfiles" :todo "WATCH")
+                      :todo "WATCH"
                       :order 13)
                       (:name "Backlog"
-                      :and (:file-path "my-repos\\|dotfiles" :todo "BACKLOG")
+                      :todo "BACKLOG"
                       :order 14)
                       (:name "Blocked"
-                      :and (:file-path "my-repos\\|dotfiles" :todo "BLOCKED")
+                      :todo "BLOCKED"
                       :order 15)
                       (:name "Next Tasks"
-                      :and (:file-path "my-repos\\|dotfiles" :todo "TODO")
+                      :todo "TODO"
                       :order 16)
                       (:name "SOMEDAY"
-                      :and (:file-path "my-repos\\|dotfiles" :todo "SOMEDAY")
+                      :todo "SOMEDAY"
                       :order 17)
                       (:discard (:anything t))))))))))
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
