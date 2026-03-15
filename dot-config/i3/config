@@ -17,8 +17,9 @@ exec --no-startup-id dex --autostart --environment i3
 exec dbus-update-activation-environment --all
 
 ## GNOME KEYRING
+# Start the gnome-keyring-daemon
+exec --no-startup-id eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 # exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
-# script that need to run on bashrc if above not work
 
 # layout that looks like a monadtall
 # https://github.com/olemartinorg/i3-alternating-layout
