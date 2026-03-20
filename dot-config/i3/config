@@ -8,7 +8,6 @@
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
-#TESTING:
 exec --no-startup-id dex --autostart --environment i3
 
 ## DBUS
@@ -19,11 +18,15 @@ exec dbus-update-activation-environment --all
 ## GNOME KEYRING
 # Start the gnome-keyring-daemon
 exec --no-startup-id eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-# exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
 
 # layout that looks like a monadtall
 # https://github.com/olemartinorg/i3-alternating-layout
-exec_always --no-startup-id ~/.config/i3/scripts/i3-alternating-layout.py
+#FIXME:
+#   File "/home/developer/.config/i3/scripts/i3-alternating-layout.py", line 7, in <module>
+#     from i3ipc import Connection, Event
+# ModuleNotFoundError: No module named 'i3ipc'
+#
+# exec_always --no-startup-id ~/.config/i3/scripts/i3-alternating-layout.py
 
 exec dunst &
 exec --no-startup-id nm-applet &
@@ -31,11 +34,17 @@ exec --no-startup-id picom -b &
 exec --no-startup-id numlockx on &
 exec --no-startup-id gammastep -c ~/.config/gammastep/config.ini &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
+#TESTING: first command below:
+# xfconf-query -c xfce4-session -p /general/LockCommand -t string -s "i3lock" --create
+# xfconf-query -c xfce4-session -p /general/LockCommand -s "i3lock" -t string --create
+#NOTE: Enable systray icon from xfce4-power-manager-settings if missing on systray
+exec --no-startup-id xfce4-power-manager --daemon
 
 # custom app/scripts
 exec --no-startup-id emacs --daemon=doom
 exec_always --no-startup-id ~/Documents/my-repos/WallpaperChanger/main.py &
 exec ~/Applications/zen-browser.AppImage &
+exec easyeffects --hide-window --service-mode &
 
 # ============================= ./EXEC ====================
 

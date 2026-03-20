@@ -2,7 +2,9 @@
 export ZDOTDIR=$HOME/.config/zsh
 
 # Useful apps
-export $TERM=alacritty
+#FIXME: alacritty:
+# /home/developer/.zshenv:export:5: not valid in this context: /usr/bin/alacritty
+# export $TERM=alacritty
 # Set some XDG_* variables
 export XDG_SESSION_DESKTOP=i3
 export XDG_CURRENT_DESKTOP=i3
