@@ -107,8 +107,12 @@ return {
         blink = true,
       },
 
-      -- Either 'wiki' or 'markdown'.
-      preferred_link_style = "markdown",
+      link = {
+        style = "markdown",
+        --NOTE: keep it absolute to make it global for other apps
+        -- Example absolute: [linux-Notes](11_System-Administrator/11.01_Linux/Linux-Notes/Linux-Notes.md)
+        format = "absolute",
+      },
 
       -- Optional, boolean or a function that takes a filename and returns a boolean.
       -- `true` indicates that you don't want obsidian.nvim to manage frontmatter.

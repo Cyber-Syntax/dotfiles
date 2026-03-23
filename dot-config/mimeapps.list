@@ -52,6 +52,9 @@ text/x-tcl=nvim.desktop
 text/x-pascal=nvim.desktop
 inode/directory=pcmanfm.desktop
 x-scheme-handler/discord-1038970224050962582=nuclear.desktop
+x-scheme-handler/sgnl=signal.desktop
+x-scheme-handler/signalcaptcha=signal.desktop
+application/pdf=evince.desktop
 
 [Added Associations]
 application/x-extension-html=zen-browser.desktop;

@@ -8,14 +8,14 @@ return {
         -- level of the heading. Indenting starts from level 2 headings onward by default.
 
         -- Turn on / off org-indent-mode.
-        enabled = false,
+        enabled = true,
         -- Additional modes to render indents.
-        render_modes = false,
+        render_modes = true,
         -- Amount of additional padding added for each heading level.
         per_level = 2,
         -- Heading levels <= this value will not be indented.
         -- Use 0 to begin indenting from the very first level.
-        -- skip_level = 1,
+        skip_level = 1,
         -- Do not indent heading titles, only the body.
         skip_heading = true,
         -- Prefix added when indenting, one per level.
@@ -33,7 +33,7 @@ return {
         -- Turn on / off inline link icon rendering.
         enabled = true,
         -- Additional modes to render links.
-        render_modes = false,
+        render_modes = true,
         -- How to handle footnote links, start with a '^'.
         footnote = {
           -- Turn on / off footnote rendering.
@@ -262,7 +262,7 @@ return {
         -- Turn on / off pipe table rendering.
         enabled = true,
         -- Additional modes to render pipe tables.
-        render_modes = false,
+        render_modes = true,
         -- Pre configured settings largely for setting table border easier.
         -- | heavy  | use thicker border characters     |
         -- | double | use double line border characters |
@@ -309,7 +309,7 @@ return {
         -- Turn on / off block quote & callout rendering.
         enabled = true,
         -- Additional modes to render quotes.
-        render_modes = false,
+        render_modes = true,
         -- Replaces '>' of 'block_quote'.
         icon = "▋",
         -- Whether to repeat icon on wrapped lines. Requires neovim >= 0.10. This will obscure text
@@ -339,7 +339,7 @@ return {
         -- Turn on / off checkbox state rendering.
         enabled = true,
         -- Additional modes to render checkboxes.
-        render_modes = false,
+        render_modes = true,
         -- Render the bullet point before the checkbox.
         bullet = false,
         -- Padding to add to the right of checkboxes.
@@ -381,7 +381,7 @@ return {
         -- Turn on / off list bullet rendering
         enabled = true,
         -- Additional modes to render list bullets
-        render_modes = false,
+        render_modes = true,
         -- Replaces '-'|'+'|'*' of 'list_item'.
         -- If the item is a 'checkbox' a conceal is used to hide the bullet instead.
         -- Output is evaluated depending on the type.
@@ -401,7 +401,7 @@ return {
         -- Output is evaluated depending on the type.
         -- | function | `value(context)` |
         -- | integer  | `value`          |
-        left_pad = 2,
+        left_pad = 0,
         -- Padding to add to the right of bullet point.
         -- Output is evaluated using the same logic as 'left_pad'.
         right_pad = 0,
@@ -416,7 +416,7 @@ return {
         -- Turn on / off thematic break rendering.
         enabled = true,
         -- Additional modes to render dash.
-        render_modes = false,
+        render_modes = true,
         -- Replaces '---'|'***'|'___'|'* * *' of 'thematic_break'.
         -- The icon gets repeated across the window's width.
         icon = "─",
@@ -435,9 +435,9 @@ return {
         -- Turn on / off code block & inline code rendering.
         enabled = true,
         -- Additional modes to render code blocks.
-        render_modes = false,
+        render_modes = true,
         -- Turn on / off any sign column related rendering.
-        sign = true,
+        sign = false,
         -- Determines how code blocks & inline code are rendered.
         -- | none     | disables all rendering                                                    |
         -- | normal   | highlight group to code blocks & inline code, adds padding to code blocks |
@@ -520,7 +520,7 @@ return {
         -- Turn on / off paragraph rendering.
         enabled = true,
         -- Additional modes to render paragraphs.
-        render_modes = false,
+        render_modes = true,
         -- Amount of margin to add to the left of paragraphs.
         -- If a float < 1 is provided it is treated as a percentage of available window space.
         -- Output is evaluated depending on the type.
@@ -541,19 +541,19 @@ return {
         -- Turn on / off heading icon & background rendering.
         enabled = true,
         -- Additional modes to render headings.
-        render_modes = false,
+        render_modes = true,
         -- Turn on / off atx heading rendering.
         atx = true,
         -- Turn on / off setext heading rendering.
         setext = true,
         -- Turn on / off any sign column related rendering.
-        sign = true,
+        sign = false,
         -- Replaces '#+' of 'atx_h._marker'.
         -- Output is evaluated depending on the type.
         -- | function | `value(context)`              |
         -- | string[] | `cycle(value, context.level)` |
-        -- icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
-        icons = { "󰼏 ", "󰎨 " },
+        icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
+        -- icons = { "󰼏 ", "󰎨 " },
         -- Determines how icons fill the available space.
         -- | right   | '#'s are concealed and icon is appended to right side                          |
         -- | inline  | '#'s are concealed and icon is inlined on left side                            |
@@ -574,7 +574,7 @@ return {
         left_margin = 0,
         -- Amount of padding to add to the left of headings.
         -- Output is evaluated using the same logic as 'left_margin'.
-        left_pad = 0,
+        left_pad = 2,
         -- Amount of padding to add to the right of headings when width is 'block'.
         -- Output is evaluated using the same logic as 'left_margin'.
         right_pad = 0,
@@ -583,9 +583,9 @@ return {
         min_width = 0,
         -- Determines if a border is added above and below headings.
         -- Can also be a list of booleans evaluated by `clamp(value, context.level)`.
-        border = false,
+        border = true,
         -- Always use virtual lines for heading borders instead of attempting to use empty lines.
-        border_virtual = false,
+        border_virtual = true,
         -- Highlight the start of the border using the foreground highlight.
         border_prefix = false,
         -- Used above heading for border.

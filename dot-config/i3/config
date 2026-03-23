@@ -34,8 +34,8 @@ exec --no-startup-id picom -b &
 exec --no-startup-id numlockx on &
 exec --no-startup-id gammastep -c ~/.config/gammastep/config.ini &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
-#TESTING: first command below:
-# xfconf-query -c xfce4-session -p /general/LockCommand -t string -s "i3lock" --create
+#FIXME: none of the lock tools run succesfully problem via xfce4-power-manager
+#below command via i3lock not worked
 # xfconf-query -c xfce4-session -p /general/LockCommand -s "i3lock" -t string --create
 #NOTE: Enable systray icon from xfce4-power-manager-settings if missing on systray
 exec --no-startup-id xfce4-power-manager --daemon
@@ -44,7 +44,7 @@ exec --no-startup-id xfce4-power-manager --daemon
 exec --no-startup-id emacs --daemon=doom
 exec_always --no-startup-id ~/Documents/my-repos/WallpaperChanger/main.py &
 exec ~/Applications/zen-browser.AppImage &
-exec easyeffects --hide-window --service-mode &
+# exec easyeffects --hide-window --service-mode &
 
 # ============================= ./EXEC ====================
 
@@ -127,6 +127,8 @@ bindsym Mod4+space layout toggle tabbed splith
 #bindsym Mod4+p layout stacking
 bindsym Mod4+less layout toggle split
 
+bindsym Mod4+l exec i3lock
+
 # enter fullscreen mode for the focused container
 bindsym Mod4+f fullscreen toggle
 
@@ -202,10 +204,10 @@ bindsym Mod4+Shift+$up move up
 bindsym Mod4+Shift+$right move right
 
 # change focus
-bindsym Mod4+$left focus left
-bindsym Mod4+$down focus down
-bindsym Mod4+$up focus up
-bindsym Mod4+$right focus right
+# bindsym Mod4+$left focus left
+# bindsym Mod4+$down focus down
+# bindsym Mod4+$up focus up
+# bindsym Mod4+$right focus right
 
 # alternatively, you can use the cursor keys:
 bindsym Mod4+Shift+Left move left

@@ -40,18 +40,20 @@ return {
         },
         chat = {
           adapter = {
-            name = "copilot",
-            model = "gpt-4.1",
+            -- name = "copilot",
+            -- model = "gpt-4.1",
+            name = "ollama",
+            model = "llama3.2",
           },
         },
         inline = {
           adapter = "ollama",
-          model = "llama3.2:3b-instruct-q8_0",
+          model = "llama3.2",
         },
         background = {
           adapter = {
             name = "ollama",
-            model = "llama3.2:3b-instruct-q8_0",
+            model = "llama3.2",
           },
         },
       },
@@ -61,7 +63,7 @@ return {
             return require("codecompanion.adapters").extend("ollama", {
               schema = {
                 model = {
-                  default = "llama3.2:3b-instruct-q8_0",
+                  default = "llama3.2",
                 },
                 temperature = {
                   order = 2,
