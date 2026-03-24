@@ -1,16 +1,8 @@
-;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
+;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-
-;; Some functionality uses this to identify you, e.g. GPG configuration, email
-;; clients, file templates and snippets. It is optional.
-;; (setq user-full-name "John Doe"
-;;       user-mail-address "john@doe.com")
-
-;;; -----------------------------------------------------------------------
+;; -----------------------------------------------------------------------
 ;;  THEME AND APPEARANCE
-;;; -----------------------------------------------------------------------
+;; -----------------------------------------------------------------------
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -21,23 +13,33 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-;;; -----------------------------------------------------------------------
+;; -----------------------------------------------------------------------
 ;;  DIRECTORY
-;;; -----------------------------------------------------------------------
+;; -----------------------------------------------------------------------
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 ;; (setq org-directory "~/Documents/orgfiles/")
 
-(setq org-agenda-files
-      (append
-       (directory-files-recursively "~/Documents/orgfiles/" "\\.org$")
-       (directory-files-recursively "~/Documents/my-repos/" "\\.org$")
-       (directory-files-recursively "~/dotfiles/" "\\.org$")))
+;; WARN: problematic code give syntaxt error
+;; (setq org-agenda-files
+;;       (append
+;;        (directory-files-recursively "~/Documents/orgfiles/" "\\.org$")
+;;        (directory-files-recursively "~/Documents/my-repos/" "\\.org$")
+;;        (directory-files-recursively "~/dotfiles/" "\\.org$")))
 
-;;; -----------------------------------------------------------------------
+(defun my/org-agenda-files ()
+  "Generate list of org files from multiple directories."
+  (append
+   (directory-files-recursively "~/Documents/orgfiles/" "\\.org$" t)
+   (directory-files-recursively "~/Documents/my-repos/" "\\.org$" t)
+   (directory-files-recursively "~/dotfiles/" "\\.org$" t)))
+
+(setq org-agenda-files (my/org-agenda-files))
+
+;; -----------------------------------------------------------------------
 ;;  FONTS
-;;; -----------------------------------------------------------------------
+;; -----------------------------------------------------------------------
 ;;
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -83,15 +85,15 @@
             (+word-wrap-mode +1)
             (setq-local fill-column 80)))
 
-;;; -----------------------------------------------------------------------
+;; -----------------------------------------------------------------------
 ;;  CUSTOM KEYBINDINGS
-;;; -----------------------------------------------------------------------
+;; -----------------------------------------------------------------------
 
 ;; Enable clipboard
 (map! "C-S-c" #'clipboard-kill-ring-save)
 (map! "C-S-v" #'clipboard-yank)
 
-;; custom shift, shift+tab indendation
+;; custom shift, shift+tab indendation when visual mode
 ;; TODO: this isn't work because doom use snippet for tab
 ;; find a way to handle it
 ;; disable other doom keybind?
@@ -125,20 +127,22 @@
     :size 0.5
     :select
     :quit nil))
+
 ;;TESTING: enable highlight for code lines in orgmode
 ;;(setq org-src-fontify-natively t)
 ;; (setq +tree-sitter-enable t)
 
-;;; -----------------------------------------------------------------------
-;;; CUSTOM TODO STATES
-;;;
-;;; after! org ensures your settings apply after Org mode initializes.
-;;;
-;;; ‘!’ (for a timestamp) or ‘@’ (for a note with timestamp)
-;;;
-;;; NOTE: You can't list DONE, CANCELED, or FIXED on your custom agenda views,
-;;; because they are considered "done" states.
-;;; -----------------------------------------------------------------------
+;; -----------------------------------------------------------------------
+;; CUSTOM TODO STATES
+
+;; after! org ensures your settings apply after Org mode initializes.
+
+;; ‘!’ (for a timestamp) or ‘@’ (for a note with timestamp)
+
+;; NOTE: You can't list DONE, CANCELED, or FIXED on your custom agenda views,
+;; because they are considered "done" states if they define like this `"|" "CANCELLED"`
+;; which it's mean done state if define after this: "|"
+;; -----------------------------------------------------------------------
 
 (after! org
   (setq org-todo-keywords
@@ -158,9 +162,9 @@
 ;; ;; Alternative: maintain a separate backlog file (not included in `org-agenda-files`)
 ;; (setq org-agenda-files '("~/org/tasks.org" "~/org/projects.org")) ; don't add backlog.org
 
-;;; -----------------------------------------------------------------------
-;;; EMACS PLUGINS
-;;; -----------------------------------------------------------------------
+;; -----------------------------------------------------------------------
+;; EMACS PLUGINS
+;; -----------------------------------------------------------------------
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `with-eval-after-load' block, otherwise Doom's defaults may override your
@@ -192,28 +196,27 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-;;
 
-;;; org-wild-notifier — Desktop notifications for Org agenda
-;;;
-;;; GitHub: https://github.com/akhramov/org-wild-notifier
-;;;
-;;; Description:
-;;; Sends desktop notifications for scheduled and deadline items in Org mode.
-;;; Works while Emacs is running (daemon or GUI).
-;;; Uses the `alert` package backend (libnotify / notifications / etc).
-;;;
-;;; Why I use this:
-;;; - Kanban-style workflow in org files
-;;; - Reminders before deadlines (60, 30, 15, 5... minutes)
-;;; - Lightweight and simple
-;;;
-;;; Notes:
-;;; - Emacs must be running to receive notifications.
-;;; - Times below are minutes BEFORE scheduled/deadline time.
-;;; - org-wild-notifier focuses on calendar-style notifications:
-;;;     remind me 10 minutes before my meeting, not every 5 minutes until it happens.
-;;; ---------------------------------------------------------------------------
+;; org-wild-notifier — Desktop notifications for Org agenda
+
+;; GitHub: https://github.com/akhramov/org-wild-notifier
+
+;; Description:
+;; Sends desktop notifications for scheduled and deadline items in Org mode.
+;; Works while Emacs is running (daemon or GUI).
+;; Uses the `alert` package backend (libnotify / notifications / etc).
+
+;; Why I use this:
+;; - Kanban-style workflow in org files
+;; - Reminders before deadlines (60, 30, 15, 5... minutes)
+;; - Lightweight and simple
+
+;; Notes:
+;; - Emacs must be running to receive notifications.
+;; - Times below are minutes BEFORE scheduled/deadline time.
+;; - org-wild-notifier focuses on calendar-style notifications:
+;;     remind me 10 minutes before my meeting, not every 5 minutes until it happens.
+;; ---------------------------------------------------------------------------
 
 (use-package org-wild-notifier
   :config
@@ -255,28 +258,29 @@
 
   (org-wild-notifier-mode 1))
 
-;;; -----------------------------------------------------------------------
-;;; CUSTOM AGENDA VIEWS
-;;; -----------------------------------------------------------------------
-;;;
-;;; org-super-agenda — Dashboard with file-grouped overflow
-;;;
-;;; Group order (first match wins):
-;;;   1. Today: scheduled today, deadline today, TODO "TODAY", time-grid items for today
-;;;   2. Overdue Tasks (No Deadline): scheduled past tasks that don't have a deadline
-;;;   3. Scheduled Today: scheduled today
-;;;   4. Testing: TODO "TESTING"
-;;;   5. DOING: TODO "DOING"
-;;;   6. Important (Priority A): priority "A"
-;;;   7. Important (Priority B): priority "B"
-;;;   8. Bugs: TODO "BUG"
-;;;   9. Blocked: TODO "BLOCKED"
-;;;   10. Priority <= C: priority "C" or lower (C, D, E...)
-;;;   11. Backlog: TODO "BACKLOG"
-;;;   12. Discard all remaining items, hide other-items
-;;;
-;;; ---------------------------------------------------------------------------
+;; -----------------------------------------------------------------------
+;; CUSTOM AGENDA VIEWS
+;; -----------------------------------------------------------------------
+;;
+;; org-super-agenda — Dashboard with file-grouped overflow
+;;
+;; Group order (first match wins):
+;;   1. Today: scheduled today, deadline today, TODO "TODAY", time-grid items for today
+;;   2. Overdue Tasks (No Deadline): scheduled past tasks that don't have a deadline
+;;   3. Scheduled Today: scheduled today
+;;   4. Testing: TODO "TESTING"
+;;   5. DOING: TODO "DOING"
+;;   6. Important (Priority A): priority "A"
+;;   7. Important (Priority B): priority "B"
+;;   8. Bugs: TODO "BUG"
+;;   9. Blocked: TODO "BLOCKED"
+;;   10. Priority <= C: priority "C" or lower (C, D, E...)
+;;   11. Backlog: TODO "BACKLOG"
+;;   12. Discard all remaining items, hide other-items
+;;
+;; ---------------------------------------------------------------------------
 
+;; TODO: add after! org for performance
 ;; Fixes the keybind(jk) issue on org-super-agenda.
 (after! org-super-agenda
   (setq org-super-agenda-header-map (make-sparse-keymap)))
@@ -292,149 +296,137 @@
       org-agenda-start-with-log-mode t)
 
 (setq org-agenda-custom-commands
-  '(("g" "Personal Tasks"
-     ((agenda "" ((org-agenda-span 'day)
-                  (org-agenda-files (directory-files-recursively "~/Documents/orgfiles/" "\\.org$"))
-                  (org-super-agenda-groups
-                   '((:name "Today"
-                      :time-grid t
-                      :date today
-                      :todo "TODAY"
-                      :scheduled today
-                      :order 1)
-                     (:discard (:anything t))))))
-      (alltodo "" ((org-agenda-overriding-header "")
-                   (org-agenda-files (directory-files-recursively "~/Documents/orgfiles/" "\\.org$"))
-                   (org-super-agenda-groups
-                    '((:name "Passed Deadline"
-                       :deadline past
-                       :order 1)
-                      (:name "Deadline Today"
-                        :deadline today
-                        :order 2)
-                        (:name "Overdue Tasks (No Deadline)"
-                        :and (:scheduled past :not (:deadline t))
-                        :order 3)
-                        (:name "Scheduled Today"
-                        :scheduled today
-                        :order 4)
-                        (:name "Important (Priority A)"
-                        :priority "A"
-                        :order 5)
-                        (:name "Important (Priority B)"
-                        :priority "B"
-                        :order 6)
-                        (:name "Testing"
-                        :todo "TESTING"
-                        :order 7)
-                        (:name "DOING"
-                        :todo "DOING"
-                        :order 8)
-                        (:name "Projects with Future Deadlines"
-                        :deadline future
-                        :order 9)
-                        (:name "Bugs"
-                        :todo "BUG"
-                        :order 10)
-                        (:name "Priority C or Lower"
-                        :priority<= "C"
-                        :order 11)
-                        (:name "Read"
-                        :todo "READ"
-                        :order 12)
-                        (:name "Watch"
-                        :todo "WATCH"
-                        :order 13)
-                        (:name "Backlog"
-                        :todo "BACKLOG"
-                        :order 14)
-                        (:name "Blocked"
-                        :todo "BLOCKED"
-                        :order 15)
-                        (:name "Next Tasks"
-                        :todo "TODO"
-                        :order 16)
-                        (:name "SOMEDAY"
-                        :todo "SOMEDAY"
-                        :order 17)
-                      (:discard (:anything t))))))))
+      '(("g" "Personal Tasks"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-agenda-files (directory-files-recursively "~/Documents/orgfiles/" "\\.org$"))
+                      (org-super-agenda-groups
+                       '((:name "Today"
+                          :time-grid t
+                          :date today
+                          :todo "TODAY"
+                          :scheduled today
+                          :order 1)
+                         (:discard (:anything t))))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-agenda-files (directory-files-recursively "~/Documents/orgfiles/" "\\.org$"))
+                       (org-super-agenda-groups
+                        '((:name "Passed Deadline"
+                           :deadline past
+                           :order 1)
+                          (:name "Deadline Today"
+                           :deadline today
+                           :order 2)
+                          (:name "Overdue Tasks (No Deadline)"
+                           :and (:scheduled past :not (:deadline t))
+                           :order 3)
+                          (:name "Scheduled Today"
+                           :scheduled today
+                           :order 4)
+                          (:name "Important (Priority A)"
+                           :priority "A"
+                           :order 5)
+                          (:name "Important (Priority B)"
+                           :priority "B"
+                           :order 6)
+                          (:name "Testing"
+                           :todo "TESTING"
+                           :order 7)
+                          (:name "DOING"
+                           :todo "DOING"
+                           :order 8)
+                          (:name "Projects with Future Deadlines"
+                           :deadline future
+                           :order 9)
+                          (:name "Bugs"
+                           :todo "BUG"
+                           :order 10)
+                          (:name "Priority C or Lower"
+                           :priority<= "C"
+                           :order 11)
+                          (:name "Read"
+                           :todo "READ"
+                           :order 12)
+                          (:name "Watch"
+                           :todo "WATCH"
+                           :order 13)
+                          (:name "Backlog"
+                           :todo "BACKLOG"
+                           :order 14)
+                          (:name "Blocked"
+                           :todo "BLOCKED"
+                           :order 15)
+                          (:name "Next Tasks"
+                           :todo "TODO"
+                           :order 16)
+                          (:name "SOMEDAY"
+                           :todo "SOMEDAY"
+                           :order 17)
+                          (:discard (:anything t))))))))
 
-    ("G" "Project Tasks"
-     ((agenda "" ((org-agenda-span 'day)
-                  (org-agenda-files (append (directory-files-recursively "~/Documents/my-repos/" "\\.org$") (directory-files-recursively "~/dotfiles/" "\\.org$")))
-                  (org-super-agenda-groups
-                   '((:name "Today"
-                      :time-grid t
-                      :date today
-                      :todo "TODAY"
-                      :scheduled today
-                      :order 1)
-                     (:discard (:anything t))))))
-      (alltodo "" ((org-agenda-overriding-header "")
-                   (org-agenda-files (append (directory-files-recursively "~/Documents/my-repos/" "\\.org$") (directory-files-recursively "~/dotfiles/" "\\.org$")))
-                   (org-super-agenda-groups
-                    '((:name "Passed Deadline"
-                       :deadline past
-                       :order 1)
-                      (:name "Deadline Today"
-                      :deadline today
-                      :order 2)
-                      (:name "Overdue Tasks (No Deadline)"
-                      :and (:scheduled past :not (:deadline t))
-                      :order 3)
-                      (:name "Scheduled Today"
-                      :scheduled today
-                      :order 4)
-                      (:name "Important (Priority A)"
-                      :priority "A"
-                      :order 5)
-                      (:name "Important (Priority B)"
-                      :priority "B"
-                      :order 6)
-                      (:name "Testing"
-                      :todo "TESTING"
-                      :order 7)
-                      (:name "DOING"
-                      :todo "DOING"
-                      :order 8)
-                      (:name "Projects with Future Deadlines"
-                      :deadline future
-                      :order 9)
-                      (:name "Bugs"
-                      :todo "BUG"
-                      :order 10)
-                      (:name "Priority C or Lower"
-                      :priority<= "C"
-                      :order 11)
-                      (:name "Read"
-                      :todo "READ"
-                      :order 12)
-                      (:name "Watch"
-                      :todo "WATCH"
-                      :order 13)
-                      (:name "Backlog"
-                      :todo "BACKLOG"
-                      :order 14)
-                      (:name "Blocked"
-                      :todo "BLOCKED"
-                      :order 15)
-                      (:name "Next Tasks"
-                      :todo "TODO"
-                      :order 16)
-                      (:name "SOMEDAY"
-                      :todo "SOMEDAY"
-                      :order 17)
-                      (:discard (:anything t))))))))))
+        ("G" "Project Tasks"
+         ((agenda "" ((org-agenda-span 'day)
+                      (org-agenda-files (append (directory-files-recursively "~/Documents/my-repos/" "\\.org$") (directory-files-recursively "~/dotfiles/" "\\.org$")))
+                      (org-super-agenda-groups
+                       '((:name "Today"
+                          :time-grid t
+                          :date today
+                          :todo "TODAY"
+                          :scheduled today
+                          :order 1)
+                         (:discard (:anything t))))))
+          (alltodo "" ((org-agenda-overriding-header "")
+                       (org-agenda-files (append (directory-files-recursively "~/Documents/my-repos/" "\\.org$") (directory-files-recursively "~/dotfiles/" "\\.org$")))
+                       (org-super-agenda-groups
+                        '((:name "Passed Deadline"
+                           :deadline past
+                           :order 1)
+                          (:name "Deadline Today"
+                           :deadline today
+                           :order 2)
+                          (:name "Overdue Tasks (No Deadline)"
+                           :and (:scheduled past :not (:deadline t))
+                           :order 3)
+                          (:name "Scheduled Today"
+                           :scheduled today
+                           :order 4)
+                          (:name "Important (Priority A)"
+                           :priority "A"
+                           :order 5)
+                          (:name "Important (Priority B)"
+                           :priority "B"
+                           :order 6)
+                          (:name "Testing"
+                           :todo "TESTING"
+                           :order 7)
+                          (:name "DOING"
+                           :todo "DOING"
+                           :order 8)
+                          (:name "Projects with Future Deadlines"
+                           :deadline future
+                           :order 9)
+                          (:name "Bugs"
+                           :todo "BUG"
+                           :order 10)
+                          (:name "Priority C or Lower"
+                           :priority<= "C"
+                           :order 11)
+                          (:name "Read"
+                           :todo "READ"
+                           :order 12)
+                          (:name "Watch"
+                           :todo "WATCH"
+                           :order 13)
+                          (:name "Backlog"
+                           :todo "BACKLOG"
+                           :order 14)
+                          (:name "Blocked"
+                           :todo "BLOCKED"
+                           :order 15)
+                          (:name "Next Tasks"
+                           :todo "TODO"
+                           :order 16)
+                          (:name "SOMEDAY"
+                           :todo "SOMEDAY"
+                           :order 17)
+                          (:discard (:anything t))))))))))
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
-
-;; ;;; origami — fold/unfold sections in the agenda buffer only
-;; ;;;
-;; ;;; TAB toggles the fold state of the section header under point.
-;; ;;; Origami is hooked only to org-agenda-mode so it does not interfere
-;; ;;; with the native folding in regular org-mode buffers.
-;; ;;; ---------------------------------------------------------------------------
-
-;; ;; (use-package origami
-;; ;;   :hook (org-agenda-mode . origami-mode)
-;; ;;   :bind (:map org-agenda-mode-map
-;; ;;          ("TAB" . origami-toggle-node)))
