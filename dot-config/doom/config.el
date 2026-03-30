@@ -21,13 +21,14 @@
 ;; change `org-directory'. It must be set before org loads!
 ;; (setq org-directory "~/Documents/orgfiles/")
 
-;; WARN: problematic code give syntaxt error
+;; WARN: problematic code give syntax error
 ;; (setq org-agenda-files
 ;;       (append
 ;;        (directory-files-recursively "~/Documents/orgfiles/" "\\.org$")
 ;;        (directory-files-recursively "~/Documents/my-repos/" "\\.org$")
 ;;        (directory-files-recursively "~/dotfiles/" "\\.org$")))
 
+;; with this approach spc + f + f not able to show all the org files for search
 (defun my/org-agenda-files ()
   "Generate list of org files from multiple directories."
   (append
@@ -35,8 +36,8 @@
    (directory-files-recursively "~/Documents/my-repos/" "\\.org$" t)
    (directory-files-recursively "~/dotfiles/" "\\.org$" t)))
 
-(setq org-agenda-files (my/org-agenda-files))
-
+(after! org
+  (setq org-agenda-files (my/org-agenda-files)))
 ;; -----------------------------------------------------------------------
 ;;  FONTS
 ;; -----------------------------------------------------------------------
@@ -75,6 +76,12 @@
 
 ;; enable soft wrap only in org-mode
 (add-hook 'org-mode-hook
+          (lambda ()
+            (+word-wrap-mode +1)
+            (setq-local fill-column 80)))
+
+;; enable soft wrap in org-agenda-mode
+(add-hook 'org-agenda-mode-hook
           (lambda ()
             (+word-wrap-mode +1)
             (setq-local fill-column 80)))
@@ -127,6 +134,15 @@
     :size 0.5
     :select
     :quit nil))
+
+;;TESTING: send done states to archive in the current file
+;;NOTE: this won't work because we have habits on health.org...
+;; (setq org-archive-location "::Archive")
+
+;; (add-hook 'org-after-todo-state-change-hook
+;;           (lambda ()
+;;             (when (equal org-state "DONE")
+;;               (org-archive-subtree-default))))
 
 ;;TESTING: enable highlight for code lines in orgmode
 ;;(setq org-src-fontify-natively t)
