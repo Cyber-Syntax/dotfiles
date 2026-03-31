@@ -10,7 +10,7 @@ return {
         -- Turn on / off org-indent-mode.
         enabled = true,
         -- Additional modes to render indents.
-        render_modes = true,
+        render_modes = false,
         -- Amount of additional padding added for each heading level.
         per_level = 2,
         -- Heading levels <= this value will not be indented.
@@ -33,7 +33,7 @@ return {
         -- Turn on / off inline link icon rendering.
         enabled = true,
         -- Additional modes to render links.
-        render_modes = true,
+        render_modes = false,
         -- How to handle footnote links, start with a '^'.
         footnote = {
           -- Turn on / off footnote rendering.
@@ -262,7 +262,7 @@ return {
         -- Turn on / off pipe table rendering.
         enabled = true,
         -- Additional modes to render pipe tables.
-        render_modes = true,
+        render_modes = false,
         -- Pre configured settings largely for setting table border easier.
         -- | heavy  | use thicker border characters     |
         -- | double | use double line border characters |
@@ -309,7 +309,7 @@ return {
         -- Turn on / off block quote & callout rendering.
         enabled = true,
         -- Additional modes to render quotes.
-        render_modes = true,
+        render_modes = false,
         -- Replaces '>' of 'block_quote'.
         icon = "▋",
         -- Whether to repeat icon on wrapped lines. Requires neovim >= 0.10. This will obscure text
@@ -339,7 +339,7 @@ return {
         -- Turn on / off checkbox state rendering.
         enabled = true,
         -- Additional modes to render checkboxes.
-        render_modes = true,
+        render_modes = false,
         -- Render the bullet point before the checkbox.
         bullet = false,
         -- Padding to add to the right of checkboxes.
@@ -381,7 +381,7 @@ return {
         -- Turn on / off list bullet rendering
         enabled = true,
         -- Additional modes to render list bullets
-        render_modes = true,
+        render_modes = false,
         -- Replaces '-'|'+'|'*' of 'list_item'.
         -- If the item is a 'checkbox' a conceal is used to hide the bullet instead.
         -- Output is evaluated depending on the type.
@@ -416,7 +416,7 @@ return {
         -- Turn on / off thematic break rendering.
         enabled = true,
         -- Additional modes to render dash.
-        render_modes = true,
+        render_modes = false,
         -- Replaces '---'|'***'|'___'|'* * *' of 'thematic_break'.
         -- The icon gets repeated across the window's width.
         icon = "─",
@@ -435,7 +435,7 @@ return {
         -- Turn on / off code block & inline code rendering.
         enabled = true,
         -- Additional modes to render code blocks.
-        render_modes = true,
+        render_modes = false,
         -- Turn on / off any sign column related rendering.
         sign = false,
         -- Determines how code blocks & inline code are rendered.
@@ -520,7 +520,7 @@ return {
         -- Turn on / off paragraph rendering.
         enabled = true,
         -- Additional modes to render paragraphs.
-        render_modes = true,
+        render_modes = false,
         -- Amount of margin to add to the left of paragraphs.
         -- If a float < 1 is provided it is treated as a percentage of available window space.
         -- Output is evaluated depending on the type.
@@ -541,7 +541,7 @@ return {
         -- Turn on / off heading icon & background rendering.
         enabled = true,
         -- Additional modes to render headings.
-        render_modes = true,
+        render_modes = false,
         -- Turn on / off atx heading rendering.
         atx = true,
         -- Turn on / off setext heading rendering.
