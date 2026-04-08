@@ -297,6 +297,8 @@
 ;; ---------------------------------------------------------------------------
 
 ;; TODO: add after! org for performance
+;; TODO: make another view for SOMEDAY later
+
 ;; Fixes the keybind(jk) issue on org-super-agenda.
 (after! org-super-agenda
   (setq org-super-agenda-header-map (make-sparse-keymap)))
@@ -344,14 +346,14 @@
                           (:name "Important (Priority B)"
                            :priority "B"
                            :order 6)
-                          (:name "Testing"
-                           :todo "TESTING"
-                           :order 7)
-                          (:name "DOING"
-                           :todo "DOING"
-                           :order 8)
                           (:name "Projects with Future Deadlines"
                            :deadline future
+                           :order 7)
+                          (:name "Testing"
+                           :todo "TESTING"
+                           :order 8)
+                          (:name "DOING"
+                           :todo "DOING"
                            :order 9)
                           (:name "Bugs"
                            :todo "BUG"
@@ -374,9 +376,6 @@
                           (:name "Next Tasks"
                            :todo "TODO"
                            :order 16)
-                          (:name "SOMEDAY"
-                           :todo "SOMEDAY"
-                           :order 17)
                           (:discard (:anything t))))))))
 
         ("G" "Project Tasks"
@@ -411,14 +410,14 @@
                           (:name "Important (Priority B)"
                            :priority "B"
                            :order 6)
-                          (:name "Testing"
-                           :todo "TESTING"
-                           :order 7)
-                          (:name "DOING"
-                           :todo "DOING"
-                           :order 8)
                           (:name "Projects with Future Deadlines"
                            :deadline future
+                           :order 7)
+                          (:name "Testing"
+                           :todo "TESTING"
+                           :order 8)
+                          (:name "DOING"
+                           :todo "DOING"
                            :order 9)
                           (:name "Bugs"
                            :todo "BUG"
@@ -441,8 +440,5 @@
                           (:name "Next Tasks"
                            :todo "TODO"
                            :order 16)
-                          (:name "SOMEDAY"
-                           :todo "SOMEDAY"
-                           :order 17)
                           (:discard (:anything t))))))))))
 (add-hook 'org-agenda-mode-hook 'org-super-agenda-mode)
