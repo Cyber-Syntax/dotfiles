@@ -1,6 +1,6 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.config/oh-my-zsh"
-ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
+export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 
 # Switched to starship because powerlevel10k stop maintenance
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
@@ -84,6 +84,11 @@ export GIT_USER=Cyber-Syntax
 # -------------------------------------------------------------------
 # Aliases
 # -------------------------------------------------------------------
+
+# Package manager aliases to remember
+
+## View Only Leaf Packages (Not Required by Others)
+alias pacman_qet="pacman -Qet"
 
 # My personal script aliases
 alias copytovm="~/.local/share/linux-system-utils/automation/copy-repos-to-vm.sh"
