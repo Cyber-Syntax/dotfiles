@@ -82,18 +82,12 @@ include ~/.config/i3/hosts/$(hostname).conf
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
 
-## APPS ##
+## Default Apps ##
 set $TERM ghostty
-set $FILE_MANAGER pcmanfm
+set $FILE_MANAGER thunar
 
-# start a terminal
 bindsym Mod4+Return exec $TERM
-
-# Files
 bindsym Mod4+z exec $FILE_MANAGER
-
-# Firefox, less = '<'
-# bindsym Mod4+less exec firefox
 
 # ROFI
 bindsym Mod4+r exec --no-startup-id ~/.config/rofi/launchers/type-6/launcher.sh
