@@ -30,7 +30,7 @@ exec --no-startup-id eval $(gnome-keyring-daemon --start --components=pkcs11,sec
 
 exec dunst &
 exec --no-startup-id nm-applet &
-exec --no-startup-id picom -b &
+exec --no-startup-id picom -b --experimental-backends --config ~/.config/picom/picom.conf &
 exec --no-startup-id numlockx on &
 exec --no-startup-id gammastep -c ~/.config/gammastep/config.ini &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
@@ -228,6 +228,7 @@ assign [class="^dev.zed.Zed$"] 2
 assign [class="^FreeTube$"] 3
 assign [class="^Signal$"] 3
 assign [class="superProductivity"] 4
+assign [class="^lact$"] 5
 assign [class="^Spotify$"] 5
 assign [class="^ncspot$"] 5
 assign [class="^SimpMusic$"] 5

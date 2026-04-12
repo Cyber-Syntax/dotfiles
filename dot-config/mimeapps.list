@@ -55,6 +55,8 @@ x-scheme-handler/discord-1038970224050962582=nuclear.desktop
 x-scheme-handler/sgnl=signal.desktop
 x-scheme-handler/signalcaptcha=signal.desktop
 application/pdf=evince.desktop
+x-scheme-handler/freetube=freetube.desktop
+x-scheme-handler/heroic=heroic.desktop
 
 [Added Associations]
 application/x-extension-html=zen-browser.desktop;
