@@ -285,6 +285,7 @@ for_window [window_role="Preferences"]                  floating enable
 for_window [window_type="dialog"]                       floating enable
 for_window [window_type="menu"]                         floating enable
 for_window [window_type="Dunst"]                        floating enable
+for_window [title="^Zed — Settings$"] floating enable
 
 # Make sure floating windows are opened in the current workspace and not moved
 for_window [floating] move container to workspace current, focus

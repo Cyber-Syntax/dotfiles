@@ -270,7 +270,7 @@
   ;; remind about day‑wide items at 9 a.m. and 2 p.m.
   ;; only DONE state won't send notif
   ;; TODO: disable notification if deadline exist
-  (setq org-wild-notifier-day-wide-alert-times '("09:00" "14:00"))
+  ;; (setq org-wild-notifier-day-wide-alert-times '("09:00" "14:00"))
 
   (org-wild-notifier-mode 1))
 
@@ -361,12 +361,6 @@
                           (:name "Priority C or Lower"
                            :priority<= "C"
                            :order 11)
-                          (:name "Read"
-                           :todo "READ"
-                           :order 12)
-                          (:name "Watch"
-                           :todo "WATCH"
-                           :order 13)
                           (:name "Backlog"
                            :todo "BACKLOG"
                            :order 14)

@@ -24,6 +24,7 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 # -------------------------------------------------------------------
 # Added by AutoTarCompress to enable shell completion
 fpath=($HOME/.config/zsh/completions $fpath)
+fpath=(/home/developer/.config/zsh/completions $fpath)
 # Completion and compinit: autoload and initialize completion.
 # -------------------------------------------------------------------
 autoload -Uz compinit && compinit
@@ -132,11 +133,9 @@ alias adog="log --all --decorate --oneline --graph"
 alias grebase="git fetch && git rebase"
 
 # more advanced Git aliases
-alias grebasemaster="git fetch upstream && git rebase upstream/master"
-alias grebasemain="git fetch upstream && git rebase upstream/main"
-alias gpushmain="git push origin main"
-alias gpushmaster="git push origin master"
-alias gpush_master_force_no_verify="git push origin master --no-verify --force"
+alias rebase_upstream_master="git fetch upstream && git rebase upstream/master"
+alias rebase_upstream_main="git fetch upstream && git rebase upstream/main"
+alias push_master_force_no_verify="git push origin master --no-verify --force"
 
 # Other aliases
 alias icat="kitten icat" # Kitty terminal image preview
@@ -230,3 +229,7 @@ fi
 
 # uv auto completions
 eval "$(uv generate-shell-completion zsh)"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -25,9 +25,22 @@
 # ==========================
 # # The config file consists of simple key-value pairs,
 # # separated by equals signs.
-#font-family = Iosevka
-font-size = 19
-theme = Catppuccin Mocha
+# font-family = JetBrainsMono Nerd Font
+font-family = "JetBrainsMono Nerd Font"
+font-family-bold = "JetBrainsMono NF Bold"
+font-family-italic = "JetBrainsMono NF Italic"
+font-family-bold-italic = "JetBrainsMono NF Bold Italic"
+
+font-style = "JetBrainsMono Nerd Font"
+# JetBrainsMono NF SemiBold
+# JetBrainsMono NF ExtraLight
+# JetBrainsMono NF ExtraBold
+# JetBrainsMono NF Medium
+# JetBrainsMono NF Regular
+# JetBrainsMono NF Thin
+
+font-size = 20
+theme = Monokai Pro
 window-theme = ghostty
 confirm-close-surface = false
 # window-padding-x = 2
