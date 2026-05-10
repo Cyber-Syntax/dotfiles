@@ -9,4 +9,13 @@ return {
       },
     },
   },
+  config = function()
+    local markdownlint = require("lint").linters.markdownlint
+    markdownlint.args = {
+      "--disable",
+      "MD013", -- Disable line length rule
+      "MD007", -- Disable indentation rule
+      "--", -- Required to separate options from files
+    }
+  end,
 }

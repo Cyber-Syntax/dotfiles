@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Show line diagnostics automatically in hover window
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+-- vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
 -- Remove whitespace on save
 autocmd("BufWritePre", {

@@ -18,8 +18,8 @@
   separator_color= frame
   scale = 1.2
   icon_corner_radius = 5
-  font = "Opensans 12"
-  icon_theme = "Papirus-Dark"
+  font = "JetBrainsMono Nerd Font Mono 13"
+  icon_theme = "Adwaita"
   origin = top-center
    ### Geometry ###
 
@@ -76,18 +76,18 @@
 [urgency_low]
   background = "#1e1e2eb0"
   foreground = "#cdd6f4"
-  timeout = 15
-  override_pause_level = 30
+  timeout = 5
+  override_pause_level = 10
 
 [urgency_normal]
   background = "#1e1e2eb0"
   foreground = "#cdd6f4"
-  timeout = 30
-  override_pause_level = 40
+  timeout = 10
+  override_pause_level = 20
 
 [urgency_critical]
   background = "#1e1e2eb0"
   foreground = "#cdd6f4"
   frame_color = "#fab387b0"
-  timeout = 0
-  override_pause_level = 60
+  timeout = 15
+  override_pause_level = 40

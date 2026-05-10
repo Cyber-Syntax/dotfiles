@@ -42,9 +42,9 @@ exec --no-startup-id xfce4-power-manager --daemon
 
 # custom app/scripts
 exec --no-startup-id emacs --daemon=doom
-exec_always --no-startup-id ~/Documents/my-repos/WallpaperChanger/main.py &
+exec_always --no-startup-id ~/Documents/repositories/my-repos/WallpaperChanger/main.py &
 exec ~/Applications/zen-browser.AppImage &
-# exec easyeffects --hide-window --service-mode &
+exec easyeffects --hide-window --service-mode &
 
 # ============================= ./EXEC ====================
 
