@@ -1,5 +1,5 @@
 # ============================= INFO ======================================
-#exec: command will not run when resllms.txttarting i3
+#exec: command will not run when restarting i3
 #exec_always: command will run when restarting i3
 # ============================= /.INFO ====================================
 
@@ -236,10 +236,7 @@ set $ws2 2
 set $ws3 3
 set $ws4 4
 set $ws5 5
-
-# Cycle groups
-bindsym Mod4+Tab workspace next
-bindsym Mod4+Shift+Tab workspace prev
+set $ws6 6
 
 # switch to workspace
 bindsym Mod4+1 workspace number $ws1
