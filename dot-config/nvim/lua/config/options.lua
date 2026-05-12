@@ -10,6 +10,10 @@
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 -- vim.g.root_spec = { "cwd" }
 
+--NOTE: to preserve birth/creation time on files
+-- issue: #29671
+vim.opt.backupcopy = "yes"
+
 --NOTE: soft wrap for text in custom size like 80 not implemented to neovim yet
 -- https://github.com/neovim/neovim/issues/4386
 --TODO: enable soft wrap for markdown, text, .log files after this is implemented in neovim
