@@ -63,7 +63,7 @@ return {
     ---@module 'obsidian'
     ---@type obsidian.config
     opts = {
-      legacy_commands = false, -- this will be removed in the next major release
+      legacy_commands = false, -- this will be removed in 4.0.0
       workspaces = {
         {
           name = "personal",
@@ -117,7 +117,36 @@ return {
       -- Optional, boolean or a function that takes a filename and returns a boolean.
       -- `true` indicates that you don't want obsidian.nvim to manage frontmatter.
       -- disable_frontmatter = true,
-      frontmatter_enabled = false,
+      -- frontmatter_enabled = false,
+      --TESTING: auto created, updated frontmatter yaml
+      frontmatter = {
+        enabled = true,
+
+        ---@type fun(note: obsidian.Note): table<string, any>
+        func = function(note)
+          local out = {}
+
+          -- Keep every existing metadata field the user already has
+          if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+            for k, v in pairs(note.metadata) do
+              out[k] = v
+            end
+          end
+
+          local now = os.date("%Y-%m-%d %H:%M:%S")
+
+          -- If created doesn't exist yet, add it
+          -- regardless of whether the file exists on disk
+          if out.created == nil then
+            out.created = now
+          end
+
+          -- Put this at the end
+          out.last_modified = now
+
+          return out
+        end,
+      },
 
       -- Optional, for templates (see below).
       templates = {
