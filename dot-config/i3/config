@@ -329,7 +329,7 @@ hide_edge_borders smart
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 # font pango:Roboto Regular 11
-# font pango:JetbrainsMono Nerd Font Regular 11
-font pango:MesloLGM Nerd Font Mono Regular 11
+font pango:JetbrainsMono Nerd Font Regular 11
+# font pango:MesloLGM Nerd Font Mono Regular 11
 
 # ============================= ./RULES ====================================
