@@ -34,9 +34,9 @@ vim.opt.laststatus = 3
 -- To prevent this, set `splitkeep` to either `screen` or `topline`.
 vim.opt.splitkeep = "screen"
 
---NOTE: migrated to light theme because of eyestrain (Some resource say, light better for people who have astigmatism)
---NOTE: most of the theme can't handle this, bug somewhere probably
--- vim.opt.background = "light" -- or "light" for light mode
+--FIXME: most of the theme can't handle this, bug somewhere probably
+-- vim.opt.background = "light"
+-- vim.o.background = "light"
 --Hide The order of your lazy.nvim warning
 vim.g.lazyvim_check_order = false
 

@@ -55,6 +55,7 @@ map("n", "<C-a>", "<C-w>h", { desc = "Focus left window", noremap = true, silent
 map("n", "<C-d>", "<C-w>l", { desc = "Focus right window", noremap = true, silent = true })
 map("n", "<C-s>", "<cmd>wincmd j<CR>", { desc = "Focus down window", silent = true })
 map("n", "<C-w>", "<cmd>wincmd k<CR>", { desc = "Focus up window", silent = true })
+map("t", "<C-w>", "<cmd>wincmd k<CR>", { desc = "Focus up window from terminal", silent = true })
 
 -- Exit insert mode by writing cc in insert mode
 map("i", "qq", "<ESC>", { desc = "Exit insert mode" })
@@ -86,9 +87,11 @@ map("i", "<C-e>", "<End>", { desc = "End" })
 --         Unlike :Obsidian yesterday and :Obsidian tomorrow this command does not differentiate between weekdays and weekends
 
 -- -- -- Obsidian.nvim
-map("n", "<leader>fo", ":Obsidian quick_switch<CR>", { desc = "Obsidian File Search", silent = true })
-map("n", "<leader>fO", ":Obsidian search<CR>", { desc = "Obsidian Search in Files", silent = true })
-map("n", "<leader>fd", ":Obsidian today<CR>", { desc = "Obsidian open/create a new daily note", silent = true })
+map("n", "<leader>ot", ":Obsidian template<CR>", { desc = "Obsidian insert template", silent = true })
+map("n", "<leader>oT", ":Obsidian new_from_template<CR>", { desc = "Obsidian new from template", silent = true })
+map("n", "<leader>oo", ":Obsidian quick_switch<CR>", { desc = "Obsidian File Search", silent = true })
+map("n", "<leader>oO", ":Obsidian search<CR>", { desc = "Obsidian Search in Files", silent = true })
+map("n", "<leader>od", ":Obsidian today<CR>", { desc = "Obsidian open/create a new daily note", silent = true })
 map(
   "n",
   "<leader>fy",
@@ -146,7 +149,12 @@ map(
 -- vim.cmd([[cab cc CodeCompanion]])
 
 -- Custom function to toggle checkbox in Markdown or create one if it doesn't exist
-vim.keymap.set("n", "<leader>tt", checkbox_util.toggle_checkbox, { desc = "Toggle/Create Markdown Checkbox", silent = true })
+vim.keymap.set(
+  "n",
+  "<leader>tt",
+  checkbox_util.toggle_checkbox,
+  { desc = "Toggle/Create Markdown Checkbox", silent = true }
+)
 vim.keymap.set("n", "<leader>tn", checkbox_util.new_todo, { desc = "Insert new TODO", silent = true })
 
 vim.keymap.set("i", "<C-t>", function()
