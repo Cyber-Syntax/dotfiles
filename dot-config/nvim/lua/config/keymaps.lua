@@ -86,6 +86,9 @@ map("i", "<C-e>", "<End>", { desc = "End" })
 --         offset is in days, e.g. use :Obsidian today -1 to go to yesterday's note.
 --         Unlike :Obsidian yesterday and :Obsidian tomorrow this command does not differentiate between weekdays and weekends
 
+-- peek.nvim -- open markdown preview via browser
+map("n", "<leader>op", ":PeekOpen<CR>", { desc = "Peek Open Markdown Preview", silent = true })
+map("n", "<leader>oP", ":PeekClose<CR>", { desc = "Peek Close Markdown Preview", silent = true })
 -- -- -- Obsidian.nvim
 map("n", "<leader>ot", ":Obsidian template<CR>", { desc = "Obsidian insert template", silent = true })
 map("n", "<leader>oT", ":Obsidian new_from_template<CR>", { desc = "Obsidian new from template", silent = true })
