@@ -1,27 +1,41 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11,<3.14"
+# dependencies = [
+# "i3ipc"
+# ]
+# ///
+
+# Author: https://github.com/olemartinorg/i3-alternating-layout
+# Maintainer for current: Cyber-Syntax
+
 
 import getopt
-import sys
-import os
 import logging
+import os
+import sys
+from pathlib import Path
+
 from i3ipc import Connection, Event
+
+log_path = Path("~/.config/i3/logs/i3-alternating-layout.log").expanduser()
+log_path.parent.mkdir(parents=True, exist_ok=True)  # Create dirs if needed
 
 # Set up logging
 logging.basicConfig(
     level=logging.ERROR,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
-        logging.FileHandler(os.path.expanduser('~/.config/i3/logs/i3-alternating-layout.log')),
-        logging.StreamHandler()
-    ]
+        logging.FileHandler(log_path),
+        logging.StreamHandler(),
+    ],
 )
 
 
 def find_parent(i3, window_id):
-    """
-    Find the parent of a given window id
-    """
+    """Find the parent of a given window id."""
     try:
+
         def finder(con, parent):
             if con.id == window_id:
                 return parent
@@ -38,9 +52,9 @@ def find_parent(i3, window_id):
 
 
 def set_layout(i3, e):
-    """
-    Set the layout/split for the currently
-    focused window to either vertical or
+    """Set the layout/split.
+
+    for the currently focused window to either vertical or
     horizontal, depending on its width/height
     """
     try:
@@ -93,9 +107,9 @@ def main():
                 pid_file = opt[1]
 
         if pid_file:
-            with open(pid_file, "w") as f:
-                f.write(str(os.getpid()))
+            Path(pid_file).write_text(str(os.getpid()))
 
+        logging.info("work as expected")
         i3 = Connection()
         i3.on(Event.WINDOW_FOCUS, set_layout)
         i3.main()

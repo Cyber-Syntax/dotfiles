@@ -20,13 +20,7 @@ exec dbus-update-activation-environment --all
 exec --no-startup-id eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 
 # layout that looks like a monadtall
-# https://github.com/olemartinorg/i3-alternating-layout
-#FIXME:
-#   File "/home/developer/.config/i3/scripts/i3-alternating-layout.py", line 7, in <module>
-#     from i3ipc import Connection, Event
-# ModuleNotFoundError: No module named 'i3ipc'
-#
-# exec_always --no-startup-id ~/.config/i3/scripts/i3-alternating-layout.py
+exec_always --no-startup-id ~/.config/i3/scripts/i3-alternating-layout.py
 
 exec dunst &
 exec --no-startup-id nm-applet &
@@ -271,6 +265,12 @@ client.background       #f0f0f0
 # ============================= ./COLORS ====================================
 
 # ============================= RULES ====================================
+# do not focus window opened by peek.nvim for neovim markdown preview
+no_focus [title="^Peek preview$"]
+
+# open terminal split view always
+for_window [class="$TERM"] layout split
+
 #smart|urgent|focus|none
 focus_on_window_activation focus
 
