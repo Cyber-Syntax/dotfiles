@@ -6,6 +6,9 @@ export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
+# gtk3 theme for qt apps, useful for file pickers to use modern theme like gnome etc.
+export QT_QPA_PLATFORMTHEME=gtk3
+
 #TODO: Search proper path export and handle them correctly
 # If you must add user paths, better add them as last in the PATH.
 #

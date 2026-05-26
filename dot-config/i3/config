@@ -105,8 +105,6 @@ bindsym Mod4+s focus up ; exec --no-startup-id ~/.config/i3/scripts/move-cursor-
 bindsym Mod4+Shift+space floating toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# make tabbed layout default
-workspace_layout tabbed
 # toggle between tabbed
 bindsym Mod4+y layout tabbed
 
@@ -208,6 +206,13 @@ bindsym Mod4+Shift+Right move right
 
 # ============================= WORKSPACES ====================================
 
+# make tabbed layout default
+workspace_layout tabbed
+
+# FIXME: both option wrong for assing layout to specific workspace
+# workspace_layout 2; split
+# workspace 2; layout split
+
 # SPECIFIC APPS START SPECIFIC WORKSPACE
 assign [class="^zen$"] 1
 assign [class="^Brave-browser$"] 1
@@ -269,7 +274,7 @@ client.background       #f0f0f0
 no_focus [title="^Peek preview$"]
 
 # open terminal split view always
-for_window [class="$TERM"] layout split
+for_window [class="^(alacritty|xterm|ghostty|kitty)$"] layout split
 
 #smart|urgent|focus|none
 focus_on_window_activation focus

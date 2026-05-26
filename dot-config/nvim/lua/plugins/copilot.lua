@@ -1,5 +1,5 @@
 return {
-  --NOTE: Disabled for now which I mainly use zed editor
+  --NOTE: Disabled which better to write manual...
   --
   -- "zbirenbaum/copilot.lua",
   -- cmd = "Copilot",

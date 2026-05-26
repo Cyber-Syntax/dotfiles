@@ -86,6 +86,7 @@ return {
       diagnostics = {
         underline = false,
         update_in_insert = true,
+        severitiy = { vim.diagnostic.severity.ERROR },
         virtual_text = true,
         -- float = {
         --   source = "always", -- show diagnostic source in float

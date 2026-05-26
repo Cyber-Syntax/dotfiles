@@ -112,4 +112,4 @@ text/x-makefile=nvim.desktop;
 text/x-tcl=nvim.desktop;
 text/x-pascal=nvim.desktop;
 inode/directory=pcmanfm.desktop;
-
+application/pdf=brave-browser.desktop;libreoffice-draw.desktop;

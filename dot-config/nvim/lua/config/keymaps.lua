@@ -54,8 +54,10 @@ map("t", "<C-t>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map("n", "<C-a>", "<C-w>h", { desc = "Focus left window", noremap = true, silent = true })
 map("n", "<C-d>", "<C-w>l", { desc = "Focus right window", noremap = true, silent = true })
 map("n", "<C-s>", "<cmd>wincmd j<CR>", { desc = "Focus down window", silent = true })
-map("n", "<C-w>", "<cmd>wincmd k<CR>", { desc = "Focus up window", silent = true })
-map("t", "<C-w>", "<cmd>wincmd k<CR>", { desc = "Focus up window from terminal", silent = true })
+
+--TODO: conflict with fast word delete, might be find a solution someway else later
+-- map("n", "<C-w>", "<cmd>wincmd k<CR>", { desc = "Focus up window", silent = true })
+-- map("t", "<C-w>", "<cmd>wincmd k<CR>", { desc = "Focus up window from terminal", silent = true })
 
 -- Exit insert mode by writing cc in insert mode
 map("i", "qq", "<ESC>", { desc = "Exit insert mode" })
