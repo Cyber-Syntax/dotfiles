@@ -40,6 +40,8 @@ exec --no-startup-id emacs --daemon=doom
 exec_always --no-startup-id ~/Documents/repositories/my-repos/WallpaperChanger/main.py &
 exec ~/Applications/zen-browser.AppImage &
 exec easyeffects --hide-window --service-mode &
+#TESTING:
+exec --no-startup-id arch-update --tray &
 
 # ============================= ./EXEC ====================
 

@@ -8,6 +8,17 @@ eval "$(starship init zsh)"
 
 # gtk3 theme for qt apps, useful for file pickers to use modern theme like gnome etc.
 export QT_QPA_PLATFORMTHEME=gtk3
+#NOTE: some apps need special treatments:
+# Exec=env QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCALE_FACTOR=1.5 "/home/developer/Qt/Tools/QtCreator/bin/qtcreator" %F
+# TESTING:
+# export QT_QPA_PLATFORMTHEME=qt6ct
+# export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_SCALE_FACTOR=1
+# export QT_AUTO_SCREEN_SCALE_FACTOR=0
+# export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# export QT_ENABLE_HIGHDPI_SCALING=1
+# export QT_USE_PHYSICAL_DPI=1
+# export QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough
 
 #TODO: Search proper path export and handle them correctly
 # If you must add user paths, better add them as last in the PATH.
