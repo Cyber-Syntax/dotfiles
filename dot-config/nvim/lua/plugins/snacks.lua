@@ -18,14 +18,18 @@ return {
       picker = {
         sources = {
           files = {
-            -- hidden = true,
-            -- ignored = true,
+            hidden = true, -- show dotfiles
+            ignored = true, -- show .gitignore
             -- ignored = false,
             -- exclude = {
             --   ".git",
             --   "node_modules",
             --   ".gitignore",
             -- },
+          },
+          grep = {
+            hidden = true,
+            ignored = true, -- search in .gitignore files
           },
           explorer = {
             replace_netrw = false,

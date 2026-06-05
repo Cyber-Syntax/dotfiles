@@ -1,6 +1,5 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
 
 -- LazyVim root dir detection
 -- Each entry can be:
@@ -19,7 +18,7 @@ vim.opt.backupcopy = "yes"
 --TODO: enable soft wrap for markdown, text, .log files after this is implemented in neovim
 --NOTE: below make hard wrap when writing
 -- Set text width to 79 characters
--- vim.opt.textwidth = 79
+vim.opt.textwidth = 79
 -- enable line wrapping
 vim.opt.wrap = true
 -- enable line breaking at word boundaries
@@ -27,25 +26,26 @@ vim.opt.wrap = true
 -- -- enable break indent
 -- vim.opt.breakindent = true
 
---NOTE: for edgy.nvim
--- views can only be fully collapsed with the global statusline
--- vim.opt.laststatus = 3
-
 -- Default splitting will cause your main splits to jump when opening an edgebar.
 -- To prevent this, set `splitkeep` to either `screen` or `topline`.
 vim.opt.splitkeep = "screen"
 
---FIXME: most of the theme can't handle this, bug somewhere probably
+-- most of the theme can't handle this, bug somewhere probably
 -- vim.opt.background = "light"
 -- vim.o.background = "light"
 --Hide The order of your lazy.nvim warning
 vim.g.lazyvim_check_order = false
 
+-- python lsp setup
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
 
 vim.opt.updatetime = 250
--- vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+-- show errors in float
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+
+--TESTING: not show noice insert/visual/normal mode notify
+vim.opt.showmode = false
 
 -- vim.lsp.inlay_hint(0, false)
 -- Those already default
