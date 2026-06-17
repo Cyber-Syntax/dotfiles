@@ -1,4 +1,6 @@
-# 💤 LazyVim
+# Cyber-Syntax neovim dotfiles
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+> [!NOTE]
+> I use LazyVim.
+
+Main setup is python which I use python mostly.

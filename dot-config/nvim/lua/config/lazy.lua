@@ -33,7 +33,10 @@ require("lazy").setup({
   -- install = { colorscheme = { "habamax" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
-    notify = true, -- notify on update
+    notify = false, -- notify on update
+    -- TODO: https://github.com/folke/lazy.nvim/pull/2159
+    -- security best practice to prevent supply chain attacks
+--    minimum_release_age = "7d", -- enforces the 7-day wait
   }, -- automatically check for plugin updates
   performance = {
     rtp = {

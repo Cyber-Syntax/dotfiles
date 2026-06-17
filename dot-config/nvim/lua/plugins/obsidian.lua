@@ -1,3 +1,11 @@
+--TODO: blink is actualy completion so it is same like nvim_cmp, seems deprecated
+-- setup a way to disable lsp and continue usin this which lsp seems won't work with marksman?
+-- https://github.com/obsidian-nvim/obsidian.nvim/issues/755
+--
+--TODO: completion.nvim_cmp is deprecated, use removing it from your config.
+-- Completion is now provided via the built-in obsidian-ls LSP server instead.
+-- Feature will be removed in obsidian.nvim 4.0
+--
 -- Get the file creation time from the filesystem.
 -- Used only when a note does not already have a `created` field.
 local function get_birthtime(filename)
@@ -63,7 +71,6 @@ return {
       -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
       completion = {
         -- Set to false to disable completion.
-        nvim_cmp = false,
         blink = true,
       },
 

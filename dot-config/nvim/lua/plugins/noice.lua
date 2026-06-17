@@ -6,7 +6,7 @@ return {
     opts = {
       lsp = {
         progress = {
-          enabled = false,
+          enabled = false, -- disable right left loading for basedpyright etc.
         },
       },
       cmdline = {

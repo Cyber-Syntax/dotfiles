@@ -18,7 +18,7 @@ vim.opt.backupcopy = "yes"
 --TODO: enable soft wrap for markdown, text, .log files after this is implemented in neovim
 --NOTE: below make hard wrap when writing
 -- Set text width to 79 characters
-vim.opt.textwidth = 79
+-- vim.opt.textwidth = 79
 -- enable line wrapping
 vim.opt.wrap = true
 -- enable line breaking at word boundaries
