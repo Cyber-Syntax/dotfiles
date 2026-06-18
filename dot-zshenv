@@ -1,20 +1,6 @@
 # Export zsh custom dir
 export ZDOTDIR=$HOME/.config/zsh
 
-# Useful apps
-#FIXME: alacritty:
-# /home/developer/.zshenv:export:5: not valid in this context: /usr/bin/alacritty
-# export $TERM=alacritty
-# Set some XDG_* variables
-export XDG_SESSION_DESKTOP=i3
-export XDG_CURRENT_DESKTOP=i3
-
-# Other XDG paths
-export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
-export XDG_PICTURES_DIR=${XDG_PICTURES_DIR:="$HOME/Pictures"}
-
 # Path for coding
 export GEM_PATH="$XDG_DATA_HOME/ruby/gems"
 export GEM_SPEC_CACHE="$XDG_DATA_HOME/ruby/specs"
@@ -27,22 +13,9 @@ export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 
-# Qt theme
-export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct
-
 # Paths for x11
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
-
-# Scaling
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export QT_SCALE_FACTOR=1
-export QT_SCREEN_SCALE_FACTORS="1;1;1"
-export GDK_SCALE=1
-export GDK_DPI_SCALE=1
-#TESTING:
-export QT_ENABLE_HIGHDPI_SCALING=1
-export QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough
 
 # Disable files
 # export LESSHISTFILE=-

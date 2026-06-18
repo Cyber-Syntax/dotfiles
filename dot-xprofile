@@ -1,0 +1,25 @@
+#!/bin/sh
+# # source the zsh environment file(s) so that X sessions get the same
+# # variables/paths as an interactive zsh login.
+# [ -f ~/.zshenv ] && . ~/.zshenv
+# [ -f ~/.config/zsh/.zshenv ] && . ~/.config/zsh/.zshenv
+
+# We make sure that the variables passed to the graphical interface
+# Other XDG paths
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+export XDG_PICTURES_DIR=${XDG_PICTURES_DIR:="$HOME/Pictures"}
+
+# Qt theme
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_STYLE_OVERRIDE=kvantum
+
+# QT Scaling
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCALE_FACTOR=1
+export QT_SCREEN_SCALE_FACTORS="1;1;1"
+export GDK_SCALE=1
+export GDK_DPI_SCALE=1
+export QT_ENABLE_HIGHDPI_SCALING=1
+export QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough
