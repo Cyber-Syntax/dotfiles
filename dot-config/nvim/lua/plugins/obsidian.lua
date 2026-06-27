@@ -6,6 +6,10 @@
 -- Completion is now provided via the built-in obsidian-ls LSP server instead.
 -- Feature will be removed in obsidian.nvim 4.0
 --
+-- Workaround seems work but still not handle old files like 2023,
+-- it's always make it 2026 in copy. (checkout options.lua for workaround.)
+-- this is probably because of neovim issue:
+-- https://github.com/neovim/neovim/issues/29671
 -- Get the file creation time from the filesystem.
 -- Used only when a note does not already have a `created` field.
 local function get_birthtime(filename)

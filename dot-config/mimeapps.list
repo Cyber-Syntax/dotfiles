@@ -58,6 +58,8 @@ x-scheme-handler/signalcaptcha=signal.desktop
 application/pdf=evince.desktop
 x-scheme-handler/freetube=freetube.desktop
 x-scheme-handler/heroic=heroic.desktop
+x-scheme-handler/superproductivity=super-productivity.desktop
+x-scheme-handler/ftp=zen-browser.desktop
 
 [Added Associations]
 application/x-extension-html=zen-browser.desktop;
@@ -112,4 +114,4 @@ text/x-makefile=nvim.desktop;
 text/x-tcl=nvim.desktop;
 text/x-pascal=nvim.desktop;
 inode/directory=pcmanfm.desktop;
-application/pdf=brave-browser.desktop;gimp.desktop;libreoffice-draw.desktop;
+application/pdf=libreoffice-draw.desktop;brave-browser.desktop;gimp.desktop;

@@ -2,9 +2,10 @@ return {
   {
     --TODO: decrease renders for more clean way
     "MeanderingProgrammer/render-markdown.nvim",
-    enabled = true,
+    enabled = false,
     ft = { "markdown", "codecompanion" },
     opts = {
+      latex = { enabled = false },
       indent = {
         -- Mimic org-indent-mode behavior by indenting everything under a heading based on the
         -- level of the heading. Indenting starts from level 2 headings onward by default.
@@ -305,7 +306,7 @@ return {
         -- Highlight for everything else, main table rows and the line below.
         row = "RenderMarkdownTableRow",
         -- Highlight for inline padding used to add back concealed space.
-        filler = "RenderMarkdownTableFill",
+        -- filler = "RenderMarkdownTableFill",
       },
       quote = {
         -- Turn on / off block quote & callout rendering.

@@ -10,7 +10,9 @@ vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 -- vim.g.root_spec = { "cwd" }
 
 --NOTE: to preserve birth/creation time on files
--- issue: #29671
+-- Workaround seems work but still not handle old files like 2023,
+-- it's always make it 2026 in copy:
+-- issue: https://github.com/neovim/neovim/issues/29671
 vim.opt.backupcopy = "yes"
 
 --NOTE: soft wrap for text in custom size like 80 not implemented to neovim yet

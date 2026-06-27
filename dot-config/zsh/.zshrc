@@ -6,20 +6,6 @@ export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
 
-# gtk3 theme for qt apps, useful for file pickers to use modern theme like gnome etc.
-export QT_QPA_PLATFORMTHEME=gtk3
-#NOTE: some apps need special treatments:
-# Exec=env QT_AUTO_SCREEN_SCALE_FACTOR=0 QT_SCALE_FACTOR=1.5 "/home/developer/Qt/Tools/QtCreator/bin/qtcreator" %F
-# TESTING:
-# export QT_QPA_PLATFORMTHEME=qt6ct
-# export QT_QPA_PLATFORMTHEME=qt5ct
-export QT_SCALE_FACTOR=1
-# export QT_AUTO_SCREEN_SCALE_FACTOR=0
-# export QT_AUTO_SCREEN_SCALE_FACTOR=1
-# export QT_ENABLE_HIGHDPI_SCALING=1
-# export QT_USE_PHYSICAL_DPI=1
-# export QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough
-
 #TODO: Search proper path export and handle them correctly
 # If you must add user paths, better add them as last in the PATH.
 #
@@ -104,6 +90,9 @@ export GIT_USER=Cyber-Syntax
 
 ## View Only Leaf Packages (Not Required by Others)
 alias pacman_qet="pacman -Qet"
+# NOTE: this isn't partial update, it is recommended by arch linux when you outdated arch machine so much
+# https://wiki.archlinux.org/title/Pacman/Package_signing#Upgrade_system_regularly
+alias pacman_keyring_updat="sudo pacman -Sy archlinux-keyring && sudo pacman -Su"
 
 # My personal script aliases
 alias copytovm="~/.local/share/linux-system-utils/automation/copy-repos-to-vm.sh"
@@ -130,6 +119,14 @@ alias dinolocal="npm run start"
 
 # Python project related aliases
 alias va='source .venv/bin/activate'
+
+# Nodejs project related aliases
+build_node_server() {
+  npm i -g @angular/cli && \
+  npm i && \
+  npm run env && \
+  ng serve
+}
 
 # Standard Git aliases
 alias gst="git status"
@@ -183,6 +180,9 @@ ENABLE_CORRECTION="true"
 # USER CONFIGURATION
 # -------------------------------------------------------------------
 
+#TODO: might be better to move them xprofile because from now
+# i3 need graphical session variables to work with apps
+# but below still work if it is in terminal though
 # Virt-manager shared folder
 export VIRT_SHARED_FOLDER_DIR=/mnt/backups/virt-manager-share/shared-folder
 
@@ -204,7 +204,11 @@ export NVD_BACKEND=direct # default
 export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
 
 # Export this for development purposes
-export CHROME_BIN="/usr/bin/brave-browser-stable"
+## for arch
+export CHROME_BIN="/usr/bin/brave"
+
+# # for fedora and others
+# export CHROME_BIN="/usr/bin/brave-browser-stable"
 
 # Disable % eof, prevent % print output when
 # there is no newline on program output

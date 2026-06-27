@@ -22,26 +22,25 @@ exec --no-startup-id eval $(gnome-keyring-daemon --start --components=pkcs11,sec
 # layout that looks like a monadtall
 exec_always --no-startup-id ~/.config/i3/scripts/i3-alternating-layout.py
 
-exec dunst &
+# make sure the dunst.service not started for user.
+# sometimes it cause issue which two instance won't work
+exec --no-startup-id dunst
 exec --no-startup-id nm-applet &
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 &
 exec --no-startup-id picom -b --config ~/.config/picom/picom.conf &
 exec --no-startup-id numlockx on &
 exec --no-startup-id gammastep -c ~/.config/gammastep/config.ini &
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
+
+#NOTE: if systray icon missing; enable it from xfce4-power-manager-settings
+exec --no-startup-id xfce4-power-manager --daemon
+# custom app/scripts
+exec_always --no-startup-id ~/Documents/repositories/my-repos/WallpaperChanger/main.py &
+exec easyeffects --hide-window --service-mode &
+
 #FIXME: none of the lock tools run succesfully problem via xfce4-power-manager
 #below command via i3lock not worked
 # xfconf-query -c xfce4-session -p /general/LockCommand -s "i3lock" -t string --create
-#NOTE: Enable systray icon from xfce4-power-manager-settings if missing on systray
-exec --no-startup-id xfce4-power-manager --daemon
-
-# custom app/scripts
-exec --no-startup-id emacs --daemon=doom
-exec_always --no-startup-id ~/Documents/repositories/my-repos/WallpaperChanger/main.py &
-exec ~/Applications/zen-browser.AppImage &
-exec easyeffects --hide-window --service-mode &
-#TESTING:
-exec --no-startup-id arch-update --tray &
 
 # ============================= ./EXEC ====================
 
