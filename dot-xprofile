@@ -15,7 +15,7 @@ export XDG_PICTURES_DIR=${XDG_PICTURES_DIR:="$HOME/Pictures"}
 
 # lie here to make sure icons work for i3
 # KDE cause issue with xdg-open, GNOME works
-XDG_CURRENT_DESKTOP=GNOME # KDE, GNOME...
+XDG_CURRENT_DESKTOP=GNOME # KDE, GNOME, i3...
 
 # Qt theme
 export QT_QPA_PLATFORMTHEME=qt5ct:qt6ct

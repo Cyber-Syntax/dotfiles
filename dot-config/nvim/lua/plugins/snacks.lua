@@ -28,8 +28,8 @@ return {
             -- },
           },
           grep = {
-            hidden = true,
-            ignored = true, -- search in .gitignore files
+            hidden = false,
+            ignored = false, -- search in .gitignore files
           },
           explorer = {
             replace_netrw = false,

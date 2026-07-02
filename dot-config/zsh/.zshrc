@@ -67,9 +67,10 @@ plugins=(
   copypath
   copybuffer
   uv
-  # vi-mode #NOTE: this cause issue with dirhistory
+  # vi-mode # this cause issue with dirhistory
 )
 
+#TODO: find a way to update after 7 day to prevent chain-supply-attacks
 # oh-my-zsh auto update, check updates in 7 days
 zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 7
