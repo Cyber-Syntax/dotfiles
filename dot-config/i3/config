@@ -222,7 +222,7 @@ assign [class="^Code$"] 2
 assign [class="^dev.zed.Zed$"] 2
 assign [class="^FreeTube$"] 3
 assign [class="^Signal$"] 3
-assign [class="superProductivity"] 4
+assign [class="^Super Productivity$" instance="^super productivity$"] 4
 assign [class="^lact$"] 5
 assign [class="^Spotify$"] 5
 assign [class="^ncspot$"] 5
