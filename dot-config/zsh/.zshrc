@@ -105,7 +105,9 @@ alias ta="tmux attach-session"
 alias tkill="tmux kill-server"
 
 # systemctl
-alias systemctlnop="systemctl --no-pager -l"
+alias systemctl_clean="systemctl --no-pager -l"
+# NOTE same like above
+alias systemctl_user_status="COLUMNS=999 systemctl --user status"
 
 # journalctl
 alias journalctl_verbose="SYSTEMD_COLORS=1 journalctl --reverse --no-hostname | less -R"
