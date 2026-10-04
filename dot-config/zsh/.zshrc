@@ -124,11 +124,17 @@ alias dinolocal="npm run start"
 alias va='source .venv/bin/activate'
 
 # Nodejs project related aliases
-build_node_server() {
+node_build_server() {
   npm i -g @angular/cli && \
   npm i && \
   npm run env && \
   ng serve
+}
+
+node_update_server() {
+  npm i -g @angular/cli && \
+  npm i && \
+  npm run env
 }
 
 # Standard Git aliases

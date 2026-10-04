@@ -43,8 +43,12 @@ vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
 
 vim.opt.updatetime = 250
+
 -- show errors in float
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+-- vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
+
+--NOTE: make cursor more black and bold for better view
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver100-Cursor,r-cr:hor20"
 
 --TESTING: not show noice insert/visual/normal mode notify
 vim.opt.showmode = false

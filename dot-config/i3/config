@@ -4,29 +4,21 @@
 # ============================= /.INFO ====================================
 
 # ============================= EXEC ====================================
-#NOTE: make sure those apps not on the ~/.config/autostart
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-#TESTING: I don't use ~/.config/autostart/ location in i3??? So this not needed??
-# exec --no-startup-id dex --autostart --environment i3 &
+#NOTE: make sure those exec apps not on the ~/.config/autostart
 
 ## DBUS
 # exec dbus-update-activation-environment DISPLAY XAUTHORITY
 # Alternative to above dbus-update-activation-environment command:
-
-#TESTING:
-#OLD this one used but zed give error about authentication
 # exec dbus-update-activation-environment --all &
-exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
+# exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHORITY &
 
-#TESTING: this fixes the problem of arch-update tray
+# ## GNOME KEYRING
+# # Start the gnome-keyring-daemon
+# exec --no-startup-id eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) &
+
+# This fixes the problem of arch-update tray
 # missing "org.freedesktop.StatusNotifierWatcher" issue
 exec --no-startup-id snixembed &
-
-## GNOME KEYRING
-# Start the gnome-keyring-daemon
-exec --no-startup-id eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) &
 
 # layout that looks like a monadtall
 exec_always --no-startup-id ~/.config/i3/scripts/i3-alternating-layout.py &
@@ -35,13 +27,11 @@ exec_always --no-startup-id ~/.config/i3/scripts/i3-alternating-layout.py &
 # sometimes it cause issue which two instance won't work
 exec --no-startup-id dunst &
 exec --no-startup-id nm-applet &
-#TESTING: kde might cause issue for zed sign-in, so testing via lxpolkit
 exec --no-startup-id lxpolkit & # "lxsession" provide lxpolkit
 # exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1 &
 exec --no-startup-id picom -b --config ~/.config/picom/picom.conf &
 exec --no-startup-id numlockx on &
 exec --no-startup-id gammastep -c ~/.config/gammastep/config.ini &
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
 
 #NOTE: if systray icon missing; enable it from xfce4-power-manager-settings
 exec --no-startup-id xfce4-power-manager --daemon &
@@ -53,14 +43,18 @@ exec --no-startup-id easyeffects --hide-window --service-mode &
 #below command via i3lock not worked
 # xfconf-query -c xfce4-session -p /general/LockCommand -s "i3lock" -t string --create
 
-# ============================= ./EXEC ====================
-
-# ============================= /hosts ====================
+# ============================= HOSTS ====================
 
 # 2 machine setup with hostname based config include
 include ~/.config/i3/hosts/$(hostname).conf
 
-# ============================= ./hosts ====================
+# ============================= ./HOSTS ====================
+
+# start polybar after every tray/app etc. started from hosts to prevent
+# non opened tray issues.
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
+
+# ============================= ./EXEC ====================
 
 # ============================= KEYS ====================================
 
@@ -226,21 +220,30 @@ workspace_layout tabbed
 # workspace 2; layout split
 
 # SPECIFIC APPS START SPECIFIC WORKSPACE
+#
+# 1
 assign [class="^zen$"] 1
 assign [class="^Brave-browser$"] 1
 assign [class="^Chromium-browser$"] 1
+# 2
 assign [class="^Code$"] 2
 assign [class="^dev.zed.Zed$"] 2
+# 3
 assign [class="^freetube$"] 3
 assign [class="^Signal$"] 3
-assign [class="^Super Productivity$" instance="^super productivity$"] 4
+# 4
+assign [class="^superproductivity$"] 4
+# 5
 assign [class="^lact$"] 5
 assign [class="^Spotify$"] 5
 assign [class="^ncspot$"] 5
 assign [class="^SimpMusic$"] 5
 assign [class="^nuclear$"] 5
+# WM_CLASS(STRING) = "limusic-app", "Limusic-app"
+assign [class="Limusic-app"] 5
 assign [class="^easyeffects$"] 5
-assign [class="^Virt-manager$"] 5
+# 6
+assign [class="^Virt-manager$"] 6
 
 # Set workspace names
 set $ws1 1

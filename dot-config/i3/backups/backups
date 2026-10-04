@@ -1,5 +1,10 @@
 ## UNUSED ##
 
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+#NOTE: I don't use ~/.config/autostart/ location in i3. Use if you need that .desktop files to autostart.
+# exec --no-startup-id dex --autostart --environment i3 &
+
 # focus the child container
 #bindsym Mod4+d focus child
 

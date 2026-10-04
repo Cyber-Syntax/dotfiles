@@ -1,6 +1,7 @@
 return {
   {
     --TODO: decrease renders for more clean way
+    --NOTE: disabled for more easy refactoring
     "MeanderingProgrammer/render-markdown.nvim",
     enabled = false,
     ft = { "markdown", "codecompanion" },

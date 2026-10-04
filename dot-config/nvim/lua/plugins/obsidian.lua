@@ -72,11 +72,12 @@ return {
         template = "daily-review.md",
       },
 
+      --NOTE: This deprecated after version 4.0.0
       -- Optional, completion of wiki links, local markdown links, and tags using nvim-cmp.
-      completion = {
-        -- Set to false to disable completion.
-        blink = true,
-      },
+      -- completion = {
+      --   -- Set to false to disable completion.
+      --   blink = true,
+      -- },
 
       link = {
         style = "markdown",
@@ -126,12 +127,13 @@ return {
 
       picker = {
         -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
-        name = "snacks.pick",
+        name = "snacks.picker",
       },
 
+      --TESTING: ui enabled, render-markdown seems more bad than obsidian.nvim
       --NOTE: we uses render-markdown.nvim for better view, and this isn't working with it
       ui = {
-        enable = false, -- set to false to disable all additional syntax features
+        enable = true, -- set to false to disable all additional syntax features
       },
 
       attachments = {
