@@ -227,10 +227,12 @@ assign [class="^Brave-browser$"] 1
 assign [class="^Chromium-browser$"] 1
 # 2
 assign [class="^Code$"] 2
+assign [class="^com.microsoft.VSCode$"] 2
 assign [class="^dev.zed.Zed$"] 2
 # 3
 assign [class="^freetube$"] 3
 assign [class="^Signal$"] 3
+assign [class="^Thunar$"] 3
 # 4
 assign [class="^superproductivity$"] 4
 # 5
