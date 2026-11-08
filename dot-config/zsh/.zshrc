@@ -20,6 +20,8 @@ export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export PATH="$HOME/.local/share/cargo/bin:$PATH"
 # export doom
 export PATH="$HOME/.config/emacs/bin:$PATH"
+# export go
+export PATH="$HOME/.local/share/go/bin:$PATH"
 
 # -------------------------------------------------------------------
 # Added by AutoTarCompress to enable shell completion
@@ -135,6 +137,14 @@ node_update_server() {
   npm i -g @angular/cli && \
   npm i && \
   npm run env
+}
+# superproductivity special alias
+extract_tr_json() {
+  node tools/add-missing-i18n-variables.js extract tr
+}
+
+merge_tr_json() {
+  node tools/add-missing-i18n-variables.js merge tr
 }
 
 # Standard Git aliases
