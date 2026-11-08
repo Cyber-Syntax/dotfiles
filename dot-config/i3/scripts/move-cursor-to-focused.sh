@@ -1,9 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
-focused_window=$(xdotool getwindowfocus -f)
-output=$(xdotool getwindowgeometry --shell $focused_window)
-width=$(echo $output | awk '{print $4}' | cut -d "=" -f 2)
-height=$(echo $output | awk '{print $5}' | cut -d "=" -f 2)
-move_y=$((height / 2))
-move_x=$((width / 2))
-xdotool mousemove --window $focused_window $move_x $move_y
+# Odaklanmış pencereyi al
+window=$(xdotool getwindowfocus 2>/dev/null)
+
+# Pencere mevcut ve geometrisi alınabiliyorsa
+if [ -n "$window" ] && eval "$(xdotool getwindowgeometry --shell "$window" 2>/dev/null)"; then
+  # Pencerenin ekran üzerindeki gerçek koordinatlarına göre merkez
+  xdotool mousemove $((X + WIDTH / 2)) $((Y + HEIGHT / 2))
+else
+  # Pencere yoksa mevcut monitörün tam merkezi
+  xdotool mousemove --polar 0 0
+fi
